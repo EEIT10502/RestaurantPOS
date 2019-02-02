@@ -9,7 +9,7 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Favicon icon -->
-<<<<<<< HEAD
+
 <link rel="icon" type="image/png" sizes="16x16"
 	href="<c:url value="/images/favicon.png"/>">
 <title>Order</title>
@@ -194,10 +194,8 @@
 		$('#opSubtotal' + itemNo).html(subTotal);
 		$('#hidSubtotal' + itemNo).val(subTotal);
 		
-<<<<<<< HEAD
+
 		if((subTotal-subTotal1)<0){
-=======
->>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
 		var y = parseInt($("#oTotal").val()); //修改單品數量，總金額連動。
 		var totalAmount=0;
 		totalAmount = y + (qty-1)*price;
