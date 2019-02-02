@@ -22,6 +22,7 @@
 
 <body>
 <!-- 左方菜單開始 -->
+	<div class="col-4 float-left">
 	<div class="w3-sidebar w3-bar-block sideColor w3-card sideWidth"	>
 		
 		<a href="<c:url value='/toDashBoard'/>" class="w3-button w3-block w3-left-align sideBarColHight"><i class="fa fa-tachometer"></i>&nbsp&nbsp<span>回後台首頁</span></a>
@@ -64,6 +65,6 @@
 		<a href="<c:url value='/'/>" class="w3-button w3-block w3-left-align sideBarColHight"><i class="fa fa-tachometer"></i>&nbsp&nbsp<span>回系統首頁</span>&nbsp</a>
 	</div>
 <!-- 	左方菜單結束 -->
-
+	</div>
 </body>
 </html>
