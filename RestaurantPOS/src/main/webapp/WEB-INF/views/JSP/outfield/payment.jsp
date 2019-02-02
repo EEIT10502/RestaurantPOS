@@ -77,7 +77,7 @@ $(function(){
             <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">              
                 <!-- Logo -->                
                 <div class="navbar-header">
-<<<<<<< HEAD
+
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->                        
                         <!-- Light Logo icon -->
@@ -120,7 +120,7 @@ $(function(){
                     <div class="col-md-3 col-8 align-self-center">                    
                         <input type="text" value="${callNo}" id="oCall" name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
                    		<input type="hidden" id="callNo" name="callNo" value="${callNo}">
-=======
+
                     <a class="navbar-brand" >
                         <!-- Logo icon -->                        
                         <!-- Light Logo icon -->
@@ -163,7 +163,7 @@ $(function(){
                     <div class="col-md-3 col-8 align-self-center">                    
                         <input type="text" value="${callNo}" id="oCall" name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
                    		<input type="hidden" id="callNo" name="callNo" value="${callNo}">                   		
->>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
+
                     </div>
                     <div class="col-md-3 col-8 align-self-center">                         
                         <!--佔位符-->
@@ -222,7 +222,7 @@ $(function(){
                                             <div class="row">
                                             <div class="col-md-4 col-8 align-self-center">
                                                 <p id="" class="inLine">收:&nbsp;&nbsp;</p>
-<<<<<<< HEAD
+
                                                 <input type="text" id="oReceived" name="oReceived"  class="inLine" style="width:150px">                                               
               
                                             </div>
@@ -233,7 +233,7 @@ $(function(){
                                                
                                                <input type="hidden" id="totalAmount" name="totalAmount" value="${totalAmount}">
                                               	
-=======
+
                                                 <input type="text" id="oReceived" name="oReceived"  class="inLine" style="width:150px">                                                
                                             </div>
                                            
@@ -241,7 +241,7 @@ $(function(){
                                                <p id="" class="inLine">總計:&nbsp;&nbsp;</p>
                                                 <input type="text" id="oTotal" name="oTotal" value="${totalAmount}" class="inLine" style="width:150px"  readonly>                                       
                                                 <input type="hidden" id="totalAmount" name="totalAmount" value="${totalAmount}">                               
->>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
+
                                             </div>   
                                             
                                             <div class="col-md-4 col-8 align-self-center" >
