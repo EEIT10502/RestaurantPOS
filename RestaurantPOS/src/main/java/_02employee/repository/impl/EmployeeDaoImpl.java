@@ -1,27 +1,29 @@
 package _02employee.repository.impl;
 
+
 import java.sql.Blob;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import _00.init.util.GlobalService;
 import _00model.AttendenceBean;
 import _00model.EmployeeBean;
-import _00model.ManagerBean;
-import _00model.MenuBean;
 import _02employee.repository.EmployeeDao;
 
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
-
+	java.util.Date uDate1 = null;
+	java.util.Date uDate2 = null;
+	java.sql.Date beginDate = null;
+	java.sql.Date endDate = null;
+	
 	@Autowired
 	SessionFactory factory;
 
@@ -135,6 +137,41 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		    return list;
 			
 		}
+		@Override
+		public void stringToDate(String Date1, String Date2) {
+			String tDate1 = Date1 + " 00:00:00";
+			String tDate2 = Date2 + " 23:59:59";
+			SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			// to util.Date
+			try {
+				uDate1 = fDate.parse(tDate1);
+				uDate2 = fDate.parse(tDate2);
+				beginDate = new java.sql.Date(uDate1.getTime());
+				endDate = new java.sql.Date(uDate2.getTime());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2) {
+			stringToDate(Date1, Date2);
+			String hql = "FROM AttendenceBean a WHERE a.date>=:beginDate and a.date<=:endDate";
+			Session session = factory.getCurrentSession();
+			List<AttendenceBean> EmpNameListByDate = session.createQuery(hql).setParameter("beginDate", beginDate)
+					.setParameter("endDate", endDate).getResultList();
+			return EmpNameListByDate;
+		}
+
+		@Override
+		public EmployeeBean findByPrimaryKey(int key) {
+			Session session = factory.getCurrentSession();
+			EmployeeBean employeeBean = session.get(EmployeeBean.class, key);
+			return employeeBean;
+		}
+
+		
 
 		
 //	@SuppressWarnings("unchecked")
