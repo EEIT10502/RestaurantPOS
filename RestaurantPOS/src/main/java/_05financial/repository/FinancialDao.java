@@ -1,5 +1,5 @@
 package _05financial.repository;
 
-public class FinancialDao {
+public interface FinancialDao {
 
 }
