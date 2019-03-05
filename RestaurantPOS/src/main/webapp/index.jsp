@@ -91,9 +91,7 @@ $(document).ready(function(){
     </tbody>
     </table>
 			</td>
-<!-- 			<td><input type="button" value="點餐" onclick="location.href='outfield/order.jsp'" id="toOrderPage" name="toOrderPage"></td> -->
-			<td type="button" id="toOrderPage" name="toOrderPage"><a href="order">點餐</a></td>
-<!-- 			<td><input type="button" value="點餐" id="toOrderPage" name="toOrderPage"><a href='/outfield/order'></a></td> -->
+			<td><input type="button" value="點餐" onclick="location.href='outfield/order.jsp'" id="toOrderPage" name="toOrderPage"></td>
 			<td><input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'"></td>
 		</tr>
 		<tr>
