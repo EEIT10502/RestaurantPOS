@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,9 +33,17 @@
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" /> 
+		<section>
+		<div class="container">
+			<h1 >
+				<spring:message code='spring.addProduct.form.addProductData.label' />
+			</h1>
+		</div>
+	</section>
+
 <form action="">
 	<div class="w3-container" style="margin-left: 160px">
-		<h2>商品新增</h2>
+<!-- 		<h2>商品新增</h2> -->
 		<div>
 		<label for="gIdInsert">商品編號</label>
 			<input type="text" id="gIdInsert" name="gIdInsert"><p>
