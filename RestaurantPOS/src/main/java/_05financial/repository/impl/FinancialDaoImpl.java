@@ -1,5 +1,7 @@
 package _05financial.repository.impl;
 
-public class FinancialDaoImpl {
+import _05financial.repository.FinancialDao;
+
+public class FinancialDaoImpl implements FinancialDao{
 
 }
