@@ -1,5 +1,6 @@
 package _00model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -12,10 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Schedule")
-public class ScheduleBean {
+public class ScheduleBean  implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	Integer scheduleId;	
-	Date date;	
+	Date date;	    
 	String empNo;	
 	String empName;	
 	Integer choose;	

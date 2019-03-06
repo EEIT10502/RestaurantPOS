@@ -3,9 +3,12 @@ package _00.init.util;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import _00.init.tableInit.CumulativeTurnoverTableInit;
 import _00.init.tableInit.EmployeeTableInit;
 import _00.init.tableInit.ManagerTableInit;
 import _00.init.tableInit.MenuTableInit;
+import _00.init.tableInit.OrderTableInit;
+import _00.init.tableInit.TargetTurnoverTableInit;
 
 public class DataBaseInitializer {
 
@@ -20,7 +23,27 @@ public class DataBaseInitializer {
 		//new ManagerTableInit(factory).initManager();
 		
 		//建立Employee資料
-		new EmployeeTableInit(factory).InitEmployee();
+		//new EmployeeTableInit(factory).InitEmployee();
+		
+		//建立CumulativeTurnover資料
+		//new CumulativeTurnoverTableInit(factory).initCumulativeTurnover();
+		
+		
+		//建立TargetTurnover資料
+		//new TargetTurnoverTableInit(factory).initTargetTurnover();
+		
+		
+		//建立Order資料
+		//new OrderTableInit(factory).initOrder();
+		
+		//建立OrderDetailBean資料
+		
+		
+		//建立Schedule資料
+		
+		
+		//建立Salary資料
+		
 		
 		factory.close();
 		System.out.println("建構表格完成!");

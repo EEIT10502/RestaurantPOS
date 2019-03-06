@@ -1,0 +1,14 @@
+
+
+
+
+
+	
+	String itemNo;
+	Integer orderNo;
+	String category;
+	Integer productNo;
+	String productName;
+	Integer qty;
+	String specialReq;
+	Integer productPrice;
