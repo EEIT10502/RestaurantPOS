@@ -1,9 +1,7 @@
 package _03product.controller;
 
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -76,7 +74,7 @@ public class ProductController {
 //			e.printStackTrace();
 //			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 //		}
-		return "redirect:/empManage/empInsert";
+		return "redirect:/goodsQuery";
 	}
 
 	@ModelAttribute("cateList")
@@ -84,15 +82,12 @@ public class ProductController {
 		return service.getAllCategories();
 	}
 
-//	private List<String> ProductStatusList= new List<String>(); 
-		
-
-//	@ModelAttribute("productStatusList")
-//	public List<String> getProductStatusList() {
-//		List<String> ProductStatusList= new List<String>(); 
-//		ProductStatusList.add("停售");
-////		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
-//		return ProductStatusList;
-//	}
+	@ModelAttribute("productStatusList")
+	public List<String> getProductStatusList() {
+		List<String> ProductStatusList= new ArrayList<String>(); 
+		ProductStatusList.add(GlobalService.Product_Status_Launched_Already);
+		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
+		return ProductStatusList;
+	}
 
 	}

@@ -22,11 +22,6 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getAllCategories();
 	}
 
-	@Transactional
-	@Override
-	public List<String> getProductStatusList() {
-		return productdao.getProductStatusList();
-	}
 	
 	@Transactional
 	@Override
