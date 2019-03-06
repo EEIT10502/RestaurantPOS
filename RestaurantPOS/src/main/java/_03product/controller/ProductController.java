@@ -23,7 +23,7 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 
-	@RequestMapping(value = "/goodsManage/goodsInsert", method = RequestMethod.GET)
+	@RequestMapping(value = "/goodsInsert.action", method = RequestMethod.GET)
 	public String getGoodsInsertPage(Model model) {
 		System.out.println("11");// 這行是測試用
 
@@ -31,10 +31,21 @@ public class ProductController {
 //		menuBean.setProductName("請輸入商品名稱");
 		model.addAttribute("MenuBean", menuBean);
 
-		return "goodsManage/goodsInsert";
+		return "goodsManage/goodsInsert";//按JSP目錄層
+	}
+	
+	@RequestMapping(value = "/goodsQuery.action")
+	public String getGoodsQueryPage(Model model) {
+		System.out.println("13");// 這行是測試用
+
+//		MenuBean menuBean = new MenuBean();
+//		menuBean.setProductName("請輸入商品名稱");
+//		model.addAttribute("MenuBean", menuBean);
+
+		return "goodsManage/goodsQuery";
 	}
 
-	@RequestMapping(value = "/goodsManage/goodsInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/goodsInsert.action", method = RequestMethod.POST)
 	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult result,
 			HttpServletRequest request) {
 		System.out.println("12");// 這行是測試用
@@ -74,7 +85,7 @@ public class ProductController {
 //			e.printStackTrace();
 //			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 //		}
-		return "redirect:/goodsQuery";
+		return "redirect:/goodsQuery.action";
 	}
 
 	@ModelAttribute("cateList")
