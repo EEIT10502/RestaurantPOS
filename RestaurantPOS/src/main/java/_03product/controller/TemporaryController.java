@@ -11,7 +11,6 @@ public class TemporaryController {
 	@RequestMapping("/goodsManage/goodsInsert")
 	public String welcome(Model model) {
 		System.out.println("11");
-
 		return "goodsManage/goodsInsert";
 	}
 

@@ -112,6 +112,10 @@ $(document).ready(function(){
 	<br>
 	<h6><a href="goodsManage/goodsInsert">商品管理頁面:goodsInsert</a></h6>
 <!-- 	商品管理連結_結束 -->
+
+<!-- 	sidebar連結_開始 -->
+	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>
+<!-- 	sidebar連結_結束 -->
 	
 
 </body>
