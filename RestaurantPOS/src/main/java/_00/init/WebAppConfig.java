@@ -27,7 +27,9 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages= {"_01foodAndBeverages","_02employee","_03product","_04schedule","_05financial", "_00.init"})
+
+@ComponentScan(basePackages= {"_01foodAndBeverages","_02employee","_03product","_04schedule","_05financial","_00.init"})
+
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired

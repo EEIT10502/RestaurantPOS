@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -38,9 +39,7 @@ public class RootAppConfig {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		factory.setDataSource(dataSource());
-		factory.setPackagesToScan(new String[] {
-					"_00model"
-				});
+		factory.setPackagesToScan("_00model");
 		factory.setHibernateProperties(additionalProperties());
 		return factory;
 	}
