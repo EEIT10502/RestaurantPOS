@@ -12,7 +12,7 @@ import _00model.MenuBean;
 public class TemporaryController {
 	@RequestMapping("/goodsManage/goodsInsert")
 	public String welcome(Model model) {
-		System.out.println("11");//這行是測試用，能刪
+		System.out.println("11");//這行是測試用
 
 		MenuBean menuBean = new MenuBean();
 //		menuBean.setProductName("請輸入商品名稱");

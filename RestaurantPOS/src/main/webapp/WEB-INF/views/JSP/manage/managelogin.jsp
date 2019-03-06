@@ -14,13 +14,15 @@
 <body>
 <form>
 <div>
-	<input type="button" value="回首頁"  id="mBack" name="mBack" onclick="location.href='../index.jsp'">
+	<input type="button" value="回首頁"  id="mBack" name="mBack">
 </div>
 <div>
 	<label for="mAccount">帳號</label>
 	<input type="text" id="mAccount" name="mAccount"><p>
 	<label for="mPwd">密碼</label>
 	<input type="text" id="mPwd" name="mPwd"><p>
+	<label for="rememberMe">記住帳號密碼</label>
+	<input type="checkbox" id="rememberMe" name="rememberMe">
 </div>
 <div>
 	<input type="submit" value="確定" id="mOK" name="mOK">

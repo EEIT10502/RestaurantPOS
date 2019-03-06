@@ -1,5 +1,9 @@
 package _05financial.repository;
 
-public interface FinancialDao {
+import _00model.OrderBean;
 
+public interface FinancialDao {
+	
+	public OrderBean queryOrder(String date);
+	
 }
