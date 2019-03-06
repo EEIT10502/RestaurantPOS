@@ -91,7 +91,7 @@ $(document).ready(function(){
     </tbody>
     </table>
 			</td>
-			<td><input type="button" value="點餐" onclick="location.href='outfield/order.jsp'" id="toOrderPage" name="toOrderPage"></td>
+			<td><input type="button" value="點餐" onclick="location.href='order'" id="toOrderPage" name="toOrderPage"></td>
 			<td><input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'"></td>
 		</tr>
 		<tr>
@@ -114,6 +114,10 @@ $(document).ready(function(){
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
 	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
 <!-- 	商品管理連結_結束 -->
+
+<!-- 	sidebar連結_開始 -->
+	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>
+<!-- 	sidebar連結_結束 -->
 	
 
 </body>

@@ -73,8 +73,8 @@
 		<a href="${pageContext.request.contextPath}/JSP/index.jsp" class="w3-bar-item w3-button">回首頁</a>
 		<button class="w3-button w3-block w3-left-align" onclick="openHRList()">人事管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoHRList" class="w3-hide w3-white w3-card">
-			<a href="../empManage/empInsert.jsp" class="w3-bar-item w3-button">新增員工資訊</a>
-			<a href="../empManage/empQuery.jsp" class="w3-bar-item w3-button">查詢員工資訊</a>
+			<a href="empManage/empInsert" class="w3-bar-item w3-button">新增員工資訊</a>
+			<a href="empManage/empQuery" class="w3-bar-item w3-button">查詢員工資訊</a>
 <!-- 			<a href="#" class="w3-bar-item w3-button">員工班表</a> -->
 <!-- 			<a href="#" class="w3-bar-item w3-button">薪資表</a>  -->
 			<a href="../empManage/attendance.jsp" class="w3-bar-item w3-button">出勤紀錄查詢</a>
@@ -83,15 +83,15 @@
 		<button class="w3-button w3-block w3-left-align" onclick="openGoodsList()">商品管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoGoodsList" class="w3-hide w3-white w3-card">
 			<a href="../goodsManage/goodsQuery.jsp" class="w3-bar-item w3-button">商品查詢</a>
-			<a href="../goodsManage/goodsInsert.jsp" class="w3-bar-item w3-button">商品新增</a>
+			<a href="goodsManage/goodsInsert" class="w3-bar-item w3-button">商品新增</a>
 		</div>
 
 		<button class="w3-button w3-block w3-left-align" onclick="openReportList()">報表查詢 <i class="fa fa-caret-down"></i></button>
 		<div id="demoReportList" class="w3-hide w3-white w3-card">
-			<a href="../report/dailyReport.jsp" class="w3-bar-item w3-button">日報表</a> 
-			<a href="../report/categoryReport.jsp" class="w3-bar-item w3-button">類別<br>銷售狀況</a>
-			<a href="../report/productReport.jsp" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
-			<a href="../report/goalReport.jsp" class="w3-bar-item w3-button">營運目標達成率</a>
+			<a href="report/dailyReport" class="w3-bar-item w3-button">日報表</a> 
+			<a href="report/categoryReport" class="w3-bar-item w3-button">類別<br>銷售狀況</a>
+			<a href="report/productReport" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
+			<a href="report/goalReport" class="w3-bar-item w3-button">營運目標達成率</a>
 		</div>
 
 		<a href="#" class="w3-button w3-block w3-left-align">使用者姓名</a>
