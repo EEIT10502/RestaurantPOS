@@ -43,7 +43,7 @@ public class DataBaseInitializer {
 		
 		
 		//建立Salary資料
-		
+		//
 		
 		factory.close();
 		System.out.println("建構表格完成!");
