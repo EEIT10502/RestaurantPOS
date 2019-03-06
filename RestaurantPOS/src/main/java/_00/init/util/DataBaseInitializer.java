@@ -42,10 +42,10 @@ public class DataBaseInitializer {
 		new OrderDetailTableInit(factory).initOrderDetail();
 		
 		//建立Schedule資料
-		
+		//
 		
 		//建立Salary資料
-		
+		//
 		
 		//建立Attendence資料
 		//new AttendenceTableInit(factory).initAttendence();
