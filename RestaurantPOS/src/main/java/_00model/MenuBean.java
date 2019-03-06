@@ -1,19 +1,22 @@
 package _00model;
 
 
-
+import java.io.Serializable;
+import java.sql.Blob;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-//123
+
 
 @Entity
 @Table(name = "Menu")
-public class MenuBean {
+public class MenuBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	Integer pId;
 	Integer productNo;
 	String productName;

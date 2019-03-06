@@ -1,6 +1,8 @@
 package _00model;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -17,18 +19,28 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Orders")
-public class OrderBean {
+public class OrderBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	Integer orderId;
 	String orderNo;
 	Integer cusFlow;
-	Date orderTime;
+	Timestamp  orderTime;
 	Integer totalPrice;
-	Integer callNo;
+	String callNo;
 	
 	Set<OrderDetailBean> OrderDetailBean = new LinkedHashSet<>();
 
-	
+	public OrderBean(Integer orderId,String orderNo,Integer cusFlow,Timestamp orderTime,Integer totalPrice
+			,String callNo) {
+		this.orderId=orderId;
+		this.orderNo=orderNo;
+		this.cusFlow=cusFlow;
+		this.orderTime=orderTime;
+		this.totalPrice=totalPrice;
+		this.callNo=callNo;
+	}
 	
 	
 	
@@ -63,12 +75,12 @@ public class OrderBean {
 	public void setCusFlow(Integer cusFlow) {
 		this.cusFlow = cusFlow;
 	}
-	@Column(columnDefinition="Datetime NOT NULL",name="orderTime")
-	public Date getOrderTime() {
+	
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 
@@ -82,15 +94,15 @@ public class OrderBean {
 	}
 
 	@Column(columnDefinition="VARCHAR(4) NOT NULL",name="callNo")
-	public Integer getCallNo() {
+	public String getCallNo() {
 		return callNo;
 	}
 
-	public void setCallNo(Integer callNo) {
+	public void setCallNo(String callNo) {
 		this.callNo = callNo;
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL ,orphanRemoval = true)
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="fk_orderNo", referencedColumnName="orderNo")
 	public Set<OrderDetailBean> getOrderDetailBean() {
 		return OrderDetailBean;

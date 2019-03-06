@@ -1,5 +1,6 @@
 package _00model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -10,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name = "Attendence")
-public class AttendenceBean {
+public class AttendenceBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	Integer attendenceId;
 	Date date;
