@@ -1,0 +1,584 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2016 OA Wu Design
+ */
+
+@import "_oa";
+
+* {
+  &, &:after, &:before {
+    vertical-align: top;
+    @include box-sizing(border-box);
+    @include selection(rgba(150, 200, 255, 1), rgba(255, 255, 255, 1));
+    @include font-smoothing(antialiased);
+  }
+}
+
+html {
+  min-height: 100%;
+
+  body {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    font-size: medium;
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif,"微軟正黑體", "Microsoft JhengHei";
+    background: rgba(235, 235, 235, 1.00);
+    color: rgba(50, 50, 50, 0.8);
+
+    @include font-smoothing(antialiased);
+  }
+}
+
+$headerHeight: 55px;
+$logoWidth: 230px;
+
+#header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  width: 100%;
+  height: $headerHeight;
+  background-color: white;
+  z-index: 100;
+  @include clearfix();
+  @include box-shadow(0 2px 5px 0 rgba(0,0,0,0.16));
+  
+  > * {
+    float: left;
+    display: inline-block;
+  }
+  .logo {
+    width: $logoWidth;
+    height: 100%;
+    background-color: rgba(0, 150, 136, 1.00);
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    @include transition(width .3s);
+    
+
+
+    > * {
+      font-size: 20px;
+      &:first-child {
+        margin-right: 5px;
+        @include transition(font-size .3s);
+      }
+      &:last-child {
+        @include transition(opacity .3s);
+        @include opacity(1);
+      }
+    }
+  }
+  .right {
+    width: $headerHeight;
+    height: $headerHeight;
+    text-align: center;
+
+    .avatar {
+      position: relative;
+      display: inline-block;
+
+      width: $headerHeight - 10px;
+      height: $headerHeight - 10px;
+      margin-top: 5px;
+      // overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        @include border-radius(50%);
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: none;
+        width: 13px;
+        height: 13px;
+        @include border-radius(50%);
+        background-color: rgba(236, 83, 70, 1.00);
+        border: 2px solid white;
+      }
+      &.not {
+        &:after {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .center {
+    width: calc(100% - #{$logoWidth} - #{$headerHeight});
+    text-align: left;
+    @include transition(width .3s);
+    
+    > *:first-child {
+      display: inline-block;
+      height: $headerHeight;
+      width: $headerHeight;
+      text-align: center;
+      line-height: $headerHeight;
+      font-size: 22px;
+      cursor: pointer;
+      @include transition(background-color .3s);
+
+      &:hover {
+        background-color: rgba(220, 220, 220, 1.00);
+      }
+    }
+  }
+  @include range-width(0, 750px){
+    .logo {
+      width: 0;
+    }
+    .right {
+      width: $headerHeight;
+    }
+    .center {
+      width: calc(100% - #{$headerHeight});
+    }
+  };
+}
+
+
+#main {
+  display: inline-block;
+  width: 100%;
+  padding-top: $headerHeight;
+  padding-left: $logoWidth;
+  @include transition(padding-left .3s);
+  
+  @include range-width(0, 750px){
+    padding-left: 0;
+  }
+  > div {
+    display: inline-block;
+    width: 100%;
+    // border: 1px solid rgba(255, 0, 0, .3);
+    padding: 16px;
+    text-align: left;
+  }
+}
+
+#menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  display: inline-block;
+  width: $logoWidth;
+  height: 100%;
+  background-color: rgba(38, 43, 51, 1.00); 
+  z-index: 50;
+  padding-top: $headerHeight;
+  color: white;
+  text-align: left;
+  @include transition(width .3s);
+
+
+
+  .group {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    // border: 1px solid rgba(255, 0, 0, .3);
+
+    > span {
+      $w: 40px;
+
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: $w;
+      line-height: $w;
+      // background-color: rgba(0, 0, 255, 0.2);
+      padding: 0 $w;
+      font-size: 20px;
+      cursor: pointer;
+      @include overflow-docx3();
+      @include opacity(.5);
+      @include transition(opacity .3s);
+      
+      
+      &:before, &:after {
+        position: absolute;
+        top: 0;
+        display: inline-block;
+        width: $w;
+        height: $w;
+        line-height: $w;
+        // border: 1px solid rgba(255, 0, 0, .3);
+        text-align: center;
+      }
+      &:before {
+        left: 0;
+      }
+      &:after {
+        font-family: "icomoon";
+        content: "\e902";
+        right: 0;
+      }
+      &.show {
+        @include opacity(1);
+
+        &:after {
+          @include rotate(180deg);
+        }
+        + .sub {
+          @include opacity(1);
+          @for $i from 1 through 5 {
+            &.n#{$i} {
+              height: 35px * $i;
+            }
+          }
+        }
+      }
+
+      &.ani {
+        &:after {
+          @include transition(transform .3s);
+        }
+        + .sub {
+          @include transition(height .3s, opacity .3s);
+        }
+      }
+    }
+
+    .sub {
+      display: block;
+      width: 100%;
+      
+      height: 0;
+      overflow: hidden;
+      @include opacity(0);
+
+      border-top: 1px solid rgba(52, 56, 61, 1.00);
+      border-bottom: 1px solid rgba(52, 56, 61, 1.00);
+      background-color: rgba(29, 32, 38, 1.00);
+      // background-color: rgba(0, 128, 0, 0.2);
+
+
+      > a {
+        $w: 35px;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        font-size: 14px;
+        padding-left: $w + 10px;
+        cursor: pointer;
+
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 10px;
+          display: inline-block;
+          width: $w;
+          height: $w;
+          line-height: $w;
+          // border: 1px solid rgba(255, 0, 0, .3);
+          text-align: center;
+        }
+        &.active {
+          color: rgba(0, 150, 136, 1.00);
+        }
+      }
+    }
+  }
+  .logo {
+    width: $logoWidth;
+    height: $headerHeight;
+    background-color: rgba(0, 150, 136, 1.00);
+    color: white;
+
+    display: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    @include transition(width .3s);
+    
+
+
+    > * {
+      font-size: 20px;
+      &:first-child {
+        margin-right: 5px;
+        @include transition(font-size .3s);
+      }
+      &:last-child {
+        @include transition(opacity .3s);
+        @include opacity(1);
+      }
+    }
+  }
+  + label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(39, 40, 34, .40);
+    z-index: -999;
+    @include opacity(0);
+    @include transition(opacity .3s);
+
+    &:before {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 25px;
+      color: rgba(255, 255, 255, .7500);
+      @include transition(color .3s);
+      @include text-shadow(0 0 2px rgba(39, 40, 34, .500));
+    }
+
+    &:hover {
+      &:before {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+  @include range-width(0, 750px){
+    z-index: 150;
+    padding-top: 0;
+    left: -$logoWidth;
+    @include opacity(0);
+    @include box-shadow(0 0 5px rgba(39, 40, 34, .500));
+    @include transition(opacity .3s, left .3s);
+    
+    .logo {
+      display: flex;
+    }
+  }
+}
+
+.hide_checkbox {
+  position: fixed;
+  left: -999px;
+  top: -999;
+  display: none;
+  @include opacity(0);
+  z-index: -999;
+}
+
+#menu_checkbox {
+  &:checked {
+    ~ #header {
+      @include range-width(750px){
+        .logo {
+          width: $headerHeight;
+          *:first-child {
+            margin-right: 0;
+            font-size: 30px;
+          }
+          *:last-child {
+            display: none;
+            @include opacity(0);
+          }
+        }
+        .center {
+          width: calc(100% - #{$headerHeight} - #{$headerHeight});
+        }
+      }
+    }
+    ~ #menu {
+      @include range-width(0, 750px){
+        left: 0;
+        @include opacity(1);
+        + label {
+          display: inline-block;
+          z-index: 150 - 1;
+          @include opacity(1);
+        }
+      }
+      @include range-width(750px){
+        width: $headerHeight;
+        .group {
+          > span {
+            width: $headerHeight;
+            padding-left: $headerHeight;
+            &:before {
+              width: $headerHeight;
+            }
+            &:after {
+              display: none;
+            }
+          }
+          .sub {
+            a {
+              padding-left: $headerHeight;
+            }
+          }
+        }
+      }
+    }
+    ~ #main {
+      @include range-width(750px){
+        padding-left: $headerHeight;
+      }
+    }
+  }
+}
+#user_info {
+  position: fixed;
+  top: $headerHeight + 4px;
+  right: 4px;
+  width: 250px;
+  // height: 300px;
+  // border: 1px solid rgba(255, 0, 0, .3);
+  background-color: white;
+  @include border-radius(2px);
+  @include box-shadow(0 0 3px rgba(39, 40, 34, .500));
+  @include transition(opacity .3s);
+  
+  display: none;
+  z-index: -999;
+  @include opacity(0);
+
+
+  $w: 10px;
+  &:after, &:before {
+    bottom: 100%;
+    right: 23px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &:after {
+    border-color: transparent;
+    border-bottom-color: white;
+    border-width: $w;
+    margin-right: -$w;
+  }
+  &:before {
+    border-color: transparent;
+    border-bottom-color: rgba(39, 40, 34, .300);
+    border-width: ($w + 1px);
+    margin-right: -($w + 1px);
+  }
+
+  + label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(39, 40, 34, .40);
+    @include transition(opacity .3s);
+
+
+    display: none;
+    z-index: -999;
+    @include opacity(0);
+  }
+
+  .content {
+    display: inline-block;
+    width: 100%;
+    padding: 16px;
+    text-align: left;
+    font-size: 14px;
+
+    .row {
+      display: inline-block;
+      width: 100%;
+      height: 22px;
+      line-height: 22px;
+      @include overflow-docx3();
+      + .row {
+        margin-top: 4px;
+      }
+    }
+
+    .item {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      // border: 1px solid rgba(255, 0, 0, .3);
+      text-align: right;
+
+      border-top: 1px solid rgba(212, 212, 211, 1.00);
+      margin-top: 8px;
+      padding-top: 3px;
+      font-size: 13px;
+      color: rgba(66, 133, 244, 1.00);
+      cursor: pointer;
+      
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 3px;
+        display: inline-block;
+        width: 20px;
+        height: 30px;
+        line-height: 30px;
+        text-align: left;
+        font-size: 18px;
+        color: rgba(91, 91, 91, 1.00);
+        // border: 1px solid rgba(255, 0, 0, .3);
+      }
+      &[data-count] {
+        &:after {
+          content: attr(data-count);
+
+          position: absolute;
+          left: 20px + 4px;
+          top: 3px + 5px;
+          display: inline-block;
+          height: 20px;
+          line-height: 19px;
+          font-size: 10px;
+          text-align: center;
+          // border: 1px solid rgba(255, 0, 0, .3);
+          background-color: rgba(234, 67, 53, 1.00);
+          color: white;
+          padding: 0 8px;
+          @include border-radius(20px / 2);
+
+        }
+      }
+    }
+  }
+}
+
+#user_info_checkbox {
+  &:checked {
+    ~ #user_info {
+      display: inline-block;
+      z-index: 300;
+      @include opacity(1);
+
+      + label {
+        display: inline-block;
+        z-index: 300 - 1;
+        @include opacity(1);
+      }
+    }
+  }
+}
