@@ -6,3 +6,4 @@ spring.goodsInsert.form.cate.label=商品類別
 spring.goodsInsert.form.select.label=請選擇
 spring.goodsInsert.form.submit.label=新增
 spring.goodsInsert.form.reset.label=清除
+spring.goodsInsert.form.productStatus.label=商品狀態

@@ -83,7 +83,20 @@
 							<form:option value="-1">
 								<spring:message code='spring.goodsInsert.form.select.label' />
 							</form:option>
-							<%-- 	<form:options items="${categoryList}" /> --%>
+							<form:options items="${cateList}" />
+						</form:select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='control-label col-lg-2 col-lg-2' for="productStatus">
+						<spring:message code='spring.goodsInsert.form.productStatus.label' />
+					</label>
+					<div class='col-lg-10'>
+						<form:select path="productStatus">
+							<form:option value="-1">
+								<spring:message code='spring.goodsInsert.form.select.label' />
+							</form:option>
+							<form:options items="${productStatusList}" />
 						</form:select>
 					</div>
 				</div>
@@ -98,40 +111,38 @@
 
 
 				<!-- 	========================================================================== -->
-<!-- 				<div class="w3-container" style="margin-left: 160px"> -->
-<!-- 					<div> -->
-<!-- 						<label for="gIdInsert">商品編號</label> <input type="text" -->
-<!-- 							id="gIdInsert" name="gIdInsert"> -->
-<!-- 						<p> -->
-<!-- 							<label for="gNInsert">商品名稱</label> <input type="text" -->
-<!-- 								id="gNInsert" name="gNInsert"> -->
-<!-- 						<p> -->
-<!-- 							<label for="gPInsert">商品價格</label> <input type="text" -->
-<!-- 								id="gPInsert" name="gPInsert"> -->
-<!-- 						<p> -->
+				<!-- 				<div class="w3-container" style="margin-left: 160px"> -->
+				<!-- 					<div> -->
+				<!-- 						<label for="gIdInsert">商品編號</label> <input type="text" -->
+				<!-- 							id="gIdInsert" name="gIdInsert"> -->
+				<!-- 						<p> -->
+				<!-- 							<label for="gNInsert">商品名稱</label> <input type="text" -->
+				<!-- 								id="gNInsert" name="gNInsert"> -->
+				<!-- 						<p> -->
+				<!-- 							<label for="gPInsert">商品價格</label> <input type="text" -->
+				<!-- 								id="gPInsert" name="gPInsert"> -->
+				<!-- 						<p> -->
 
-<!-- 							<label for="cateInsert">商品類別</label> <select id="cateInsert"> -->
-<!-- 								<option>飯類</option> -->
-<!-- 								<option>麵類</option> -->
-<!-- 								<option>飲料</option> -->
-<!-- 								<option>甜點</option> -->
-<!-- 							</select> -->
-<!-- 						<p> -->
-<!-- 							<label for="gPicInsert">商品圖片</label> <input type="file" -->
-<!-- 								id="gPicInsert" name="gPicInsert"> -->
-<!-- 						<p> -->
-<!-- 							<input type="submit" value="新增" id="inGoods" name="inGoods"> -->
-<!-- 							<input type="reset" value="清除" id="resetGoods" name="resetGoods"> -->
-<!-- 						<p> -->
-<!-- 					</div> -->
+				<!-- 							<label for="cateInsert">商品類別</label> <select id="cateInsert"> -->
+				<!-- 								<option>飯類</option> -->
+				<!-- 								<option>麵類</option> -->
+				<!-- 								<option>飲料</option> -->
+				<!-- 								<option>甜點</option> -->
+				<!-- 							</select> -->
+				<!-- 						<p> -->
+				<!-- 							<label for="gPicInsert">商品圖片</label> <input type="file" -->
+				<!-- 								id="gPicInsert" name="gPicInsert"> -->
+				<!-- 						<p> -->
+				<!-- 							<input type="submit" value="新增" id="inGoods" name="inGoods"> -->
+				<!-- 							<input type="reset" value="清除" id="resetGoods" name="resetGoods"> -->
+				<!-- 						<p> -->
+				<!-- 					</div> -->
 
 
 
-<!-- 				</div> -->
+				<!-- 				</div> -->
 			</fieldset>
 		</form:form>
 	</section>
-
-
 </body>
 </html>

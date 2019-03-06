@@ -70,7 +70,7 @@ public class MenuBean {
 		this.cate = cate;
 	}
 	
-	@Column(columnDefinition="VARCHAR(2) NOT NULL",name="productStatus")
+	@Column(columnDefinition="VARCHAR(4) NOT NULL",name="productStatus")
 	public String getProductStatus() {
 		return productStatus;
 	}
