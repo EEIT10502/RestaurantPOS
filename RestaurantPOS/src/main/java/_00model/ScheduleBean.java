@@ -1,19 +1,21 @@
 package _00model;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import java.io.*;
+import java.util.*;
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 
 @Entity
-@Table(name = "Schedule")
-public class ScheduleBean {
+@Table(name = "schedule")
+@XmlRootElement(name="schedule")
+public class ScheduleBean implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer scheduleId;	
 	Date date;	
 	String empNo;	
@@ -30,8 +32,8 @@ public class ScheduleBean {
 
 
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getScheduleId() {
 		return scheduleId;
 	}
