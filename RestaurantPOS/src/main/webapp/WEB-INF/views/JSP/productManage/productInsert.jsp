@@ -84,8 +84,8 @@ p.errorMessage[type="redError"] {
 					</label>
 					<div class="col-lg-10">
 						<form:input id="priceBtn" path="price" type='text'
-							class='form:input-large' />
-						<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}
+							class='form:input-large' name="iPrice"/>
+						<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice}
 					</div>
 
 				</div>
