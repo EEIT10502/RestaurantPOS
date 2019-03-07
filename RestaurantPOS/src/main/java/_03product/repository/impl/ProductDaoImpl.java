@@ -32,13 +32,5 @@ public class ProductDaoImpl implements ProductDao {
 		session.save(menuItem);
 	}
 
-	private List<String> ProductStatusList;
-	@Override
-	public List<String> getProductStatusList() {
-		List<String> list = null;
-		ProductStatusList.add(GlobalService.Product_Status_Launched_Already);
-		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
-		return list;
-	}
 
 }

@@ -1,14 +1,6 @@
-
-
-
-
-
-	
-	String itemNo;
-	Integer orderNo;
-	String category;
-	Integer productNo;
-	String productName;
-	Integer qty;
-	String specialReq;
-	Integer productPrice;
+061136|麵類|0001|牛肉麵|1|加蔥|80
+061136|飯類|0006|蛋炒飯|1|無|60
+061136|菜類|0010|蒜炒菠菜|1|null|60
+061137|小菜類|0014|風味小菜|1|null|20
+061137|湯類|0018|鮮蝦餛飩湯|1|null|40
+061137|湯類|0019|酸辣湯|1|null|40
