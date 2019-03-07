@@ -1,9 +1,11 @@
 package _05financial.repository;
 
+import java.util.List;
+
 import _00model.OrderBean;
 
 public interface FinancialDao {
 	
-	public OrderBean queryOrder(String date);
+	public List<OrderBean> getAllOrder() ;
 	
 }

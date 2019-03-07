@@ -11,19 +11,19 @@ public class FinancialController {
 		return "sideBar";
 	}
 	@RequestMapping("/report/categoryReport")
-	public String categoryReport(Model model) {
+	public String categoryReport() {
 		return "report/categoryReport";
 	}
 	@RequestMapping("/report/dailyReport")
-	public String dailyReport(Model model) {
+	public String dailyReport() {
 		return "report/dailyReport";
 	}
 	@RequestMapping("/report/goalReport")
-	public String goalReport(Model model) {
+	public String goalReport() {
 		return "report/goalReport";
 	}
 	@RequestMapping("/report/productReport")
-	public String productReport(Model model) {
+	public String productReport() {
 		return "report/productReport";
 	}
 
