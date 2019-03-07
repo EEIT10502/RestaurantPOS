@@ -1,5 +1,10 @@
 package _02employee.repository;
 
-public class EmployeeDao {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EmployeeDao {
+	
+	EmployeeDao findByName(String Name);
 
 }

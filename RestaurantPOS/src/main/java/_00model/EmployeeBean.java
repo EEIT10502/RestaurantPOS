@@ -131,6 +131,10 @@ public class EmployeeBean {
 	public void setImg(Blob img) {
 		this.img = img;
 	}
+
+	
+
+	
 	
 	
 	
