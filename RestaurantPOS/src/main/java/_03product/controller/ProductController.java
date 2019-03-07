@@ -127,7 +127,7 @@ public class ProductController {
 		return ProductStatusList;
 	}
 	@ModelAttribute("currentCategoryNumber")
-	public String getCurrentCategoryNumber() {
+	public Integer getCurrentCategoryNumber() {
 		return service.getCurrentCategoryNumber();
 	}
 

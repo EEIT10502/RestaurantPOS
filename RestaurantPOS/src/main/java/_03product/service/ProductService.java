@@ -7,7 +7,7 @@ import _00model.MenuBean;
 public interface ProductService {
 	List<String> getAllCategories();
 
-	String getCurrentCategoryNumber();
+	Integer getCurrentCategoryNumber();
 
 	void addProduct(MenuBean menuItem);
 }

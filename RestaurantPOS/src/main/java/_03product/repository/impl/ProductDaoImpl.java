@@ -34,10 +34,10 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public String getCurrentCategoryNumber() {
-		String hql = "SELECT MAX(PRODUCTNO) FROM MenuBean";
+	public Integer getCurrentCategoryNumber() {
+		String hql = "SELECT MAX(productNo) FROM MenuBean";
 		Session session = factory.getCurrentSession();
-		String CurrentCategoryNumber = (String) session.createQuery(hql).uniqueResult();
+		Integer CurrentCategoryNumber = (Integer) session.createQuery(hql).uniqueResult();
 		return CurrentCategoryNumber;
 	}
 
