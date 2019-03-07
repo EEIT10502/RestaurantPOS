@@ -1,5 +1,7 @@
 package _00model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,17 +11,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "OrderDetail")
-public class OrderDetailBean {
+public class OrderDetailBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	
 	Integer orderDetailId;
-	String itemNo;
 	Integer orderNo;
-	String category;
+	String  category;
 	Integer productNo;
-	String productName;
+	String  productName;
 	Integer qty;
-	String specialReq;
+	String  specialReq;
 	Integer productPrice;
 	
 	
@@ -38,15 +40,8 @@ public class OrderDetailBean {
 		this.orderDetailId = orderDetailId;
 	}
 	
-	@Column(columnDefinition="VARCHAR(4) NOT NULL",name="itemNo")
-	public String getItemNo() {
-		return itemNo;
-	}
-	public void setItemNo(String orderDetailNo) {
-		this.itemNo = orderDetailNo;
-	}
 	
-	@Column(columnDefinition="VARCHAR(12) NOT NULL",name="orderNo")
+	@Column(columnDefinition="VARCHAR(12) NOT NULL",name="fk_orderNo")
 	public Integer getOrderNo() {
 		return orderNo;
 	}

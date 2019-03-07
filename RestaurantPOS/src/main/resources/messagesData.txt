@@ -1,0 +1,9 @@
+spring.goodsInsert.form.goodsInsertData.label=商品新增
+spring.goodsInsert.form.productNo.label=商品編號
+spring.goodsInsert.form.productName.label=商品名稱
+spring.goodsInsert.form.price.label=商品價格
+spring.goodsInsert.form.cate.label=商品類別
+spring.goodsInsert.form.select.label=請選擇
+spring.goodsInsert.form.submit.label=新增
+spring.goodsInsert.form.reset.label=清除
+spring.goodsInsert.form.productStatus.label=商品狀態

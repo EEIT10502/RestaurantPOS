@@ -1,5 +1,6 @@
 package _00model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -12,8 +13,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CumulativeTurnover")
-public class CumulativeTurnoverBean {
-
+public class CumulativeTurnoverBean implements Serializable
+{
+	private static final long serialVersionUID = 1L;
+	
+	
 	Integer id;
 	Date date;
 	Integer turnover;

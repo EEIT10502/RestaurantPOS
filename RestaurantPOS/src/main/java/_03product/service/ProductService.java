@@ -1,11 +1,12 @@
-package _03product.repository;
+package _03product.service;
 
 import java.util.List;
 
 import _00model.MenuBean;
 
-public interface ProductDao {
+public interface ProductService {
 	List<String> getAllCategories();
+
 
 	void addProduct(MenuBean menuItem);
 }
