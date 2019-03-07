@@ -110,7 +110,7 @@ $(document).ready(function(){
 	<br>
 	<br>
 	<br>
-	<h6><a href="goodsInsert.action">商品管理頁面:goodsInsert</a></h6>
+	<h6><a href="productInsert.action">商品管理頁面:productInsert</a></h6>
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
 	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
 <!-- 	商品管理連結_結束 -->

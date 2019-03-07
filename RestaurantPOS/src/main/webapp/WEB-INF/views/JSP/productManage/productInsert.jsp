@@ -16,6 +16,11 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <title>商品新增</title>
+<style type="text/css">
+p.errorMessage[type="redError"] {
+	color: red;
+}
+</style>
 </head>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -35,77 +40,90 @@
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	<section>
-		<div class="container">
-			<h1>
-				<spring:message code='spring.goodsInsert.form.goodsInsertData.label' />
-			</h1>
-		</div>
-	</section>
+	<!-- 	<section> -->
+	<!-- 				<div class="container"> -->
+	<!-- 					<h1> -->
+	<%-- 						<spring:message code='spring.productInsert.form.productInsertData.label' /> --%>
+	<!-- 					</h1> -->
+	<!-- 				</div> -->
+	<!-- 	</section> -->
 	<!-- 	<section class="container"> -->
 	<section class="">
+
 		<form:form method='POST' modelAttribute="MenuBean"
 			class='form-horizontal'>
 			<fieldset class="w3-container" style="margin-left: 160px">
+				<div class="container">
+					<h1>
+						<spring:message
+							code='spring.productInsert.form.productInsertData.label' />
+					</h1>
+				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='productNo'>
-						<spring:message code='spring.goodsInsert.form.productNo.label' />
+					<label class="control-label col-lg-2 col-lg-2" for='productNoBtn'>
+						<spring:message code='spring.productInsert.form.productNo.label' />
 					</label>
 					<div class="col-lg-10">
-						<form:input id="productNo" path="productNo" type='text'
-							class='form:input-large' />
+						<form:input id="productNoBtn" path="productNo" type='text'
+							class='form:input-large' value="${currentCategoryNumber}"/> 
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='productName'>
-						<spring:message code='spring.goodsInsert.form.productName.label' />
+					<label class="control-label col-lg-2 col-lg-2" for='productNameBtn'>
+						<spring:message code='spring.productInsert.form.productName.label' />
 					</label>
 					<div class="col-lg-10">
-						<form:input id="productName" path="productName" type='text'
-							class='form:input-large' />
+						<form:input id="productNameBtn" path="productName" type='text'
+							name="productName" class='form:input-large' />
+						<p class="errorMessage" type="redError">${modelErrors.errorOfProductName}
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='price'>
-						<spring:message code='spring.goodsInsert.form.price.label' />
+					<label class="control-label col-lg-2 col-lg-2" for='priceBtn'>
+						<spring:message code='spring.productInsert.form.price.label' />
 					</label>
 					<div class="col-lg-10">
-						<form:input id="price" path="price" type='text'
+						<form:input id="priceBtn" path="price" type='text'
 							class='form:input-large' />
+						<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}
 					</div>
+
 				</div>
 				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="cate">
-						<spring:message code='spring.goodsInsert.form.cate.label' />
+					<label class='control-label col-lg-2 col-lg-2' for="cateBtn">
+						<spring:message code='spring.productInsert.form.cate.label' />
 					</label>
 					<div class='col-lg-10'>
-						<form:select path="cate">
+						<form:select path="cate" id="cateBtn">
 							<form:option value="-1">
-								<spring:message code='spring.goodsInsert.form.select.label' />
+								<spring:message code='spring.productInsert.form.select.label' />
 							</form:option>
 							<form:options items="${cateList}" />
 						</form:select>
+						<p class="errorMessage" type="redError">${modelErrors.errorOfCate}
 					</div>
 				</div>
 				<div class="form-group">
-					<label class='control-label col-lg-2 col-lg-2' for="productStatus">
-						<spring:message code='spring.goodsInsert.form.productStatus.label' />
+					<label class='control-label col-lg-2 col-lg-2'
+						for="productStatusBtn"> <spring:message
+							code='spring.productInsert.form.productStatus.label' />
 					</label>
 					<div class='col-lg-10'>
-						<form:select path="productStatus">
+						<form:select path="productStatus" id="productStatusBtn">
 							<form:option value="-1">
-								<spring:message code='spring.goodsInsert.form.select.label' />
+								<spring:message code='spring.productInsert.form.select.label' />
 							</form:option>
 							<form:options items="${productStatusList}" />
 						</form:select>
+						<p class="errorMessage" type="redError">${modelErrors.errorOfProductStatus}
 					</div>
 				</div>
 				<div class="form-group">
 					<div class='col-lg-offset-2 col-lg-10'>
-						<input id="inGoods" type='submit' class='btn btn-primary'
-							value="<spring:message code='spring.goodsInsert.form.submit.label' />" />
-						<input id="resetGoods" type='reset' class='btn btn-primary'
-							value="<spring:message code='spring.goodsInsert.form.reset.label' />" />
+						<input id="inProduct" type='submit' class='btn btn-primary'
+							value="<spring:message code='spring.productInsert.form.submit.label' />" />
+						<input id="resetProduct" type='reset' class='btn btn-primary'
+							value="<spring:message code='spring.productInsert.form.reset.label' />" />
 					</div>
 				</div>
 

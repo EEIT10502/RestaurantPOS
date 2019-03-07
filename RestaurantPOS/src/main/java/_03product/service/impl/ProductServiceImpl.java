@@ -29,5 +29,11 @@ public class ProductServiceImpl implements ProductService {
 		productdao.addProduct(menuItem);
 	}
 
+
+	@Override
+	public String getCurrentCategoryNumber() {
+		return productdao.getCurrentCategoryNumber();
+	}
+
 	
 }

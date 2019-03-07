@@ -1,9 +1,9 @@
 package _03product.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,32 +23,57 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 
-	@RequestMapping(value = "/goodsInsert.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/productInsert.action", method = RequestMethod.GET)
 	public String getGoodsInsertPage(Model model) {
 		System.out.println("11");// 這行是測試用
 
 		MenuBean menuBean = new MenuBean();
 //		menuBean.setProductName("請輸入商品名稱");
 		model.addAttribute("MenuBean", menuBean);
-
-		return "goodsManage/goodsInsert";//按JSP目錄層
+		
+		return "productManage/productInsert";//按JSP目錄層
 	}
 	
-	@RequestMapping(value = "/goodsQuery.action")
+	@RequestMapping(value = "/productQuery.action")
 	public String getGoodsQueryPage(Model model) {
 		System.out.println("13");// 這行是測試用
 
-//		MenuBean menuBean = new MenuBean();
-//		menuBean.setProductName("請輸入商品名稱");
-//		model.addAttribute("MenuBean", menuBean);
-
-		return "goodsManage/goodsQuery";
+		return "productManage/productQuery";
 	}
 
-	@RequestMapping(value = "/goodsInsert.action", method = RequestMethod.POST)
-	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult result,
-			HttpServletRequest request) {
+	@RequestMapping(value = "/productInsert.action", method = RequestMethod.POST)
+	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult result, Model model) {
 		System.out.println("12");// 這行是測試用
+		
+		Map<String,String> errors = new HashMap<>();
+		model.addAttribute("modelErrors",errors);
+		
+		String productNameInsert = menuBean.getProductName();
+		if(productNameInsert == null || productNameInsert.length() == 0) {
+			errors.put("errorOfProductName", "請輸入商品名稱");
+		}
+		
+		Integer priceInsert = menuBean.getPrice();
+		if(priceInsert == null) {
+			errors.put("errorOfPrice", "請輸入商品價格");
+		}
+		
+		String CateInsert = menuBean.getCate();
+		if(CateInsert == null || CateInsert.equals("-1")) {
+			errors.put("errorOfCate", "請選擇商品種類");
+		}
+		
+		String ProductStatusInsert = menuBean.getProductStatus();
+		if(ProductStatusInsert == null || ProductStatusInsert.equals("-1")) {
+			errors.put("errorOfProductStatus", "請選擇商品狀態");
+		}
+		
+		if(errors != null && !errors.isEmpty()) {
+			System.out.println("14");
+			return "productManage/productInsert";
+		}
+		
+		
 //		
 //		String[] suppressedFields = result.getSuppressedFields();
 //		if (suppressedFields.length > 0) {
@@ -75,6 +100,7 @@ public class ProductController {
 //				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 //			}
 //		}
+		
 		service.addProduct(menuBean);
 //		try {
 //			File imageFolder = new File(rootDirectory, "images");
@@ -85,7 +111,7 @@ public class ProductController {
 //			e.printStackTrace();
 //			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 //		}
-		return "redirect:/goodsQuery.action";
+		return "redirect:/productQuery.action";
 	}
 
 	@ModelAttribute("cateList")
@@ -99,6 +125,10 @@ public class ProductController {
 		ProductStatusList.add(GlobalService.Product_Status_Launched_Already);
 		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
 		return ProductStatusList;
+	}
+	@ModelAttribute("currentCategoryNumber")
+	public String getCurrentCategoryNumber() {
+		return service.getCurrentCategoryNumber();
 	}
 
 	}
