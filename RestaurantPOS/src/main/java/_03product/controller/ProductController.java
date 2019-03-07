@@ -49,9 +49,6 @@ public class ProductController {
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("modelErrors", errors);
 
-		if (result != null && (result.getFieldValue("price") instanceof java.lang.String)) {
-			System.out.println("881");
-		}
 		String productNameInsert = menuBean.getProductName();
 		if (productNameInsert == null || productNameInsert.length() == 0) {
 			errors.put("errorOfProductName", "請輸入商品名稱");
