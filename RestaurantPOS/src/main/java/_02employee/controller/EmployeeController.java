@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class EmployeeController {
 
-	@RequestMapping("/outfield/order")
-	public String order(Model model) {
-		return "/outfield/orderorder";
-	}
+
 
 }
