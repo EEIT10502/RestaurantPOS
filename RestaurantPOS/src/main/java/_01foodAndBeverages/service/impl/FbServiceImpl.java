@@ -32,5 +32,11 @@ public class FbServiceImpl implements FbService {
 		return dao.getProductByCategory(cate);
 	}
 
+	@Transactional
+	@Override
+	public MenuBean getProductById(Integer pId) {
+		return dao.getProductById(pId);
+	}
+
 	
 }

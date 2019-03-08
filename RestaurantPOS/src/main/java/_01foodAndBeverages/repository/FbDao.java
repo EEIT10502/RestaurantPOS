@@ -12,4 +12,6 @@ public interface FbDao {
 	
 	public List<MenuBean> getProductByCategory(String cate);
 	
+	MenuBean getProductById(Integer pId);
+	
 }
