@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +31,14 @@ public class ProductDaoImpl implements ProductDao {
 	public void addProduct(MenuBean menuItem) {
 		Session session = factory.getCurrentSession();
 		session.save(menuItem);
+	}
+	
+	@Override
+	public Integer getCurrentCategoryNumber() {
+		String hql = "SELECT MAX(productNo) FROM MenuBean";
+		Session session = factory.getCurrentSession();
+		Integer CurrentCategoryNumber = (Integer) session.createQuery(hql).uniqueResult();
+		return CurrentCategoryNumber;
 	}
 
 
