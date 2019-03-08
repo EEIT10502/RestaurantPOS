@@ -28,9 +28,16 @@ public class FbController {
 	
 	@RequestMapping("/order")
 	public String order(Model model) {
-		List<MenuBean>  list = service.getAllProducts();
+		List<MenuBean>  list1 = service.getProductByCategory("飯類");
+		List<MenuBean>  list2 = service.getProductByCategory("麵類");
+		List<MenuBean>  list3 = service.getProductByCategory("湯類");
+		List<MenuBean>  list4 = service.getProductByCategory("餃類");
+		
 	
-		model.addAttribute("menu", list);
+		model.addAttribute("menu", list1);
+		model.addAttribute("noodle", list2);
+		model.addAttribute("soup", list3);
+		model.addAttribute("dump", list4);
 		
 		return "/outfield/order";
 	}
