@@ -7,7 +7,15 @@ import _00model.MenuBean;
 public interface ProductDao {
 	List<String> getAllCategories();
 
-	Integer getCurrentCategoryNumber();
+	List<MenuBean> getAllProducts();
+
+	List<MenuBean> getAllProductsListTestRice();
+
+	List<MenuBean> getAllProductsListTestSoup();
+
+	List<MenuBean> getAllProductsListTestDessert();
+
+	Integer getCurrentCategoryNumber(String cateInsert);
 
 	void addProduct(MenuBean menuItem);
 }

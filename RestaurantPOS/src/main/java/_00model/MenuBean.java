@@ -81,6 +81,26 @@ public class MenuBean implements Serializable {
 		this.productStatus = productStatus;
 	}
 
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MenuBean [pId=");
+		builder.append(pId);
+		builder.append(", productNo=");
+		builder.append(productNo);
+		builder.append(", productName=");
+		builder.append(productName);
+		builder.append(", price=");
+		builder.append(price);
+		builder.append(", cate=");
+		builder.append(cate);
+		builder.append(", productStatus=");
+		builder.append(productStatus);
+		builder.append("]");
+		return builder.toString();
+	}
+
 	
 	
 	

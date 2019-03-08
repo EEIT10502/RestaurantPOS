@@ -34,13 +34,35 @@ public class ProductController {
 		return "productManage/productInsert";// 按JSP目錄層
 	}
 
-	@RequestMapping(value = "/productQuery.action")
-	public String getGoodsQueryPage(Model model) {
+	@RequestMapping(value = "/allProductList.action")
+	public String getAllProductListPage(Model model) {
 		System.out.println("13");// 這行是測試用
-
-		return "productManage/productQuery";
+		List<MenuBean> allProductsList = new ArrayList<>();
+		allProductsList = service.getAllProducts();
+		model.addAttribute("allProductsList", allProductsList);
+		System.out.println("allProductsList"+allProductsList);
+		
+		//Test開始
+		List<MenuBean> allProductsListTestRice = new ArrayList<>();
+		allProductsListTestRice = service.getAllProductsListTestRice();
+		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
+		System.out.println("allProductsListTestRice"+allProductsListTestRice);
+		
+		List<MenuBean> allProductsListTestSoup = new ArrayList<>();
+		allProductsListTestSoup = service.getAllProductsListTestSoup();
+		model.addAttribute("allProductsListTestSoup", allProductsListTestSoup);
+		System.out.println("allProductsListTestSoup"+allProductsListTestSoup);
+		
+		List<MenuBean> allProductsListTestDessert = new ArrayList<>();
+		allProductsListTestDessert = service.getAllProductsListTestDessert();
+		model.addAttribute("allProductsListTestDessert", allProductsListTestDessert);
+		System.out.println("allProductsListTestDessert"+allProductsListTestDessert);
+		//Test結束
+		
+		return "productManage/allProductList";
 	}
 
+	
 	@RequestMapping(value = "/productInsert.action", method = RequestMethod.POST)
 	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult productInsertresult,
 			Model model) {
@@ -80,7 +102,29 @@ public class ProductController {
 			System.out.println("14");
 			return "productManage/productInsert";
 		}
-
+		
+		String cateInsert = menuBean.getCate();
+		Integer productNoInsert = service.getCurrentCategoryNumber(cateInsert);
+		if(productNoInsert == null || productNoInsert.equals(0) ) {
+			switch(cateInsert) {
+				case GlobalService.Product_Cate_Rice:
+					menuBean.setProductNo(101);
+					break;
+				case GlobalService.Product_Cate_Soup:
+					menuBean.setProductNo(201);
+					break;
+				case GlobalService.Product_Cate_Dessert:
+					menuBean.setProductNo(301);
+					break;
+				default: 
+					menuBean.setProductNo(001);
+					break;
+			}
+		}else{
+			menuBean.setProductNo(productNoInsert+1);
+		}
+//		productNoInsert = service.getCurrentCategoryNumber(menuBean.getCate())+1;
+//		menuBean.setProductNo(productNoInsert);
 		service.addProduct(menuBean);
 		
 		return "redirect:/productQuery.action";
@@ -88,7 +132,13 @@ public class ProductController {
 
 	@ModelAttribute("cateList")
 	public List<String> getProductCategoryList() {
-		return service.getAllCategories();
+//		return service.getAllCategories();
+		List<String> ProductCateList = new ArrayList<String>();
+		ProductCateList.add(GlobalService.Product_Cate_Rice);
+		ProductCateList.add(GlobalService.Product_Cate_Soup);
+		ProductCateList.add(GlobalService.Product_Cate_Dessert);
+		return ProductCateList;
+		
 	}
 
 	@ModelAttribute("productStatusList")
@@ -98,10 +148,21 @@ public class ProductController {
 		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
 		return ProductStatusList;
 	}
+	
+//	@ModelAttribute("productStatusList")
+//	public List<String> getProductStatusList() {
+//		
+//		List<MenuBean> allProductsListTestRice = service.getAllProductsListTestRice();
+//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
+//		List<String> ProductStatusList = new ArrayList<String>();
+//		ProductStatusList.add(GlobalService.Product_Status_Launched_Already);
+//		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
+//		return ProductStatusList;
+//	}
 
-	@ModelAttribute("currentCategoryNumber")
-	public Integer getCurrentCategoryNumber() {
-		return service.getCurrentCategoryNumber() + 1;
-	}
+//	@ModelAttribute("currentCategoryNumber")
+//	public Integer getCurrentCategoryNumber() {
+//		return service.getCurrentCategoryNumber() + 1;
+//	}
 
 }

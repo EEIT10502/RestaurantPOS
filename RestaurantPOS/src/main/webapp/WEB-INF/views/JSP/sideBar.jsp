@@ -82,7 +82,7 @@
 
 		<button class="w3-button w3-block w3-left-align" onclick="openGoodsList()">商品管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoGoodsList" class="w3-hide w3-white w3-card">
-			<a href="productQuery.action" class="w3-bar-item w3-button">商品查詢/修改</a>
+			<a href="allProductList.action" class="w3-bar-item w3-button">商品查詢/修改</a>
 			<a href="productInsert.action" class="w3-bar-item w3-button">商品新增</a>
 		</div>
 
