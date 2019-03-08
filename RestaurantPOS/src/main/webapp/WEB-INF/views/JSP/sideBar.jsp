@@ -88,10 +88,10 @@
 
 		<button class="w3-button w3-block w3-left-align" onclick="openReportList()">報表查詢 <i class="fa fa-caret-down"></i></button>
 		<div id="demoReportList" class="w3-hide w3-white w3-card">
-			<a href="report/dailyReport" class="w3-bar-item w3-button">日報表</a> 
-			<a href="report/categoryReport" class="w3-bar-item w3-button">類別<br>銷售狀況</a>
-			<a href="report/productReport" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
-			<a href="report/goalReport" class="w3-bar-item w3-button">營運目標達成率</a>
+			<a href="dailyReport" class="w3-bar-item w3-button">日報表</a> 
+			<a href="categoryReport" class="w3-bar-item w3-button">類別<br>銷售狀況</a>
+			<a href="productReport" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
+			<a href="goalReport" class="w3-bar-item w3-button">營運目標達成率</a>
 		</div>
 
 		<a href="#" class="w3-button w3-block w3-left-align">使用者姓名</a>
