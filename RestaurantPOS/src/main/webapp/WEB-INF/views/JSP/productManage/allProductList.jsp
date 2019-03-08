@@ -34,17 +34,79 @@
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
 <script>
-	//打開RiceList
+	function openAllProductList() {
+		var x = document.getElementById("allList");
+		if (x.className.indexOf("hiddenList") == -1) {
+			x.className += "hiddenList";
+			
+			// 			x.previousElementSibling.className += " w3-green";
+		} else {
+			hiddenAllList();
+			x.className = x.className.replace("hiddenList", "");
+			
+			// 			x.previousElementSibling.className = x.previousElementSibling.className
+			// 					.replace(" w3-green", "");
+		}
+	}
 	function openRiceList() {
 		var x = document.getElementById("riceList");
 		if (x.className.indexOf("hiddenList") == -1) {
 			x.className += "hiddenList";
+			
 			// 			x.previousElementSibling.className += " w3-green";
 		} else {
+			hiddenAllList();
 			x.className = x.className.replace("hiddenList", "");
+			
 			// 			x.previousElementSibling.className = x.previousElementSibling.className
 			// 					.replace(" w3-green", "");
 		}
+	}
+	function openSoupList() {
+		var x = document.getElementById("soupList");
+		if (x.className.indexOf("hiddenList") == -1) {
+			x.className += "hiddenList";
+			
+			// 			x.previousElementSibling.className += " w3-green";
+		} else {
+			hiddenAllList();
+			x.className = x.className.replace("hiddenList", "");
+			
+			// 			x.previousElementSibling.className = x.previousElementSibling.className
+			// 					.replace(" w3-green", "");
+		}
+	}
+	function openDessertList() {
+		var x = document.getElementById("dessertList");
+		if (x.className.indexOf("hiddenList") == -1) {
+			x.className += "hiddenList";
+			
+			// 			x.previousElementSibling.className += " w3-green";
+		} else {
+			hiddenAllList();
+			x.className = x.className.replace("hiddenList", "");
+			
+			// 			x.previousElementSibling.className = x.previousElementSibling.className
+			// 					.replace(" w3-green", "");
+		}
+	}
+	function hiddenAllList() {
+		var allProduct = document.getElementById("allList");
+		var rice = document.getElementById("riceList");
+		var soup = document.getElementById("soupList");
+		var dessert = document.getElementById("dessertList");
+		if (allProduct.className.indexOf("hiddenList") == -1) {
+			allProduct.className += "hiddenList";
+		} 
+		if (rice.className.indexOf("hiddenList") == -1) {
+			rice.className += "hiddenList";
+		} 
+		if (soup.className.indexOf("hiddenList") == -1) {
+			soup.className += "hiddenList";
+		} 
+		if (dessert.className.indexOf("hiddenList") == -1) {
+			dessert.className += "hiddenList";
+		} 
 	}
 </script>
 
@@ -53,10 +115,12 @@
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 160px">
-			<div class="container">
-				<h1>商品查詢/修改</h1>
-			</div>
-			<div class="">
+		<h1>商品查詢/修改</h1>
+			<input type="button" value="所有產品" onclick="openAllProductList()">
+			<input type="button" value="飯類" onclick="openRiceList()"> 
+			<input type="button" value="湯類" onclick="openSoupList()"> 
+			<input type="button" value="甜點" onclick="openDessertList()">
+			<div id="allList" class="">
 				<table border="1">
 					<tr>
 						<th>序號</th>
@@ -79,15 +143,7 @@
 					</c:forEach>
 				</table>
 			</div>
-		</fieldset>
-	</section>
-	<!-- 	=================================================================測試開始 -->
-
-	<section class="">
-		
-		<fieldset class="w3-container" style="margin-left: 160px">
-			<input type="button" value="飯類" onclick="openRiceList()">
-			<div id="riceList" class="">
+			<div id="riceList" class="hiddenList">
 				<table border="1">
 					<tr>
 						<th>序號</th>
@@ -106,6 +162,52 @@
 							<th>${productTestRice.productName}</th>
 							<th>${productTestRice.price}</th>
 							<th>${productTestRice.productStatus}</th>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div id="soupList" class="hiddenList">
+				<table border="1">
+					<tr>
+						<th>序號</th>
+						<th>類別</th>
+						<th>商品編號</th>
+						<th>商品名稱</th>
+						<th>價格</th>
+						<th>狀態</th>
+					</tr>
+					<c:forEach var='productTestSoup' items='${allProductsListTestSoup}'
+						varStatus="status">
+						<tr class="${productTestSoup.cate}">
+							<th>${status.index + 1}</th>
+							<th>${productTestSoup.cate}</th>
+							<th>${productTestSoup.productNo}</th>
+							<th>${productTestSoup.productName}</th>
+							<th>${productTestSoup.price}</th>
+							<th>${productTestSoup.productStatus}</th>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div id="dessertList" class="hiddenList">
+				<table border="1">
+					<tr>
+						<th>序號</th>
+						<th>類別</th>
+						<th>商品編號</th>
+						<th>商品名稱</th>
+						<th>價格</th>
+						<th>狀態</th>
+					</tr>
+					<c:forEach var='productTestDessert'
+						items='${allProductsListTestDessert}' varStatus="status">
+						<tr class="${productTestDessert.cate}">
+							<th>${status.index + 1}</th>
+							<th>${productTestDessert.cate}</th>
+							<th>${productTestDessert.productNo}</th>
+							<th>${productTestDessert.productName}</th>
+							<th>${productTestDessert.price}</th>
+							<th>${productTestDessert.productStatus}</th>
 						</tr>
 					</c:forEach>
 				</table>
@@ -163,7 +265,6 @@
 			</table>
 		</div>
 	</section>
-	<!-- =================================================================測試結束 -->
 
 	<!-- ================================================================= -->
 	<!-- 	<form action="" method='POST'> -->
