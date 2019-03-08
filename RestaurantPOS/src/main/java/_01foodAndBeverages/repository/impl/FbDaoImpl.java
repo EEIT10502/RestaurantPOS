@@ -39,6 +39,13 @@ public class FbDaoImpl implements FbDao {
 		List<MenuBean> list = session.createQuery(hql).setParameter("cate", cate).getResultList();
 		return list;
 	}
+
+	@Override
+	public MenuBean getProductById(Integer pId) {
+		Session session = factory.getCurrentSession();
+		MenuBean menuBean = session.get(MenuBean.class, pId);
+		return menuBean;
+	}
 	
 	
 	

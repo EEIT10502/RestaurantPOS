@@ -1,9 +1,14 @@
 package _05financial.repository;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import _00model.OrderBean;
 
 public interface FinancialDao {
 	
-	public OrderBean queryOrder(String date);
+	public List<OrderBean> getAllOrder();
+	
+	public List<OrderBean> getOrderByDate(Timestamp Date1, Timestamp Date2);
 	
 }

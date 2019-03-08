@@ -78,6 +78,17 @@
 	})
 </script>
 
+<script>
+$(document).ready(function(){
+
+	$("button").click(function() {
+		$(":button").hide();
+	});
+	
+	
+});
+</script>
+
 <body>
 	<form>
 		<div class="container-fluid">
@@ -87,7 +98,7 @@
 					<h4 style="text-align: center">點餐頁面</h4>
 				</div>
 				<div class="col-md-3">
-					<h5>系統時間：</h5>
+					<h5>系統時間:</h5>
 				</div>
 			</div>
 			<div class="row">
@@ -133,6 +144,10 @@
 								id="opDelete1" name="opDelete1"></td>
 						</tr>
 						<tr>
+							
+						</tr>
+						
+						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
 							<td colspan="3" id="oTotal" name="oTotal"></td>
 						</tr>
@@ -144,27 +159,40 @@
 					<table style="margin: 0px auto" width="100%" border="1" id="cTable"
 						name="cTable">
 						<tr>
-							<th colspan="3" style="text-align: center">點餐</th>
+							<th colspan="4" style="text-align: center">點餐</th>
 						</tr>
 						<tr>
-							<td><input type="button" value="飯類" onclick="location.href='order'"></td>
-							<td><input type="button" value="麵類" onclick="location.href='noodle'"></td>
-							<td><input type="button" value="湯類" onclick="location.href='soup'"></td>
+							<td><input type="button" value="飯類"
+								 onclick="location.href=''"></td>
+							<td><input type="button" value="麵類"
+								onclick="location.href=''"></td>
+							<td><input type="button" value="湯類"
+								onclick="location.href=''"></td>
+							<td><input type="button" value="餃類"
+								onclick="location.href=''"></td>
 						</tr>
-						</table>
-							<div style= "border-color:#aaaaee;border-width:3px;border-style:solid;padding:5px">
-							<c:forEach var='menu1' items='${menu}'>
+					</table>
+					<div
+						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
+						<c:forEach var='menu1' items='${menu}'>
+
 							
-								<input style="width:100px" type="button" value="${menu1.productName}" >
-							
-							</c:forEach>
-							
-							</div>
+							<input style="width: 100px" type="button"
+								value="${menu1.productName}"  >
 						
-							
-					
-					
-					
+
+						</c:forEach>
+						
+						<p class="test">test</p>
+						<p class="test">test2</p>
+						<button>clickme</button>
+						
+					</div>
+
+
+
+
+
 				</div>
 			</div>
 		</div>
