@@ -42,7 +42,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productInsert.action", method = RequestMethod.POST)
-	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult result,
+	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult productInsertresult,
 			Model model) {
 		System.out.println("12");// 這行是測試用
 
@@ -57,7 +57,7 @@ public class ProductController {
 		Integer priceInsert = menuBean.getPrice();
 		if (priceInsert == null) {
 			System.out.println("880");
-			if (result != null && (result.getFieldValue("price") instanceof java.lang.String)) {
+			if (productInsertresult != null && (productInsertresult.getFieldValue("price") instanceof java.lang.String)) {
 				System.out.println("881");
 				errors.put("typeErrorOfPrice", "請輸入數字");
 			} else {
