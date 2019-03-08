@@ -31,7 +31,7 @@
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" /> 
-<form action="">
+<form action="" method='POST'>
 	<div class="w3-container" style="margin-left: 160px">
 		<h2>商品查詢/修改</h2>
 		<div>

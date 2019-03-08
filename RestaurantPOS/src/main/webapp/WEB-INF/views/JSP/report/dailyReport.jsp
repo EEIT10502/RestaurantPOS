@@ -20,7 +20,7 @@
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
 
-<form>
+<form action="dailyReportGetDate" method="post">
 <!-- 報表版面 -->
 <div class="w3-container" style="margin-left:160px">
 <div>

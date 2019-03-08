@@ -30,5 +30,5 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		HiddenHttpMethodFilter  hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
 		return new Filter[] {characterEncodingFilter, hiddenHttpMethodFilter};
 	}
-	//test
+	
 }

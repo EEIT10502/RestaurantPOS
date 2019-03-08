@@ -1,5 +1,6 @@
 package _00model;
 
+import java.io.Serializable;
 import java.sql.Blob;
 
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Employee")
-public class EmployeeBean {
+public class EmployeeBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	Integer empId;
 	String empNo;

@@ -1,6 +1,8 @@
 package _00model;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,15 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name = "Attendence")
-public class AttendenceBean {
+public class AttendenceBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	Integer attendenceId;
-	Date date;
 	String empNo;
-	String empName;
-	Date clockIn;
-	Date clockOut;
-	String totalHours;
+	Date date;
+	Time clockTime;
+	
+	
 
 
 	public AttendenceBean() {
@@ -57,44 +60,31 @@ public class AttendenceBean {
 		this.empNo = empNo;
 	}
 
-	@Column(columnDefinition="NVARCHAR(50) NOT NULL",name="empName")
-	public String getEmpName() {
-		return empName;
+	public Time getClockTime() {
+		return clockTime;
+	}
+
+	public void setClockTime(Time clockTime) {
+		this.clockTime = clockTime;
 	}
 
 
-	public void setEmpName(String empName) {
-		this.empName = empName;
-	}
-
-	@Column(columnDefinition="datetime",name="clockIn")
-	public Date getClockIn() {
-		return clockIn;
-	}
 
 
-	public void setClockIn(Date clockIn) {
-		this.clockIn = clockIn;
-	}
-
-	@Column(columnDefinition="datetime",name="clockOut")
-	public Date getClockOut() {
-		return clockOut;
-	}
 
 
-	public void setClockOut(Date clockOut) {
-		this.clockOut = clockOut;
-	}
+
+
+
+
+
+
+
+
+
 	
-	@Column(columnDefinition="time",name="totalHours")
-	public String getTotalHours() {
-		return totalHours;
-	}
 
-	public void setTotalHours(String totalHours) {
-		this.totalHours = totalHours;
-	}
+
 
 	
 	

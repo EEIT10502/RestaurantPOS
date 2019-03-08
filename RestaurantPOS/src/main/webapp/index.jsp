@@ -91,7 +91,7 @@ $(document).ready(function(){
     </tbody>
     </table>
 			</td>
-			<td><input type="button" value="點餐" onclick="location.href='outfield/order.jsp'" id="toOrderPage" name="toOrderPage"></td>
+			<td><input type="button" value="點餐" onclick="location.href='order'" id="toOrderPage" name="toOrderPage"></td>
 			<td><input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'"></td>
 		</tr>
 		<tr>
@@ -103,15 +103,21 @@ $(document).ready(function(){
 
 	
 <!-- 	商品管理連結_開始 -->
-<!--下面幾行係為了開發方便(在首頁直接出現連結，連到商品管理相關頁面)，故之後確定商品管理入口後再修改 -->
+<!--下面幾行係為了開發方便(在首頁直接出現連結，連到商品、員工管理相關頁面)，故之後確定商品、員工管理入口後再修改 -->
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
-	<h6><a href="goodsManage/goodsInsert">商品管理頁面:goodsInsert</a></h6>
+	<h6><a href="productInsert.action">商品管理頁面:productInsert</a></h6>
+	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
+	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
 <!-- 	商品管理連結_結束 -->
+
+<!-- 	sidebar連結_開始 -->
+	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>
+<!-- 	sidebar連結_結束 -->
 	
 
 </body>

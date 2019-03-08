@@ -1,5 +1,6 @@
 package _00model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -13,7 +14,9 @@ import javax.xml.crypto.Data;
 
 @Entity
 @Table(name = "Salary")
-public class SalaryBean {
+public class SalaryBean  implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	Integer salaryId;
 	Date date;	

@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.*;
 @Table(name = "schedule")
 @XmlRootElement(name="schedule")
 public class ScheduleBean implements Serializable{
-	
 	/**
 	 * 
 	 */
@@ -17,7 +16,7 @@ public class ScheduleBean implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer scheduleId;	
-	Date date;	
+	Date date;	    
 	String empNo;	
 	String empName;	
 	Integer choose;	
