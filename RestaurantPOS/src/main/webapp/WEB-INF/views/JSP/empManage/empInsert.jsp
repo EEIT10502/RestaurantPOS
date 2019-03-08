@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,43 +31,62 @@
 
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
-<form action="">
+<form action="POST">
 	<div class="w3-container" style=" margin-left: 160px">
 		<h2>員工新增</h2>
 		<!-- 		搜尋列結束 -->
-
-<label for="empId">員工編號</label>
-			<input type="text" id="empId" name="empId"><br>
-<label for="empName">員工姓名</label>
-			<input type="text" id="empName" name="empName"><br>
-<label for="empSex">性別</label>
-			<select id="empSex">
-				<option>男性</option>
-				<option>女性</option>
-			</select><br>
-<label for="empPosition">職位</label>
-			<select id="empPosition">
-				<option>服務生</option>
-				<option>廚師</option>
-				<option>經理</option>
-				<option>其他</option>
-			</select><br>
-<label for="empTel">電話</label>
-			<input type="text" id="empTel" name="empTel"><br>
-<label for="empAddr">地址</label>
-			<input type="text" id="empAddr" name="empAddr"><br>
-<label for="empStatus">在職狀況</label>
-			<select id="empStatus">
-				<option>在職</option>
-				<option>離職</option>
-				<option>留職停薪</option>
-				<option>其他</option>
-			</select><br>
-<label for="empMark">備註</label>
-			<input type="text" id="empMark" name="empMark"><br>
+		
+<!-- 		Spring Tag test -->
+<form:form>
+姓名:<form:input path="empName" /> 
+電話:<form:input path="empTel" /> 
+地址:<form:input path="empAddr" /> 
+姓名:<form:input path="empName" /> 
+員工性別:<form:select path="empSex" /> 
 
 
-</form>
+<form:label path="empPosition">員工職位:：</form:label>
+<form:select path="empPosition">
+<form:option value="NONE" label="請選擇" />
+<form:option value="waiter" label="服務生" />
+<form:option value="chef" label="廚師" />
+<form:option value="manager" label="經理" />
+</form:select>
+
+</form:form>		
+
+<!-- <label for="empId">員工編號</label> -->
+<!-- 			<input type="text" id="empId" name="empId"><br> -->
+<!-- <label for="empName">員工姓名</label> -->
+<!-- 			<input type="text" id="empName" name="empName"><br> -->
+<!-- <label for="empSex">性別</label> -->
+<!-- 			<select id="empSex"> -->
+<!-- 				<option>男性</option> -->
+<!-- 				<option>女性</option> -->
+<!-- 			</select><br> -->
+<!-- <label for="empPosition">職位</label> -->
+<!-- 			<select id="empPosition"> -->
+<!-- 				<option>服務生</option> -->
+<!-- 				<option>廚師</option> -->
+<!-- 				<option>經理</option> -->
+<!-- 				<option>其他</option> -->
+<!-- 			</select><br> -->
+<!-- <label for="empTel">電話</label> -->
+<!-- 			<input type="text" id="empTel" name="empTel"><br> -->
+<!-- <label for="empAddr">地址</label> -->
+<!-- 			<input type="text" id="empAddr" name="empAddr"><br> -->
+<!-- <label for="empStatus">在職狀況</label> -->
+<!-- 			<select id="empStatus"> -->
+<!-- 				<option>在職</option> -->
+<!-- 				<option>離職</option> -->
+<!-- 				<option>留職停薪</option> -->
+<!-- 				<option>其他</option> -->
+<!-- 			</select><br> -->
+<!-- <label for="empMark">備註</label> -->
+<!-- 			<input type="text" id="empMark" name="empMark"><br> -->
+
+
+<%-- </form> --%>
 
 	<input type="submit" value="確定新增" id="empInsert" name="empInsert">
 			<input type="reset" value="全部清除" id="resetEmp" name="resetEmp">

@@ -1,5 +1,6 @@
 package _02employee.repository.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -15,19 +16,43 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	SessionFactory factory;
 
 	@Override
-	public EmployeeDao findByName(String Name) {
+	//新增員工資料
+	public void addEmployee(EmployeeBean employee) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Employee WHERE empName=:empName";
-		EmployeeBean employee = null;
-		@SuppressWarnings("unchecked")
-		List<EmployeeBean> list = session.createQuery(hql)
-								.setParameter("name", employee)
-								.getResultList();
-		if (!list.isEmpty()) 
-			employee = list.get(0);
-		return null;
-		
+		session.save(employee);
 	}
+
+	@Override
+	public List<EmployeeBean> getAllEmployees() {
+		  String hql = "FROM Employee";
+		    Session session = factory.getCurrentSession();
+		    List<EmployeeBean> list = new ArrayList<>();
+		    session = factory.getCurrentSession();
+		    list = session.createQuery(hql).getResultList();
+		    return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<EmployeeBean> getEmployeesByPosition(String position) {
+		List<EmployeeBean> list  = null;
+		String hql = "FROM EmployeeBean e WHERE e.position = :position";
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql).setParameter("position", position).list();
+		return list;
+	}
+
+	@Override
+	public EmployeeBean getEmployeesByNo(String empNo) {
+		EmployeeBean employee  = null;
+		Session session = factory.getCurrentSession();
+		employee = session.get(EmployeeBean.class, empNo);
+//		if(employee==null)throw new ProductNotFoundException("Employee Not Found: ");
+		return employee;
+	}
+
+
+
 	
 
 	
