@@ -152,7 +152,7 @@
 						<th>商品名稱</th>
 						<th>價格</th>
 						<th>狀態</th>
-					</tr>
+					</tr>  
 					<c:forEach var='productTestRice' items='${allProductsListTestRice}'
 						varStatus="status">
 						<tr class="${productTestRice.cate}">
