@@ -91,7 +91,7 @@ public class OrderBean {
 	}
 	
 	@OneToMany(cascade=CascadeType.ALL ,orphanRemoval = true)
-	@JoinColumn(name="fk_orderNo", referencedColumnName="orderNo")
+	@JoinColumn(name="fk_orderId", referencedColumnName="orderId")
 	public Set<OrderDetailBean> getOrderDetailBean() {
 		return OrderDetailBean;
 	}
