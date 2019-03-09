@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
+<link rel='stylesheet' href='${pageContext.request.contextPath}/css/forIndex.css'  type="text/css" />
 <style>
 #content{
 width: 322px;
@@ -24,6 +24,7 @@ width: 80px;
 height: 70px;
 
 }
+
 </style>
 <script type="text/javascript">
 //隱藏或顯示計算機
@@ -48,32 +49,41 @@ height: 70px;
 			<td rowspan="3" id="logo" name="logo" id="logo" name="logo">LOGO</td>
 			<td rowspan="3" id="punchTable" style="display:none;">
         <table border="1" >
+        <div id="all">
+        	<from>
+        	<div id="calContent">
         <tbody>
         <th colspan="4"><input type="text" id="showResBox" readonly></th>
+        
         <tr>
+        
             <td rowspan="2"><input type="button" value="上班" onclick="getNO()" style="height: 140px" id="checkIn"></td>
-           <td><input type="button" value="7" onclick="getNum('7')"></td>
-           <td><input type="button" value="8" onclick="getNum('8')"></td>
-           <td><input type="button" value="9" onclick="getNum('9')"></td>
+           <td><input type="button" id="cal" value="7" onclick="getNum('7')"></td>
+           <td><input type="button" id="cal" value="8" onclick="getNum('8')"></td>
+           <td><input type="button" id="cal" value="9" onclick="getNum('9')"></td>
         </tr>
         <tr>
-            <td><input type="button" value="4" onclick="getNum('4')"></td>
-            <td><input type="button" value="5" onclick="getNum('5')"></td>
-            <td><input type="button" value="6" onclick="getNum('6')"></td>
+            <td><input type="button" id="cal" value="4" onclick="getNum('4')"></td>
+            <td><input type="button" id="cal" value="5" onclick="getNum('5')"></td>
+            <td><input type="button" id="cal" value="6" onclick="getNum('6')"></td>
         </tr>
        
         <tr>
          <td rowspan="2"><input type="button" value="下班" onclick="" style="height: 140px" id="checkOut"></td>
-           <td><input type="button" value="1" onclick="getNum('1')"></td>
-           <td><input type="button" value="2" onclick="getNum('2')"></td>
-           <td><input type="button" value="3" onclick="getNum('3')"></td>
+           <td><input type="button" id="cal" value="1" onclick="getNum('1')"></td>
+           <td><input type="button" id="cal" value="2" onclick="getNum('2')"></td>
+           <td><input type="button" id="cal" value="3" onclick="getNum('3')"></td>
         </tr>
         <tr>
-        	 <td><input type="button" value="0" onclick="getNum('0')"></td>
-             <td><input type="button" value="--" onclick="del()"></td>
-             <td><input type="button" value="C" onclick="clearRes()"></td>
+        	 
+             <td><input type="button" id="cal" value="--" onclick="del()"></td>
+             <td><input type="button" id="cal" value="0" onclick="getNum('0')"></td>
+             <td><input type="button" id="cal" value="C" onclick="clearRes()"></td>
         </tr>
     </tbody>
+    </div>
+    </from>
+    <div>
     </table>
 			</td>
 			<td>
