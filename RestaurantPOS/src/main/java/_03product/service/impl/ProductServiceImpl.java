@@ -31,8 +31,32 @@ public class ProductServiceImpl implements ProductService {
 
 	@Transactional
 	@Override
-	public Integer getCurrentCategoryNumber() {
-		return productdao.getCurrentCategoryNumber();
+	public Integer getCurrentCategoryNumber(String cateInsert) {
+		return productdao.getCurrentCategoryNumber(cateInsert);
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProducts() {
+		return productdao.getAllProducts();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProductsListTestRice() {
+		return productdao.getAllProductsListTestRice();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProductsListTestSoup() {
+		return productdao.getAllProductsListTestSoup();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProductsListTestDessert() {
+		return productdao.getAllProductsListTestDessert();
 	}
 
 	

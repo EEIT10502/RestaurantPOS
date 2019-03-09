@@ -18,6 +18,10 @@
 	padding: 0;
 	margin: 0;
 }
+
+.hiddenList {
+	display: none;
+}
 </style>
 <title>點餐</title>
 </head>
@@ -76,7 +80,63 @@
 			$("#fDiv").popover("toggle");
 		})
 	})
+
+	function riceList() {
+		var x = document.getElementById("riceList");
+		
+			hiddenAllList();
+			x.className = x.className.replace("hiddenList", "");
+
+	}
+	function soupList() {
+		var x = document.getElementById("soupList");
+		
+			hiddenAllList();
+			x.className = x.className.replace("hiddenList", "");
+
+	}
+	function noodleList() {
+		var x = document.getElementById("noodleList");
+		
+			hiddenAllList();
+			x.className = x.className.replace("hiddenList", "");
+
+	}
+	
+
+	function dumpList() {
+		var x = document.getElementById("dumpList");
+		
+			hiddenAllList();
+			x.className = x.className.replace("hiddenList", "");
+
+	}
+	function hiddenAllList() {
+
+		var rice = document.getElementById("riceList");
+		var noodle = document.getElementById("noodleList");
+		var soup = document.getElementById("soupList");
+		var dump = document.getElementById("dumpList");
+		// 		if (allProduct.className.indexOf("hiddenList") == -1) {
+		// 			allProduct.className += "hiddenList";
+		// 		} 
+
+		if (rice.className.indexOf("hiddenList") == -1) {
+			rice.className += "hiddenList";
+		}
+		if (soup.className.indexOf("hiddenList") == -1) {
+			soup.className += "hiddenList";
+		}
+		if (noodle.className.indexOf("hiddenList") == -1) {
+			noodle.className += "hiddenList";
+		}
+		if (dump.className.indexOf("hiddenList") == -1) {
+			dump.className += "hiddenList";
+		}
+	}
 </script>
+
+
 
 <body>
 	<form>
@@ -87,7 +147,7 @@
 					<h4 style="text-align: center">點餐頁面</h4>
 				</div>
 				<div class="col-md-3">
-					<h5>系統時間：</h5>
+					<h5>系統時間:</h5>
 				</div>
 			</div>
 			<div class="row">
@@ -133,6 +193,10 @@
 								id="opDelete1" name="opDelete1"></td>
 						</tr>
 						<tr>
+
+						</tr>
+
+						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
 							<td colspan="3" id="oTotal" name="oTotal"></td>
 						</tr>
@@ -140,35 +204,53 @@
 				</div>
 
 				<!-- 右方按鈕 -->
+
 				<div class="col-md-4">
 					<table style="margin: 0px auto" width="100%" border="1" id="cTable"
 						name="cTable">
 						<tr>
-							<th colspan="3" style="text-align: center">點餐</th>
+							<th colspan="4" style="text-align: center">點餐</th>
 						</tr>
 						<tr>
-							<td><input type="button" value="飯類" onclick="location.href='order'"></td>
-							<td><input type="button" value="麵類" onclick="location.href='noodle'"></td>
-							<td><input type="button" value="湯類" onclick="location.href='soup'"></td>
+							<td><input type="button" value="飯類" onclick="riceList()"></td>
+							<td><input type="button" value="麵類" onclick="noodleList()"></td>
+							<td><input type="button" value="湯類" onclick="soupList()"></td>
+							<td><input type="button" value="餃類" onclick="dumpList()"></td>
 						</tr>
-						</table>
-							<div style= "border-color:#aaaaee;border-width:3px;border-style:solid;padding:5px">
-							<c:forEach var='menu1' items='${menu}'>
-							
-								<input style="width:100px" type="button" value="${menu1.productName}" >
-							
-							</c:forEach>
-							
-							</div>
-						
-							
-					
-					
-					
+					</table>
+					<div id="riceList" class=""
+						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
+						<c:forEach var='menu1' items='${menu}'>
+							<input style="width: 100px" type="button"
+								value="${menu1.productName}">
+						</c:forEach>
+					</div>
+					<div id="noodleList" class="hiddenList"
+						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
+						<c:forEach var='noodle' items='${noodle}'>
+							<input style="width: 100px" type="button"
+								value="${noodle.productName}">
+						</c:forEach>
+					</div>
+					<div id="soupList" class="hiddenList"
+						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
+						<c:forEach var='soup' items='${soup}'>
+							<input style="width: 100px" type="button"
+								value="${soup.productName}">
+						</c:forEach>
+					</div>
+					<div id="dumpList" class="hiddenList"
+						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
+						<c:forEach var='dump' items='${dump}'>
+							<input style="width: 100px" type="button"
+								value="${dump.productName}">
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+
 
 	<!-- 數字鍵盤script -->
 	<script src="../../css/jquery.min.js"></script>
