@@ -118,6 +118,7 @@ height: 70px;
 </body>
 <script>
 		//這裡開始是給計算機用的script
+		
 		//連接字串功能
         function getNum(num){
             $("#showResBox").val(function(i,val){
@@ -138,6 +139,7 @@ height: 70px;
         function getNO(){
             var Str = document.getElementById("showResBox").value;
             alert(Str);
+            document.getElementById("showResBox").value="";
         }
 </script>
 </html>
