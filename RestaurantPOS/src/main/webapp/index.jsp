@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +97,11 @@ $(document).ready(function(){
 		</tr>
 		<tr>
 			<td><input type="button" value="打卡" onclick="location.href='#'" id="showPunch" name="showPunch"></td>
-			<td><input type="button" value="管理" onclick="location.href='manage/mangelogin.jsp'" id="toManage" name="toManage"></td>
+			<td>
+			<a href="<spring:url value='/manage/managelogin' />">
+			<input type="button" value="管理"  id="toManage" name="toManage">
+			</a>
+			</td>
 		</tr>
 	</table>
 	</form>
