@@ -81,8 +81,14 @@ public class EmployeeController {
 		//return "redirect:/";
 		
 		//預設登入後前往查詢員工頁面
-		return "empManage/empQuery";
+		return "redirect:/empManage/empQuery";
 	}
-	
+	    //寫一個到empQuery的@RequestMapping   向新網址提出請求
+		@RequestMapping("/empManage/empQuery")
+		public String toEmpManage() {
+			
+			
+			return "empManage/empQuery";
+		}
 
 }

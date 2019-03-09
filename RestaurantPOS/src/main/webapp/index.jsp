@@ -9,7 +9,11 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <title>首頁</title>
-</head>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
 <style>
 #content{
 width: 322px;
@@ -20,21 +24,11 @@ width: 80px;
 height: 70px;
 
 }
-
 </style>
-
-
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	
-</script>
 <script type="text/javascript">
 //隱藏或顯示計算機
-$(document).ready(function(){
-	  $("#hideAndSendPunch,#hideAndSendPunch2").click(function(){
+	$(document).ready(function(){
+	  $("#checkIn,#checkOut").click(function(){
 	  $("#punchTable").hide();
 	  $("#logo").show();
 	  });
@@ -43,60 +37,56 @@ $(document).ready(function(){
 	  $("#logo").hide();
 	  });
 	});
-	//打卡機
-	function demo(obj, tip) {
-		if (tip == 1) {
-			var con = document.getElementById('content').value;
-			document.getElementById('content').value = con + obj.innerHTML;
-		} else if (tip == 2) {
-			document.getElementById('content').value = "";
-		} else if (tip == 3) {
-			var con = document.getElementById('content').value;
-			document.getElementById('content').value = con.slice(0, -1);
-		}
-	}
+
+	
 </script>
+</head>
 <body>
 <form>
 	<table border="1">
 		<tr>
 			<td rowspan="3" id="logo" name="logo" id="logo" name="logo">LOGO</td>
-			<td rowspan="3" id="punchTable" style="display:none">
-			<table border="1" >
-<!-- 		<table border="1" id="p" style="visibility:hidden"> -->
-            <th colspan="4"><input type="text" id="content" name="content"></th>
+			<td rowspan="3" id="punchTable" style="display:none;">
+        <table border="1" >
         <tbody>
+        <th colspan="4"><input type="text" id="showResBox" readonly></th>
         <tr>
-        <td rowspan="2"><button onclick="" id="hideAndSendPunch" name="hideAndSendPunch"style="height: 140px">上班打卡</button></td>
-            <td><button onclick="demo(this,1)">7</button></td>
-            <td><button onclick="demo(this,1)">8</button></td>
-            <td><button onclick="demo(this,1)">9</button></td>
+            <td rowspan="2"><input type="button" value="上班" onclick="getNO()" style="height: 140px" id="checkIn"></td>
+           <td><input type="button" value="7" onclick="getNum('7')"></td>
+           <td><input type="button" value="8" onclick="getNum('8')"></td>
+           <td><input type="button" value="9" onclick="getNum('9')"></td>
         </tr>
         <tr>
-            <td><button onclick="demo(this,1)">4</button></td>
-            <td><button onclick="demo(this,1)">5</button></td>
-            <td><button onclick="demo(this,1)">6</button></td>
+            <td><input type="button" value="4" onclick="getNum('4')"></td>
+            <td><input type="button" value="5" onclick="getNum('5')"></td>
+            <td><input type="button" value="6" onclick="getNum('6')"></td>
         </tr>
        
         <tr>
-         <td rowspan="2"><button onclick="" id="hideAndSendPunch2" name="hideAndSendPunch2" style="height: 140px">下班打卡</button></td>
-            <td><button onclick="demo(this,1)">1</button></td>
-            <td><button onclick="demo(this,1)">2</button></td>
-            <td><button onclick="demo(this,1)">3</button></td>
+         <td rowspan="2"><input type="button" value="下班" onclick="" style="height: 140px" id="checkOut"></td>
+           <td><input type="button" value="1" onclick="getNum('1')"></td>
+           <td><input type="button" value="2" onclick="getNum('2')"></td>
+           <td><input type="button" value="3" onclick="getNum('3')"></td>
         </tr>
         <tr>
-            <td><button onclick="demo(this,2)">全部清除</button></td>
-            <td><button onclick="demo(this,1)">0</button></td>
-            <td><button onclick="demo(this,3)">清除</button></td>
+        	 <td><input type="button" value="0" onclick="getNum('0')"></td>
+             <td><input type="button" value="--" onclick="del()"></td>
+             <td><input type="button" value="C" onclick="clearRes()"></td>
         </tr>
     </tbody>
     </table>
 			</td>
-			<td><input type="button" value="點餐" onclick="location.href='order'" id="toOrderPage" name="toOrderPage"></td>
-			<td><input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'"></td>
+			<td>
+			<input type="button" value="點餐" onclick="location.href='order'" id="toOrderPage" name="toOrderPage">
+			</td>
+			<td>
+			<input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'">
+			</td>
 		</tr>
 		<tr>
-			<td><input type="button" value="打卡" onclick="location.href='#'" id="showPunch" name="showPunch"></td>
+			<td>
+			<input type="button" value="打卡"  id="showPunch" name="showPunch">
+			</td>
 			<td>
 			<a href="<spring:url value='/manage/managelogin' />">
 			<input type="button" value="管理"  id="toManage" name="toManage">
@@ -126,4 +116,28 @@ $(document).ready(function(){
 	
 
 </body>
+<script>
+		//這裡開始是給計算機用的script
+		//連接字串功能
+        function getNum(num){
+            $("#showResBox").val(function(i,val){
+                return val + num
+            })
+        }
+        //清除全部字串
+        function clearRes(){
+            document.getElementById("showResBox").value="";
+        }
+    	//清除前一個字串
+        function del(){
+            $("#showResBox").val(function(i,val){
+                return val.substr(0,val.length-1)
+            })
+        }
+    	//測試是否可以拿到showResBox的值
+        function getNO(){
+            var Str = document.getElementById("showResBox").value;
+            alert(Str);
+        }
+</script>
 </html>
