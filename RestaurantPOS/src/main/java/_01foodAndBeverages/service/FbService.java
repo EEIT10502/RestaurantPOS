@@ -12,4 +12,5 @@ public interface FbService {
 	List<MenuBean>  getAllProducts(); 
 	List<MenuBean> getProductByCategory(String cate);
 	MenuBean getProductById(Integer pId);
+	Integer getProductPriceByName(String productName);
 }
