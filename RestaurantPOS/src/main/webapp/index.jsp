@@ -62,7 +62,7 @@ $(document).ready(function(){
 			<td>
 			<input type="button" value="打卡"  id="showPunch" name="showPunch">
 			</td>
-			<!-- 先進入經理登入頁，再進入經理管理功能 -->
+			<!-- 先進入經理登入頁，再進入管理功能 -->
 			<td>
 			<a href="<spring:url value='/manage/managelogin' />">
 			<input type="button" value="管理"  id="toManage" name="toManage">
