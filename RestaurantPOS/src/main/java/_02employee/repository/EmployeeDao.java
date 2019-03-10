@@ -1,5 +1,9 @@
 package _02employee.repository;
 
-public class EmployeeDao {
+import _00model.ManagerBean;
 
+public interface  EmployeeDao {
+
+	public ManagerBean checkIDPassword(String mAccount,String mPwd);
+	
 }

@@ -39,7 +39,8 @@ public class AttendenceTableInit {
 				
 				String empNo = token[0];
 				String Sdate= token[1];
-				String SclockTime = token[2];
+				String checkStatus = token[2];
+				String SclockTime = token[3];
 				
 				Date date = strToDate(Sdate);
 				Time clockTime = strToTime(SclockTime);
@@ -48,6 +49,7 @@ public class AttendenceTableInit {
 				
 				attendence.setEmpNo(empNo);
 				attendence.setDate(date);
+				attendence.setCheckStatus(checkStatus);
 				attendence.setClockTime(clockTime);
 				
 				session.save(attendence);

@@ -25,18 +25,20 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 
+
 	int currentPageNo = 1;
 	
-	@RequestMapping(value = "/productInsert.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/productManage/productInsert.action", method = RequestMethod.GET)
 	public String getGoodsInsertPage(Model model) {
-		System.out.println("11");// 這行是測試用
-
+		System.out.println("進入productInsert.action GET方法");// 這行是測試用
+		
 		MenuBean menuBean = new MenuBean();
 //		menuBean.setProductName("請輸入商品名稱");
 		model.addAttribute("MenuBean", menuBean);
 
 		return "productManage/productInsert";// 按JSP目錄層
 	}
+
 
 //	//舊的
 //	@RequestMapping(value = "/allProductList.action")
@@ -69,7 +71,7 @@ public class ProductController {
 	
 	int currentPageNoInit;
 	//新的
-	@RequestMapping(value = "/allProductList.action")
+	@RequestMapping(value = "/productManage/allProductList.action")
 	public String getAllProductListPage(@RequestParam(value = "currentPageNoBtn", required=false)String currentPageNo, Model model) {
 		System.out.println("13");// 這行是測試用
 		
@@ -101,10 +103,10 @@ public class ProductController {
 	}
 
 	
-	@RequestMapping(value = "/productInsert.action", method = RequestMethod.POST)
+	@RequestMapping(value = "/productManage/productInsert.action", method = RequestMethod.POST)
 	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult productInsertresult,
 			Model model) {
-		System.out.println("12");// 這行是測試用
+		System.out.println("進入productInsert.action POST方法");// 這行是測試用
 
 		
 		
@@ -170,7 +172,7 @@ public class ProductController {
 //		menuBean.setProductNo(productNoInsert);
 		service.addProduct(menuBean);
 		
-		return "redirect:/allProductList.action";
+		return "redirect:/productManage/allProductList.action";
 	}
 
 	@ModelAttribute("cateList")
@@ -209,7 +211,7 @@ public class ProductController {
 //		return service.getCurrentCategoryNumber() + 1;
 //	}
 	
-	@RequestMapping(value = "/productListBySearch.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/productManage/productListBySearch.action", method = RequestMethod.GET)
 	public String getProductListBySearch(@RequestParam(value = "currentPageNoBtnSearch", required=false)String currentPageNo,@RequestParam(value = "searchBar", required=false)String searchBarString, Model model) {
 		System.out.println("20");// 這行是測試用
 		System.out.println("searchBarString:"+searchBarString);

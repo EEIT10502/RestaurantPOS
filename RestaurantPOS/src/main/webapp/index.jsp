@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,11 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <title>首頁</title>
-</head>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/css/forIndex.css'  type="text/css" />
 <style>
 #content{
 width: 322px;
@@ -21,82 +26,48 @@ height: 70px;
 }
 
 </style>
-
-
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	
-</script>
 <script type="text/javascript">
 //隱藏或顯示計算機
 $(document).ready(function(){
-	  $("#hideAndSendPunch,#hideAndSendPunch2").click(function(){
-	  $("#punchTable").hide();
-	  $("#logo").show();
-	  });
-	  $("#showPunch").click(function(){
-	  $("#punchTable").show();
-	  $("#logo").hide();
-	  });
-	});
-	//打卡機
-	function demo(obj, tip) {
-		if (tip == 1) {
-			var con = document.getElementById('content').value;
-			document.getElementById('content').value = con + obj.innerHTML;
-		} else if (tip == 2) {
-			document.getElementById('content').value = "";
-		} else if (tip == 3) {
-			var con = document.getElementById('content').value;
-			document.getElementById('content').value = con.slice(0, -1);
-		}
-	}
+	$("#showPunch").click(function(){
+		$("#punchTable").toggle();
+		$("#logo").toggle();
+		
+	})
+})
+	
 </script>
+</head>
 <body>
 <form>
 	<table border="1">
 		<tr>
 			<td rowspan="3" id="logo" name="logo" id="logo" name="logo">LOGO</td>
-			<td rowspan="3" id="punchTable" style="display:none">
-			<table border="1" >
-<!-- 		<table border="1" id="p" style="visibility:hidden"> -->
-            <th colspan="4"><input type="text" id="content" name="content"></th>
-        <tbody>
-        <tr>
-        <td rowspan="2"><button onclick="" id="hideAndSendPunch" name="hideAndSendPunch"style="height: 140px">上班打卡</button></td>
-            <td><button onclick="demo(this,1)">7</button></td>
-            <td><button onclick="demo(this,1)">8</button></td>
-            <td><button onclick="demo(this,1)">9</button></td>
-        </tr>
-        <tr>
-            <td><button onclick="demo(this,1)">4</button></td>
-            <td><button onclick="demo(this,1)">5</button></td>
-            <td><button onclick="demo(this,1)">6</button></td>
-        </tr>
-       
-        <tr>
-         <td rowspan="2"><button onclick="" id="hideAndSendPunch2" name="hideAndSendPunch2" style="height: 140px">下班打卡</button></td>
-            <td><button onclick="demo(this,1)">1</button></td>
-            <td><button onclick="demo(this,1)">2</button></td>
-            <td><button onclick="demo(this,1)">3</button></td>
-        </tr>
-        <tr>
-            <td><button onclick="demo(this,2)">全部清除</button></td>
-            <td><button onclick="demo(this,1)">0</button></td>
-            <td><button onclick="demo(this,3)">清除</button></td>
-        </tr>
-    </tbody>
-    </table>
+			<td rowspan="3" id="punchTable" style="display:none;">
+         	<jsp:include page="Calculator.jsp"/>
 			</td>
-			<td><input type="button" value="點餐" onclick="location.href='order'" id="toOrderPage" name="toOrderPage"></td>
-			<td><input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'"></td>
+			<!-- 進入點餐畫面 -->
+			<td>
+			<a href="<spring:url value='/outfield/order' />">
+			<input type="button" value="點餐"  id="toOrderPage" name="toOrderPage">
+			</a>
+		
+			</td>
+			<td>
+			<input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'">
+			</td>
 		</tr>
 		<tr>
-			<td><input type="button" value="打卡" onclick="location.href='#'" id="showPunch" name="showPunch"></td>
-			<td><input type="button" value="管理" onclick="location.href='manage/mangelogin.jsp'" id="toManage" name="toManage"></td>
+			<!-- 顯示打卡視窗 -->
+			<td>
+			<input type="button" value="打卡"  id="showPunch" name="showPunch">
+			</td>
+			<!-- 先進入經理登入頁，再進入管理功能 -->
+			<td>
+			<a href="<spring:url value='/manage/managelogin' />">
+			<input type="button" value="管理"  id="toManage" name="toManage">
+			</a>
+			</td>
 		</tr>
 	</table>
 	</form>
@@ -104,21 +75,59 @@ $(document).ready(function(){
 	
 <!-- 	商品管理連結_開始 -->
 <!--下面幾行係為了開發方便(在首頁直接出現連結，連到商品、員工管理相關頁面)，故之後確定商品、員工管理入口後再修改 -->
+<br>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
-	<br>
-	<h6><a href="productInsert.action">商品管理頁面:productInsert</a></h6>
+	<input type="button" value="ClickMe" id="321">
+	<h6><a href="productManage/productInsert.action" id="123">商品管理頁面:productInsert</a></h6>
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
-	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
-<!-- 	商品管理連結_結束 -->
+	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6> -->	
+ 	商品管理連結_結束 -->
 
 <!-- 	sidebar連結_開始 -->
-	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>
+<!--	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>  -->
 <!-- 	sidebar連結_結束 -->
 	
 
 </body>
+<script>
+
+		//這裡開始是給計算機用的script
+		
+		//連接字串功能
+        function getNum(num){
+            $("#showResBox").val(function(i,val){
+                return val + num
+            })
+        }
+        //清除全部字串
+        function clearRes(){
+            document.getElementById("showResBox").value="";
+        }
+    	//清除前一個字串
+        function del(){
+            $("#showResBox").val(function(i,val){
+                return val.substr(0,val.length-1)
+            })
+        }
+
+    	//取得上下班字串和員工編號 
+    	$("[id^='check']").click(function(){
+			var Val = $(this).attr("value");
+			var Str = $("#showResBox").val();
+
+			//測試是否有拿到值
+            alert(Str);
+            alert(Val);
+            
+            //送出後清空字串
+            $("#showResBox").attr("text","");
+           
+          
+            
+		})
+</script>
 </html>
