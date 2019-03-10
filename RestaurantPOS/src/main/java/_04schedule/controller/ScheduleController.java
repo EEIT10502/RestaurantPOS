@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ScheduleController {
-	@RequestMapping("/scheduleManage/schedule")
+	@RequestMapping("/schedule")
 	public String schedule() {
 		return "/scheduleManage/schedule";
 	}

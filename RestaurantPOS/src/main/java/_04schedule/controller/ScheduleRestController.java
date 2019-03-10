@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import _04schedule.service.ScheduleService;
 
 @Controller
-@RequestMapping("/scheduleManage/schedule")
+@RequestMapping("/schedule")
 public class ScheduleRestController {
 	
 	@Autowired

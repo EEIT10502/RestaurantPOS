@@ -13,12 +13,18 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
+
+<!--引用css-->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
 </head>
-<title>員工查詢</title>
+
+<title>排班系統</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
+<!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+<!-- 	crossorigin="anonymous"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -27,6 +33,12 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
+<!--引用jQuery-->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!--引用dataTables.js-->
+<script
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
 
 
 <body>
@@ -34,57 +46,10 @@
 
 	<form action="">
 		<div class="w3-container" style="margin-left: 160px">
-			<h2>員工出勤查詢</h2>
-
-			<!-- 		搜尋列開始 -->
-			<div>
-
-				<h3>選擇欲查詢日期</h3>
-				<input type="date" id="attendanceSDate1" name="attendanceSDate1">~
-				<input type="date" id="attendanceSDate2" name="attendanceSDate2">
-				<p>
-
-					<select id="searchEmpType">
-						<option>員工姓名</option>
-						<option>員工編號</option>
-					</select> <input type="text" id="empSearch" name="empSearch"> <input
-						type="submit" value="查詢" id="searchBut" name="searchBut">
-			</div>
-	</form>
-	<!-- 搜尋列結束 -->
-	<!-- 匯出 -->
-	<div>
-		<input type="button" value="匯出檔案" id="dExport" name="dExport">
-	</div>
-	<!-- 		匯出與寄信結束 -->
-	<!-- 商品列表開始 -->
-	<div>
-		<table border="1">
-			<tr>
-				<th>序號</th>
-				<th>員工編號</th>
-				<th>員工姓名</th>
-				<th>日期</th>
-				<th>上班打卡</th>
-				<th>下班打卡</th>
-				<th>備註</th>
-			</tr>
-			<%--		<c:forEach var="gTable" items="">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-		</c:forEach> --%>
-		</table>
-		<!-- 	商品列表結束 -->
-		<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input
-			type="button" value="下一頁" id="dNPage" name="dNPage">
-	</div>
-
+			<h2>月排班</h2>
+			<!-- -------------------------------------------------------------------------------------------	-->
+			
+			<!-- -------------------------------------------------------------------------------------------	-->
+		</div>
 </body>
 </html>
