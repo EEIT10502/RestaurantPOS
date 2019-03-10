@@ -101,8 +101,8 @@
 		
 		<button class="w3-button w3-block w3-left-align" onclick="openScheduleList()">排班管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoScheduleList" class="w3-hide w3-white w3-card">
-			<a href="../scheduleManage/schedule.jsp" class="w3-bar-item w3-button">排班系統</a>
-			<a href="../scheduleManage/salary	.jsp" class="w3-bar-item w3-button">薪資查詢</a>
+			<a href="<c:url value='/scheduleManage/schedule'/>" class="w3-bar-item w3-button">排班系統</a>
+			<a href="scheduleManage/salary.jsp" class="w3-bar-item w3-button">薪資查詢</a>
 		</div>
 
 		<button class="w3-button w3-block w3-left-align" onclick="openReportList()">報表查詢 <i class="fa fa-caret-down"></i></button>

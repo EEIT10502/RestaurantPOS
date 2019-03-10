@@ -32,28 +32,59 @@
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 
-	
-	<b>Choose a name:</b>
-	<select id="show"></select>
-	<script>
-		$.ajax({
-		url:"test.jsp",
-		type:"GET",
-		success: function(data){
-			showNames(data);
-			}
-		});
-		
-		function showNames(data) {
-			var names=data.split(",");
-			$("#show").html("");
-			for(i in names){
-				var opt = $("<option>").val(names[i]).text(names[i]);
-				$("#show").append(opt);
-			}
-		}
-	</script>
+	<form action="">
+		<div class="w3-container" style="margin-left: 160px">
+			<h2>員工出勤查詢</h2>
 
+			<!-- 		搜尋列開始 -->
+			<div>
+
+				<h3>選擇欲查詢日期</h3>
+				<input type="date" id="attendanceSDate1" name="attendanceSDate1">~
+				<input type="date" id="attendanceSDate2" name="attendanceSDate2">
+				<p>
+
+					<select id="searchEmpType">
+						<option>員工姓名</option>
+						<option>員工編號</option>
+					</select> <input type="text" id="empSearch" name="empSearch"> <input
+						type="submit" value="查詢" id="searchBut" name="searchBut">
+			</div>
+	</form>
+	<!-- 搜尋列結束 -->
+	<!-- 匯出 -->
+	<div>
+		<input type="button" value="匯出檔案" id="dExport" name="dExport">
+	</div>
+	<!-- 		匯出與寄信結束 -->
+	<!-- 商品列表開始 -->
+	<div>
+		<table border="1">
+			<tr>
+				<th>序號</th>
+				<th>員工編號</th>
+				<th>員工姓名</th>
+				<th>日期</th>
+				<th>上班打卡</th>
+				<th>下班打卡</th>
+				<th>備註</th>
+			</tr>
+			<%--		<c:forEach var="gTable" items="">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+		</c:forEach> --%>
+		</table>
+		<!-- 	商品列表結束 -->
+		<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input
+			type="button" value="下一頁" id="dNPage" name="dNPage">
+	</div>
 
 </body>
 </html>
