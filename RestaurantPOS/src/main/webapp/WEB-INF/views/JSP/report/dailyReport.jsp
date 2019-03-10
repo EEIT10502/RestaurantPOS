@@ -20,9 +20,8 @@
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
 <!-- 報表版面 -->
-<div class="w3-container" style="margin-left:160px">
 <form action="dailyReportGetDate" method="post">
-
+<div class="w3-container" style="margin-left:160px">
 <div>
 	<h2>營運銷售分析(日報表)</h2>
 </div>
@@ -33,7 +32,7 @@
 	
 	<input type="submit" value="查詢" id="dSel" name="dSel">
 </div>
-</form>
+
 <div>
 	<h4>xxxx年xx月xx日</h4>  <!-- 顯示查詢年月日 -->
 	<input type="button" value="匯出報表" id="dExport" name="dExport">
@@ -43,28 +42,22 @@
 			<th>日期</th>
 			<th>總單數</th>
 			<th>來客數</th>
-			<th>原價</th>
-			<th>折扣</th>
 			<th>銷售金額</th>
 			<th>短溢收</th>
 			<th>實收金額</th>
 		</tr>
-<%-- 		<c:forEach var="dTable" items="dailyList"> --%>
-<!-- 				<tr> -->
-<%-- 					<td>${dTable.orderTime}</td> --%>
-<!-- 					<td></td> -->
-<!-- 					<td></td> -->
-<!-- 					<td></td> -->
-<!-- 					<td></td> -->
-<!-- 					<td></td> -->
-<!-- 					<td></td> -->
-<!-- 					<td></td> -->
-<!-- 				</tr> -->
-<%-- 		</c:forEach> --%>
+		<c:forEach var="dTable" items="${dailyList}">
+				<tr>
+					<td>${dTable.orderTime}</td>
+					<td></td>
+					<td>${dTable.cusFlow}</td>
+					<td>${dTable.totalPrice}</td>
+					<td></td>
+					<td></td>
+				</tr>
+		</c:forEach>
 		<tr>
 			<th>總計</th>
-			<td></td>
-			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
@@ -77,5 +70,6 @@
 	<input type="button" value="上一頁" id="dNPage" name="dNPage">
 </div>
 </div>
+</form>
 </body>
 </html>
