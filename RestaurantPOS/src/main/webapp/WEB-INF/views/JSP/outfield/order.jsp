@@ -253,8 +253,8 @@
 
 
 	<!-- 數字鍵盤script -->
-	<script src="../../css/jquery.min.js"></script>
-	<script src="../../css/mynumkb.js"></script>
+	<script src="${pageContext.request.contextPath}/css/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/css/mynumkb.js"></script>
 	<script>
 		$("#oPeople").mynumkb();
 		$("#oCall").mynumkb();

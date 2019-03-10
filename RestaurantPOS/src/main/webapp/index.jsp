@@ -50,17 +50,23 @@ height: 70px;
 			<td rowspan="3" id="punchTable" style="display:none;">
          	<jsp:include page="Calculator.jsp"/>
 			</td>
+			<!-- 進入點餐畫面 -->
 			<td>
-			<input type="button" value="點餐" onclick="location.href='order'" id="toOrderPage" name="toOrderPage">
+			<a href="<spring:url value='/outfield/order' />">
+			<input type="button" value="點餐"  id="toOrderPage" name="toOrderPage">
+			</a>
+		
 			</td>
 			<td>
 			<input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'">
 			</td>
 		</tr>
 		<tr>
+			<!-- 顯示打卡視窗 -->
 			<td>
 			<input type="button" value="打卡"  id="showPunch" name="showPunch">
 			</td>
+			<!-- 先進入經理登入頁，再進入經理管理功能 -->
 			<td>
 			<a href="<spring:url value='/manage/managelogin' />">
 			<input type="button" value="管理"  id="toManage" name="toManage">

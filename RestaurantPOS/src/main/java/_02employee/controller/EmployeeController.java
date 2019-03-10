@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import _00model.ManagerBean;
 import _02employee.service.EmployeeService;
 
+
+//這是一個提供Manager登入的@Controller
 @Controller
 public class EmployeeController {
 
