@@ -25,6 +25,16 @@ public class FbController {
 	@Autowired
 	ServletContext context;
 	
+	@RequestMapping("/outfield/order")
+	public String toOrder() {
+		
+		
+		
+		
+		return "/outfield/order";
+	}
+	
+	
 	
 	@RequestMapping("/order")
 	public String order(Model model) {

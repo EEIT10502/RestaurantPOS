@@ -12,17 +12,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <body>
-<form>
+
 <div>
 	<input type="button" value="回首頁"  id="mBack" name="mBack">
 </div>
+<form action="managelogin.check" method="post">
 <div>
+	<p>
+	<small><Font color='red' size="-3">${ErrorMsgKey.LoginError}
+    </Font></small>
+    </p>
+	
 	<label for="mAccount">帳號</label>
 	<input type="text" id="mAccount" name="mAccount"><p>
+	 <p><small><Font color='red' size="-3">${ErrorMsgKey.AccountEmptyError}
+           </Font></small></p>
 	<label for="mPwd">密碼</label>
-	<input type="text" id="mPwd" name="mPwd"><p>
-	<label for="rememberMe">記住帳號密碼</label>
-	<input type="checkbox" id="rememberMe" name="rememberMe">
+	<input type="password" id="mPwd" name="mPwd"><p>
+     <p><small><Font color='red' size="-3">${ErrorMsgKey.PasswordEmptyError}
+           </Font></small></p>
+	
 </div>
 <div>
 	<input type="submit" value="確定" id="mOK" name="mOK">

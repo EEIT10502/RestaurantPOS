@@ -15,11 +15,6 @@ public class EmpInsertTemporaryController {
 		return "empManage/empInsert";
 	}
 	
-	@RequestMapping("/manage/managelogin")
-	public String empLogin(Model model) {
-		System.out.println("管理員登入");
-
-		return "manage/managelogin";
-	}
+	
 
 }
