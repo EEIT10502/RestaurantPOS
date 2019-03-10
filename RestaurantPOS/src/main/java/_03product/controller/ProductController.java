@@ -23,10 +23,13 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 
-	@RequestMapping(value = "/productInsert.action", method = RequestMethod.GET)
+	
+	
+	
+	@RequestMapping(value = "/productManage/productInsert.action", method = RequestMethod.GET)
 	public String getGoodsInsertPage(Model model) {
-		System.out.println("11");// 這行是測試用
-
+		System.out.println("進入productInsert.action GET方法");// 這行是測試用
+		
 		MenuBean menuBean = new MenuBean();
 //		menuBean.setProductName("請輸入商品名稱");
 		model.addAttribute("MenuBean", menuBean);
@@ -34,9 +37,9 @@ public class ProductController {
 		return "productManage/productInsert";// 按JSP目錄層
 	}
 
-	@RequestMapping(value = "/allProductList.action")
+	@RequestMapping(value = "/productManage/allProductList.action")
 	public String getAllProductListPage(Model model) {
-		System.out.println("13");// 這行是測試用
+		System.out.println("進入allProductList.action");// 這行是測試用
 		List<MenuBean> allProductsList = new ArrayList<>();
 		allProductsList = service.getAllProducts();
 		model.addAttribute("allProductsList", allProductsList);
@@ -63,10 +66,10 @@ public class ProductController {
 	}
 
 	
-	@RequestMapping(value = "/productInsert.action", method = RequestMethod.POST)
+	@RequestMapping(value = "/productManage/productInsert.action", method = RequestMethod.POST)
 	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult productInsertresult,
 			Model model) {
-		System.out.println("12");// 這行是測試用
+		System.out.println("進入productInsert.action POST方法");// 這行是測試用
 
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("modelErrors", errors);

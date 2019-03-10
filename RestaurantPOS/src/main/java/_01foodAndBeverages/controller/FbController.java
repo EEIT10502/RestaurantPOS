@@ -28,8 +28,14 @@ public class FbController {
 	@Autowired
 	ServletContext context;
 	
+//	@RequestMapping("/outfield/order")
+//	public String toOrder() {
+//		return "/outfield/order";
+//	}
 	
-	@RequestMapping("/order")
+	
+	//在index頁面使用這個連結進入點餐畫面
+	@RequestMapping("/outfield/order")
 	public String order(Model model) {
 		List<MenuBean>  list1 = service.getProductByCategory("飯類");
 		List<MenuBean>  list2 = service.getProductByCategory("麵類");
