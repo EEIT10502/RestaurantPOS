@@ -23,7 +23,11 @@ public class FinancialController {
 	@RequestMapping("/goalReport")
 	public String goalReport() {
 		return "/report/goalReport";
-	}
+	}	
+//	@RequestMapping("/report/goalReport")
+//	public String goalReport() {
+//		return "report/goalReport";
+//	}
 	@RequestMapping("/productReport")
 	public String productReport() {
 		return "/report/productReport";
