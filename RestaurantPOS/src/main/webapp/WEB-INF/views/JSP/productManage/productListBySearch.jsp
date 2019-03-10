@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,82 +48,96 @@
 	crossorigin="anonymous"></script>
 
 <script>
-	function openAllProductList() {
-		var x = document.getElementById("allList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function openRiceList() {
-		var x = document.getElementById("riceList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function openSoupList() {
-		var x = document.getElementById("soupList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function openDessertList() {
-		var x = document.getElementById("dessertList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function hiddenAllList() {
-		var allProduct = document.getElementById("allList");
-		var rice = document.getElementById("riceList");
-		var soup = document.getElementById("soupList");
-		var dessert = document.getElementById("dessertList");
-		if (allProduct.className.indexOf("hiddenList") == -1) {
-			allProduct.className += "hiddenList";
-		}
-		if (rice.className.indexOf("hiddenList") == -1) {
-			rice.className += "hiddenList";
-		}
-		if (soup.className.indexOf("hiddenList") == -1) {
-			soup.className += "hiddenList";
-		}
-		if (dessert.className.indexOf("hiddenList") == -1) {
-			dessert.className += "hiddenList";
-		}
-	}
+// 	function openAllProductList() {
+// 		var x = document.getElementById("allList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function openRiceList() {
+// 		var x = document.getElementById("riceList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function openSoupList() {
+// 		var x = document.getElementById("soupList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function openDessertList() {
+// 		var x = document.getElementById("dessertList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function hiddenAllList() {
+// 		var allProduct = document.getElementById("allList");
+// 		var rice = document.getElementById("riceList");
+// 		var soup = document.getElementById("soupList");
+// 		var dessert = document.getElementById("dessertList");
+// 		if (allProduct.className.indexOf("hiddenList") == -1) {
+// 			allProduct.className += "hiddenList";
+// 		}
+// 		if (rice.className.indexOf("hiddenList") == -1) {
+// 			rice.className += "hiddenList";
+// 		}
+// 		if (soup.className.indexOf("hiddenList") == -1) {
+// 			soup.className += "hiddenList";
+// 		}
+// 		if (dessert.className.indexOf("hiddenList") == -1) {
+// 			dessert.className += "hiddenList";
+// 		}
+// 	}
 </script>
 
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 160px">
-			<h1>商品查詢/修改</h1>
+<!-- 		<h1>商品查詢/修改</h1> -->
+<%-- 			<form action=""> --%>
+<!-- 				<div class=""> -->
+<!-- 					<label class="" for='searchBarBtn'> -->
+<!-- 						依商品名稱搜尋； -->
+<!-- 					</label> -->
+<%-- 					<c:if test="${searchBarString == null}"> --%>
+<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
+<!-- 						placeholder="請輸入搜尋條件" />  -->
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${searchBarString != null}"> --%>
+<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
+<%-- 						placeholder="${searchBarString}" />  --%>
+<%-- 					</c:if> --%>
+<!-- 					<input id="inProduct" type='submit' class='btn btn-primary' value="搜尋" />  -->
+<!-- 					<input id="resetProduct" type='reset' class='btn btn-primary' value="清除" /> -->
+<!-- 				</div> -->
+<%-- 			</form> --%>
 
-			<div class="btn-group" role="group"
-				aria-label="Button group with nested dropdown">
-				<button type="button" class="btn btn-secondary"
-					onclick="openAllProductList()">所有產品</button>
+<!-- 			<div class="btn-group" role="group" -->
+<!-- 				aria-label="Button group with nested dropdown"> -->
+<!-- 				<button type="button" class="btn btn-secondary" -->
+<!-- 					onclick="openAllProductList()">所有產品</button> -->
 
-				<div class="btn-group" role="group">
-					<button id="btnGroupDrop1" type="button"
-						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">依產品種類檢視</button>
-					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="#" onclick="openRiceList()">飯類</a> 
-						<a class="dropdown-item" href="#" onclick="openSoupList()">湯類</a> 
-						<a class="dropdown-item" href="#" onclick="openDessertList()">甜點</a>
-					</div>
-				</div>
-			</div>
+<!-- 				<div class="btn-group" role="group"> -->
+<!-- 					<button id="btnGroupDrop1" type="button" -->
+<!-- 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" -->
+<!-- 						aria-haspopup="true" aria-expanded="false">依產品種類檢視</button> -->
+<!-- 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> -->
+<!-- 						<a class="dropdown-item" href="#" onclick="openRiceList()">飯類</a> -->
+<!-- 						<a class="dropdown-item" href="#" onclick="openSoupList()">湯類</a> -->
+<!-- 						<a class="dropdown-item" href="#" onclick="openDessertList()">甜點</a> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
-<!-- 			<input type="button" value="所有產品" onclick="openAllProductList()"> -->
-<!-- 			<input type="button" value="飯類" onclick="openRiceList()"> <input -->
-<!-- 				type="button" value="湯類" onclick="openSoupList()"> <input -->
-<!-- 				type="button" value="甜點" onclick="openDessertList()"> -->
 			<div id="allList" class="">
 				<table class="table table-hover">
 					<tr>
@@ -132,10 +148,10 @@
 						<th scope="col">價格</th>
 						<th scope="col">狀態</th>
 					</tr>
-					<c:forEach var='product' items='${allProductsList}'
+					<c:forEach var='product' items='${productListBySearch}'
 						varStatus="status">
 						<tr class="">
-							<th scope="row">${status.index + 1}</th>
+							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
 							<td>${product.cate}</td>
 							<td>${product.productNo}</td>
 							<td>${product.productName}</td>
@@ -144,6 +160,52 @@
 						</tr>
 					</c:forEach>
 				</table>
+				<nav aria-label="...">
+					<ul class="pagination">
+						<c:if test="${currentPageNo <= 1}">
+							<li class="page-item disabled"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=1&searchBar=${searchBarString}' />"
+								tabindex="-1" aria-disabled="true">First Page</a></li>
+						</c:if>
+						<c:if test="${currentPageNo > 1}">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=1&searchBar=${searchBarString}' />"
+								tabindex="-1" aria-disabled="true">First Page</a></li>
+						</c:if>
+						<c:if test="${currentPageNo <= 1}">
+							<li class="page-item disabled"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo-1}&searchBar=${searchBarString}' />"
+								tabindex="-1" aria-disabled="true">Previous</a></li>
+						</c:if>
+						<c:if test="${currentPageNo > 1}">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo-1}&searchBar=${searchBarString}' />"
+								tabindex="-1" aria-disabled="true">Previous</a></li>
+						</c:if>
+
+						<c:if test="${currentPageNo != totalPages}">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo+1}&searchBar=${searchBarString}' />">Next</a>
+							</li>
+						</c:if>
+						<c:if test="${currentPageNo == totalPages}">
+							<li class="page-item disabled"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo+1}&searchBar=${searchBarString}' />">Next</a>
+							</li>
+						</c:if>
+						<c:if test="${currentPageNo == totalPages}">
+							<li class="page-item disabled"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${totalPages}&searchBar=${searchBarString}' />"
+								tabindex="-1" aria-disabled="true">Last Page</a></li>
+						</c:if>
+						<c:if test="${currentPageNo != totalPages}">
+							<li class="page-item"><a class="page-link"
+								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${totalPages}&searchBar=${searchBarString}' />"
+								tabindex="-1" aria-disabled="true">Last Page</a></li>
+						</c:if>
+						<li class="page-item">第${currentPageNo}頁 /共${totalPages}頁</li>
+					</ul>
+				</nav>
 			</div>
 			<div id="riceList" class="hiddenList">
 				<table class="table table-hover">
@@ -209,8 +271,7 @@
 							<td>${productTestDessert.productNo}</td>
 							<td>${productTestDessert.productName}</td>
 							<td>${productTestDessert.price}</td>
-							<td>${productTestDessert.productStatus}
-							</td>
+							<td>${productTestDessert.productStatus}</td>
 						</tr>
 					</c:forEach>
 				</table>
