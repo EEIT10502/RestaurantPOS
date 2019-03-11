@@ -33,8 +33,10 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		Session session = factory.getCurrentSession();
 		
 		try {
-			int IempNo = Integer.parseInt(empNo);
-			employeeBean = session.get(EmployeeBean.class, IempNo);
+			String hql="FROM EmployeeBean WHERE empNo = :empNo";
+			employeeBean = (EmployeeBean) session.createQuery(hql).
+												  setParameter("empNo", empNo).
+												  uniqueResult();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -118,7 +118,11 @@ $(document).ready(function(){
     	$("[id^='check']").click(function(){
 			var Val = $(this).attr("value");
 			var Str = $("#showResBox").val();
-
+			
+			if($.trim(Str) == ""){   //判斷該欄位不可為空，為空就return
+				alert("不可為空!")
+				return;
+			}
 			//測試是否有拿到值
             alert(Str);
             alert(Val);

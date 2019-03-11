@@ -30,37 +30,39 @@ public class ScheduleController {
 	public @ResponseBody Map<String, String> GoToCheck(Model model,
 			@RequestParam(value="empNO")String empNO,
 			@RequestParam(value="choice")String choice,
-			AttendenceBean attendenceBean) {
+			AttendenceBean attendenceBean) {//需要在這裡創建AttendenceBean 不然attendenceBean會null
 		
-		System.out.println("進入GoToCheck");
-		System.out.println("empNO:"+empNO);
-		System.out.println("choice:"+choice);
+			System.out.println("進入GoToCheck");
+			System.out.println("empNO:"+empNO);
+			System.out.println("choice:"+choice);
 		
-		EmployeeBean emp = service.checkByEmpNo(empNO);
+		    //建構一個errorMsgMap的Map 將錯誤訊息放入
+			Map<String, String> errorMsgMap = new HashMap<String, String>();
+//			model.addAttribute("ErrorMsgKey", errorMsgMap);
+			errorMsgMap.put("empNoError", "員工編號錯誤");		
+				
+			EmployeeBean emp = service.checkByEmpNo(empNO);
 		
 		if(emp!=null) {
-			//AttendenceBean attendenceBean = null;
+			
 			
 			System.out.println("取得用戶資訊");
-			String SDate = SystemUtils2018.getDate();
-			String STime = SystemUtils2018.getTime();
-			Date ddate = SystemUtils2018.strToDate(SDate);
+			String SDate = SystemUtils2018.getDate();     //取得現在的日期格式(yyyu-MM-dd)
+			String STime = SystemUtils2018.getTime();	  //取得現在的時間格式(hh:mm:ss)
+			Date ddate = SystemUtils2018.strToDate(SDate); //將其轉換為相對應的型態
 			Time dtime = SystemUtils2018.strToTime(STime);
 			
-			attendenceBean.setCheckStatus(choice);
+			attendenceBean.setCheckStatus(choice);        //注入
 			attendenceBean.setEmpNo(empNO);
 			attendenceBean.setClockTime(dtime);
 			attendenceBean.setDate((java.sql.Date) ddate);
 			
 			
-			service.addAttendence(attendenceBean);
+			service.addAttendence(attendenceBean);        //新增
 		}else {
 			System.out.println("無法取得");
 		}
-		//建構一個errorMsgMap的Map 將錯誤訊息放入
-		Map<String, String> errorMsgMap = new HashMap<String, String>();
-//		model.addAttribute("ErrorMsgKey", errorMsgMap);
-		errorMsgMap.put("empNoError", "員工編號錯誤");		
+		
 		
 		
 		return  errorMsgMap;
