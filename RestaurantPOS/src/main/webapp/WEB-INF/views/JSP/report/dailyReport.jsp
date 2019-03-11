@@ -59,10 +59,10 @@ jQuery(document).ready(function($){
 		</tr>
 		<c:forEach var="dTable" items="${dailyList}">
 				<tr>
-					<td></td>
-					<td></td>
 					<td>${dTable[0]}</td>
 					<td>${dTable[1]}</td>
+					<td>${dTable[2]}</td>
+					<td>${dTable[3]}</td>
 					<td></td>
 					<td></td>
 				</tr>
