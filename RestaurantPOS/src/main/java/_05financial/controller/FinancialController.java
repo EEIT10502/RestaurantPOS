@@ -52,8 +52,8 @@ public class FinancialController {
 	@RequestMapping("/report/dailyReportGetDate")
 	public String dailyReportGetDate(Model model, @RequestParam("dDate1") String dDate1,
 			@RequestParam("dDate2") String dDate2) {
-		
-		List<OrderBean> list = service.getOrderByDate(dDate1, dDate2);
+
+		List<OrderBean[]> list = service.getOrderByDate(dDate1, dDate2);
 		model.addAttribute("dailyList", list);
 		System.out.println(list);
 

@@ -43,18 +43,20 @@ public class FinancialDaoImpl implements FinancialDao {
 	// dailyReport
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrderBean> getOrderByDate(String Date1, String Date2) {
+	public List<OrderBean[]> getOrderByDate(String Date1, String Date2) {
 		// to sql.Date
 		stringToDate(Date1, Date2);
 		java.sql.Date beginDate = new java.sql.Date(uDate1.getTime());
 		java.sql.Date endDate = new java.sql.Date(uDate2.getTime());
 		// hql
-		String hql = "FROM OrderBean o WHERE o.orderTime>=:beginDate and o.orderTime<=:endDate";
+		String hql = "select o.cusFlow, o.totalPrice FROM OrderBean o WHERE o.orderTime>=:beginDate and o.orderTime<=:endDate";
 		Session session = factory.getCurrentSession();
 
-		List<OrderBean> list = session.createQuery(hql).setParameter("beginDate", beginDate)
+		List<OrderBean[]> list = session.createQuery(hql).setParameter("beginDate", beginDate)
 				.setParameter("endDate", endDate).getResultList();
 		return list;
+		
+		
 	}
 
 }
