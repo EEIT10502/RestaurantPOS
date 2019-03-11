@@ -113,9 +113,47 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getTotalPagesBySearch();
 	}
 	
-	public static void  main (String[] args) {
-		ProductService service = new ProductServiceImpl();
-		List<MenuBean> a = service.getProductsListGetBySearch();
-		System.out.println("a:"+a);
+//	public static void  main (String[] args) {
+//		ProductService service = new ProductServiceImpl();
+//		List<MenuBean> a = service.getProductsListGetBySearch();
+//		System.out.println("a:"+a);
+//	}
+	
+	@Transactional
+	@Override
+	public void setCateSelect(String cateSelect) {
+		System.out.println("Service cateSelect:"+cateSelect);
+		productdao.setCateSelect(cateSelect);
+	}
+	
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetByCate() {
+		return productdao.getProductsListGetByCate();
+	}
+	
+	@Transactional
+	@Override
+	public int getTotalPagesByCate() {
+		return productdao.getTotalPagesByCate();
+	}
+	
+	@Transactional
+	@Override
+	public void setStatusSelect(String statusSelect) {
+		System.out.println("Service statusSelect:"+statusSelect);
+		productdao.setStatusSelect(statusSelect);
+	}
+	
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetByProductStatus() {
+		return productdao.getProductsListGetByProductStatus();
+	}
+	
+	@Transactional
+	@Override
+	public int getTotalPagesByProductStatus() {
+		return productdao.getTotalPagesByProductStatus();
 	}
 }

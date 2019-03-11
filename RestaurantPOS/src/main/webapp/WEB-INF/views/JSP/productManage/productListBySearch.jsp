@@ -17,6 +17,10 @@
 	crossorigin="anonymous">
 <title>sideBar</title>
 <style type="text/css">
+
+td.errorMessage[type="redError"] {
+	color: red;
+}
 .hiddenList {
 	display: none;
 }
@@ -159,6 +163,9 @@
 							<td>${product.productStatus}</td>
 						</tr>
 					</c:forEach>
+					<tr>
+						<td colspan="6" class="errorMessage" type="redError">${noItemString}</td>
+					</tr>
 				</table>
 				<nav aria-label="...">
 					<ul class="pagination">

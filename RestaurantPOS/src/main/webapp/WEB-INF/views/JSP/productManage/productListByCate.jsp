@@ -17,11 +17,12 @@
 	crossorigin="anonymous">
 <title>sideBar</title>
 <style type="text/css">
-.hiddenList {
-	display: none;
-}
+
 td.errorMessage[type="redError"] {
 	color: red;
+}
+.hiddenList {
+	display: none;
 }
 </style>
 
@@ -51,52 +52,52 @@ td.errorMessage[type="redError"] {
 	crossorigin="anonymous"></script>
 
 <script>
-	function openAllProductList() {
-		var x = document.getElementById("allList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function openRiceList() {
-		var x = document.getElementById("riceList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function openSoupList() {
-		var x = document.getElementById("soupList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function openDessertList() {
-		var x = document.getElementById("dessertList");
-		if (x.className.indexOf("hiddenList") != -1) {
-			hiddenAllList();
-			x.className = x.className.replace("hiddenList", "");
-		}
-	}
-	function hiddenAllList() {
-		var allProduct = document.getElementById("allList");
-		var rice = document.getElementById("riceList");
-		var soup = document.getElementById("soupList");
-		var dessert = document.getElementById("dessertList");
-		if (allProduct.className.indexOf("hiddenList") == -1) {
-			allProduct.className += "hiddenList";
-		}
-		if (rice.className.indexOf("hiddenList") == -1) {
-			rice.className += "hiddenList";
-		}
-		if (soup.className.indexOf("hiddenList") == -1) {
-			soup.className += "hiddenList";
-		}
-		if (dessert.className.indexOf("hiddenList") == -1) {
-			dessert.className += "hiddenList";
-		}
-	}
+// 	function openAllProductList() {
+// 		var x = document.getElementById("allList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function openRiceList() {
+// 		var x = document.getElementById("riceList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function openSoupList() {
+// 		var x = document.getElementById("soupList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function openDessertList() {
+// 		var x = document.getElementById("dessertList");
+// 		if (x.className.indexOf("hiddenList") != -1) {
+// 			hiddenAllList();
+// 			x.className = x.className.replace("hiddenList", "");
+// 		}
+// 	}
+// 	function hiddenAllList() {
+// 		var allProduct = document.getElementById("allList");
+// 		var rice = document.getElementById("riceList");
+// 		var soup = document.getElementById("soupList");
+// 		var dessert = document.getElementById("dessertList");
+// 		if (allProduct.className.indexOf("hiddenList") == -1) {
+// 			allProduct.className += "hiddenList";
+// 		}
+// 		if (rice.className.indexOf("hiddenList") == -1) {
+// 			rice.className += "hiddenList";
+// 		}
+// 		if (soup.className.indexOf("hiddenList") == -1) {
+// 			soup.className += "hiddenList";
+// 		}
+// 		if (dessert.className.indexOf("hiddenList") == -1) {
+// 			dessert.className += "hiddenList";
+// 		}
+// 	}
 </script>
 
 
@@ -105,8 +106,8 @@ td.errorMessage[type="redError"] {
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 160px">
-<!-- 			<h1>商品查詢/修改</h1> -->
-<%-- 			<form action="productListBySearch.action"> --%>
+<!-- 		<h1>商品查詢/修改</h1> -->
+<%-- 			<form action=""> --%>
 <!-- 				<div class=""> -->
 <!-- 					<label class="" for='searchBarBtn'> -->
 <!-- 						依商品名稱搜尋； -->
@@ -124,16 +125,15 @@ td.errorMessage[type="redError"] {
 <!-- 				</div> -->
 <%-- 			</form> --%>
 
-
 <!-- 			<div class="btn-group" role="group" -->
 <!-- 				aria-label="Button group with nested dropdown"> -->
 <!-- 				<button type="button" class="btn btn-secondary" -->
-<!-- 					onclick="openAllProductList()">所有商品</button> -->
+<!-- 					onclick="openAllProductList()">所有產品</button> -->
 
 <!-- 				<div class="btn-group" role="group"> -->
 <!-- 					<button id="btnGroupDrop1" type="button" -->
 <!-- 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" -->
-<!-- 						aria-haspopup="true" aria-expanded="false">依商品種類檢視</button> -->
+<!-- 						aria-haspopup="true" aria-expanded="false">依產品種類檢視</button> -->
 <!-- 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> -->
 <!-- 						<a class="dropdown-item" href="#" onclick="openRiceList()">飯類</a> -->
 <!-- 						<a class="dropdown-item" href="#" onclick="openSoupList()">湯類</a> -->
@@ -152,7 +152,7 @@ td.errorMessage[type="redError"] {
 						<th scope="col">價格</th>
 						<th scope="col">狀態</th>
 					</tr>
-					<c:forEach var='product' items='${productsListGetByPage}'
+					<c:forEach var='product' items='${productsListGetByCate}'
 						varStatus="status">
 						<tr class="">
 							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
@@ -171,43 +171,43 @@ td.errorMessage[type="redError"] {
 					<ul class="pagination">
 						<c:if test="${currentPageNo <= 1}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=1' />"
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=1&whichCate=${whichCate}' />"
 								tabindex="-1" aria-disabled="true">First Page</a></li>
 						</c:if>
 						<c:if test="${currentPageNo > 1}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=1' />"
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=1&whichCate=${whichCate}' />"
 								tabindex="-1" aria-disabled="true">First Page</a></li>
 						</c:if>
 						<c:if test="${currentPageNo <= 1}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo-1}' />"
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo-1}&whichCate=${whichCate}' />"
 								tabindex="-1" aria-disabled="true">Previous</a></li>
 						</c:if>
 						<c:if test="${currentPageNo > 1}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo-1}' />"
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo-1}&whichCate=${whichCate}' />"
 								tabindex="-1" aria-disabled="true">Previous</a></li>
 						</c:if>
 
 						<c:if test="${currentPageNo != totalPages}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo+1}' />">Next</a>
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo+1}&whichCate=${whichCate}' />">Next</a>
 							</li>
 						</c:if>
 						<c:if test="${currentPageNo == totalPages}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo+1}' />">Next</a>
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo+1}&whichCate=${whichCate}' />">Next</a>
 							</li>
 						</c:if>
 						<c:if test="${currentPageNo == totalPages}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=${totalPages}' />"
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${totalPages}&whichCate=${whichCate}' />"
 								tabindex="-1" aria-disabled="true">Last Page</a></li>
 						</c:if>
 						<c:if test="${currentPageNo != totalPages}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='allProductList.action?currentPageNoBtn=${totalPages}' />"
+								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${totalPages}&whichCate=${whichCate}' />"
 								tabindex="-1" aria-disabled="true">Last Page</a></li>
 						</c:if>
 						<li class="page-item">第${currentPageNo}頁 /共${totalPages}頁</li>
