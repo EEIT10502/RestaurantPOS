@@ -64,7 +64,7 @@ public class ScheduleController {
 		}
 		
 		
-		
+		//需要在前端將該MAP物件取出
 		return  errorMsgMap;
 
 	}
