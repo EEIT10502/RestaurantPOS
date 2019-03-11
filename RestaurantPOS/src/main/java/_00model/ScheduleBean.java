@@ -14,9 +14,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Schedule")
 public class ScheduleBean implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +24,7 @@ public class ScheduleBean implements Serializable {
 	Integer choose;
 	Time startTime;
 	Time endTime;
+	private ScheduleBean scheduleBean;
 
 	public ScheduleBean() {
 
@@ -93,6 +91,10 @@ public class ScheduleBean implements Serializable {
 
 	public void setEndTime(Time endTime) {
 		this.endTime = endTime;
+	}
+
+	public void setScheduleBean(ScheduleBean scheduleBean) {
+this.scheduleBean=scheduleBean;		
 	}
 
 }
