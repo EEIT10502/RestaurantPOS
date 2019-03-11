@@ -100,7 +100,10 @@ $(document).ready(function(){
 		//連接字串功能
         function getNum(num){
             $("#showResBox").val(function(i,val){
+				
+				
                 return val + num
+				
             })
         }
         //清除全部字串
@@ -124,8 +127,8 @@ $(document).ready(function(){
 				return;
 			}
 			//測試是否有拿到值
-            alert(Str);
-            alert(Val);
+            //alert(Str);
+            //alert(Val);
             
             //送出後清空字串
             //$("#showResBox").attr("text","");
@@ -134,18 +137,22 @@ $(document).ready(function(){
             //使用ajax 無刷新取得資訊
 		$.ajax({
 			url:"/RestaurantPOS/schedule/time.check",
-			data:{empNO:Str,choice:Val},
+			data:{empNO:Str,choice:Val},  //將參數以 Key:Value 的對應方式傳給後端
 			type:"POST",
 			
 			//失敗
 			error:function(xhr) {
 			      	alert('Ajax request 發生錯誤');
-			      	alert(xhr);
+			//      	alert(xhr);
 				},
 			//成功
 			success:function(data){
-				alert('Ajax成功');
-				alert(data);
+			//	alert('Ajax成功');
+			
+				var Msg = data.msg;
+				  
+				alert(Msg);//顯示傳回來的訊息
+
 			}
 		})
            

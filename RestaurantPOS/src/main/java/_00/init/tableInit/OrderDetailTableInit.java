@@ -34,7 +34,7 @@ public class OrderDetailTableInit {
 				}
 				String[] token = line.split("\\|");
 				OrderDetailBean orderDetail = new OrderDetailBean();
-				orderDetail.setOrderNo(Integer.valueOf(token[0]));
+				
 				orderDetail.setCategory(token[1]);
 				orderDetail.setProductNo(Integer.valueOf(token[2]));
 				orderDetail.setProductName(token[3]);

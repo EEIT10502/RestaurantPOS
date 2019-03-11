@@ -41,13 +41,6 @@ public class OrderDetailBean implements Serializable {
 	}
 	
 	
-	@Column(columnDefinition="VARCHAR(12) NOT NULL",name="fk_orderNo")
-	public Integer getOrderNo() {
-		return orderNo;
-	}
-	public void setOrderNo(Integer orderNo) {
-		this.orderNo = orderNo;
-	}
 	@Column(columnDefinition="NVARCHAR(50) NOT NULL",name="category")
 	public String getCategory() {
 		return category;
