@@ -1,6 +1,7 @@
 package _03product.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import _00.init.util.GlobalService;
 import _00model.MenuBean;
@@ -23,10 +25,13 @@ public class ProductController {
 	@Autowired
 	ProductService service;
 
-	@RequestMapping(value = "/productInsert.action", method = RequestMethod.GET)
-	public String getGoodsInsertPage(Model model) {
-		System.out.println("11");// 這行是測試用
 
+	int currentPageNo = 1;
+	
+	@RequestMapping(value = "/productManage/productInsert.action", method = RequestMethod.GET)
+	public String getGoodsInsertPage(Model model) {
+		System.out.println("進入productInsert.action GET方法");// 這行是測試用
+		
 		MenuBean menuBean = new MenuBean();
 //		menuBean.setProductName("請輸入商品名稱");
 		model.addAttribute("MenuBean", menuBean);
@@ -34,40 +39,77 @@ public class ProductController {
 		return "productManage/productInsert";// 按JSP目錄層
 	}
 
-	@RequestMapping(value = "/allProductList.action")
-	public String getAllProductListPage(Model model) {
+
+//	//舊的
+//	@RequestMapping(value = "/allProductList.action")
+//	public String getAllProductListPage(Model model) {
+//		System.out.println("13");// 這行是測試用
+//		List<MenuBean> allProductsList = new ArrayList<>();
+//		allProductsList = service.getAllProducts();
+//		model.addAttribute("allProductsList", allProductsList);
+//		System.out.println("allProductsList"+allProductsList);
+//		
+//		//Test開始
+//		List<MenuBean> allProductsListTestRice = new ArrayList<>();
+//		allProductsListTestRice = service.getAllProductsListTestRice();
+//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
+//		System.out.println("allProductsListTestRice"+allProductsListTestRice);
+//		
+//		List<MenuBean> allProductsListTestSoup = new ArrayList<>();
+//		allProductsListTestSoup = service.getAllProductsListTestSoup();
+//		model.addAttribute("allProductsListTestSoup", allProductsListTestSoup);
+//		System.out.println("allProductsListTestSoup"+allProductsListTestSoup);
+//		
+//		List<MenuBean> allProductsListTestDessert = new ArrayList<>();
+//		allProductsListTestDessert = service.getAllProductsListTestDessert();
+//		model.addAttribute("allProductsListTestDessert", allProductsListTestDessert);
+//		System.out.println("allProductsListTestDessert"+allProductsListTestDessert);
+//		//Test結束
+//		
+//		return "productManage/allProductList";
+//	}
+	
+	int currentPageNoInit;
+	//新的
+	@RequestMapping(value = "/productManage/allProductList.action")
+	public String getAllProductListPage(@RequestParam(value = "currentPageNoBtn", required=false)String currentPageNo, Model model) {
 		System.out.println("13");// 這行是測試用
-		List<MenuBean> allProductsList = new ArrayList<>();
-		allProductsList = service.getAllProducts();
-		model.addAttribute("allProductsList", allProductsList);
-		System.out.println("allProductsList"+allProductsList);
 		
-		//Test開始
-		List<MenuBean> allProductsListTestRice = new ArrayList<>();
-		allProductsListTestRice = service.getAllProductsListTestRice();
-		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
-		System.out.println("allProductsListTestRice"+allProductsListTestRice);
+		System.out.println("currentPageNo:"+currentPageNo);
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		System.out.println("currentPageNoInit:"+currentPageNoInit);
+		service.setCurrentPageNo(currentPageNoInit);
 		
-		List<MenuBean> allProductsListTestSoup = new ArrayList<>();
-		allProductsListTestSoup = service.getAllProductsListTestSoup();
-		model.addAttribute("allProductsListTestSoup", allProductsListTestSoup);
-		System.out.println("allProductsListTestSoup"+allProductsListTestSoup);
+		List<MenuBean> productsListGetByPage = new ArrayList<>();
+		productsListGetByPage = service.getProductsListGetByPage();
+		model.addAttribute("productsListGetByPage", productsListGetByPage);
+		System.out.println("productsListGetByPage"+productsListGetByPage);
 		
-		List<MenuBean> allProductsListTestDessert = new ArrayList<>();
-		allProductsListTestDessert = service.getAllProductsListTestDessert();
-		model.addAttribute("allProductsListTestDessert", allProductsListTestDessert);
-		System.out.println("allProductsListTestDessert"+allProductsListTestDessert);
-		//Test結束
+		model.addAttribute("currentPageNo", currentPageNoInit);
+		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
+		model.addAttribute("totalPages", service.getTotalPages());
 		
-		return "productManage/allProductList";
+		System.out.println();
+		
+		return "productManage/allProductListNew";
 	}
 
 	
-	@RequestMapping(value = "/productInsert.action", method = RequestMethod.POST)
+	@RequestMapping(value = "/productManage/productInsert.action", method = RequestMethod.POST)
 	public String processAddNewGoodsForm(@ModelAttribute("MenuBean") MenuBean menuBean, BindingResult productInsertresult,
 			Model model) {
-		System.out.println("12");// 這行是測試用
+		System.out.println("進入productInsert.action POST方法");// 這行是測試用
 
+		
+		
 		Map<String, String> errors = new HashMap<>();
 		model.addAttribute("modelErrors", errors);
 
@@ -113,8 +155,11 @@ public class ProductController {
 				case GlobalService.Product_Cate_Soup:
 					menuBean.setProductNo(201);
 					break;
-				case GlobalService.Product_Cate_Dessert:
+				case GlobalService.PRODUCT_CATE_NOODLE:
 					menuBean.setProductNo(301);
+					break;
+				case GlobalService.PRODUCT_CATE_DUMPLINGS:
+					menuBean.setProductNo(401);
 					break;
 				default: 
 					menuBean.setProductNo(001);
@@ -127,7 +172,7 @@ public class ProductController {
 //		menuBean.setProductNo(productNoInsert);
 		service.addProduct(menuBean);
 		
-		return "redirect:/productQuery.action";
+		return "redirect:/productManage/allProductList.action";
 	}
 
 	@ModelAttribute("cateList")
@@ -136,7 +181,8 @@ public class ProductController {
 		List<String> ProductCateList = new ArrayList<String>();
 		ProductCateList.add(GlobalService.Product_Cate_Rice);
 		ProductCateList.add(GlobalService.Product_Cate_Soup);
-		ProductCateList.add(GlobalService.Product_Cate_Dessert);
+		ProductCateList.add(GlobalService.PRODUCT_CATE_NOODLE);
+		ProductCateList.add(GlobalService.PRODUCT_CATE_DUMPLINGS);
 		return ProductCateList;
 		
 	}
@@ -164,5 +210,39 @@ public class ProductController {
 //	public Integer getCurrentCategoryNumber() {
 //		return service.getCurrentCategoryNumber() + 1;
 //	}
+	
+	@RequestMapping(value = "/productManage/productListBySearch.action", method = RequestMethod.GET)
+	public String getProductListBySearch(@RequestParam(value = "currentPageNoBtnSearch", required=false)String currentPageNo,@RequestParam(value = "searchBar", required=false)String searchBarString, Model model) {
+		System.out.println("20");// 這行是測試用
+		System.out.println("searchBarString:"+searchBarString);
+		model.addAttribute("searchBarString", searchBarString);
+		
+		System.out.println("currentPageNo:"+currentPageNo);
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		System.out.println("currentPageNoInit:"+currentPageNoInit);
+		service.setCurrentPageNo(currentPageNoInit);
+		
+		service.setSearchBarString(searchBarString);
+		
+		List<MenuBean> productListBySearch = new ArrayList<>();
+		productListBySearch = service.getProductsListGetBySearch();
+		model.addAttribute("productListBySearch", productListBySearch);
+		System.out.println("productListBySearch"+productListBySearch);
 
+		model.addAttribute("currentPageNo", currentPageNoInit);
+		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
+		model.addAttribute("totalPages", service.getTotalPagesBySearch());
+
+////		System.out.println();
+		
+		return "productManage/productListBySearch";
+	}
 }

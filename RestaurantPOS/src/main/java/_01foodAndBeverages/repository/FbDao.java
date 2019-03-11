@@ -14,4 +14,6 @@ public interface FbDao {
 	
 	MenuBean getProductById(Integer pId);
 	
+	Integer getProductPriceByName(String productName);
+	
 }

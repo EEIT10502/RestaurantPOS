@@ -19,6 +19,7 @@ public class AttendenceBean implements Serializable {
 	Integer attendenceId;
 	String empNo;
 	Date date;
+	String checkStatus;
 	Time clockTime;
 	
 	
@@ -67,7 +68,13 @@ public class AttendenceBean implements Serializable {
 	public void setClockTime(Time clockTime) {
 		this.clockTime = clockTime;
 	}
+	public String getCheckStatus() {
+		return checkStatus;
+	}
 
+	public void setCheckStatus(String checkStatus) {
+		this.checkStatus = checkStatus;
+	}
 
 
 

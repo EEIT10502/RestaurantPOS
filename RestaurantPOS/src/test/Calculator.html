@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script  src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        #all{
+            margin: auto;
+            width: 60%;
+        }
+        #cal{
+            background-color: #ee5757;
+            color: #ffffff;
+            font-size: 15px;
+            font-family: sans-serif;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 12px;
+            margin: 5px 5px;
+            cursor: pointer;
+            box-shadow:  0 2px #999;
+            padding: 0;
+        }
+        #cal:hover{
+            background-color: #50e2e2;
+
+        }
+        #cal:active{
+            transform: translateY(2px);
+        }
+        input[type=text]{
+            width: 118px;
+            height: 20px;
+            font-size: 20px;
+            color: #9b9999;
+           border-radius: 5px;
+           padding: 3px 3px;
+        }
+        form{
+            border: 1px solid #eaeaea;
+            background-color: #ffffff;
+            width: 212px;
+            height: 280px;
+            border-radius: 18px;
+            box-shadow: 5px 5px 5px #d3cdd3;
+            margin: auto;
+        }
+        #calContent{
+            margin: 20px 20px;
+        }
+        h1{
+            margin-top:50px;
+            color: #fffef2;
+            font-family: sans-serif;
+            font-size: 50px;
+            text-align: center; 
+        }
+    </style>
+</head>
+<body>
+    <div id="all">
+        <h1>Calculator</h1>
+        <form>
+            <div id="calContent">
+              <input type="text" id="showResBox" readonly>
+              <br>
+              <input type="button" id="cal" value="C" onclick="clearRes()">
+              <input type="button" id="cal" value="--" onclick="del()">
+              <br>
+              <input type="button" id="cal" value="7" onclick="getNum('7')">
+              <input type="button" id="cal" value="8" onclick="getNum('8')">
+              <input type="button" id="cal" value="9" onclick="getNum('9')">  
+              <br> 
+
+              <input type="button" id="cal" value="4" onclick="getNum('4')">
+              <input type="button" id="cal" value="5" onclick="getNum('5')">
+              <input type="button" id="cal" value="6" onclick="getNum('6')">  
+              <br>
+
+              <input type="button" id="cal" value="1" onclick="getNum('1')">
+              <input type="button" id="cal" value="2" onclick="getNum('2')">
+              <input type="button" id="cal"value="3" onclick="getNum('3')">  
+              <br>
+              
+              <input type="button" id="cal" value="下班" onclick=""> 
+              <input type="button" id="cal" value="0" onclick="getNum('0')">
+              <input type="button" id="cal" value="上班" onclick="getNO()">
+              <br>
+
+            </div>
+        </form>
+    </div>
+
+
+
+
+</body>
+<script>
+
+        function getNum(num){
+            $("#showResBox").val(function(i,val){
+                return val + num
+            })
+        }
+        
+        function clearRes(){
+            document.getElementById("showResBox").value="";
+        }
+    
+        function del(){
+            $("#showResBox").val(function(i,val){
+                return val.substr(0,val.length-1)
+            })
+        }
+        function getNO(){
+            var Str = document.getElementById("showResBox").value;
+            alert(Str);
+        }
+</script>
+</html>

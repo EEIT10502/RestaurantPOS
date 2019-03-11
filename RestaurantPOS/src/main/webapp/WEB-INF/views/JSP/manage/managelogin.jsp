@@ -14,7 +14,7 @@
 <body>
 
 <div>
-	<input type="button" value="回首頁"  id="mBack" name="mBack">
+	<a href="<c:url value='/'/>"><input type="button" value="回首頁"  id="mBack" name="mBack"></a>
 </div>
 <form action="managelogin.check" method="post">
 <div>
@@ -27,8 +27,8 @@
 	<input type="text" id="mAccount" name="mAccount"><p>
 	 <p><small><Font color='red' size="-3">${ErrorMsgKey.AccountEmptyError}
            </Font></small></p>
-	<label for="mPwd">密碼</label>
-	<input type="password" id="mPwd" name="mPwd"><p>
+	<label for="mPwd">密碼(先用text，用記憶密碼可以少打字，之後再改回來)</label>
+	<input type="text" id="mPwd" name="mPwd"><p>
      <p><small><Font color='red' size="-3">${ErrorMsgKey.PasswordEmptyError}
            </Font></small></p>
 	
