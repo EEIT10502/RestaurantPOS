@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _00model.CumulativeTurnoverBean;
 import _00model.OrderBean;
 import _05financial.repository.FinancialDao;
 
@@ -25,6 +26,7 @@ public class FinancialDaoImpl implements FinancialDao {
 	public SessionFactory getFactory() {
 		return factory;
 	}
+
 	// String to Date
 	@Override
 	public void stringToDate(String Date1, String Date2) {
@@ -49,14 +51,31 @@ public class FinancialDaoImpl implements FinancialDao {
 		java.sql.Date beginDate = new java.sql.Date(uDate1.getTime());
 		java.sql.Date endDate = new java.sql.Date(uDate2.getTime());
 		// hql
-		String hql = "select o.cusFlow, o.totalPrice FROM OrderBean o WHERE o.orderTime>=:beginDate and o.orderTime<=:endDate";
+		String hql = "select cast(orderTime as date) as orderTime, count(totalPrice), sum(o.cusFlow), sum(o.totalPrice) FROM OrderBean o WHERE o.orderTime>=:beginDate and o.orderTime<=:endDate GROUP BY cast(o.orderTime as date)";
 		Session session = factory.getCurrentSession();
 
-		List<OrderBean[]> list = session.createQuery(hql).setParameter("beginDate", beginDate)
+		List<OrderBean[]> listDailyOrder = session.createQuery(hql).setParameter("beginDate", beginDate)
 				.setParameter("endDate", endDate).getResultList();
-		return list;
-		
-		
+
+		return listDailyOrder;
+
+	}
+	//test
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CumulativeTurnoverBean[]> getCumulativeTurnover(String Date1, String Date2) {
+		// to sql.Date
+		stringToDate(Date1, Date2);
+		java.sql.Date beginDate = new java.sql.Date(uDate1.getTime());
+		java.sql.Date endDate = new java.sql.Date(uDate2.getTime());
+		// hql
+		String hql = "select cast(orderTime as date) as orderTime, count(totalPrice), sum(o.cusFlow), sum(o.totalPrice) FROM OrderBean o WHERE o.orderTime>=:beginDate and o.orderTime<=:endDate GROUP BY cast(o.orderTime as date)";
+		Session session = factory.getCurrentSession();
+
+		List<CumulativeTurnoverBean[]> listDailyCumu = session.createQuery(hql).setParameter("beginDate", beginDate)
+				.setParameter("endDate", endDate).getResultList();
+
+		return listDailyCumu;
 	}
 
 }
