@@ -1,7 +1,6 @@
 package _03product.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,6 +92,14 @@ public class ProductController {
 		model.addAttribute("productsListGetByPage", productsListGetByPage);
 		System.out.println("productsListGetByPage"+productsListGetByPage);
 		
+		if(productsListGetByPage.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/allProductListNew";
+		}
+		
 		model.addAttribute("currentPageNo", currentPageNoInit);
 		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
 		model.addAttribute("totalPages", service.getTotalPages());
@@ -158,8 +165,11 @@ public class ProductController {
 				case GlobalService.PRODUCT_CATE_NOODLE:
 					menuBean.setProductNo(301);
 					break;
-				case GlobalService.PRODUCT_CATE_DUMPLINGS:
+				case GlobalService.PRODUCT_CATE_VEGETABLE:
 					menuBean.setProductNo(401);
+					break;
+				case GlobalService.PRODUCT_CATE_SIDEDISH:
+					menuBean.setProductNo(501);
 					break;
 				default: 
 					menuBean.setProductNo(001);
@@ -182,7 +192,8 @@ public class ProductController {
 		ProductCateList.add(GlobalService.Product_Cate_Rice);
 		ProductCateList.add(GlobalService.Product_Cate_Soup);
 		ProductCateList.add(GlobalService.PRODUCT_CATE_NOODLE);
-		ProductCateList.add(GlobalService.PRODUCT_CATE_DUMPLINGS);
+		ProductCateList.add(GlobalService.PRODUCT_CATE_VEGETABLE);
+		ProductCateList.add(GlobalService.PRODUCT_CATE_SIDEDISH);
 		return ProductCateList;
 		
 	}
@@ -211,11 +222,19 @@ public class ProductController {
 //		return service.getCurrentCategoryNumber() + 1;
 //	}
 	
+	
 	@RequestMapping(value = "/productManage/productListBySearch.action", method = RequestMethod.GET)
 	public String getProductListBySearch(@RequestParam(value = "currentPageNoBtnSearch", required=false)String currentPageNo,@RequestParam(value = "searchBar", required=false)String searchBarString, Model model) {
 		System.out.println("20");// 這行是測試用
 		System.out.println("searchBarString:"+searchBarString);
+		
 		model.addAttribute("searchBarString", searchBarString);
+		if(searchBarString.isEmpty()) {
+			model.addAttribute("noSearchBarString", "請輸入查詢條件");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+			return "productManage/productListBySearch";
+		}
 		
 		System.out.println("currentPageNo:"+currentPageNo);
 		if (currentPageNo == null) {
@@ -230,13 +249,23 @@ public class ProductController {
 		System.out.println("currentPageNoInit:"+currentPageNoInit);
 		service.setCurrentPageNo(currentPageNoInit);
 		
+		
 		service.setSearchBarString(searchBarString);
 		
 		List<MenuBean> productListBySearch = new ArrayList<>();
 		productListBySearch = service.getProductsListGetBySearch();
 		model.addAttribute("productListBySearch", productListBySearch);
 		System.out.println("productListBySearch"+productListBySearch);
+	
+		if(productListBySearch.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/productListBySearch";
+		}
 
+		
 		model.addAttribute("currentPageNo", currentPageNoInit);
 		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
 		model.addAttribute("totalPages", service.getTotalPagesBySearch());
@@ -244,5 +273,91 @@ public class ProductController {
 ////		System.out.println();
 		
 		return "productManage/productListBySearch";
+	}
+	
+	@RequestMapping(value = "/productManage/ProductListByCate.action")
+	public String getProductListByCate(@RequestParam(value = "currentPageNoBtnCate", required=false)String currentPageNo, @RequestParam(value = "whichCate", required=false)String cateSelect,Model model) {
+		System.out.println("33");// 這行是測試用
+		
+		System.out.println("currentPageNo:"+currentPageNo);
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		System.out.println("currentPageNoInit:"+currentPageNoInit);
+		service.setCurrentPageNo(currentPageNoInit);
+		
+		System.out.println("cateSelect:"+cateSelect);
+		model.addAttribute("whichCate", cateSelect);
+		service.setCateSelect(cateSelect);
+		
+		List<MenuBean> productsListGetByCate = new ArrayList<>();
+		productsListGetByCate = service.getProductsListGetByCate();
+		model.addAttribute("productsListGetByCate", productsListGetByCate);
+		System.out.println("productsListGetByCate"+productsListGetByCate);
+		
+		if(productsListGetByCate.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/productListByCate";
+		}
+		
+		model.addAttribute("currentPageNo", currentPageNoInit);
+		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
+		model.addAttribute("totalPages", service.getTotalPagesByCate());
+		
+		System.out.println();
+		
+		return "productManage/productListByCate";
+	}
+	
+	@RequestMapping(value = "/productManage/ProductListByProductStatus.action")
+	public String getProductListByProductStatus(@RequestParam(value = "currentPageNoBtnProductStatus", required=false)String currentPageNo, @RequestParam(value = "whichStatus", required=false)String StatusSelect,Model model) {
+		System.out.println("33");// 這行是測試用
+		
+		System.out.println("currentPageNo:"+currentPageNo);
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		System.out.println("currentPageNoInit:"+currentPageNoInit);
+		service.setCurrentPageNo(currentPageNoInit);
+		
+		System.out.println("StatusSelect:"+StatusSelect);
+		model.addAttribute("whichStatus", StatusSelect);
+		service.setStatusSelect(StatusSelect);
+		
+		List<MenuBean> productsListGetByProductStatus = new ArrayList<>();
+		productsListGetByProductStatus = service.getProductsListGetByProductStatus();
+		model.addAttribute("productsListGetByProductStatus", productsListGetByProductStatus);
+		System.out.println("productsListGetByProductStatus"+productsListGetByProductStatus);
+		
+		if(productsListGetByProductStatus.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/productListByProductStatus";
+		}
+		
+		model.addAttribute("currentPageNo", currentPageNoInit);
+		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
+		model.addAttribute("totalPages", service.getTotalPagesByProductStatus());
+		
+		System.out.println();
+		
+		return "productManage/productListByProductStatus";
 	}
 }

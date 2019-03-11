@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,9 @@
 	crossorigin="anonymous">
 <title>sideBar</title>
 <style type="text/css">
-.hiddenList {
-	display: none;
+
+span.errorMessage[type="redError"] {
+	color: red;
 }
 </style>
 
@@ -113,10 +115,11 @@
 					</c:if>
 					<c:if test="${searchBarString != null}">
 						<input id="searchBar" type='text' name="searchBar" class=''
-						placeholder="${searchBarString}" /> 
+						value="${searchBarString}" /> 
 					</c:if>
 					<input id="inProduct" type='submit' class='btn btn-primary' value="搜尋" /> 
 					<input id="resetProduct" type='reset' class='btn btn-primary' value="清除" />
+					<span class="errorMessage" type="redError">${noSearchBarString}</span>
 				</div>
 			</form>
 
@@ -124,16 +127,27 @@
 			<div class="btn-group" role="group"
 				aria-label="Button group with nested dropdown">
 				<button type="button" class="btn btn-secondary"
-					onclick="openAllProductList()">所有商品</button>
+					onclick="location.href='${pageContext.request.contextPath}/productManage/allProductList.action'">所有商品${contextPath}</button>
 
 				<div class="btn-group" role="group">
 					<button id="btnGroupDrop1" type="button"
 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">依商品種類檢視</button>
 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<a class="dropdown-item" href="#" onclick="openRiceList()">飯類</a>
-						<a class="dropdown-item" href="#" onclick="openSoupList()">湯類</a>
-						<a class="dropdown-item" href="#" onclick="openDessertList()">甜點</a>
+						<c:forEach var='cates' items='${cateList}'>
+							<a class="dropdown-item" href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out value="${cates}" /></a>
+						</c:forEach>
+					</div>
+				</div>
+				
+				<div class="btn-group" role="group">
+					<button id="btnGroupDrop1" type="button"
+						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">依商品狀態檢視</button>
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+						<c:forEach var='productStatus' items='${productStatusList}'>
+							<a class="dropdown-item" href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out value="${productStatus}" /></a>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
