@@ -18,7 +18,6 @@ import _00.init.util.GlobalService;
 import _00model.MenuBean;
 import _03product.service.ProductService;
 
-//此係為了開發方便(在首頁直接出現連結，連到商品管理相關頁面)，故之後確定商品管理入口後再修改
 @Controller
 public class ProductController {
 	@Autowired
@@ -37,36 +36,6 @@ public class ProductController {
 
 		return "productManage/productInsert";// 按JSP目錄層
 	}
-
-
-//	//舊的
-//	@RequestMapping(value = "/allProductList.action")
-//	public String getAllProductListPage(Model model) {
-//		System.out.println("13");// 這行是測試用
-//		List<MenuBean> allProductsList = new ArrayList<>();
-//		allProductsList = service.getAllProducts();
-//		model.addAttribute("allProductsList", allProductsList);
-//		System.out.println("allProductsList"+allProductsList);
-//		
-//		//Test開始
-//		List<MenuBean> allProductsListTestRice = new ArrayList<>();
-//		allProductsListTestRice = service.getAllProductsListTestRice();
-//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
-//		System.out.println("allProductsListTestRice"+allProductsListTestRice);
-//		
-//		List<MenuBean> allProductsListTestSoup = new ArrayList<>();
-//		allProductsListTestSoup = service.getAllProductsListTestSoup();
-//		model.addAttribute("allProductsListTestSoup", allProductsListTestSoup);
-//		System.out.println("allProductsListTestSoup"+allProductsListTestSoup);
-//		
-//		List<MenuBean> allProductsListTestDessert = new ArrayList<>();
-//		allProductsListTestDessert = service.getAllProductsListTestDessert();
-//		model.addAttribute("allProductsListTestDessert", allProductsListTestDessert);
-//		System.out.println("allProductsListTestDessert"+allProductsListTestDessert);
-//		//Test結束
-//		
-//		return "productManage/allProductList";
-//	}
 	
 	int currentPageNoInit;
 	//新的
@@ -205,23 +174,6 @@ public class ProductController {
 		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
 		return ProductStatusList;
 	}
-	
-//	@ModelAttribute("productStatusList")
-//	public List<String> getProductStatusList() {
-//		
-//		List<MenuBean> allProductsListTestRice = service.getAllProductsListTestRice();
-//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
-//		List<String> ProductStatusList = new ArrayList<String>();
-//		ProductStatusList.add(GlobalService.Product_Status_Launched_Already);
-//		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
-//		return ProductStatusList;
-//	}
-
-//	@ModelAttribute("currentCategoryNumber")
-//	public Integer getCurrentCategoryNumber() {
-//		return service.getCurrentCategoryNumber() + 1;
-//	}
-	
 	
 	@RequestMapping(value = "/productManage/productListBySearch.action", method = RequestMethod.GET)
 	public String getProductListBySearch(@RequestParam(value = "currentPageNoBtnSearch", required=false)String currentPageNo,@RequestParam(value = "searchBar", required=false)String searchBarString, Model model) {
