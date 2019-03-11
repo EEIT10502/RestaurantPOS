@@ -94,7 +94,7 @@
 					row += '	<td id="opPrice' + itemNo + '" name="opPrice' + itemNo + '">' + vPrice + '</td>';
 					row += '	<td>';
 					row += '		<input type="number" value="1" min="1" max="10" id="opQty' + itemNo + '" name="opQty' + itemNo + '">';
-					row += '		<input type="button" value="修改" id="opQMod' + itemNo + '" name="opQMod' + itemNo + '"></td>';
+					row += '		<input type="button" value="修改" id="opQMod' + itemNo + '" name="opQMod' + itemNo + '"onclick="test(itemNo);"></td>';
 					row += '	</td>';
 					row += '	<td id="opSubtotal' + itemNo + '" name="opSubtotal' + itemNo + '"></td>';
 					row += '	<td id="" name=""></td>';
@@ -115,6 +115,13 @@
 
 	function delItem(obj) {
 		$(obj).closest('tr').remove();
+	}
+	
+	function test(itemNo) {
+		var testjs = "opQty" + itemNo;
+		var num = $("#"+testjs).val();
+		window.alert(testjs);
+		window.alert(num);
 	}
 
 	function riceList() {
