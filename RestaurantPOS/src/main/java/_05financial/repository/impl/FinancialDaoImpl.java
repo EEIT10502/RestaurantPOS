@@ -60,6 +60,7 @@ public class FinancialDaoImpl implements FinancialDao {
 		return listDailyOrder;
 
 	}
+	//test
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CumulativeTurnoverBean[]> getCumulativeTurnover(String Date1, String Date2) {
