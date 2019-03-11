@@ -66,7 +66,7 @@ span.errorMessage[type="redError"] {
 						value="${searchBarString}" /> 
 					</c:if>
 					<input id="inProduct" type='submit' class='btn btn-primary' value="搜尋" /> 
-					<input id="resetProduct" type='reset' class='btn btn-primary' value="清除" />
+<!-- 					<input id="resetProduct" type='reset' class='btn btn-primary' value="清除" /> -->
 					<span class="errorMessage" type="redError">${noSearchBarString}</span>
 				</div>
 			</form>
