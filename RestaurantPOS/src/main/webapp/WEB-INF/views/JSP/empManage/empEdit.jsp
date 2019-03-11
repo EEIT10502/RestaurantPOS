@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,7 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 </head>
-<title>員工編修</title>
+<title>員工查詢</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -28,52 +30,54 @@
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
 
+<style>
+td,th{
+
+border:1px solid black
+}
+</style>
+
+<script type="text/javascript">
+function confirmUpdate(userId){
+	  var result = confirm("確定送出此筆記錄(帳號:" + userId.trim() + ")?");
+	  if (result) {
+		  document.forms[0].putOrDelete.value = "PUT";
+	      return true;
+	  }
+	  return false;
+}
+
+</script>
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
-<form action="">
-	<div class="w3-container" style="margin-left: 160px">
-		<h2>員工編修</h2>
-		<!-- 		搜尋列結束 -->
+<form:form class='center' action="${pageContext.request.contextPath}/_02/mscv/members/${member.pk}" 
+     modelAttribute="member" method="POST" >
+    <input type="hidden" name="_method"  id='putOrDelete'   value="" >
+    <input type="hidden" name="pk"     value="${member.pk}" >
+    <input type="hidden" name="id"     value="${member.id}${param.id}" >
+    <input type="hidden" name="finalDecision" value="" >
+<div class="w3-container" style="margin-left:160px">
+<h1>員工資料查詢</h1>
 
-<!-- 列表開始 -->
-<label for="empId">員工編號</label>
-			<input type="text" id="empId" name="empId"><br>
-<label for="empName">員工姓名</label>
-			<input type="text" id="empName" name="empName"><br>
-<label for="empSex">性別</label>
-			<select id="empSex">
-				<option>男性</option>
-				<option>女性</option>
-			</select><br>
-<label for="empPosition">職位</label>
-			<select id="empPosition">
-				<option>服務生</option>
-				<option>廚師</option>
-				<option>經理</option>
-				<option>其他</option>
-			</select><br>
-<label for="empTel">電話</label>
-			<input type="text" id="empTel" name="empTel"><br>
-<label for="empAddr">地址</label>
-			<input type="text" id="empAddr" name="empAddr"><br>
-<label for="empStatus">在職狀況</label>
-			<select id="empStatus">
-				<option>在職</option>
-				<option>離職</option>
-				<option>留職停薪</option>
-				<option>其他</option>
-			</select><br>
-<label for="empMark">備註</label>
-			<input type="text" id="empMark" name="empMark"><br>
+<table>
+<tr>
+<td rowspan="10"><img width="100px" height="100px" src="<c:url value='/getPicture/${empQueryFor1.empId}'/>"></td><td>序號</td><td>${empQueryFor1.empId}</td></tr>
+<tr><td>狀態</td><td>${empQueryFor1.status}</td></tr>
+<tr><td>編號</td><td>${empQueryFor1.empNo}</td></tr>
+<tr><td>姓名</td><td>${empQueryFor1.empName}</td></tr>
+<tr><td>性別</td><td>${empQueryFor1.gender}</td></tr>
+<tr><td>職位</td><td>${empQueryFor1.position}</td></tr>
+<tr><td>電話</td><td>${empQueryFor1.tel}</td></tr>
+<tr><td>電話</td><td>${empQueryFor1.tel}</td></tr>
+<tr><td>地址</td><td>${empQueryFor1.addr}</td></tr>
+<tr><td>備註</td><td>${empQueryFor1.remark}</td></tr>
+</table>
 
-<!-- 	商品列表結束 -->
-
-</form>
-
-	<input type="submit" value="確定修改" id="empEdit" name="empEdit">
-			<input type="reset" value="全部清除" id="resetEmp" name="resetEmp">
-			<input type="button" value="取消(回前頁)" id="empCancel" name="empCancel" onclick="location.href='empQuery.jsp'">
+<p>
+<input type="submit" value="更新" name='updateBtn' onclick="return confirmUpdate('${empQueryFor1.empId}');"> 
+<a href="<spring:url value='empQuery'/>">返回</a>
+</p>
 </div>
-
+</form:form>
 </body>
 </html>

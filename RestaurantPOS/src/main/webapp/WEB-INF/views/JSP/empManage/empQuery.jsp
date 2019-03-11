@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,61 +29,33 @@
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
 
+<style>
+td,th{
 
+border:1px solid black
+}
+
+
+</style>
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
-<form action="">
-	<div class="w3-container" style="margin-left: 160px">
-		<h2>員工查詢</h2>
-		
-<!-- 		搜尋列開始 -->
-		<div>
-			<label for="searchEmpType"></label>
-			<select id="searchEmpType">
-				<option>員工姓名</option>
-				<option>員工編號</option>
-				<option>在職狀況</option>
-			</select>
-			
-			<input type="text" id="empSearch" name="empSearch">
-			<input type="submit" value="查詢" id="searchBut" name="searchBut">
-		</div>
-</form>
-<!-- 		搜尋列結束 -->
-<!-- 匯出與寄信開始 -->
-		<div>
-		<input type="button" value="匯出檔案" id="dExport" name="dExport">
-		</div>
-<!-- 		匯出與寄信結束 -->
-<!-- 商品列表開始 -->
-<div>
-		<table border="1">
-		<tr>
-			<th>序號</th>
-			<th>員工編號</th>
-			<th>員工姓名</th>
-			<th>性別</th>
-			<th>職位</th>
-			<th>電話</th>
-			<th>地址</th>
-			<th>在職狀況</th>
-			<th>備註</th>
-		</tr>
-<%--		<c:forEach var="gTable" items="">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-		</c:forEach> --%>
-	</table>
-<!-- 	商品列表結束 -->
+<div class="w3-container" style="margin-left:160px">
+<h1>員工資料查詢</h1>
+<table style="border:1px solid black">
+<tr><th>序號</th><th>狀態</th><th>員工編號</th><th>員工姓名</th><th>性別</th>
+<th>職位</th><th>電話</th><th>地址</th><th>照片</th><th>備註</th></tr>
+<c:forEach var='employee' items='${empQuery}'>
+<tr><td><a href="<spring:url value='empQueryFor1?empId=${employee.empId}'/>">${employee.empId}</a></td>
+<td>${employee.status}</td><td>${employee.empNo}</td><td>${employee.empName}</td>
+<td>${employee.gender}</td><td>${employee.position}</td><td>${employee.tel}</td>
+<td>${employee.addr}</td><td>${employee.fileName}</td><td>${employee.remark}</td></tr>
+<%-- <td>${employee.addr}</td><td><img src="<c:url value='/getPicture/${employee.empId}'/>">${employee.fileName}</td><td>${employee.remark}</td></tr> --%>
+</c:forEach>
+
+</table>
+
+
+
 	<input type="button" value="上一頁" id="dBPage" name="dBPage">
 	<input type="button" value="下一頁" id="dNPage" name="dNPage">
 </div>
