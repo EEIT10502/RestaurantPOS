@@ -18,7 +18,6 @@
 	crossorigin="anonymous">
 <title>sideBar</title>
 <style type="text/css">
-
 span.errorMessage[type="redError"] {
 	color: red;
 }
@@ -52,54 +51,115 @@ span.errorMessage[type="redError"] {
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 160px">
 			<h1>商品查詢/修改</h1>
-			<form action="productListBySearch.action">
-				<div class="">
-					<label class="" for='searchBarBtn'>
-						依商品名稱搜尋：
-					</label>
-					<c:if test="${searchBarString == null}">
-						<input id="searchBar" type='text' name="searchBar" class=''
-						placeholder="請輸入搜尋條件" /> 
-					</c:if>
-					<c:if test="${searchBarString != null}">
-						<input id="searchBar" type='text' name="searchBar" class=''
-						value="${searchBarString}" /> 
-					</c:if>
-					<input id="inProduct" type='submit' class='btn btn-primary' value="搜尋" /> 
-<!-- 					<input id="resetProduct" type='reset' class='btn btn-primary' value="清除" /> -->
-					<span class="errorMessage" type="redError">${noSearchBarString}</span>
-				</div>
-			</form>
 
-
-			<div class="btn-group" role="group"
-				aria-label="Button group with nested dropdown">
-				<button type="button" class="btn btn-secondary"
-					onclick="location.href='${pageContext.request.contextPath}/productManage/allProductList.action'">所有商品${contextPath}</button>
-
-				<div class="btn-group" role="group">
-					<button id="btnGroupDrop1" type="button"
-						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">依商品種類檢視</button>
-					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<c:forEach var='cates' items='${cateList}'>
-							<a class="dropdown-item" href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out value="${cates}" /></a>
-						</c:forEach>
-					</div>
-				</div>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- 			<nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
 				
-				<div class="btn-group" role="group">
-					<button id="btnGroupDrop1" type="button"
-						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">依商品狀態檢視</button>
-					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<c:forEach var='productStatus' items='${productStatusList}'>
-							<a class="dropdown-item" href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out value="${productStatus}" /></a>
-						</c:forEach>
-					</div>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='allProductList.action?' />">所有商品</a></li>
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> 依商品種類檢視 </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<c:forEach var='cates' items='${cateList}'>
+									<a class="dropdown-item"
+										href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out
+											value="${cates}" /></a>
+								</c:forEach>
+							</div></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> 依商品狀態檢視 </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<c:forEach var='productStatus' items='${productStatusList}'>
+									<a class="dropdown-item"
+										href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out
+											value="${productStatus}" /></a>
+								</c:forEach>
+							</div></li>
+					</ul>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<form class="form-inline" action="productListBySearch.action">
+						<c:if test="${searchBarString == null}">
+							<input class="form-control mr-sm-2" type="search" id="searchBar" name="searchBar"
+								placeholder="請依商品名稱搜尋"  aria-label="Search">
+						</c:if>
+						<c:if test="${searchBarString != null}">
+							<input class="form-control mr-sm-2" type="search" id="searchBar" name="searchBar"
+								value="${searchBarString}"  aria-label="Search">
+						</c:if>
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						<span class="errorMessage" type="redError">${noSearchBarString}</span>
+					</form>
 				</div>
-			</div>
+
+			</nav>
+
+			
+
+<!-- 			<div class="btn-group" role="group" -->
+<!-- 				aria-label="Button group with nested dropdown"> -->
+<!-- 				<button type="button" class="btn btn-secondary" -->
+<%-- 					onclick="location.href='${pageContext.request.contextPath}/productManage/allProductList.action'">所有商品${contextPath}</button> --%>
+
+<!-- 				<div class="btn-group" role="group"> -->
+<!-- 					<button id="btnGroupDrop1" type="button" -->
+<!-- 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" -->
+<!-- 						aria-haspopup="true" aria-expanded="false">依商品種類檢視</button> -->
+<!-- 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> -->
+<%-- 						<c:forEach var='cates' items='${cateList}'> --%>
+<!-- 							<a class="dropdown-item" -->
+<%-- 								href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out --%>
+<%-- 									value="${cates}" /></a> --%>
+<%-- 						</c:forEach> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="btn-group" role="group"> -->
+<!-- 					<button id="btnGroupDrop1" type="button" -->
+<!-- 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" -->
+<!-- 						aria-haspopup="true" aria-expanded="false">依商品狀態檢視</button> -->
+<!-- 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> -->
+<%-- 						<c:forEach var='productStatus' items='${productStatusList}'> --%>
+<!-- 							<a class="dropdown-item" -->
+<%-- 								href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out --%>
+<%-- 									value="${productStatus}" /></a> --%>
+<%-- 						</c:forEach> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<nav class="navbar navbar-light bg-light"> -->
+<%-- 				<form class="form-inline" action="productListBySearch.action"> --%>
+<!-- 					<input class="form-control mr-sm-2" type="search" -->
+<!-- 						placeholder="Search" aria-label="Search"> -->
+<!-- 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+<%-- 				</form> --%>
+<!-- 			</nav> -->
+<%-- 			<form action="productListBySearch.action"> --%>
+<!-- 				<div class=""> -->
+<!-- 					<label class="" for='searchBarBtn'> 依商品名稱搜尋： </label> -->
+<%-- 					<c:if test="${searchBarString == null}"> --%>
+<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
+<!-- 							placeholder="請輸入搜尋條件" /> -->
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${searchBarString != null}"> --%>
+<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
+<%-- 							value="${searchBarString}" /> --%>
+<%-- 					</c:if> --%>
+<!-- 					<input id="inProduct" type='submit' class='btn btn-primary' -->
+<%-- 						value="搜尋" /> <span class="errorMessage" type="redError">${noSearchBarString}</span> --%>
+<!-- 				</div> -->
+<%-- 			</form> --%>
+
+
 		</fieldset>
-		</section>
+	</section>
 </body>
 </html>
