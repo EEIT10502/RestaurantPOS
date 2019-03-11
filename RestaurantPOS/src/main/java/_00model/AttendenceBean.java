@@ -28,6 +28,14 @@ public class AttendenceBean implements Serializable {
 	public AttendenceBean() {
 		
 	}
+	public AttendenceBean(String empNo,Date date,String checkStatus,Time clockTime) {
+		this.empNo=empNo;
+		this.date=date;
+		this.checkStatus=checkStatus;
+		this.clockTime=clockTime;
+	}
+	
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

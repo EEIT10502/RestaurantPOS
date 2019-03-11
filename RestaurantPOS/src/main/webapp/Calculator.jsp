@@ -6,7 +6,7 @@
 		<from>
 		<div id="calContent">
 			<tbody>
-				<th colspan="4"><input type="text" id="showResBox" readonly></th>
+				<th colspan="4"><input type="text" id="showResBox" readonly value=""></th>
 				
 				<tr>
 					<td rowspan="2"><input type="button" value="上班"  style="height: 140px" id="checkIn"></td>

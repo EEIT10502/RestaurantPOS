@@ -6,4 +6,6 @@ public interface  EmployeeDao {
 
 	public ManagerBean checkIDPassword(String mAccount,String mPwd);
 	
+	
+	
 }

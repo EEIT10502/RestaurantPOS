@@ -10,7 +10,6 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <title>首頁</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link rel='stylesheet' href='${pageContext.request.contextPath}/css/forIndex.css'  type="text/css" />
@@ -33,8 +32,9 @@ $(document).ready(function(){
 		$("#punchTable").toggle();
 		$("#logo").toggle();
 		
-	})
-})
+	});
+	
+});
 	
 </script>
 </head>
@@ -124,10 +124,27 @@ $(document).ready(function(){
             alert(Val);
             
             //送出後清空字串
-            $("#showResBox").attr("text","");
+            //$("#showResBox").attr("text","");
+           document.getElementById("showResBox").value="";
+		   
+            //使用ajax 無刷新取得資訊
+		$.ajax({
+			url:"/RestaurantPOS/schedule/time.check",
+			data:{empNO:Str,choice:Val},
+			type:"POST",
+			
+			//失敗
+			error:function(xhr) {
+			      	alert('Ajax request 發生錯誤');
+			      	alert(xhr);
+				},
+			//成功
+			success:function(data){
+				alert('Ajax成功');
+				alert(data);
+			}
+		})
            
-          
-            
 		})
 </script>
 </html>
