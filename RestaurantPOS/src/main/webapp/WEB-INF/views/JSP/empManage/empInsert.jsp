@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,13 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
+<title>商品新增</title>
+<style type="text/css">
+p.errorMessage[type="redError"] {
+	color: red;
+}
+</style>
 </head>
-<title>員工新增</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -27,70 +33,85 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous">
+	
+</script>
+
 
 <body>
-<jsp:include page="../sideBar.jsp" flush="true" /> 
-<form action="POST">
-	<div class="w3-container" style=" margin-left: 160px">
-		<h2>員工新增</h2>
-		<!-- 		搜尋列結束 -->
-		
-<!-- 		Spring Tag test -->
-<form:form>
-姓名:<form:input path="empName" /> 
-電話:<form:input path="empTel" /> 
-地址:<form:input path="empAddr" /> 
-姓名:<form:input path="empName" /> 
-員工性別:<form:select path="empSex" /> 
+		<jsp:include page="../sideBar.jsp" flush="true" />
 
+	<section class="">
 
-<form:label path="empPosition">員工職位:：</form:label>
-<form:select path="empPosition">
-<form:option value="NONE" label="請選擇" />
-<form:option value="waiter" label="服務生" />
-<form:option value="chef" label="廚師" />
-<form:option value="manager" label="經理" />
-</form:select>
+		<form:form method='POST' modelAttribute="employeeBean"
+			class='form-horizontal' enctype='multipart/form-data'>
+			<fieldset class="w3-container" style="margin-left: 160px">
+				<div class="container">
+					<h1>員工資料填寫</h1>
+				</div>
+				<div class="form-group">
+					<label for='empNo'>員工編號</label>
+					<form:input id="empNo" path="empNo" type='text' name="empNo" />
+				</div>
+				<div class="form-group">
+					<label for='empName'>員工姓名</label>
+					<form:input id="empName" path="empName" type='text' name="empName" />
+				</div>
+				<div>
+					<label for='tel'>電話</label>
+					<form:input id="tel" path="tel" type='text' name="tel" />
+				</div>
+				<div>
+					<label for='Tel'>地址</label>
+					<form:input id="addr" path="addr" type='text' name="addr" />
+				</div>
+				<div>
+					<label for='Tel'>性別</label>
+					<form:select id="gender" path="gender" name="gender">
+					<form:option value="-1" label="請選擇"/>
+					<form:option value="男" label="男"/>
+					<form:option value="女" label="女"/>
+					</form:select>
+				</div>
+				<div>
+					<label for='position'>職位</label>
+					<form:select id="position" path="position" name="position">
+					<form:option value="-1" label="請選擇"/>
+					<form:option value="服務生"  label="服務生"/>
+					<form:option value="廚師" label="廚師"/>
+					<form:option value="經理" label="經理"/>
+					<form:option value="其他" label="其他"/>
+					</form:select>
+				</div>
+				
+				<div>
+					<label for='status'>狀態</label>
+					<form:select id="status" path="status" name="status">
+					<form:option value="-1" label="請選擇"/>
+					<form:option value="在職" label="在職"/>
+					<form:option value="留職停薪"  label="留職停薪"/>
+					<form:option value="離職"  label="離職"/>
+					<form:option value="其他"  label="其他"/>
+					</form:select>
+				</div>
+				<div>
+				
+				<label for='empImg'>圖片</label>
+					<form:input id="empImg" path="empImg" type='file' name="empImg" />
+				</div>
+				
+				<div>
+					<label for='remark'>備註</label>
+					<form:input id="remark" path="remark" type='text' name="remark" />
+				</div>
+				
+<div>
+<input id="addbtn" type="submit" value="送出"/>
+<input id="resetbtn" type="reset" value="清除"/>
 
-</form:form>		
-
-<!-- <label for="empId">員工編號</label> -->
-<!-- 			<input type="text" id="empId" name="empId"><br> -->
-<!-- <label for="empName">員工姓名</label> -->
-<!-- 			<input type="text" id="empName" name="empName"><br> -->
-<!-- <label for="empSex">性別</label> -->
-<!-- 			<select id="empSex"> -->
-<!-- 				<option>男性</option> -->
-<!-- 				<option>女性</option> -->
-<!-- 			</select><br> -->
-<!-- <label for="empPosition">職位</label> -->
-<!-- 			<select id="empPosition"> -->
-<!-- 				<option>服務生</option> -->
-<!-- 				<option>廚師</option> -->
-<!-- 				<option>經理</option> -->
-<!-- 				<option>其他</option> -->
-<!-- 			</select><br> -->
-<!-- <label for="empTel">電話</label> -->
-<!-- 			<input type="text" id="empTel" name="empTel"><br> -->
-<!-- <label for="empAddr">地址</label> -->
-<!-- 			<input type="text" id="empAddr" name="empAddr"><br> -->
-<!-- <label for="empStatus">在職狀況</label> -->
-<!-- 			<select id="empStatus"> -->
-<!-- 				<option>在職</option> -->
-<!-- 				<option>離職</option> -->
-<!-- 				<option>留職停薪</option> -->
-<!-- 				<option>其他</option> -->
-<!-- 			</select><br> -->
-<!-- <label for="empMark">備註</label> -->
-<!-- 			<input type="text" id="empMark" name="empMark"><br> -->
-
-
-<%-- </form> --%>
-
-	<input type="submit" value="確定新增" id="empInsert" name="empInsert">
-			<input type="reset" value="全部清除" id="resetEmp" name="resetEmp">
 </div>
-
+			</fieldset>
+		</form:form>
+	</section>
 </body>
 </html>

@@ -23,24 +23,39 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 	}
 
+	//列出所有員工資料
 	@Transactional
 	@Override
 	public List<EmployeeBean> getAllEmployees() {
 		return employeeDao.getAllEmployees();
 	}
 
-	@Transactional
-	@Override
-	public List<EmployeeBean> getEmployeesByPosition(String position) {
-		return employeeDao.getEmployeesByPosition(position);
-	}
 
-	@Transactional
-	@Override
-	public EmployeeBean getEmployeesByNo(String empNo) {
-		return employeeDao.getEmployeesByNo(empNo);
-	}
+//	//透過員工NO取得單筆詳細資訊
+//	@Transactional
+//	@Override
+//	public EmployeeBean getEmployeesByNo(String empNo) {
+//		return employeeDao.getEmployeesByNo(empNo);
+//	}
+	
+	//透過員工ID取得單筆詳細資訊
+		@Transactional
+		@Override
+		public EmployeeBean getEmployeesById(int empId) {
+			return employeeDao.getEmployeesById(empId);
+		}
 
+		//更新員工資料
+		@Override
+		public void updateEmployee(EmployeeBean employee) {
+			employeeDao.updateEmployee(employee);
+		}
+
+//	@Transactional
+//	@Override
+//	public List<EmployeeBean> getEmployeesByPosition(String position) {
+//		return employeeDao.getEmployeesByPosition(position);
+//	}
 
 
 	

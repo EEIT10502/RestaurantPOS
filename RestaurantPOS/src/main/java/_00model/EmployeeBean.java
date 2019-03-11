@@ -9,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -27,7 +31,27 @@ public class EmployeeBean implements Serializable {
 	String remark;
 	String status;
 	Blob img;
+	private String  	fileName;
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
+	private MultipartFile empImg;
+	@XmlTransient
+	@Transient
+	public MultipartFile getEmpImg() {
+		return empImg;
+	}
+
+	public void setEmpImg(MultipartFile empImg) {
+		this.empImg = empImg;
+	}
 
 	public EmployeeBean() {
 		
@@ -134,6 +158,8 @@ public class EmployeeBean implements Serializable {
 	public void setImg(Blob img) {
 		this.img = img;
 	}
+
+	
 
 	
 

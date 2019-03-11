@@ -73,8 +73,8 @@
 		<a href="${pageContext.request.contextPath}/JSP/index.jsp" class="w3-bar-item w3-button">回首頁</a>
 		<button class="w3-button w3-block w3-left-align" onclick="openHRList()">人事管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoHRList" class="w3-hide w3-white w3-card">
-			<a href="empManage/empInsert" class="w3-bar-item w3-button">新增員工資訊</a>
-			<a href="empManage/empQuery" class="w3-bar-item w3-button">查詢員工資訊</a>
+			<a href="employeeInsert.action" class="w3-bar-item w3-button">新增員工資訊</a>
+			<a href="employeeQuery.action" class="w3-bar-item w3-button">查詢員工資訊</a>
 <!-- 			<a href="#" class="w3-bar-item w3-button">員工班表</a> -->
 <!-- 			<a href="#" class="w3-bar-item w3-button">薪資表</a>  -->
 			<a href="${pageContext.request.contextPath}/empManage/attendance.jsp" class="w3-bar-item w3-button">出勤紀錄查詢</a>
