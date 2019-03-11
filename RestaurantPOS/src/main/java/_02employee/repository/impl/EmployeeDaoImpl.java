@@ -1,7 +1,10 @@
 package _02employee.repository.impl;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.NoResultException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import _00model.EmployeeBean;
+import _00model.ManagerBean;
 import _02employee.repository.EmployeeDao;
 
 @Repository
@@ -59,6 +63,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			Session session = factory.getCurrentSession();
 			session.update(employee);
 			
+		}
+
+		@Override
+		public ManagerBean checkIDPassword(String mAccount, String mPwd) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 		

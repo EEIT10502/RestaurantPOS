@@ -46,6 +46,15 @@ public class FbDaoImpl implements FbDao {
 		MenuBean menuBean = session.get(MenuBean.class, pId);
 		return menuBean;
 	}
+
+	@Override
+	public Integer getProductPriceByName(String productName) {
+		String hql= "FROM MenuBean b WHERE b.productName = :productName";
+		Session session = factory.getCurrentSession();
+		MenuBean menuBean = (MenuBean) session.createQuery(hql).setParameter("productName", productName).getSingleResult();
+		Integer price = menuBean.getPrice();
+		return price;
+	}
 	
 	
 	

@@ -1,0 +1,42 @@
+package _02employee.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+//此檔案係為了開發方便(在首頁直接出現連結，連到員工管理相關頁面)，故之後確定員工管理入口後再修改
+
+
+//提供員工管理的@Controller
+@Controller
+public class EmpInsertTemporaryController {
+	
+	//建議使用SpringMVC課本 P261的新增書籍資料流程來完成本功能 
+	//參考凱頤的商品管理也不錯
+	//重點:使用<from:from>表單
+	@RequestMapping("/empManage/empInsert.action") 
+	public String empInsert(Model model) {
+		System.out.println("進入empInsert");//測試是否連結到此控制器
+
+		return "empManage/empInsert";
+	}
+	
+	@RequestMapping("/empManage/empQuery.action")
+	public String empQuery(Model model) {
+		System.out.println("進入empQuery");//測試是否連結到此控制器
+		
+		return "empManage/empQuery";
+	}
+	
+	
+	//給泰豪的出勤查詢控制器
+	@RequestMapping("/empManage/attendance")
+	public String ToAttendancePage(Model model) {
+		System.out.println("進入Attendance");//測試是否連結到此控制器
+		
+		return "empManage/attendance";
+	}
+	
+	
+
+}

@@ -14,7 +14,7 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 </head>
-<title>員工新增</title>
+<title>左側下拉式超連結選單</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -70,28 +70,34 @@
 <!-- 左方菜單開始 -->
 	<div class="w3-sidebar w3-bar-block w3-light-grey w3-card"
 		style="width: 160px;">
-		<a href="${pageContext.request.contextPath}/JSP/index.jsp" class="w3-bar-item w3-button">回首頁</a>
+		
+		<a href="<c:url value='/'/>" class="w3-bar-item w3-button">回首頁</a>
+		
+		<!-- 人事管理  -->
 		<button class="w3-button w3-block w3-left-align" onclick="openHRList()">人事管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoHRList" class="w3-hide w3-white w3-card">
-			<a href="employeeInsert.action" class="w3-bar-item w3-button">新增員工資訊</a>
-			<a href="employeeQuery.action" class="w3-bar-item w3-button">查詢員工資訊</a>
-<!-- 			<a href="#" class="w3-bar-item w3-button">員工班表</a> -->
-<!-- 			<a href="#" class="w3-bar-item w3-button">薪資表</a>  -->
-			<a href="${pageContext.request.contextPath}/empManage/attendance.jsp" class="w3-bar-item w3-button">出勤紀錄查詢</a>
-		</div>
 
+            <a href="<c:url value="/empManage/empInsert.action"/>" class="w3-bar-item w3-button">新增員工資訊</a>
+			<a href="<c:url value="/empManage/empQuery.action"/>" class="w3-bar-item w3-button">查詢員工資訊</a>
+			<a href="<c:url value="/empManage/attendance"/>" class="w3-bar-item w3-button">出勤紀錄查詢</a>
+			<!-- 			<a href="#" class="w3-bar-item w3-button">員工班表</a> -->
+			<!-- 			<a href="#" class="w3-bar-item w3-button">薪資表</a>  -->
+		</div>
+		
+		<!-- 商品管理 -->
 		<button class="w3-button w3-block w3-left-align" onclick="openGoodsList()">商品管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoGoodsList" class="w3-hide w3-white w3-card">
-			<a href="allProductList.action" class="w3-bar-item w3-button">商品查詢/修改</a>
-			<a href="productInsert.action" class="w3-bar-item w3-button">商品新增</a>
+			<a href="<c:url value='/productManage/allProductList.action'/>" class="w3-bar-item w3-button">商品查詢/修改</a>
+			<a href="<c:url value='/productManage/productInsert.action'/>" class="w3-bar-item w3-button">商品新增</a>
 		</div>
 
+		<!-- 報表系統 -->
 		<button class="w3-button w3-block w3-left-align" onclick="openReportList()">報表查詢 <i class="fa fa-caret-down"></i></button>
-		<div id="demoReportList" class="w3-hide w3-white w3-card">
-			<a href="dailyReport" class="w3-bar-item w3-button">日報表</a> 
-			<a href="categoryReport" class="w3-bar-item w3-button">類別<br>銷售狀況</a>
-			<a href="productReport" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
-			<a href="goalReport" class="w3-bar-item w3-button">營運目標達成率</a>
+		<div id="demoReportList" class="w3-hide w3-white w3-card"> 
+			<a href="<c:url value='/report/dailyReport'/>" class="w3-bar-item w3-button">日報表</a> 
+			<a href="<c:url value='/report/categoryReport'/>" class="w3-bar-item w3-button">類別<br>銷售狀況</a>
+			<a href="<c:url value='/report/productReport'/>" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
+			<a href="<c:url value='/report/goalReport'/>" class="w3-bar-item w3-button">營運目標達成率</a>
 		</div>
 
 		<a href="#" class="w3-button w3-block w3-left-align">使用者姓名</a>

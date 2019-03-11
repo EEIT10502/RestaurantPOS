@@ -1,8 +1,10 @@
 package _02employee.repository;
 
+
 import java.util.List;
 
 import _00model.EmployeeBean;
+import _00model.ManagerBean;
 
 
 public interface EmployeeDao {
@@ -26,4 +28,8 @@ public interface EmployeeDao {
 //	List<EmployeeBean> getEmployeesByPosition(String position);
 
 
+	public ManagerBean checkIDPassword(String mAccount,String mPwd);
+	
+	
+	
 }

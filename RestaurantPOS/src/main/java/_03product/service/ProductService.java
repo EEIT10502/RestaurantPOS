@@ -18,4 +18,22 @@ public interface ProductService {
 	Integer getCurrentCategoryNumber(String cateInsert);
 
 	void addProduct(MenuBean menuItem);
+
+	int getTotalPages();
+
+	void setCurrentPageNo(int currentPageNo);
+
+	int getCurrentPageNo();
+
+	void setItemsPerPage(int itemsPerPage);
+
+	int getItemsPerPage();
+
+	List<MenuBean> getProductsListGetByPage();
+
+	void setSearchBarString(String searchBarString);
+
+	List<MenuBean> getProductsListGetBySearch();
+
+	int getTotalPagesBySearch();
 }

@@ -3,6 +3,7 @@ package _02employee.service;
 import java.util.List;
 
 import _00model.EmployeeBean;
+import _00model.ManagerBean;
 
 
 public interface EmployeeService {
@@ -24,5 +25,9 @@ public interface EmployeeService {
 	
 //	// 以職位查詢員工
 //	List<EmployeeBean> getEmployeesByPosition(String position);
+	
+	public ManagerBean checkIDPassword(String mAccount, String mPwd);
 
+
+	
 }

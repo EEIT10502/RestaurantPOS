@@ -1,5 +1,6 @@
 package _02employee.service.impl;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import _00model.EmployeeBean;
+import _00model.ManagerBean;
 import _02employee.repository.EmployeeDao;
 import _02employee.service.EmployeeService;
 
@@ -56,12 +58,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 //	public List<EmployeeBean> getEmployeesByPosition(String position) {
 //		return employeeDao.getEmployeesByPosition(position);
 //	}
+		
+		@Autowired
+		EmployeeDao dao;
 
+		@Transactional
+		@Override
+		public ManagerBean checkIDPassword(String mAccount, String mPwd) {
+			
+			ManagerBean managerBean =null;
+			
+			managerBean = dao.checkIDPassword(mAccount, mPwd);
+			
+			return managerBean;
+		}
 
 	
 	
 
 	
-	
+
 
 }
