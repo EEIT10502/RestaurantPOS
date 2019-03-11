@@ -22,7 +22,6 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getAllCategories();
 	}
 
-	
 	@Transactional
 	@Override
 	public void addProduct(MenuBean menuItem) {
@@ -31,9 +30,92 @@ public class ProductServiceImpl implements ProductService {
 
 	@Transactional
 	@Override
-	public Integer getCurrentCategoryNumber() {
-		return productdao.getCurrentCategoryNumber();
+	public Integer getCurrentCategoryNumber(String cateInsert) {
+		return productdao.getCurrentCategoryNumber(cateInsert);
 	}
 
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProducts() {
+		return productdao.getAllProducts();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProductsListTestRice() {
+		return productdao.getAllProductsListTestRice();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProductsListTestSoup() {
+		return productdao.getAllProductsListTestSoup();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getAllProductsListTestDessert() {
+		return productdao.getAllProductsListTestDessert();
+	}
+
+	@Transactional
+	@Override
+	public int getTotalPages() {
+		return productdao.getTotalPages();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetByPage() {
+		return productdao.getProductsListGetByPage();
+	}
+
+	@Transactional
+	@Override
+	public int getItemsPerPage() {
+		return productdao.getItemsPerPage();
+	}
+
+	@Transactional
+	@Override
+	public void setItemsPerPage(int itemsPerPage) {
+		productdao.setItemsPerPage(itemsPerPage);
+	}
+
+	@Transactional
+	@Override
+	public int getCurrentPageNo() {
+		return productdao.getCurrentPageNo();
+	}
+
+	@Transactional
+	@Override
+	public void setCurrentPageNo(int currentPageNo) {
+		productdao.setCurrentPageNo(currentPageNo);
+	}
+
+	@Transactional
+	@Override
+	public void setSearchBarString(String searchBarString) {
+		System.out.println("Service searchBarString:"+searchBarString);
+		productdao.setSearchBarString(searchBarString);
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetBySearch() {
+		return productdao.getProductsListGetBySearch();
+	}
+
+	@Transactional
+	@Override
+	public int getTotalPagesBySearch() {
+		return productdao.getTotalPagesBySearch();
+	}
 	
+	public static void  main (String[] args) {
+		ProductService service = new ProductServiceImpl();
+		List<MenuBean> a = service.getProductsListGetBySearch();
+		System.out.println("a:"+a);
+	}
 }

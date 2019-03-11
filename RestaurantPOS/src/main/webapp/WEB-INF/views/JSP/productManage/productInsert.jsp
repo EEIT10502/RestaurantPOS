@@ -59,15 +59,15 @@ p.errorMessage[type="redError"] {
 							code='spring.productInsert.form.productInsertData.label' />
 					</h1>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='productNoBtn'>
-						<spring:message code='spring.productInsert.form.productNo.label' />
-					</label>
-					<div class="col-lg-10">
-						<form:input id="productNoBtn" path="productNo" type='text'
-							class='form:input-large' value="${currentCategoryNumber}"/> 
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class="control-label col-lg-2 col-lg-2" for='productNoBtn'> -->
+<%-- 						<spring:message code='spring.productInsert.form.productNo.label' /> --%>
+<!-- 					</label> -->
+<!-- 					<div class="col-lg-10"> -->
+<%-- 						<form:input id="productNoBtn" path="productNo" type='text' --%>
+<%-- 							class='form:input-large' value="${currentCategoryNumber}"/>  --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='productNameBtn'>
 						<spring:message code='spring.productInsert.form.productName.label' />

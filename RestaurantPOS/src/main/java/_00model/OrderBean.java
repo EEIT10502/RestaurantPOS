@@ -102,8 +102,9 @@ public class OrderBean implements Serializable {
 		this.callNo = callNo;
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="fk_orderNo", referencedColumnName="orderNo")
+
+	@OneToMany(cascade=CascadeType.ALL ,orphanRemoval = true)
+	@JoinColumn(name="fk_orderId", referencedColumnName="orderId")
 	public Set<OrderDetailBean> getOrderDetailBean() {
 		return OrderDetailBean;
 	}
