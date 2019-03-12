@@ -21,7 +21,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public ManagerServiceImpl() {
 		
 	}
-
+	
 	@Transactional
 	@Override
 	public ManagerBean checkIDPassword(String mAccount, String mPwd) {

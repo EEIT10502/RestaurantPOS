@@ -29,6 +29,7 @@ public class ManagerDaoImpl implements ManagerDao{
 
 
 	//提供檢查用的
+
 	@Override
 	public ManagerBean checkIDPassword(String mAccount, String mPwd) {
 		

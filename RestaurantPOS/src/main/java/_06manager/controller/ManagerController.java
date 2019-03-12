@@ -113,6 +113,7 @@ public class ManagerController {
 		try {
 			//調用寫好的方法進行帳密檢測，不為空代表有該主管資料，並放入Session備用
 			managerBean = managerservice.checkIDPassword(mAccount, mPwd);
+			
 			if(managerBean!=null) {
                 System.out.println("登入成功");
 				session.setAttribute("LoginOK", managerBean);
