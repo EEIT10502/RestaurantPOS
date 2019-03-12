@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import _00model.ManagerBean;
 import _06manager.service.ManagerService;
 
+
+//這是Manager的控制器
 @Controller
 public class ManagerController {
 
