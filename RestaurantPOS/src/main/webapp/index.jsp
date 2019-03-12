@@ -81,8 +81,8 @@ $(document).ready(function(){
 	<br>
 	<br>
 	<br>
-	<input type="button" value="ClickMe" id="321">
-	<h6><a href="productManage/productInsert.action" id="123">商品管理頁面:productInsert</a></h6>
+	
+	<h6><a href="productManage/productInsert.action" >商品管理頁面:productInsert</a></h6>
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
 	<h6><a href="empManage/empQuery">員工查詢頁面:empQuery</a></h6>
 	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
@@ -125,8 +125,8 @@ $(document).ready(function(){
 				return;
 			}
 			//測試是否有拿到值
-            alert(Str);
-            alert(Val);
+            //alert(Str);
+            //alert(Val);
             
             //送出後清空字串
             //$("#showResBox").attr("text","");
@@ -145,8 +145,8 @@ $(document).ready(function(){
 				},
 			//成功
 			success:function(data){
-				alert('Ajax成功');
-				alert(data);
+				//alert('Ajax成功');
+				alert(data.msg);
 			}
 		})
            
