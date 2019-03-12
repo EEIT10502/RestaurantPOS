@@ -50,98 +50,11 @@ td.errorMessage[type="redError"] {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	crossorigin="anonymous"></script>
-
-<script>
-// 	function openAllProductList() {
-// 		var x = document.getElementById("allList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function openRiceList() {
-// 		var x = document.getElementById("riceList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function openSoupList() {
-// 		var x = document.getElementById("soupList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function openDessertList() {
-// 		var x = document.getElementById("dessertList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function hiddenAllList() {
-// 		var allProduct = document.getElementById("allList");
-// 		var rice = document.getElementById("riceList");
-// 		var soup = document.getElementById("soupList");
-// 		var dessert = document.getElementById("dessertList");
-// 		if (allProduct.className.indexOf("hiddenList") == -1) {
-// 			allProduct.className += "hiddenList";
-// 		}
-// 		if (rice.className.indexOf("hiddenList") == -1) {
-// 			rice.className += "hiddenList";
-// 		}
-// 		if (soup.className.indexOf("hiddenList") == -1) {
-// 			soup.className += "hiddenList";
-// 		}
-// 		if (dessert.className.indexOf("hiddenList") == -1) {
-// 			dessert.className += "hiddenList";
-// 		}
-// 	}
-</script>
-
-
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 160px">
-<!-- 		<h1>商品查詢/修改</h1> -->
-<%-- 			<form action=""> --%>
-<!-- 				<div class=""> -->
-<!-- 					<label class="" for='searchBarBtn'> -->
-<!-- 						依商品名稱搜尋； -->
-<!-- 					</label> -->
-<%-- 					<c:if test="${searchBarString == null}"> --%>
-<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
-<!-- 						placeholder="請輸入搜尋條件" />  -->
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${searchBarString != null}"> --%>
-<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
-<%-- 						placeholder="${searchBarString}" />  --%>
-<%-- 					</c:if> --%>
-<!-- 					<input id="inProduct" type='submit' class='btn btn-primary' value="搜尋" />  -->
-<!-- 					<input id="resetProduct" type='reset' class='btn btn-primary' value="清除" /> -->
-<!-- 				</div> -->
-<%-- 			</form> --%>
-
-<!-- 			<div class="btn-group" role="group" -->
-<!-- 				aria-label="Button group with nested dropdown"> -->
-<!-- 				<button type="button" class="btn btn-secondary" -->
-<!-- 					onclick="openAllProductList()">所有產品</button> -->
-
-<!-- 				<div class="btn-group" role="group"> -->
-<!-- 					<button id="btnGroupDrop1" type="button" -->
-<!-- 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" -->
-<!-- 						aria-haspopup="true" aria-expanded="false">依產品種類檢視</button> -->
-<!-- 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> -->
-<!-- 						<a class="dropdown-item" href="#" onclick="openRiceList()">飯類</a> -->
-<!-- 						<a class="dropdown-item" href="#" onclick="openSoupList()">湯類</a> -->
-<!-- 						<a class="dropdown-item" href="#" onclick="openDessertList()">甜點</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-
 			<div id="allList" class="">
 				<table class="table table-hover">
 					<tr>
@@ -213,75 +126,6 @@ td.errorMessage[type="redError"] {
 						<li class="page-item">第${currentPageNo}頁 /共${totalPages}頁</li>
 					</ul>
 				</nav>
-			</div>
-			<div id="riceList" class="hiddenList">
-				<table class="table table-hover">
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">類別</th>
-						<th scope="col">商品編號</th>
-						<th scope="col">商品名稱</th>
-						<th scope="col">價格</th>
-						<th scope="col">狀態</th>
-					</tr>
-					<c:forEach var='productTestRice' items='${allProductsListTestRice}'
-						varStatus="status">
-						<tr class="">
-							<th scope="row">${status.index + 1}</th>
-							<td>${productTestRice.cate}</td>
-							<td>${productTestRice.productNo}</td>
-							<td>${productTestRice.productName}</td>
-							<td>${productTestRice.price}</td>
-							<td>${productTestRice.productStatus}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			<div id="soupList" class="hiddenList">
-				<table class="table table-hover">
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">類別</th>
-						<th scope="col">商品編號</th>
-						<th scope="col">商品名稱</th>
-						<th scope="col">價格</th>
-						<th scope="col">狀態</th>
-					</tr>
-					<c:forEach var='productTestSoup' items='${allProductsListTestSoup}'
-						varStatus="status">
-						<tr class="">
-							<th scope="row">${status.index + 1}</th>
-							<td>${productTestSoup.cate}</td>
-							<td>${productTestSoup.productNo}</td>
-							<td>${productTestSoup.productName}</td>
-							<td>${productTestSoup.price}</td>
-							<td>${productTestSoup.productStatus}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			<div id="dessertList" class="hiddenList">
-				<table class="table table-hover">
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">類別</th>
-						<th scope="col">商品編號</th>
-						<th scope="col">商品名稱</th>
-						<th scope="col">價格</th>
-						<th scope="col">狀態</th>
-					</tr>
-					<c:forEach var='productTestDessert'
-						items='${allProductsListTestDessert}' varStatus="status">
-						<tr class="">
-							<th scope="row">${status.index + 1}</th>
-							<td>${productTestDessert.cate}</td>
-							<td>${productTestDessert.productNo}</td>
-							<td>${productTestDessert.productName}</td>
-							<td>${productTestDessert.price}</td>
-							<td>${productTestDessert.productStatus}</td>
-						</tr>
-					</c:forEach>
-				</table>
 			</div>
 		</fieldset>
 	</section>

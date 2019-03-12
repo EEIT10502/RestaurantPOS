@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,6 @@ import _00.init.util.GlobalService;
 import _00model.MenuBean;
 import _03product.service.ProductService;
 
-//此係為了開發方便(在首頁直接出現連結，連到商品管理相關頁面)，故之後確定商品管理入口後再修改
 @Controller
 public class ProductController {
 	@Autowired
@@ -37,42 +37,15 @@ public class ProductController {
 
 		return "productManage/productInsert";// 按JSP目錄層
 	}
-
-
-//	//舊的
-//	@RequestMapping(value = "/allProductList.action")
-//	public String getAllProductListPage(Model model) {
-//		System.out.println("13");// 這行是測試用
-//		List<MenuBean> allProductsList = new ArrayList<>();
-//		allProductsList = service.getAllProducts();
-//		model.addAttribute("allProductsList", allProductsList);
-//		System.out.println("allProductsList"+allProductsList);
-//		
-//		//Test開始
-//		List<MenuBean> allProductsListTestRice = new ArrayList<>();
-//		allProductsListTestRice = service.getAllProductsListTestRice();
-//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
-//		System.out.println("allProductsListTestRice"+allProductsListTestRice);
-//		
-//		List<MenuBean> allProductsListTestSoup = new ArrayList<>();
-//		allProductsListTestSoup = service.getAllProductsListTestSoup();
-//		model.addAttribute("allProductsListTestSoup", allProductsListTestSoup);
-//		System.out.println("allProductsListTestSoup"+allProductsListTestSoup);
-//		
-//		List<MenuBean> allProductsListTestDessert = new ArrayList<>();
-//		allProductsListTestDessert = service.getAllProductsListTestDessert();
-//		model.addAttribute("allProductsListTestDessert", allProductsListTestDessert);
-//		System.out.println("allProductsListTestDessert"+allProductsListTestDessert);
-//		//Test結束
-//		
-//		return "productManage/allProductList";
-//	}
 	
 	int currentPageNoInit;
 	//新的
 	@RequestMapping(value = "/productManage/allProductList.action")
 	public String getAllProductListPage(@RequestParam(value = "currentPageNoBtn", required=false)String currentPageNo, Model model) {
 		System.out.println("13");// 這行是測試用
+		
+		MenuBean menuBean = new MenuBean();
+		model.addAttribute("MenuBean", menuBean);
 		
 		System.out.println("currentPageNo:"+currentPageNo);
 		if (currentPageNo == null) {
@@ -205,23 +178,6 @@ public class ProductController {
 		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
 		return ProductStatusList;
 	}
-	
-//	@ModelAttribute("productStatusList")
-//	public List<String> getProductStatusList() {
-//		
-//		List<MenuBean> allProductsListTestRice = service.getAllProductsListTestRice();
-//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
-//		List<String> ProductStatusList = new ArrayList<String>();
-//		ProductStatusList.add(GlobalService.Product_Status_Launched_Already);
-//		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
-//		return ProductStatusList;
-//	}
-
-//	@ModelAttribute("currentCategoryNumber")
-//	public Integer getCurrentCategoryNumber() {
-//		return service.getCurrentCategoryNumber() + 1;
-//	}
-	
 	
 	@RequestMapping(value = "/productManage/productListBySearch.action", method = RequestMethod.GET)
 	public String getProductListBySearch(@RequestParam(value = "currentPageNoBtnSearch", required=false)String currentPageNo,@RequestParam(value = "searchBar", required=false)String searchBarString, Model model) {
@@ -360,4 +316,18 @@ public class ProductController {
 		
 		return "productManage/productListByProductStatus";
 	}
+	
+	// 修改單筆Menu資料
+		@RequestMapping(value = "/productManage/allProductListEdit.action/{key}", method = RequestMethod.PUT)
+		public String updateMenu(@PathVariable Integer key, MenuBean menuBean) {
+			System.out.println(4);
+			System.out.println("Cate:"+menuBean.getCate());
+			System.out.println("ProductName:"+menuBean.getProductName());
+			System.out.println("ProductStatus:"+menuBean.getProductStatus());
+			System.out.println("pId:"+menuBean.getpId());
+			System.out.println("Price:"+menuBean.getPrice());
+			System.out.println("ProductNo:"+menuBean.getProductNo());
+			service.updateMenu(menuBean);
+			return "productManage/productListByProductStatus";
+		}
 }

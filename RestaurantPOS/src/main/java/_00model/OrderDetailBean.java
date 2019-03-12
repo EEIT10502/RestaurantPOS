@@ -2,11 +2,14 @@ package _00model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,13 +19,14 @@ public class OrderDetailBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	Integer orderDetailId;
-	Integer orderNo;
 	String  category;
 	Integer productNo;
 	String  productName;
 	Integer qty;
 	String  specialReq;
 	Integer productPrice;
+	
+	private OrderBean orderBean;
 	
 	
 	
@@ -41,13 +45,8 @@ public class OrderDetailBean implements Serializable {
 	}
 	
 	
-	@Column(columnDefinition="VARCHAR(12) NOT NULL",name="fk_orderNo")
-	public Integer getOrderNo() {
-		return orderNo;
-	}
-	public void setOrderNo(Integer orderNo) {
-		this.orderNo = orderNo;
-	}
+
+
 	@Column(columnDefinition="NVARCHAR(50) NOT NULL",name="category")
 	public String getCategory() {
 		return category;
@@ -95,7 +94,15 @@ public class OrderDetailBean implements Serializable {
 	public void setProductPrice(Integer productPrice) {
 		this.productPrice = productPrice;
 	}
-
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="FK_OrderBean_Id")  
+	public OrderBean getOrderBean() {
+		return orderBean;
+	}
+	public void setOrderBean(OrderBean orderBean) {
+		this.orderBean = orderBean;
+	}
 	
 	
 	

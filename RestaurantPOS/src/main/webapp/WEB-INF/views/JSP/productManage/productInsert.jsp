@@ -40,14 +40,6 @@ p.errorMessage[type="redError"] {
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	<!-- 	<section> -->
-	<!-- 				<div class="container"> -->
-	<!-- 					<h1> -->
-	<%-- 						<spring:message code='spring.productInsert.form.productInsertData.label' /> --%>
-	<!-- 					</h1> -->
-	<!-- 				</div> -->
-	<!-- 	</section> -->
-	<!-- 	<section class="container"> -->
 	<section class="">
 
 		<form:form method='POST' modelAttribute="MenuBean"
@@ -59,15 +51,6 @@ p.errorMessage[type="redError"] {
 							code='spring.productInsert.form.productInsertData.label' />
 					</h1>
 				</div>
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class="control-label col-lg-2 col-lg-2" for='productNoBtn'> -->
-<%-- 						<spring:message code='spring.productInsert.form.productNo.label' /> --%>
-<!-- 					</label> -->
-<!-- 					<div class="col-lg-10"> -->
-<%-- 						<form:input id="productNoBtn" path="productNo" type='text' --%>
-<%-- 							class='form:input-large' value="${currentCategoryNumber}"/>  --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='productNameBtn'>
 						<spring:message code='spring.productInsert.form.productName.label' />
@@ -127,7 +110,31 @@ p.errorMessage[type="redError"] {
 					</div>
 				</div>
 
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> -->
+<!--   Launch demo modal -->
+<!-- </button> -->
 
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
+<!--   <div class="modal-dialog modal-dialog-centered" role="document"> -->
+<!--     <div class="modal-content"> -->
+<!--       <div class="modal-header"> -->
+<!--         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!--           <span aria-hidden="true">&times;</span> -->
+<!--         </button> -->
+<!--       </div> -->
+<!--       <div class="modal-body"> -->
+<!--         ... -->
+<!--       </div> -->
+<!--       <div class="modal-footer"> -->
+<!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
 				<!-- 	========================================================================== -->
 				<!-- 				<div class="w3-container" style="margin-left: 160px"> -->
 				<!-- 					<div> -->

@@ -73,36 +73,12 @@ public class MenuBean implements Serializable {
 		this.cate = cate;
 	}
 	
-	@Column(columnDefinition="VARCHAR(4) NOT NULL",name="productStatus")
+	@Column(columnDefinition="NVARCHAR(10) NOT NULL",name="productStatus")
 	public String getProductStatus() {
 		return productStatus;
 	}
 	public void setProductStatus(String productStatus) {
 		this.productStatus = productStatus;
 	}
-
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MenuBean [pId=");
-		builder.append(pId);
-		builder.append(", productNo=");
-		builder.append(productNo);
-		builder.append(", productName=");
-		builder.append(productName);
-		builder.append(", price=");
-		builder.append(price);
-		builder.append(", cate=");
-		builder.append(cate);
-		builder.append(", productStatus=");
-		builder.append(productStatus);
-		builder.append("]");
-		return builder.toString();
-	}
-
-	
-	
-	
 
 }

@@ -156,4 +156,10 @@ public class ProductServiceImpl implements ProductService {
 	public int getTotalPagesByProductStatus() {
 		return productdao.getTotalPagesByProductStatus();
 	}
+	
+	@Transactional
+	@Override
+	public void updateMenu(MenuBean menuBean) {
+		productdao.updateMenu(menuBean);
+	}
 }

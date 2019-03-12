@@ -48,4 +48,6 @@ public interface ProductService {
 	int getTotalPagesByProductStatus();
 
 	void setStatusSelect(String statusSelect);
+
+	void updateMenu(MenuBean menuBean);
 }

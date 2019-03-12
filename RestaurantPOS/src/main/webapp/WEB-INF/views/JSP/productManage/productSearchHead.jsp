@@ -9,338 +9,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<title>sideBar</title>
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" -->
+<!-- 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" -->
+<!-- 	crossorigin="anonymous"> -->
+<!-- <title>sideBar</title> -->
 <style type="text/css">
-
 span.errorMessage[type="redError"] {
 	color: red;
 }
 </style>
 
 </head>
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-	crossorigin="anonymous"></script>
-
-<script>
-// 	function openAllProductList() {
-// 		var x = document.getElementById("allList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function openRiceList() {
-// 		var x = document.getElementById("riceList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function openSoupList() {
-// 		var x = document.getElementById("soupList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function openDessertList() {
-// 		var x = document.getElementById("dessertList");
-// 		if (x.className.indexOf("hiddenList") != -1) {
-// 			hiddenAllList();
-// 			x.className = x.className.replace("hiddenList", "");
-// 		}
-// 	}
-// 	function hiddenAllList() {
-// 		var allProduct = document.getElementById("allList");
-// 		var rice = document.getElementById("riceList");
-// 		var soup = document.getElementById("soupList");
-// 		var dessert = document.getElementById("dessertList");
-// 		if (allProduct.className.indexOf("hiddenList") == -1) {
-// 			allProduct.className += "hiddenList";
-// 		}
-// 		if (rice.className.indexOf("hiddenList") == -1) {
-// 			rice.className += "hiddenList";
-// 		}
-// 		if (soup.className.indexOf("hiddenList") == -1) {
-// 			soup.className += "hiddenList";
-// 		}
-// 		if (dessert.className.indexOf("hiddenList") == -1) {
-// 			dessert.className += "hiddenList";
-// 		}
-// 	}
- </script> 
-
-
+<!-- <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
+<!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" -->
+<!-- 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" -->
+<!-- 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
+<!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" -->
+<!-- 	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" -->
+<!-- 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" -->
+<!-- 	crossorigin="anonymous"></script> -->
 <body>
-<%-- 	<jsp:include page="../sideBar.jsp" flush="true" /> --%>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 160px">
 			<h1>商品查詢/修改</h1>
-			<form action="productListBySearch.action">
-				<div class="">
-					<label class="" for='searchBarBtn'>
-						依商品名稱搜尋：
-					</label>
-					<c:if test="${searchBarString == null}">
-						<input id="searchBar" type='text' name="searchBar" class=''
-						placeholder="請輸入搜尋條件" /> 
-					</c:if>
-					<c:if test="${searchBarString != null}">
-						<input id="searchBar" type='text' name="searchBar" class=''
-						value="${searchBarString}" /> 
-					</c:if>
-					<input id="inProduct" type='submit' class='btn btn-primary' value="搜尋" /> 
-					<input id="resetProduct" type='reset' class='btn btn-primary' value="清除" />
-					<span class="errorMessage" type="redError">${noSearchBarString}</span>
-				</div>
-			</form>
 
-
-			<div class="btn-group" role="group"
-				aria-label="Button group with nested dropdown">
-				<button type="button" class="btn btn-secondary"
-					onclick="location.href='${pageContext.request.contextPath}/productManage/allProductList.action'">所有商品${contextPath}</button>
-
-				<div class="btn-group" role="group">
-					<button id="btnGroupDrop1" type="button"
-						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">依商品種類檢視</button>
-					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<c:forEach var='cates' items='${cateList}'>
-							<a class="dropdown-item" href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out value="${cates}" /></a>
-						</c:forEach>
-					</div>
-				</div>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- 			<nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
 				
-				<div class="btn-group" role="group">
-					<button id="btnGroupDrop1" type="button"
-						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">依商品狀態檢視</button>
-					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						<c:forEach var='productStatus' items='${productStatusList}'>
-							<a class="dropdown-item" href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out value="${productStatus}" /></a>
-						</c:forEach>
-					</div>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link"
+							href="<c:url value='allProductList.action?' />">所有商品</a></li>
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> 依商品種類檢視 </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<c:forEach var='cates' items='${cateList}'>
+									<a class="dropdown-item"
+										href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out
+											value="${cates}" /></a>
+								</c:forEach>
+							</div></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> 依商品狀態檢視 </a>
+							<div class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<c:forEach var='productStatus' items='${productStatusList}'>
+									<a class="dropdown-item"
+										href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out
+											value="${productStatus}" /></a>
+								</c:forEach>
+							</div></li>
+					</ul>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<form class="form-inline" action="productListBySearch.action">
+						<c:if test="${searchBarString == null}">
+							<input class="form-control mr-sm-2" type="search" id="searchBar" name="searchBar"
+								placeholder="請依商品名稱搜尋"  aria-label="Search">
+						</c:if>
+						<c:if test="${searchBarString != null}">
+							<input class="form-control mr-sm-2" type="search" id="searchBar" name="searchBar"
+								value="${searchBarString}"  aria-label="Search">
+						</c:if>
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						<span class="errorMessage" type="redError">${noSearchBarString}</span>
+					</form>
 				</div>
-			</div>
 
-<!-- 			<div id="allList" class=""> -->
-<!-- 				<table class="table table-hover"> -->
-<!-- 					<tr> -->
-<!-- 						<th scope="col">#</th> -->
-<!-- 						<th scope="col">類別</th> -->
-<!-- 						<th scope="col">商品編號</th> -->
-<!-- 						<th scope="col">商品名稱</th> -->
-<!-- 						<th scope="col">價格</th> -->
-<!-- 						<th scope="col">狀態</th> -->
-<!-- 					</tr> -->
-<%-- 					<c:forEach var='product' items='${productsListGetByPage}' --%>
-<%-- 						varStatus="status"> --%>
-<!-- 						<tr class=""> -->
-<%-- 							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th> --%>
-<%-- 							<td>${product.cate}</td> --%>
-<%-- 							<td>${product.productNo}</td> --%>
-<%-- 							<td>${product.productName}</td> --%>
-<%-- 							<td>${product.price}</td> --%>
-<%-- 							<td>${product.productStatus}</td> --%>
-<!-- 						</tr> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</table> -->
-<!-- 				<nav aria-label="..."> -->
-<!-- 					<ul class="pagination"> -->
-<%-- 						<c:if test="${currentPageNo <= 1}"> --%>
-<!-- 							<li class="page-item disabled"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=1' />" --%>
-<!-- 								tabindex="-1" aria-disabled="true">First Page</a></li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:if test="${currentPageNo > 1}"> --%>
-<!-- 							<li class="page-item"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=1' />" --%>
-<!-- 								tabindex="-1" aria-disabled="true">First Page</a></li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:if test="${currentPageNo <= 1}"> --%>
-<!-- 							<li class="page-item disabled"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo-1}' />" --%>
-<!-- 								tabindex="-1" aria-disabled="true">Previous</a></li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:if test="${currentPageNo > 1}"> --%>
-<!-- 							<li class="page-item"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo-1}' />" --%>
-<!-- 								tabindex="-1" aria-disabled="true">Previous</a></li> -->
-<%-- 						</c:if> --%>
+			</nav>
 
-<%-- 						<c:if test="${currentPageNo != totalPages}"> --%>
-<!-- 							<li class="page-item"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo+1}' />">Next</a> --%>
-<!-- 							</li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:if test="${currentPageNo == totalPages}"> --%>
-<!-- 							<li class="page-item disabled"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=${currentPageNo+1}' />">Next</a> --%>
-<!-- 							</li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:if test="${currentPageNo == totalPages}"> --%>
-<!-- 							<li class="page-item disabled"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=${totalPages}' />" --%>
-<!-- 								tabindex="-1" aria-disabled="true">Last Page</a></li> -->
-<%-- 						</c:if> --%>
-<%-- 						<c:if test="${currentPageNo != totalPages}"> --%>
-<!-- 							<li class="page-item"><a class="page-link" -->
-<%-- 								href="<c:url value='allProductList.action?currentPageNoBtn=${totalPages}' />" --%>
-<!-- 								tabindex="-1" aria-disabled="true">Last Page</a></li> -->
-<%-- 						</c:if> --%>
-<%-- 						<li class="page-item">第${currentPageNo}頁 /共${totalPages}頁</li> --%>
-<!-- 					</ul> -->
-<!-- 				</nav> -->
+			
+
+<!-- 			<div class="btn-group" role="group" -->
+<!-- 				aria-label="Button group with nested dropdown"> -->
+<!-- 				<button type="button" class="btn btn-secondary" -->
+<%-- 					onclick="location.href='${pageContext.request.contextPath}/productManage/allProductList.action'">所有商品${contextPath}</button> --%>
+
+<!-- 				<div class="btn-group" role="group"> -->
+<!-- 					<button id="btnGroupDrop1" type="button" -->
+<!-- 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" -->
+<!-- 						aria-haspopup="true" aria-expanded="false">依商品種類檢視</button> -->
+<!-- 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> -->
+<%-- 						<c:forEach var='cates' items='${cateList}'> --%>
+<!-- 							<a class="dropdown-item" -->
+<%-- 								href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out --%>
+<%-- 									value="${cates}" /></a> --%>
+<%-- 						</c:forEach> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="btn-group" role="group"> -->
+<!-- 					<button id="btnGroupDrop1" type="button" -->
+<!-- 						class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" -->
+<!-- 						aria-haspopup="true" aria-expanded="false">依商品狀態檢視</button> -->
+<!-- 					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> -->
+<%-- 						<c:forEach var='productStatus' items='${productStatusList}'> --%>
+<!-- 							<a class="dropdown-item" -->
+<%-- 								href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out --%>
+<%-- 									value="${productStatus}" /></a> --%>
+<%-- 						</c:forEach> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 <!-- 			</div> -->
-<!-- 			<div id="riceList" class="hiddenList"> -->
-<!-- 				<table class="table table-hover"> -->
-<!-- 					<tr> -->
-<!-- 						<th scope="col">#</th> -->
-<!-- 						<th scope="col">類別</th> -->
-<!-- 						<th scope="col">商品編號</th> -->
-<!-- 						<th scope="col">商品名稱</th> -->
-<!-- 						<th scope="col">價格</th> -->
-<!-- 						<th scope="col">狀態</th> -->
-<!-- 					</tr> -->
-<%-- 					<c:forEach var='productTestRice' items='${allProductsListTestRice}' --%>
-<%-- 						varStatus="status"> --%>
-<!-- 						<tr class=""> -->
-<%-- 							<th scope="row">${status.index + 1}</th> --%>
-<%-- 							<td>${productTestRice.cate}</td> --%>
-<%-- 							<td>${productTestRice.productNo}</td> --%>
-<%-- 							<td>${productTestRice.productName}</td> --%>
-<%-- 							<td>${productTestRice.price}</td> --%>
-<%-- 							<td>${productTestRice.productStatus}</td> --%>
-<!-- 						</tr> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</table> -->
-<!-- 			</div> -->
-<!-- 			<div id="soupList" class="hiddenList"> -->
-<!-- 				<table class="table table-hover"> -->
-<!-- 					<tr> -->
-<!-- 						<th scope="col">#</th> -->
-<!-- 						<th scope="col">類別</th> -->
-<!-- 						<th scope="col">商品編號</th> -->
-<!-- 						<th scope="col">商品名稱</th> -->
-<!-- 						<th scope="col">價格</th> -->
-<!-- 						<th scope="col">狀態</th> -->
-<!-- 					</tr> -->
-<%-- 					<c:forEach var='productTestSoup' items='${allProductsListTestSoup}' --%>
-<%-- 						varStatus="status"> --%>
-<!-- 						<tr class=""> -->
-<%-- 							<th scope="row">${status.index + 1}</th> --%>
-<%-- 							<td>${productTestSoup.cate}</td> --%>
-<%-- 							<td>${productTestSoup.productNo}</td> --%>
-<%-- 							<td>${productTestSoup.productName}</td> --%>
-<%-- 							<td>${productTestSoup.price}</td> --%>
-<%-- 							<td>${productTestSoup.productStatus}</td> --%>
-<!-- 						</tr> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</table> -->
-<!-- 			</div> -->
-<!-- 			<div id="dessertList" class="hiddenList"> -->
-<!-- 				<table class="table table-hover"> -->
-<!-- 					<tr> -->
-<!-- 						<th scope="col">#</th> -->
-<!-- 						<th scope="col">類別</th> -->
-<!-- 						<th scope="col">商品編號</th> -->
-<!-- 						<th scope="col">商品名稱</th> -->
-<!-- 						<th scope="col">價格</th> -->
-<!-- 						<th scope="col">狀態</th> -->
-<!-- 					</tr> -->
-<%-- 					<c:forEach var='productTestDessert' --%>
-<%-- 						items='${allProductsListTestDessert}' varStatus="status"> --%>
-<!-- 						<tr class=""> -->
-<%-- 							<th scope="row">${status.index + 1}</th> --%>
-<%-- 							<td>${productTestDessert.cate}</td> --%>
-<%-- 							<td>${productTestDessert.productNo}</td> --%>
-<%-- 							<td>${productTestDessert.productName}</td> --%>
-<%-- 							<td>${productTestDessert.price}</td> --%>
-<%-- 							<td>${productTestDessert.productStatus}</td> --%>
-<!-- 						</tr> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</table> -->
-<!-- 			</div> -->
+<!-- 			<nav class="navbar navbar-light bg-light"> -->
+<%-- 				<form class="form-inline" action="productListBySearch.action"> --%>
+<!-- 					<input class="form-control mr-sm-2" type="search" -->
+<!-- 						placeholder="Search" aria-label="Search"> -->
+<!-- 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+<%-- 				</form> --%>
+<!-- 			</nav> -->
+<%-- 			<form action="productListBySearch.action"> --%>
+<!-- 				<div class=""> -->
+<!-- 					<label class="" for='searchBarBtn'> 依商品名稱搜尋： </label> -->
+<%-- 					<c:if test="${searchBarString == null}"> --%>
+<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
+<!-- 							placeholder="請輸入搜尋條件" /> -->
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${searchBarString != null}"> --%>
+<!-- 						<input id="searchBar" type='text' name="searchBar" class='' -->
+<%-- 							value="${searchBarString}" /> --%>
+<%-- 					</c:if> --%>
+<!-- 					<input id="inProduct" type='submit' class='btn btn-primary' -->
+<%-- 						value="搜尋" /> <span class="errorMessage" type="redError">${noSearchBarString}</span> --%>
+<!-- 				</div> -->
+<%-- 			</form> --%>
+
+
 		</fieldset>
 	</section>
-
-
-	<!-- ================================================================= -->
-	<!-- 	<form action="" method='POST'> -->
-	<!-- 		<div class="w3-container" style="margin-left: 160px"> -->
-	<!-- 			<h2>商品查詢/修改</h2> -->
-	<!-- 			<div> -->
-	<!-- 				<label for="searchType"></label> <select id="searchType"> -->
-	<!-- 					<option>商品名稱</option> -->
-	<!-- 					<option>商品編號</option> -->
-	<!-- 					<option>類別</option> -->
-	<!-- 				</select> <label for=""></label> <select id=""> -->
-	<!-- 					<option>已上架</option> -->
-	<!-- 					<option>未上架</option> -->
-	<!-- 				</select> <input type="text" id="goodsSearch" name="goodsSearch"> <input -->
-	<!-- 					type="submit" value="查詢" id="dSel" name="dSel"> -->
-	<!-- 			</div> -->
-	<!-- 			<div> -->
-	<!-- 				<input type="button" value="匯出檔案" id="dExport" name="dExport"> -->
-	<!-- 			</div> -->
-	<!-- 			<table border="1"> -->
-	<!-- 				<tr> -->
-	<!-- 					<th>序號</th> -->
-	<!-- 					<th>商品編號</th> -->
-	<!-- 					<th>商品名稱</th> -->
-	<!-- 					<th>類別</th> -->
-	<!-- 					<th>價格</th> -->
-	<!-- 					<th>狀態</th> -->
-
-	<!-- 				</tr> -->
-	<%-- 						<c:forEach var="gTable" items="">
-<%-- 				<tr> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 				</tr> --%>
-	<%-- 		</c:forEach> --%>
-	--%>
-	<!-- 			</table> -->
-
-	<!-- 			<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input -->
-	<!-- 				type="button" value="下一頁" id="dNPage" name="dNPage"> -->
-	<!-- 		</div> -->
-	<!-- 	</form> -->
-	<!-- 	</div> -->
-	<!-- 	</form> -->
-
-
 </body>
 </html>

@@ -14,6 +14,6 @@ public class GlobalService {
 	//productInsert所需資料_結束
 	
 	//product查詢所需資料_開始
-	public static final int ITEMS_PER_PAGE = 2;
+	public static final int ITEMS_PER_PAGE = 5;
 	//product查詢所需資料_結束
 }
