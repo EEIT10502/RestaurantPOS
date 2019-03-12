@@ -22,7 +22,6 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getAllCategories();
 	}
 
-	
 	@Transactional
 	@Override
 	public void addProduct(MenuBean menuItem) {
@@ -59,5 +58,102 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getAllProductsListTestDessert();
 	}
 
+	@Transactional
+	@Override
+	public int getTotalPages() {
+		return productdao.getTotalPages();
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetByPage() {
+		return productdao.getProductsListGetByPage();
+	}
+
+	@Transactional
+	@Override
+	public int getItemsPerPage() {
+		return productdao.getItemsPerPage();
+	}
+
+	@Transactional
+	@Override
+	public void setItemsPerPage(int itemsPerPage) {
+		productdao.setItemsPerPage(itemsPerPage);
+	}
+
+	@Transactional
+	@Override
+	public int getCurrentPageNo() {
+		return productdao.getCurrentPageNo();
+	}
+
+	@Transactional
+	@Override
+	public void setCurrentPageNo(int currentPageNo) {
+		productdao.setCurrentPageNo(currentPageNo);
+	}
+
+	@Transactional
+	@Override
+	public void setSearchBarString(String searchBarString) {
+		System.out.println("Service searchBarString:"+searchBarString);
+		productdao.setSearchBarString(searchBarString);
+	}
+
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetBySearch() {
+		return productdao.getProductsListGetBySearch();
+	}
+
+	@Transactional
+	@Override
+	public int getTotalPagesBySearch() {
+		return productdao.getTotalPagesBySearch();
+	}
 	
+//	public static void  main (String[] args) {
+//		ProductService service = new ProductServiceImpl();
+//		List<MenuBean> a = service.getProductsListGetBySearch();
+//		System.out.println("a:"+a);
+//	}
+	
+	@Transactional
+	@Override
+	public void setCateSelect(String cateSelect) {
+		System.out.println("Service cateSelect:"+cateSelect);
+		productdao.setCateSelect(cateSelect);
+	}
+	
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetByCate() {
+		return productdao.getProductsListGetByCate();
+	}
+	
+	@Transactional
+	@Override
+	public int getTotalPagesByCate() {
+		return productdao.getTotalPagesByCate();
+	}
+	
+	@Transactional
+	@Override
+	public void setStatusSelect(String statusSelect) {
+		System.out.println("Service statusSelect:"+statusSelect);
+		productdao.setStatusSelect(statusSelect);
+	}
+	
+	@Transactional
+	@Override
+	public List<MenuBean> getProductsListGetByProductStatus() {
+		return productdao.getProductsListGetByProductStatus();
+	}
+	
+	@Transactional
+	@Override
+	public int getTotalPagesByProductStatus() {
+		return productdao.getTotalPagesByProductStatus();
+	}
 }

@@ -18,7 +18,7 @@ public class FinancialServiceImpl implements FinancialService {
 
 	@Transactional
 	@Override
-	public List<OrderBean> getOrderByDate(String Date1, String Date2) {
+	public List<OrderBean[]> getOrderByDate(String Date1, String Date2) {
 
 		return dao.getOrderByDate(Date1, Date2);
 	}

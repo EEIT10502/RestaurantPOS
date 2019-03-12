@@ -10,7 +10,6 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <title>首頁</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link rel='stylesheet' href='${pageContext.request.contextPath}/css/forIndex.css'  type="text/css" />
@@ -28,17 +27,14 @@ height: 70px;
 </style>
 <script type="text/javascript">
 //隱藏或顯示計算機
-	$(document).ready(function(){
-	  $("#checkIn,#checkOut").click(function(){
-	  $("#punchTable").hide();
-	  $("#logo").show();
-	  });
-	  $("#showPunch").click(function(){
-	  $("#punchTable").show();
-	  $("#logo").hide();
-	  });
+$(document).ready(function(){
+	$("#showPunch").click(function(){
+		$("#punchTable").toggle();
+		$("#logo").toggle();
+		
 	});
-
+	
+});
 	
 </script>
 </head>
@@ -66,7 +62,7 @@ height: 70px;
 			<td>
 			<input type="button" value="打卡"  id="showPunch" name="showPunch">
 			</td>
-			<!-- 先進入經理登入頁，再進入經理管理功能 -->
+			<!-- 先進入經理登入頁，再進入管理功能 -->
 			<td>
 			<a href="<spring:url value='/manage/managelogin' />">
 			<input type="button" value="管理"  id="toManage" name="toManage">
@@ -79,24 +75,27 @@ height: 70px;
 	
 <!-- 	商品管理連結_開始 -->
 <!--下面幾行係為了開發方便(在首頁直接出現連結，連到商品、員工管理相關頁面)，故之後確定商品、員工管理入口後再修改 -->
+<br>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
-	<br>
-	<h6><a href="productInsert.action">商品管理頁面:productInsert</a></h6>
+	<input type="button" value="ClickMe" id="321">
+	<h6><a href="productManage/productInsert.action" id="123">商品管理頁面:productInsert</a></h6>
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
+	<h6><a href="empManage/empQuery">員工查詢頁面:empQuery</a></h6>
 	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
 <!-- 	商品管理連結_結束 -->
 
 <!-- 	sidebar連結_開始 -->
-	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>
+<!--	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>  -->
 <!-- 	sidebar連結_結束 -->
 	
 
 </body>
 <script>
+
 		//這裡開始是給計算機用的script
 		
 		//連接字串功能
@@ -115,11 +114,42 @@ height: 70px;
                 return val.substr(0,val.length-1)
             })
         }
-    	//測試是否可以拿到showResBox的值
-        function getNO(){
-            var Str = document.getElementById("showResBox").value;
+
+    	//取得上下班字串和員工編號 
+    	$("[id^='check']").click(function(){
+			var Val = $(this).attr("value");
+			var Str = $("#showResBox").val();
+			
+			if($.trim(Str) == ""){   //判斷該欄位不可為空，為空就return
+				alert("不可為空!")
+				return;
+			}
+			//測試是否有拿到值
             alert(Str);
-            document.getElementById("showResBox").value="";
-        }
+            alert(Val);
+            
+            //送出後清空字串
+            //$("#showResBox").attr("text","");
+           document.getElementById("showResBox").value="";
+		   
+            //使用ajax 無刷新取得資訊
+		$.ajax({
+			url:"/RestaurantPOS/schedule/time.check",
+			data:{empNO:Str,choice:Val},
+			type:"POST",
+			
+			//失敗
+			error:function(xhr) {
+			      	alert('Ajax request 發生錯誤');
+			      	alert(xhr);
+				},
+			//成功
+			success:function(data){
+				alert('Ajax成功');
+				alert(data);
+			}
+		})
+           
+		})
 </script>
 </html>

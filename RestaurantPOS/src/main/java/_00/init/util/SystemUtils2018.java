@@ -13,6 +13,9 @@ import java.io.Reader;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialClob;
@@ -70,4 +73,50 @@ public class SystemUtils2018 {
 	public static String extractFileName(String pathName) throws IOException, SQLException {
 		return pathName.substring(pathName.lastIndexOf("/") + 1);
 	}
+	
+	
+	public static Date strToDate(String strDate) {
+		String str = strDate;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date d = null;
+		try {
+			d = format.parse(str);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		java.sql.Date date = new java.sql.Date(d.getTime());
+		return date;
+	}
+
+	public static Time strToTime(String strDate) {
+		String str = strDate;
+		SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+		java.util.Date d = null;
+		try {
+			d = format.parse(str);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Time date = new java.sql.Time(d.getTime());
+		return date;
+	}
+	public static String getDate() {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String strDate = format.format(date);
+		
+		return strDate;
+		
+	}
+	public static String getTime() {
+		
+		SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+		Date date = new Date();
+		String strDate = format.format(date);
+		
+		return strDate;
+		
+	}
+
 }
