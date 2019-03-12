@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import _00model.CumulativeTurnoverBean;
 import _00model.MenuBean;
 import _00model.OrderBean;
+import _00model.OrderDetailBean;
 import _05financial.repository.FinancialDao;
 import _05financial.service.FinancialService;
 
@@ -32,6 +33,11 @@ public class FinancialServiceImpl implements FinancialService {
 	@Override
 	public List<MenuBean> getMenuCate() {
 		return dao.getMenuCate();
+	}
+	@Transactional
+	@Override
+	public List<OrderBean[]> getCateByDate(String Date1, String Date2) {
+		return dao.getCateByDate(Date1, Date2);
 	}
 
 }

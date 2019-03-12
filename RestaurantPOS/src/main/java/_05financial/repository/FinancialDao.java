@@ -5,6 +5,7 @@ import java.util.List;
 import _00model.CumulativeTurnoverBean;
 import _00model.MenuBean;
 import _00model.OrderBean;
+import _00model.OrderDetailBean;
 
 public interface FinancialDao {
 
@@ -16,6 +17,8 @@ public interface FinancialDao {
 	
 	public List<MenuBean> getMenuCate();
 	
-//	public List<OrderBean[]> getOrderByDate(String Date1, String Date2);
+	public List<OrderBean[]> getCateByDate(String Date1, String Date2);
+	
+//	public List<OrderBean> getCateByCate(String Cate);
 
 }

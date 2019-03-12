@@ -52,20 +52,17 @@
 			<th>類別名稱</th>
 			<th>數量</th>
 			<th>銷售金額</th>
-			<th>小計</th>
 		</tr>
-<%--		<c:forEach var="pTable" items="">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-		</c:forEach> --%>
+<%-- 		<c:forEach var="pTable" items="${listCatee}"> --%>
+<!-- 				<tr> -->
+<%-- 					<td>${pTable.orderTime}</td> --%>
+<%-- 					<td>${pTable[0]}</td> --%>
+<%-- 					<td>${pTable[1]}</td> --%>
+<!-- 					<td></td> -->
+<!-- 				</tr> -->
+<%-- 		</c:forEach> --%>
 		<tr>
 			<th>總計</th>
-			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>

@@ -67,14 +67,19 @@ public class FinancialController {
 	// 類別報表
 	@RequestMapping("/report/categoryReportGet")
 	public String categoryReportGet(Model model, @RequestParam("csDate1") String csDate1,
-			@RequestParam("csDate2") String csDate2, @RequestParam("csSelOpt") String csSelOpt) {
+			@RequestParam("csDate2") String csDate2) {
 		
 		model.addAttribute("csDate1", csDate1);
 		model.addAttribute("csDate2", csDate2);
 		
-		System.out.println(csDate1 + " & " + csDate2 + " & " + csSelOpt);
+//		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
+		List<OrderBean[]> listCatee = service.getCateByDate(csDate1, csDate2);
+//		model.addAttribute("listCatee", listCatee);
+		
+//		System.out.println(csDate1 + " & " + csDate2 + " & " + csSelOpt);
 		
 		return "report/categoryReport";
 	}
-
+	
+	// 營運目標報表
 }
