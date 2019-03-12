@@ -81,7 +81,9 @@ $(document).ready(function(){
 	<br>
 	<br>
 	<br>
-	
+	<a href="<c:url value="/manage/getMaxOrderId"/>">
+	<input type="button" value="按我" id="clickMe"/>
+	</a>
 	<h6><a href="productManage/productInsert.action" >商品管理頁面:productInsert</a></h6>
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
 	<h6><a href="empManage/empQuery">員工查詢頁面:empQuery</a></h6>
@@ -114,7 +116,7 @@ $(document).ready(function(){
                 return val.substr(0,val.length-1)
             })
         }
-
+		
     	//取得上下班字串和員工編號 
     	$("[id^='check']").click(function(){
 			var Val = $(this).attr("value");

@@ -1,27 +1,75 @@
 package _06manager.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import _00model.ManagerBean;
+import _00model.OrderBean;
+import _00model.OrderDetailBean;
 import _06manager.service.ManagerService;
 
 
 //這是Manager的控制器
+//功能:管理功能的登入、取得OrderBean、OrderDetailBean
+//列印後回首頁
 @Controller
 public class ManagerController {
 
 	@Autowired
 	ManagerService managerservice;
+	
+	//先定義一個OrderBean 用來裝找到的唯一一個OrderBean(其ID值為最大值)
+	OrderBean orderBean = null;
+	
+	//再定義一個List<OrderDetailBean> 用來裝依照FK_orderId找到的物件集合
+	List<OrderDetailBean> detailBean=null;
+	
+	
+	//透過getLastOrderBean 取得最新一筆OrderBean 
+	//透過該OrderBean的orderId找到對應的OrderDetail
+	
+	//交給下一個控制器列印
+	@RequestMapping("/manage/getMaxOrderId")
+	public String queryFromOrderDetailById(Model model) {
+		
+
+		orderBean = managerservice.getLastOrderBean();
+		//System.out.println("orderBean:"+orderBean.getOrderId());
+		detailBean = managerservice.queryODetailById(orderBean.getOrderId());
+		
+		
+		return "redirect:/printer";
+	}
+	
+	
+	@RequestMapping("/printer")
+	public String Printer() {
+		System.out.println("Printer");
+		//測試是否有抓到	OrderDetailBean	
+		for(OrderDetailBean b:detailBean) {
+			String name = b.getProductName();
+			System.out.println("ProductName: "+name);
+		}
+		
+		
+		
+		
+		return "redirect:/";
+	}
+	
+	
+	
 	
 	@RequestMapping("/manage/managelogin")
 	public String empLogin(Model model) {
