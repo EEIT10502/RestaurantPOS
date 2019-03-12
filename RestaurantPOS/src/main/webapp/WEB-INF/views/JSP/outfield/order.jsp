@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,35 +88,47 @@
 			      	alert('Ajax request 發生錯誤');
 			    },
 			    success: function(response) {
-			        var vPrice = response;
+			     var vPrice = response;
+				 var subTotal = vPrice * 1
 			        var row = '';
 					row += '<tr>';
-					row += '	<td id="opItem' + itemNo + '" name="opItem' + itemNo + '">' + v + '</td>';
-					row += '	<td id="opPrice' + itemNo + '" name="opPrice' + itemNo + '">' + vPrice + '</td>';
+					row += '	<td id="opItem' + itemNo + '" name="opItem' + itemNo + '">' + v + '</td>';					
+					row += '	<td id="opPrice' + itemNo + '" name="opPrice' + itemNo + '">' + vPrice + '</td>';					
 					row += '	<td>';
-					row += '		<input type="number" value="1" min="1" max="10" id="opQty' + itemNo + '" name="opQty' + itemNo + '">';
-					row += '		<input type="button" value="修改" id="opQMod' + itemNo + '" name="opQMod' + itemNo + '"></td>';
+					row += '		<input type="number" value="1" min="1" max="10" id="opQty' + itemNo + '" name="orderVos[' + itemNo + '].qty">';
+					row += '		<input type="button" value="修改" id="opQMod' + itemNo + '" name="opQMod' + itemNo + '" onclick="modifyQty('+itemNo+',' + vPrice + ');"></td>';
 					row += '	</td>';
-					row += '	<td id="opSubtotal' + itemNo + '" name="opSubtotal' + itemNo + '"></td>';
+					row += '	<td id="opSubtotal' + itemNo + '" name="opSubtotal' + itemNo + '">' + subTotal + '</td>';					
 					row += '	<td id="" name=""></td>';
 					row += '	<td>';
 					row += '		<input type="button" value="口味" id="opFlaver' + itemNo + '" name="opFlaver' + itemNo + '">';
 					row += '		<input type="button" value="刪除" id="opDelete' + itemNo + '" name="opDelete' + itemNo + '" onclick="delItem(this);">';
 					row += '	</td>';
-					row += '</tr>';
 					
+					row += '	<input type="hidden" id="hidOpItem' + itemNo + '" name="orderVos[' + itemNo + '].itemName" value="' + v + '" />';
+					row += '	<input type="hidden" id="hidOpPrice' + itemNo + '" name="orderVos[' + itemNo + '].price" value="' + vPrice + '" />';
+					row += '	<input type="hidden" id="hidSubtotal' + itemNo + '" name="orderVos[' + itemNo + '].subTotal" value="' + subTotal + '" />';
+					
+					row += '</tr>';
+				
 					$('#oL1').after(row);
 					itemNo++;
 			    }
 			});
-			
-			
 		});
 	});
 
 	function delItem(obj) {
 		$(obj).closest('tr').remove();
 	}
+	
+	function modifyQty(itemNo, price){
+		var qty = $("#opQty"+ itemNo).val();
+		var subTotal = qty*price;
+		$('#opSubtotal' + itemNo).html(subTotal);
+		$('#hidSubtotal' + itemNo).html(subTotal);		
+	}
+	
 
 	function riceList() {
 		var x = document.getElementById("riceList");
@@ -135,8 +148,14 @@
 		x.className = x.className.replace("hiddenList", "");
 	}
 
-	function dumpList() {
-		var x = document.getElementById("dumpList");
+	function vegetableList() {
+		var x = document.getElementById("vegetableList");
+		hiddenAllList();
+		x.className = x.className.replace("hiddenList", "");
+	}
+	
+	function sidedishList() {
+		var x = document.getElementById("sidedishList");
 		hiddenAllList();
 		x.className = x.className.replace("hiddenList", "");
 	}
@@ -145,7 +164,9 @@
 		var rice = document.getElementById("riceList");
 		var noodle = document.getElementById("noodleList");
 		var soup = document.getElementById("soupList");
-		var dump = document.getElementById("dumpList");
+		var vegetable = document.getElementById("vegetableList");
+		var sidedish = document.getElementById("sidedishList");
+		
 		// 		if (allProduct.className.indexOf("hiddenList") == -1) {
 		// 			allProduct.className += "hiddenList";
 		// 		} 
@@ -162,15 +183,20 @@
 			noodle.className += "hiddenList";
 		}
 		
-		if (dump.className.indexOf("hiddenList") == -1) {
-			dump.className += "hiddenList";
+		if (vegetable.className.indexOf("hiddenList") == -1) {
+			vegetable.className += "hiddenList";
+		}
+		
+		if (sidedish.className.indexOf("hiddenList") == -1) {
+			sidedish.className += "hiddenList";
 		}
 	}
 	
 </script>
 
 <body>
-	<form>
+	<form:form method="post" action="/RestaurantPOS/order/payment" modelAttribute="orderForm">
+<%-- 	<form action="/RestaurantPOS/order/payment" method="post" > --%>
 		<div class="container-fluid">
 			<!-- 標頭 -->
 			<div class="row">
@@ -215,7 +241,7 @@
 						
 						</tr>
 						<tr>
-
+							
 						</tr>
 						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
@@ -235,7 +261,8 @@
 							<td><input type="button" value="飯類" onclick="riceList()"></td>
 							<td><input type="button" value="麵類" onclick="noodleList()"></td>
 							<td><input type="button" value="湯類" onclick="soupList()"></td>
-							<td><input type="button" value="餃類" onclick="dumpList()"></td>
+							<td><input type="button" value="菜類" onclick="vegetableList()"></td>
+							<td><input type="button" value="小菜類" onclick="sidedishList()"></td>
 						</tr>
 					</table>
 					<div id="riceList" class=""
@@ -259,17 +286,25 @@
 								value="${soup.productName}">
 						</c:forEach>
 					</div>
-					<div id="dumpList" class="hiddenList"
+					<div id="vegetableList" class="hiddenList"
 						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
-						<c:forEach var='dump' items='${dump}'>
+						<c:forEach var='vegetable' items='${vegetable}'>
 							<input style="width: 100px" type="button" class="pt"
-								value="${dump.productName}">
+								value="${vegetable.productName}">
+						</c:forEach>
+					</div>
+					<div id="sidedishList" class="hiddenList"
+						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
+						<c:forEach var='sidedish' items='${sidedish}'>
+							<input style="width: 100px" type="button" class="pt"
+								value="${sidedish.productName}">
 						</c:forEach>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+<%-- 	</form> --%>
+	</form:form>
 
 
 	<!-- 數字鍵盤script -->
