@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +43,9 @@ public class ProductController {
 	@RequestMapping(value = "/productManage/allProductList.action")
 	public String getAllProductListPage(@RequestParam(value = "currentPageNoBtn", required=false)String currentPageNo, Model model) {
 		System.out.println("13");// 這行是測試用
+		
+		MenuBean menuBean = new MenuBean();
+		model.addAttribute("MenuBean", menuBean);
 		
 		System.out.println("currentPageNo:"+currentPageNo);
 		if (currentPageNo == null) {
@@ -312,4 +316,18 @@ public class ProductController {
 		
 		return "productManage/productListByProductStatus";
 	}
+	
+	// 修改單筆Menu資料
+		@RequestMapping(value = "/productManage/allProductListEdit.action/{key}", method = RequestMethod.PUT)
+		public String updateMenu(@PathVariable Integer key, MenuBean menuBean) {
+			System.out.println(4);
+			System.out.println("Cate:"+menuBean.getCate());
+			System.out.println("ProductName:"+menuBean.getProductName());
+			System.out.println("ProductStatus:"+menuBean.getProductStatus());
+			System.out.println("pId:"+menuBean.getpId());
+			System.out.println("Price:"+menuBean.getPrice());
+			System.out.println("ProductNo:"+menuBean.getProductNo());
+			service.updateMenu(menuBean);
+			return "productManage/productListByProductStatus";
+		}
 }

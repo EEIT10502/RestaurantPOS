@@ -296,4 +296,13 @@ public class ProductDaoImpl implements ProductDao {
 
 		return totalPagesByProductStatus;
 	}
+	
+	@Override
+	public void updateMenu(MenuBean menuBean) {
+		Session session = factory.getCurrentSession();
+		session.update(menuBean);
+		
+	}
+
+
 }
