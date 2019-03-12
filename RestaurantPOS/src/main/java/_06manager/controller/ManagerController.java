@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import _00model.ManagerBean;
 import _00model.OrderBean;
 import _00model.OrderDetailBean;
@@ -74,7 +75,10 @@ public class ManagerController {
 	@RequestMapping("/manage/managelogin")
 	public String empLogin(Model model) {
 		System.out.println("管理員登入");
-
+		
+//		MainActivity pos = new MainActivity();
+//		pos.onClick();
+		
 		return "manage/managelogin";
 	}
 	
