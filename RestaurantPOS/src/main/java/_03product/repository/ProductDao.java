@@ -57,5 +57,6 @@ public interface ProductDao {
 
 	void setStatusSelect(String statusSelect);
 
-	
+	void updateMenu(MenuBean menuBean);
+
 }
