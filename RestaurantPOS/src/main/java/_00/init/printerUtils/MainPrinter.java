@@ -85,7 +85,7 @@ public class MainPrinter {
 	            socket = new Socket();
 	            socket.connect(new InetSocketAddress(GlobalService.IP, 9100), 4000);
 	            
-	            System.out.println("CashierDesk=====小票机连接成功，IP：" + GlobalService.IP);
+	           // System.out.println("CashierDesk=====小票机连接成功，IP：" + GlobalService.IP);
 	            
 	            OutputStream os = socket.getOutputStream();
 	            
@@ -93,11 +93,11 @@ public class MainPrinter {
 	            printContent += PrinterCmdUtils.bothDouble();
 	            printContent += PrinterCmdUtils.boldOn();
 	            printContent += "廚房單\n";
-	            printContent += "叫號機: "+orderBean.getCallNo()+"\n";
-	            
+	            printContent += "叫號機: "+orderBean.getCallNo()+"\n";  
 	            printContent += PrinterCmdUtils.boldOff();
 	            printContent += PrinterCmdUtils.ZoomCancel();
 	            printContent += PrinterCmdUtils.longitudinalDouble();
+	            printContent += "時  間:"+SystemUtils2018.getTimeForPrinter()+"\n";
 	            printContent += "--數量--------------------品名------\n";
 	            printContent += PrinterCmdUtils.bothDouble();
 	            printContent += PrinterCmdUtils.boldOn();
@@ -116,7 +116,7 @@ public class MainPrinter {
 	            os.write(text.getBytes("BIG5"));
 	            final byte[] CMD_CUT = { 0x1D, 0x56, 0x01 };
 	            os.write(CMD_CUT);
-	            System.out.println("CashierDesk=====小票机打印完成，IP：" +  GlobalService.IP);
+	           // System.out.println("CashierDesk=====小票机打印完成，IP：" +  GlobalService.IP);
 	            
 
 	        } catch (UnknownHostException e) {

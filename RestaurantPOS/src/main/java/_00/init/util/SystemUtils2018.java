@@ -123,7 +123,7 @@ public class SystemUtils2018 {
 	
 	public static String getTimeForPrinter() {
 		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String strDate = format.format(date);
 		
