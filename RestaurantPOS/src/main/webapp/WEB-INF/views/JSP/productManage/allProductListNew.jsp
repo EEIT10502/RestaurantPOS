@@ -97,8 +97,8 @@ td.errorMessage[type="redError"] {
 										<div class="modal-body">
 											<%-- 												<form> --%>
 											<input type="hidden" name="_method" id='put' value="">
-											    <input type="" name="pId" value="${product.pId}" >
-											    <input type="" name="productNo" value="${product.productNo}" >
+											<input type="" name="pId" value="${product.pId}" >
+											<input type="" name="productNo" value="${product.productNo}" >
 <%-- 											    <input type="hidden" name="productName" value="${product.productName}" > --%>
 											<!--     <input type="hidden" name="finalDecision" value="" >  -->
 

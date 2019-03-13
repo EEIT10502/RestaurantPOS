@@ -319,8 +319,9 @@ public class ProductController {
 	
 	// 修改單筆Menu資料
 		@RequestMapping(value = "/productManage/allProductListEdit.action/{key}", method = RequestMethod.PUT)
-		public String updateMenu(@PathVariable Integer key, MenuBean menuBean) {
+		public String updateMenu(@PathVariable Integer key, @RequestParam(value = "pId", required=false)String pIdEdit,MenuBean menuBean) {
 			System.out.println(4);
+			System.out.println(pIdEdit);
 			System.out.println("Cate:"+menuBean.getCate());
 			System.out.println("ProductName:"+menuBean.getProductName());
 			System.out.println("ProductStatus:"+menuBean.getProductStatus());
