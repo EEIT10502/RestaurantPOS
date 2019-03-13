@@ -111,5 +111,25 @@ public class FinancialDaoImpl implements FinancialDao {
 	}
 
 	// goalReport
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CumulativeTurnoverBean> getCumulativeTurnoverByDate2(String Date1) {
+		// to sql.Date
+		SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			uDate1 = fDate.parse(Date1);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		java.sql.Date beginDate = new java.sql.Date(uDate1.getTime());
+		
+//		System.out.println(beginDate);
+		// hql
+		String hql = "FROM CumulativeTurnoverBean c WHERE c.date=:beginDate";
+		Session session = factory.getCurrentSession();
+		List<CumulativeTurnoverBean> listgoalCum = session.createQuery(hql).setParameter("beginDate", beginDate)
+				.getResultList();
+		
+		return listgoalCum;
+	}
 }

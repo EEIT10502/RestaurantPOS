@@ -39,5 +39,10 @@ public class FinancialServiceImpl implements FinancialService {
 	public List<OrderBean[]> getCateByDate(String Date1, String Date2) {
 		return dao.getCateByDate(Date1, Date2);
 	}
+	@Transactional
+	@Override
+	public List<CumulativeTurnoverBean> getCumulativeTurnoverByDate2(String Date1) {
+		return dao.getCumulativeTurnoverByDate2(Date1);
+	}
 
 }

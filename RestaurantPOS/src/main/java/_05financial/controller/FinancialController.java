@@ -50,7 +50,7 @@ public class FinancialController {
 	@RequestMapping("/report/dailyReportGet")
 	public String dailyReportGet(Model model, @RequestParam("dDate1") String dDate1,
 			@RequestParam("dDate2") String dDate2) {
-		
+
 		model.addAttribute("dDate1", dDate1);
 		model.addAttribute("dDate2", dDate2);
 
@@ -63,23 +63,35 @@ public class FinancialController {
 
 		return "report/dailyReport";
 	}
-	
+
 	// 類別報表
 	@RequestMapping("/report/categoryReportGet")
 	public String categoryReportGet(Model model, @RequestParam("csDate1") String csDate1,
 			@RequestParam("csDate2") String csDate2) {
-		
+
 		model.addAttribute("csDate1", csDate1);
 		model.addAttribute("csDate2", csDate2);
-		
+
 //		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
 		List<OrderBean[]> listCatee = service.getCateByDate(csDate1, csDate2);
 //		model.addAttribute("listCatee", listCatee);
-		
+
 //		System.out.println(csDate1 + " & " + csDate2 + " & " + csSelOpt);
-		
+
 		return "report/categoryReport";
 	}
-	
+
 	// 營運目標報表
+	@RequestMapping("/report/goalReportGet")
+	public String goalReportGet(Model model, @RequestParam("gMonth1") String gMonth1){
+
+		model.addAttribute("gMonth1", gMonth1);
+
+		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
+		model.addAttribute("listgoalCum", listgoalCum);
+
+		System.out.println(gMonth1);
+
+		return "report/goalReport";
+	}
 }

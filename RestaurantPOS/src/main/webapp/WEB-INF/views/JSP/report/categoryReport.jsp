@@ -33,7 +33,7 @@
 	<input type="date" id="csDate2" name="csDate2"><p>
 
 	<!-- 類別下拉選單 -->
-	<select id="csSelOpt" name="csSelOpt" multiple="multiple">
+	<select id="csSelOpt" name="csSelOpt">
 		<c:forEach var="csSel" items="${listMenuCate}">
 			<option>${csSel}</option>
 		</c:forEach>

@@ -16,4 +16,7 @@ public interface FinancialService {
 	public List<MenuBean> getMenuCate();
 	
 	public List<OrderBean[]> getCateByDate(String Date1, String Date2);
+	
+	public List<CumulativeTurnoverBean> getCumulativeTurnoverByDate2(String Date1);
+
 }

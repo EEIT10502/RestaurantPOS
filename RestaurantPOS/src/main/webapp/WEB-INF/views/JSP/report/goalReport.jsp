@@ -19,7 +19,7 @@
 
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
-<form>
+<form action="goalReportGet" method="post">
 <!-- 報表版面 -->
 <div class="w3-container" style="margin-left:160px">
 <div>
@@ -27,31 +27,30 @@
 </div>
 <div>
 	<h3>選擇欲查詢日期</h3>
-	<input type="month" id="gMonth1" name="gMonth1">~
-	<input type="month" id="gMonth2" name="gMonth2"><p>
+	<input type="date" id="gMonth1" name="gMonth1"><p>
 	
 	<input type="submit" value="查詢" id="gSel" name="gSel">
 </div>
 <div>
-	<h4>xxxx年xx月</h4>  <!-- 顯示查詢年月 -->
+	<h5>${gMonth1}</h5>
 	<input type="button" value="匯出報表" id="gExport" name="gExport">
 	<table border="1">
 		<tr>
 			<th>日期</th>
 			<th>目標營業額</th>
-			<th>實際營業額</th>
+			<th>累計營業額</th>
 			<th>差額</th>
 			<th>達成率</th>
 		</tr>
-<%--		<c:forEach var="gTable" items="">
+		<c:forEach var="gTable" items="${listgoalCum}">
 				<tr>
+					<td>${gTable.date}</td>
 					<td></td>
-					<td></td>
-					<td></td>
+					<td>${gTable.cumulativeTurnover}</td>
 					<td></td>
 					<td></td>
 				</tr>
-		</c:forEach> --%>
+		</c:forEach>
 		<tr>
 			<th>總計</th>
 			<td></td>
