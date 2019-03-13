@@ -80,6 +80,11 @@
 		
 		$(".pt").click(function() {			
 			var v = $(this).val();
+			var total=0;
+			var total1=0;
+			var total1 = parseInt($("#oTotal").html());
+			
+			$("#")
 			$.ajax({
 			    url: '/RestaurantPOS/order/getPrice',
 			    type: 'post',
@@ -90,6 +95,7 @@
 			    success: function(response) {
 			     var vPrice = response;
 				 var subTotal = vPrice * 1
+				
 			        var row = '';
 					row += '<tr>';
 					row += '	<td id="opItem' + itemNo + '" name="opItem' + itemNo + '">' + v + '</td>';					
@@ -112,24 +118,37 @@
 					row += '</tr>';
 				
 					$('#oL1').after(row);
+					var subTotal1 = parseInt($("#opSubtotal" + itemNo).html());
+					
+					total= total1 + subTotal1;
+					$("#oTotal").html(total);
+					
+					
 					itemNo++;
+				
 			    }
 			});
+			
 		});
+			
 	});
-
 	function delItem(obj) {
 		$(obj).closest('tr').remove();
 	}
 	
 	function modifyQty(itemNo, price){
-		var qty = $("#opQty"+ itemNo).val();
+		var qty = parseInt($("#opQty"+ itemNo).val());
 		var subTotal = qty*price;
 		$('#opSubtotal' + itemNo).html(subTotal);
-		$('#hidSubtotal' + itemNo).html(subTotal);		
+		$('#hidSubtotal' + itemNo).html(subTotal);
+		
+		var y = parseInt($("#oTotal").html());
+		var totalAmount=0;
+		totalAmount = y + (qty-1)*price;
+		$("#oTotal").html(totalAmount);
+		
 	}
 	
-
 	function riceList() {
 		var x = document.getElementById("riceList");
 		hiddenAllList();
@@ -147,7 +166,6 @@
 		hiddenAllList();
 		x.className = x.className.replace("hiddenList", "");
 	}
-
 	function vegetableList() {
 		var x = document.getElementById("vegetableList");
 		hiddenAllList();
@@ -170,7 +188,6 @@
 		// 		if (allProduct.className.indexOf("hiddenList") == -1) {
 		// 			allProduct.className += "hiddenList";
 		// 		} 
-
 		if (rice.className.indexOf("hiddenList") == -1) {
 			rice.className += "hiddenList";
 		}
@@ -191,7 +208,6 @@
 			sidedish.className += "hiddenList";
 		}
 	}
-	
 </script>
 
 <body>
@@ -245,7 +261,7 @@
 						</tr>
 						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
-							<td colspan="3" id="oTotal" name="oTotal"></td>
+							<td colspan="3" id="oTotal" name="oTotal">0</td>
 						</tr>
 					</table>
 				</div>
@@ -316,3 +332,4 @@
 	</script>
 </body>
 </html>
+
