@@ -11,14 +11,18 @@ import org.springframework.stereotype.Repository;
 import _00model.ScheduleBean;
 import _04schedule.dao.ScheduleDao;
 
-@Repository("scheduleDao")
+@Repository
 public class ScheduleDaoImpl implements ScheduleDao {
 	@Autowired
 	SessionFactory factory;
 
+	public ScheduleDaoImpl() {
+
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ScheduleBean> findAll() {
+	public List<ScheduleBean> findAllSchedule() {
 		String hql = "FROM ScheduleBean";
 		Session session = null;
 		List<ScheduleBean> list = new ArrayList<>();
@@ -26,17 +30,28 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
-	/*-----------------------------------新增班表資料-----------------------------------*/
+
+	/*-----------------------------------修改班表資料-----------------------------------*/
+	
 	@Override
-	public void addSchedule(ScheduleBean schedule) {
+	public void updateSchedule(ScheduleBean schedule) {
+		System.out.println("1");
 		Session session = factory.getCurrentSession();
-		ScheduleBean sb = getScheduleById(schedule.getScheduleId());
-		schedule.setScheduleBean(sb);
-		session.save(schedule);
+		System.out.println("2");
+		session.update(schedule);
+		System.out.println("3");
 	}
 
+	/*-----------------------------------新增班表資料-----------------------------------*/
 	@Override
-	public ScheduleBean getScheduleById(Integer scheduleId) {
+	public void saveSchedule(ScheduleBean schedule) {
+		Session session = factory.getCurrentSession();
+		session.save(schedule);
+
+	}
+	
+	@Override
+	public ScheduleBean findByPrimaryKey(int scheduleId) {
 		ScheduleBean sb = null;
 		Session session = factory.getCurrentSession();
 		sb = session.get(ScheduleBean.class, scheduleId);
@@ -44,11 +59,16 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	}
 
 	@Override
-	public List<ScheduleBean> getScheduleList() {
-		String hql = "From ScheduleBean";
+	public ScheduleBean findBySchedule(String schedule) {
 		Session session = factory.getCurrentSession();
-		List<ScheduleBean> list = session.createQuery(hql).getResultList();
-		return list;
+		String hql = "FROM Schedule WHERE schedule=:schedule";
+		ScheduleBean sb = null;
+		@SuppressWarnings("unchecked")
+		List<ScheduleBean> list = session.createQuery(hql)
+								.setParameter("schedule", schedule)
+								.getResultList();
+		if (!list.isEmpty()) 
+			sb = list.get(0);
+		return sb;
 	}
-
 }

@@ -5,9 +5,14 @@ import java.util.List;
 import _00model.ScheduleBean;
 
 public interface ScheduleDao {
-	List<ScheduleBean> findAll();
-	/*-----------------------------------新增班表資料-----------------------------------*/
-	void addSchedule(ScheduleBean schedule);
-	ScheduleBean getScheduleById(Integer scheduleId);
-	List<ScheduleBean> getScheduleList();
+
+	ScheduleBean findByPrimaryKey(int scheduleId);
+
+	ScheduleBean findBySchedule(String schedule);
+
+	void saveSchedule(ScheduleBean schedule);
+
+	void updateSchedule(ScheduleBean schedule);
+
+	List<ScheduleBean> findAllSchedule();
 }

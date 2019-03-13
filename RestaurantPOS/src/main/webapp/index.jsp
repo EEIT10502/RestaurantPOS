@@ -85,7 +85,7 @@ $(document).ready(function(){
 	<h6><a href="productManage/productInsert.action" id="123">商品管理頁面:productInsert</a></h6>
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
 
-	<h6><a href="schedule">排班管理頁面:schInsert</a></h6>
+	<h6><a href="schedule">排班:schInsert</a></h6>
 	
 <!-- 	商品管理連結_結束 -->
 

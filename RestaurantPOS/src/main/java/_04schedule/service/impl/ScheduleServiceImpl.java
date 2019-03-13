@@ -3,40 +3,48 @@ package _04schedule.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import _00model.ScheduleBean;
 import _04schedule.dao.ScheduleDao;
 import _04schedule.service.ScheduleService;
+
 @Service
-@Repository("scheduleService")
 public class ScheduleServiceImpl implements ScheduleService {
 	@Autowired
-	private ScheduleDao scheduleDao;
+	ScheduleDao scheduleDao;
+
+	public ScheduleServiceImpl() {
+
+	}
 
 	@Transactional
 	@Override
-	public List<ScheduleBean> findAll() {
-		return scheduleDao.findAll();
+	public List<ScheduleBean> findAllSchedule() {
+		return scheduleDao.findAllSchedule();
 	}
-	/*-----------------------------------新增班表資料-----------------------------------*/
+
 	@Transactional
 	@Override
-	public void addSchedule(ScheduleBean schedule) {
-		scheduleDao.addSchedule(schedule);
-		
+	public void saveSchedule(ScheduleBean schedule) {
+		scheduleDao.saveSchedule(schedule);
 	}
+
 	@Transactional
 	@Override
-	public ScheduleBean getScheduleById(Integer scheduleId) {
-		return scheduleDao.getScheduleById(scheduleId);
+	public ScheduleBean findByPrimaryKey(int scheduleId) {
+		return scheduleDao.findByPrimaryKey(scheduleId);
 	}
-	@Transactional
+
 	@Override
-	public List<ScheduleBean> getScheduleList() {
-		return scheduleDao.getScheduleList();
+	public ScheduleBean findBySchedule(String schedule) {
+		return scheduleDao.findBySchedule(schedule);
+	}
+
+	@Override
+	public void updateSchedule(ScheduleBean schedule) {
+		scheduleDao.updateSchedule(schedule);
 	}
 
 	

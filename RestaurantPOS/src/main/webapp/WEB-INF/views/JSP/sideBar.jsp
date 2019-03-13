@@ -105,8 +105,8 @@
 		
 		<button class="w3-button w3-block w3-left-align" onclick="openScheduleList()">排班管理 <i class="fa fa-caret-down"></i></button>
 		<div id="demoScheduleList" class="w3-hide w3-white w3-card">
-			<a href="schedule" class="w3-bar-item w3-button">排班系統</a>
-			<a href="schedule/add" class="w3-bar-item w3-button">排班系統</a>
+			<a href="schedule" class="w3-bar-item w3-button">班別系統</a>
+			<a href="schedule/arrange" class="w3-bar-item w3-button">排班系統</a>
 		</div>
 
 		<!-- 報表系統 -->

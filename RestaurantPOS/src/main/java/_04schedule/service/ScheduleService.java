@@ -8,9 +8,13 @@ import _00model.ScheduleBean;
 
 @Component("ScheduleServiceDemo")
 public interface ScheduleService {
-	List<ScheduleBean> findAll();
-	/*-----------------------------------新增班表資料-----------------------------------*/
-		void addSchedule(ScheduleBean schedule);
-		ScheduleBean getScheduleById(Integer scheduleId);
-		List<ScheduleBean> getScheduleList();
+	List<ScheduleBean> findAllSchedule();
+
+	void saveSchedule(ScheduleBean schedule);
+
+	ScheduleBean findByPrimaryKey(int scheduleId);
+	
+	ScheduleBean findBySchedule(String schedule);
+	
+	void updateSchedule(ScheduleBean scheduleId);
 }
