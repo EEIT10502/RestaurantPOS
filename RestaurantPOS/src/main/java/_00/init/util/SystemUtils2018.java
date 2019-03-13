@@ -20,6 +20,8 @@ import java.util.Date;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialClob;
 
+
+
 public class SystemUtils2018 {
 
 	public static Blob fileToBlob(String imageFileName) throws IOException, SQLException {
@@ -117,6 +119,21 @@ public class SystemUtils2018 {
 		
 		return strDate;
 		
+	}
+	
+	public static String getTimeForPrinter() {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date = new Date();
+		String strDate = format.format(date);
+		
+		return strDate;
+	}
+	
+	//測試你的方法
+	public static void main(String[] args) {
+		
+		//System.out.println(SystemUtils2018.getTimeForPrinter());
 	}
 
 }

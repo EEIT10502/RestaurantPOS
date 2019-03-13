@@ -81,7 +81,7 @@ $(document).ready(function(){
 	<br>
 	<br>
 	<br>
-	<a href="<c:url value="/manage/getMaxOrderId"/>">
+	<a href="<c:url value="/manage/queryOne"/>">
 	<input type="button" value="按我" id="clickMe"/>
 	</a>
 	<h6><a href="productManage/productInsert.action" >商品管理頁面:productInsert</a></h6>
