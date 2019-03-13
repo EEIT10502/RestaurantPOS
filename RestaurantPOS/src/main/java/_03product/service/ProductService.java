@@ -36,4 +36,18 @@ public interface ProductService {
 	List<MenuBean> getProductsListGetBySearch();
 
 	int getTotalPagesBySearch();
+
+	void setCateSelect(String cateSelect);
+
+	List<MenuBean> getProductsListGetByCate();
+
+	int getTotalPagesByCate();
+
+	List<MenuBean> getProductsListGetByProductStatus();
+
+	int getTotalPagesByProductStatus();
+
+	void setStatusSelect(String statusSelect);
+
+	void updateMenu(MenuBean menuBean);
 }

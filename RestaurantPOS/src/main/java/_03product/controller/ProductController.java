@@ -1,7 +1,6 @@
 package _03product.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +19,6 @@ import _00.init.util.GlobalService;
 import _00model.MenuBean;
 import _03product.service.ProductService;
 
-//此係為了開發方便(在首頁直接出現連結，連到商品管理相關頁面)，故之後確定商品管理入口後再修改
 @Controller
 public class ProductController {
 	@Autowired
@@ -38,42 +37,15 @@ public class ProductController {
 
 		return "productManage/productInsert";// 按JSP目錄層
 	}
-
-
-//	//舊的
-//	@RequestMapping(value = "/allProductList.action")
-//	public String getAllProductListPage(Model model) {
-//		System.out.println("13");// 這行是測試用
-//		List<MenuBean> allProductsList = new ArrayList<>();
-//		allProductsList = service.getAllProducts();
-//		model.addAttribute("allProductsList", allProductsList);
-//		System.out.println("allProductsList"+allProductsList);
-//		
-//		//Test開始
-//		List<MenuBean> allProductsListTestRice = new ArrayList<>();
-//		allProductsListTestRice = service.getAllProductsListTestRice();
-//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
-//		System.out.println("allProductsListTestRice"+allProductsListTestRice);
-//		
-//		List<MenuBean> allProductsListTestSoup = new ArrayList<>();
-//		allProductsListTestSoup = service.getAllProductsListTestSoup();
-//		model.addAttribute("allProductsListTestSoup", allProductsListTestSoup);
-//		System.out.println("allProductsListTestSoup"+allProductsListTestSoup);
-//		
-//		List<MenuBean> allProductsListTestDessert = new ArrayList<>();
-//		allProductsListTestDessert = service.getAllProductsListTestDessert();
-//		model.addAttribute("allProductsListTestDessert", allProductsListTestDessert);
-//		System.out.println("allProductsListTestDessert"+allProductsListTestDessert);
-//		//Test結束
-//		
-//		return "productManage/allProductList";
-//	}
 	
 	int currentPageNoInit;
 	//新的
 	@RequestMapping(value = "/productManage/allProductList.action")
 	public String getAllProductListPage(@RequestParam(value = "currentPageNoBtn", required=false)String currentPageNo, Model model) {
 		System.out.println("13");// 這行是測試用
+		
+		MenuBean menuBean = new MenuBean();
+		model.addAttribute("MenuBean", menuBean);
 		
 		System.out.println("currentPageNo:"+currentPageNo);
 		if (currentPageNo == null) {
@@ -92,6 +64,14 @@ public class ProductController {
 		productsListGetByPage = service.getProductsListGetByPage();
 		model.addAttribute("productsListGetByPage", productsListGetByPage);
 		System.out.println("productsListGetByPage"+productsListGetByPage);
+		
+		if(productsListGetByPage.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/allProductListNew";
+		}
 		
 		model.addAttribute("currentPageNo", currentPageNoInit);
 		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
@@ -158,8 +138,11 @@ public class ProductController {
 				case GlobalService.PRODUCT_CATE_NOODLE:
 					menuBean.setProductNo(301);
 					break;
-				case GlobalService.PRODUCT_CATE_DUMPLINGS:
+				case GlobalService.PRODUCT_CATE_VEGETABLE:
 					menuBean.setProductNo(401);
+					break;
+				case GlobalService.PRODUCT_CATE_SIDEDISH:
+					menuBean.setProductNo(501);
 					break;
 				default: 
 					menuBean.setProductNo(001);
@@ -182,7 +165,8 @@ public class ProductController {
 		ProductCateList.add(GlobalService.Product_Cate_Rice);
 		ProductCateList.add(GlobalService.Product_Cate_Soup);
 		ProductCateList.add(GlobalService.PRODUCT_CATE_NOODLE);
-		ProductCateList.add(GlobalService.PRODUCT_CATE_DUMPLINGS);
+		ProductCateList.add(GlobalService.PRODUCT_CATE_VEGETABLE);
+		ProductCateList.add(GlobalService.PRODUCT_CATE_SIDEDISH);
 		return ProductCateList;
 		
 	}
@@ -195,27 +179,18 @@ public class ProductController {
 		return ProductStatusList;
 	}
 	
-//	@ModelAttribute("productStatusList")
-//	public List<String> getProductStatusList() {
-//		
-//		List<MenuBean> allProductsListTestRice = service.getAllProductsListTestRice();
-//		model.addAttribute("allProductsListTestRice", allProductsListTestRice);
-//		List<String> ProductStatusList = new ArrayList<String>();
-//		ProductStatusList.add(GlobalService.Product_Status_Launched_Already);
-//		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
-//		return ProductStatusList;
-//	}
-
-//	@ModelAttribute("currentCategoryNumber")
-//	public Integer getCurrentCategoryNumber() {
-//		return service.getCurrentCategoryNumber() + 1;
-//	}
-	
 	@RequestMapping(value = "/productManage/productListBySearch.action", method = RequestMethod.GET)
 	public String getProductListBySearch(@RequestParam(value = "currentPageNoBtnSearch", required=false)String currentPageNo,@RequestParam(value = "searchBar", required=false)String searchBarString, Model model) {
 		System.out.println("20");// 這行是測試用
 		System.out.println("searchBarString:"+searchBarString);
+		
 		model.addAttribute("searchBarString", searchBarString);
+		if(searchBarString.isEmpty()) {
+			model.addAttribute("noSearchBarString", "請輸入查詢條件");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+			return "productManage/productListBySearch";
+		}
 		
 		System.out.println("currentPageNo:"+currentPageNo);
 		if (currentPageNo == null) {
@@ -230,13 +205,23 @@ public class ProductController {
 		System.out.println("currentPageNoInit:"+currentPageNoInit);
 		service.setCurrentPageNo(currentPageNoInit);
 		
+		
 		service.setSearchBarString(searchBarString);
 		
 		List<MenuBean> productListBySearch = new ArrayList<>();
 		productListBySearch = service.getProductsListGetBySearch();
 		model.addAttribute("productListBySearch", productListBySearch);
 		System.out.println("productListBySearch"+productListBySearch);
+	
+		if(productListBySearch.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/productListBySearch";
+		}
 
+		
 		model.addAttribute("currentPageNo", currentPageNoInit);
 		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
 		model.addAttribute("totalPages", service.getTotalPagesBySearch());
@@ -245,4 +230,104 @@ public class ProductController {
 		
 		return "productManage/productListBySearch";
 	}
+	
+	@RequestMapping(value = "/productManage/ProductListByCate.action")
+	public String getProductListByCate(@RequestParam(value = "currentPageNoBtnCate", required=false)String currentPageNo, @RequestParam(value = "whichCate", required=false)String cateSelect,Model model) {
+		System.out.println("33");// 這行是測試用
+		
+		System.out.println("currentPageNo:"+currentPageNo);
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		System.out.println("currentPageNoInit:"+currentPageNoInit);
+		service.setCurrentPageNo(currentPageNoInit);
+		
+		System.out.println("cateSelect:"+cateSelect);
+		model.addAttribute("whichCate", cateSelect);
+		service.setCateSelect(cateSelect);
+		
+		List<MenuBean> productsListGetByCate = new ArrayList<>();
+		productsListGetByCate = service.getProductsListGetByCate();
+		model.addAttribute("productsListGetByCate", productsListGetByCate);
+		System.out.println("productsListGetByCate"+productsListGetByCate);
+		
+		if(productsListGetByCate.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/productListByCate";
+		}
+		
+		model.addAttribute("currentPageNo", currentPageNoInit);
+		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
+		model.addAttribute("totalPages", service.getTotalPagesByCate());
+		
+		System.out.println();
+		
+		return "productManage/productListByCate";
+	}
+	
+	@RequestMapping(value = "/productManage/ProductListByProductStatus.action")
+	public String getProductListByProductStatus(@RequestParam(value = "currentPageNoBtnProductStatus", required=false)String currentPageNo, @RequestParam(value = "whichStatus", required=false)String StatusSelect,Model model) {
+		System.out.println("33");// 這行是測試用
+		
+		System.out.println("currentPageNo:"+currentPageNo);
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		System.out.println("currentPageNoInit:"+currentPageNoInit);
+		service.setCurrentPageNo(currentPageNoInit);
+		
+		System.out.println("StatusSelect:"+StatusSelect);
+		model.addAttribute("whichStatus", StatusSelect);
+		service.setStatusSelect(StatusSelect);
+		
+		List<MenuBean> productsListGetByProductStatus = new ArrayList<>();
+		productsListGetByProductStatus = service.getProductsListGetByProductStatus();
+		model.addAttribute("productsListGetByProductStatus", productsListGetByProductStatus);
+		System.out.println("productsListGetByProductStatus"+productsListGetByProductStatus);
+		
+		if(productsListGetByProductStatus.isEmpty()) {
+			model.addAttribute("noItemString", "查無資料");
+			model.addAttribute("currentPageNo", 0);
+			model.addAttribute("totalPages", 0);
+//			System.out.println("25");
+			return "productManage/productListByProductStatus";
+		}
+		
+		model.addAttribute("currentPageNo", currentPageNoInit);
+		model.addAttribute("currentBeginOfItemNo", (currentPageNoInit-1)*GlobalService.ITEMS_PER_PAGE);
+		model.addAttribute("totalPages", service.getTotalPagesByProductStatus());
+		
+		System.out.println();
+		
+		return "productManage/productListByProductStatus";
+	}
+	
+	// 修改單筆Menu資料
+		@RequestMapping(value = "/productManage/allProductListEdit.action/{key}", method = RequestMethod.PUT)
+		public String updateMenu(@PathVariable Integer key, MenuBean menuBean) {
+			System.out.println(4);
+			System.out.println("Cate:"+menuBean.getCate());
+			System.out.println("ProductName:"+menuBean.getProductName());
+			System.out.println("ProductStatus:"+menuBean.getProductStatus());
+			System.out.println("pId:"+menuBean.getpId());
+			System.out.println("Price:"+menuBean.getPrice());
+			System.out.println("ProductNo:"+menuBean.getProductNo());
+			service.updateMenu(menuBean);
+			return "productManage/productListByProductStatus";
+		}
 }

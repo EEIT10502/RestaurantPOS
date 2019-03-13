@@ -157,20 +157,17 @@ public class ProductDaoImpl implements ProductDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getProductsListGetBySearch() {
-		System.out.println("DAO searchBarString:"+searchBarString);
+		System.out.println("DAO searchBarString:" + searchBarString);
 		String hql = "From MenuBean where productName like :key Order By productNo";
 //		String hql = "From MenuBean where productName like '%"+searchBarString+"%' Order By productNo";
 		int startItemNo = (currentPageNo - 1) * itemsPerPage;
 		Session session = factory.getCurrentSession();
 		List<MenuBean> ProductsListGetBySearch = new ArrayList<>();
-		ProductsListGetBySearch = session.createQuery(hql)
-				.setParameter("key", '%'+searchBarString+'%')
-				.setFirstResult(startItemNo)
-				.setMaxResults(itemsPerPage)
-				.getResultList();
+		ProductsListGetBySearch = session.createQuery(hql).setParameter("key", '%' + searchBarString + '%')
+				.setFirstResult(startItemNo).setMaxResults(itemsPerPage).getResultList();
 		return ProductsListGetBySearch;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public long getTotalItemCountsBySearch() { // 所有產品的個數
@@ -178,9 +175,7 @@ public class ProductDaoImpl implements ProductDao {
 		String hql = "SELECT count(*) FROM MenuBean where productName like :key";
 //		String hql = "SELECT count(*) FROM MenuBean where productName like '%"+searchBarString+"%'";
 		Session session = factory.getCurrentSession();
-		List<Long> list = session.createQuery(hql)
-				.setParameter("key", '%'+searchBarString+'%')
-				.list();
+		List<Long> list = session.createQuery(hql).setParameter("key", '%' + searchBarString + '%').list();
 		if (list.size() > 0) {
 			count = list.get(0);
 		}
@@ -197,4 +192,117 @@ public class ProductDaoImpl implements ProductDao {
 
 		return totalPagesBySearch;
 	}
+
+	private String cateSelect = null;
+
+	public String getCateSelect() {
+		return cateSelect;
+	}
+
+	public void setCateSelect(String cateSelect) {
+		this.cateSelect = cateSelect;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuBean> getProductsListGetByCate() {
+		System.out.println("DAO cateSelect:"+cateSelect);
+		String hql = "From MenuBean where cate = ?0 Order By productNo";
+//		String hql = "From MenuBean where productName like '%"+searchBarString+"%' Order By productNo";
+		int startItemNo = (currentPageNo - 1) * itemsPerPage;
+		Session session = factory.getCurrentSession();
+		List<MenuBean> ProductsListGetByCate = new ArrayList<>();
+		ProductsListGetByCate = session.createQuery(hql)
+				.setParameter(0, cateSelect)
+				.setFirstResult(startItemNo)
+				.setMaxResults(itemsPerPage)
+				.getResultList();
+		return ProductsListGetByCate;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public long getTotalItemCountsByCate() { // 所有產品的個數
+		long count = 0;
+		String hql = "SELECT count(*) FROM MenuBean where cate = ?0";
+//		String hql = "SELECT count(*) FROM MenuBean where productName like '%"+searchBarString+"%'";
+		Session session = factory.getCurrentSession();
+		List<Long> list = session.createQuery(hql).setParameter(0, cateSelect).list();
+		if (list.size() > 0) {
+			count = list.get(0);
+		}
+		return count;
+	}
+
+	private int totalPagesByCate = -1;
+
+	// 計算販售的商品總共有幾頁
+	@Override
+	public int getTotalPagesByCate() {
+		// 注意下一列敘述的每一個型態轉換
+		totalPagesByCate = (int) (Math.ceil(getTotalItemCountsByCate() / (double) itemsPerPage));
+
+		return totalPagesByCate;
+	}
+	
+	private String statusSelect = null;
+
+	public String getStatusSelect() {
+		return statusSelect;
+	}
+
+	public void setStatusSelect(String statusSelect) {
+		this.statusSelect = statusSelect;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuBean> getProductsListGetByProductStatus() {
+		System.out.println("DAO statusSelect:"+statusSelect);
+		String hql = "From MenuBean where productStatus = ?0 Order By productNo";
+//		String hql = "From MenuBean where productName like '%"+searchBarString+"%' Order By productNo";
+		int startItemNo = (currentPageNo - 1) * itemsPerPage;
+		Session session = factory.getCurrentSession();
+		List<MenuBean> ProductsListGetByProductStatus = new ArrayList<>();
+		ProductsListGetByProductStatus = session.createQuery(hql)
+				.setParameter(0, statusSelect)
+				.setFirstResult(startItemNo)
+				.setMaxResults(itemsPerPage)
+				.getResultList();
+		return ProductsListGetByProductStatus;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public long getTotalItemCountsByProductStatus() { // 所有產品的個數
+		long count = 0;
+		String hql = "SELECT count(*) FROM MenuBean where productStatus = ?0";
+//		String hql = "SELECT count(*) FROM MenuBean where productName like '%"+searchBarString+"%'";
+		Session session = factory.getCurrentSession();
+		List<Long> list = session.createQuery(hql).setParameter(0, statusSelect).list();
+		if (list.size() > 0) {
+			count = list.get(0);
+		}
+		return count;
+	}
+
+	private int totalPagesByProductStatus = -1;
+
+	// 計算販售的商品總共有幾頁
+	@Override
+	public int getTotalPagesByProductStatus() {
+		// 注意下一列敘述的每一個型態轉換
+		totalPagesByProductStatus = (int) (Math.ceil(getTotalItemCountsByProductStatus() / (double) itemsPerPage));
+
+		return totalPagesByProductStatus;
+	}
+	
+	@Override
+	public void updateMenu(MenuBean menuBean) {
+		Session session = factory.getCurrentSession();
+		session.update(menuBean);
+		
+	}
+
+
 }

@@ -59,7 +59,7 @@ public class OrderBean implements Serializable {
 		this.orderId = orderId;
 	}
 
-	@Column(columnDefinition="VARCHAR(12) NOT NULL",name="orderNo")
+	@Column(columnDefinition="VARCHAR(12) NOT NULL",name="orderNo",unique=true)
 	public String getOrderNo() {
 		return orderNo;
 	}
@@ -103,8 +103,7 @@ public class OrderBean implements Serializable {
 	}
 	
 
-	@OneToMany(cascade=CascadeType.ALL ,orphanRemoval = true)
-	@JoinColumn(name="fk_orderId", referencedColumnName="orderId")
+	@OneToMany(mappedBy="orderBean")
 	public Set<OrderDetailBean> getOrderDetailBean() {
 		return OrderDetailBean;
 	}

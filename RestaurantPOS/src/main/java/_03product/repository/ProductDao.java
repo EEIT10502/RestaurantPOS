@@ -41,5 +41,22 @@ public interface ProductDao {
 
 	int getTotalPagesBySearch();
 
-	
+	List<MenuBean> getProductsListGetByCate();
+
+	void setCateSelect(String cateSelect);
+
+	long getTotalItemCountsByCate();
+
+	int getTotalPagesByCate();
+
+	int getTotalPagesByProductStatus();
+
+	long getTotalItemCountsByProductStatus();
+
+	List<MenuBean> getProductsListGetByProductStatus();
+
+	void setStatusSelect(String statusSelect);
+
+	void updateMenu(MenuBean menuBean);
+
 }

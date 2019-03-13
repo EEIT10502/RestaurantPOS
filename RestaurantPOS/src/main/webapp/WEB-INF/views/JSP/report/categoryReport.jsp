@@ -21,7 +21,7 @@
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
 
-<form>
+<form action="categoryReportGet" method="post">
 <!-- 報表版面 -->
 <div class="w3-container" style="margin-left:160px">
 <div>
@@ -33,15 +33,17 @@
 	<input type="date" id="csDate2" name="csDate2"><p>
 
 	<!-- 類別下拉選單 -->
-	<select>
-		<option id="csSelOpt" name="csSelOpt"></option>
+	<select id="csSelOpt" name="csSelOpt">
+		<c:forEach var="csSel" items="${listMenuCate}">
+			<option>${csSel}</option>
+		</c:forEach>
 	</select>
 	
 	<input type="submit" value="查詢" id="csSel" name="csSel">
 </div>
 
 <div>
-	<h4>xxxx年xx月xx日</h4>  <!-- 顯示查詢年月日 -->
+	<h5>選擇日期：${csDate1}至${csDate2}</h5>
 	<input type="button" value="匯出報表" id="csExport" name="csExport">
 	
 	<table border="1">
@@ -50,20 +52,17 @@
 			<th>類別名稱</th>
 			<th>數量</th>
 			<th>銷售金額</th>
-			<th>小計</th>
 		</tr>
-<%--		<c:forEach var="pTable" items="">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-		</c:forEach> --%>
+<%-- 		<c:forEach var="pTable" items="${listCatee}"> --%>
+<!-- 				<tr> -->
+<%-- 					<td>${pTable.orderTime}</td> --%>
+<%-- 					<td>${pTable[0]}</td> --%>
+<%-- 					<td>${pTable[1]}</td> --%>
+<!-- 					<td></td> -->
+<!-- 				</tr> -->
+<%-- 		</c:forEach> --%>
 		<tr>
 			<th>總計</th>
-			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
