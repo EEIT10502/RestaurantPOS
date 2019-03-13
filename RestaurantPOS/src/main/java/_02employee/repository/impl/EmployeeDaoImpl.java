@@ -62,14 +62,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		public void updateEmployee(EmployeeBean employee) {
 			Session session = factory.getCurrentSession();
 			session.update(employee);
-			
 		}
-
+		
+		//登入登出
 		@Override
 		public ManagerBean checkIDPassword(String mAccount, String mPwd) {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
 
 		
 //	@SuppressWarnings("unchecked")

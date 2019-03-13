@@ -16,6 +16,7 @@ public interface EmployeeService {
 	
 	//更新資料
 	void updateEmployee(EmployeeBean employee);
+	
 
 //	// 以員工NO查詢員工
 //	public EmployeeBean getEmployeesByNo(String empNo);
@@ -27,6 +28,7 @@ public interface EmployeeService {
 //	List<EmployeeBean> getEmployeesByPosition(String position);
 	
 	public ManagerBean checkIDPassword(String mAccount, String mPwd);
+
 
 
 	

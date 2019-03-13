@@ -46,12 +46,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 		public EmployeeBean getEmployeesById(int empId) {
 			return employeeDao.getEmployeesById(empId);
 		}
+		
 
 		//更新員工資料
+		@Transactional
 		@Override
 		public void updateEmployee(EmployeeBean employee) {
+			
 			employeeDao.updateEmployee(employee);
+			
 		}
+		
 
 //	@Transactional
 //	@Override
@@ -73,6 +78,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return managerBean;
 		}
 
+		
+
+		
+
+		
+
+		
 	
 	
 

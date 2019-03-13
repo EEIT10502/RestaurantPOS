@@ -16,7 +16,7 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 </head>
-<title>員工查詢</title>
+<title>員工查詢2</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -39,9 +39,9 @@ border:1px solid black
 
 <script type="text/javascript">
 function confirmUpdate(userId){
-	  var result = confirm("確定送出此筆記錄(帳號:" + userId.trim() + ")?");
+	  var result = confirm("確定送出此筆記錄(帳號:" + (document.getElementById("empId").value.trim()) + ")?");
 	  if (result) {
-		  document.forms[0].putOrDelete.value = "PUT";
+// 		  document.forms[0].putOrDelete.value = "PUT";
 	      return true;
 	  }
 	  return false;
@@ -50,31 +50,35 @@ function confirmUpdate(userId){
 </script>
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
-<form:form class='center' action="${pageContext.request.contextPath}/_02/mscv/members/${member.pk}" 
-     modelAttribute="member" method="POST" >
-    <input type="hidden" name="_method"  id='putOrDelete'   value="" >
-    <input type="hidden" name="pk"     value="${member.pk}" >
-    <input type="hidden" name="id"     value="${member.id}${param.id}" >
-    <input type="hidden" name="finalDecision" value="" >
+<form:form method='POST' modelAttribute="empEdit"
+			class='form-horizontal' enctype='multipart/form-data'>
+<!-- 			 <input type="hidden" name="_method"  id='putOrDelete'   value="put" /> -->
+
 <div class="w3-container" style="margin-left:160px">
 <h1>員工資料查詢</h1>
-
 <table>
 <tr>
-<td rowspan="10"><img width="100px" height="100px" src="<c:url value='/getPicture/${empQueryFor1.empId}'/>"></td><td>序號</td><td>${empQueryFor1.empId}</td></tr>
-<tr><td>狀態</td><td>${empQueryFor1.status}</td></tr>
-<tr><td>編號</td><td>${empQueryFor1.empNo}</td></tr>
-<tr><td>姓名</td><td>${empQueryFor1.empName}</td></tr>
-<tr><td>性別</td><td>${empQueryFor1.gender}</td></tr>
-<tr><td>職位</td><td>${empQueryFor1.position}</td></tr>
-<tr><td>電話</td><td>${empQueryFor1.tel}</td></tr>
-<tr><td>電話</td><td>${empQueryFor1.tel}</td></tr>
-<tr><td>地址</td><td>${empQueryFor1.addr}</td></tr>
-<tr><td>備註</td><td>${empQueryFor1.remark}</td></tr>
+<td rowspan="10"><img width="100px" height="100px" src="<c:url value='/getPicture/${empEdit.empId}'/>">
+<P><form:input path="empImg" type='file'  />empImg</td>
+
+<td>編號</td><td><form:input path="empId" id="empId" name= "empId" type="number" value="${empEdit.empId}"/></td>
+
+
+</tr>
+
+<tr><td>狀態</td><td><form:input path="status" value="${empEdit.status}"/></td></tr>
+<tr><td>編號</td><td><form:input path="empNo" value="${empEdit.empNo}"/></td></tr>
+<tr><td>姓名</td><td><form:input path="empName" value="${empEdit.empName}"/></td></tr>
+<tr><td>性別</td><td><form:input path="gender" value="${empEdit.gender}"/></td></tr>
+<tr><td>職位</td><td><form:input path="position" value="${empEdit.position}"/></td></tr>
+<tr><td>電話</td><td><form:input path="tel" value="${empEdit.tel}"/></td></tr>
+<tr><td>地址</td><td><form:input path="addr" value="${empEdit.addr}"/></td></tr>
+<tr><td>檔案名稱</td><td><form:input path="fileName" value="${empEdit.fileName}"/></td></tr>
+<tr><td>備註</td><td><form:input path="remark" value="${empEdit.remark}"/></td></tr>
 </table>
 
 <p>
-<input type="submit" value="更新" name='updateBtn' onclick="return confirmUpdate('${empQueryFor1.empId}');"> 
+<input type="submit" name='updateBtn' onclick="return confirmUpdate('${empEdit.empId}');">
 <a href="<spring:url value='empQuery'/>">返回</a>
 </p>
 </div>
