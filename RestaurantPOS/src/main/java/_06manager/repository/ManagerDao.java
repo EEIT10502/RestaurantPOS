@@ -17,6 +17,9 @@ public interface ManagerDao {
 	//按照orderId 取回一個List<OrderDetailBean> 給列印功能使用
 	public List<OrderDetailBean> queryODetailById(int orderId);
 	
-	//找出資料庫中最後一筆Order資料
+	//找出資料庫中最新一筆Order資料
 	public OrderBean getLastOrderBean();
+	
+	//按照orderNo 取回一個OrderBean給列印功能使用
+	public OrderBean getOrderBeanByOrderNo(String orderNo);
 }

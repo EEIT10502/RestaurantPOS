@@ -53,5 +53,12 @@ public class ManagerServiceImpl implements ManagerService{
 		
 		return dao.getLastOrderBean();
 	}
+	
+	@Transactional
+	@Override
+	public OrderBean getOrderBeanByOrderNo(String orderNo) {
+		
+		return dao.getOrderBeanByOrderNo(orderNo);
+	}
 
 }
