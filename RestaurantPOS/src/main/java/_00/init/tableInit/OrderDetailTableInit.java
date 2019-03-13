@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import _00model.OrderBean;
 import _00model.OrderDetailBean;
 
 public class OrderDetailTableInit {
@@ -34,14 +35,18 @@ public class OrderDetailTableInit {
 				}
 				String[] token = line.split("\\|");
 				OrderDetailBean orderDetail = new OrderDetailBean();
-				orderDetail.setOrderNo(Integer.valueOf(token[0]));
-				orderDetail.setCategory(token[1]);
-				orderDetail.setProductNo(Integer.valueOf(token[2]));
-				orderDetail.setProductName(token[3]);
-				orderDetail.setQty(Integer.valueOf(token[4]));
-				orderDetail.setSpecialReq(token[5]);
-				orderDetail.setProductPrice(Integer.valueOf(token[6]));
 				
+				orderDetail.setCategory(token[0]);
+				orderDetail.setProductNo(Integer.valueOf(token[1]));
+				orderDetail.setProductName(token[2]);
+				orderDetail.setQty(Integer.valueOf(token[3]));
+				orderDetail.setSpecialReq(null);
+				orderDetail.setProductPrice(Integer.valueOf(token[4]));
+				
+				int id = Integer.parseInt(token[5].trim());
+				OrderBean ob = session.get(OrderBean.class, id);
+				
+				orderDetail.setOrderBean(ob);
 				session.save(orderDetail);
 				
 			}
