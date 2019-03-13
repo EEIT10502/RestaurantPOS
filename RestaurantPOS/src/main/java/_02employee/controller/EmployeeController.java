@@ -54,12 +54,12 @@ public class EmployeeController {
 	}
 
 //	Index.jsp開超連結，方便查看登入
-	@RequestMapping("/manage/managelogin")
-	public String empLogin(Model model) {
-		System.out.println("管理員登入");
-
-		return "manage/managelogin";
-	}
+//	@RequestMapping("/manage/managelogin")
+//	public String empLogin(Model model) {
+//		System.out.println("管理員登入");
+//
+//		return "manage/managelogin";
+//	}
 
 //	// 白名單
 //	@InitBinder

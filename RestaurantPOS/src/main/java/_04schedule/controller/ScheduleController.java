@@ -37,9 +37,9 @@ public class ScheduleController {
 			System.out.println("choice:"+choice);
 		
 		    //建構一個errorMsgMap的Map 將錯誤訊息放入
-			Map<String, String> errorMsgMap = new HashMap<String, String>();
+			Map<String, String> Msg = new HashMap<String, String>();
 //			model.addAttribute("ErrorMsgKey", errorMsgMap);
-			errorMsgMap.put("empNoError", "員工編號錯誤");		
+					
 				
 			EmployeeBean emp = service.checkByEmpNo(empNO);
 		
@@ -59,13 +59,15 @@ public class ScheduleController {
 			
 			
 			service.addAttendence(attendenceBean);        //新增
+			Msg.put("msg", "打卡成功");
 		}else {
 			System.out.println("無法取得");
+			Msg.put("msg", "打卡失敗");
 		}
 		
 		
 		//需要在前端將該MAP物件取出
-		return  errorMsgMap;
+		return  Msg;
 
 	}
 	
