@@ -30,7 +30,17 @@ public class MenuBean implements Serializable {
 		
 	}
 	
-	
+	public MenuBean(Integer pId, Integer productNo, String productName, Integer price, String cate,
+			String productStatus) {
+		super();
+		this.pId = pId;
+		this.productNo = productNo;
+		this.productName = productName;
+		this.price = price;
+		this.cate = cate;
+		this.productStatus = productStatus;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="pId")

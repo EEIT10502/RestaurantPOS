@@ -35,7 +35,7 @@ public class TargetTurnoverBean implements Serializable{
 		this.id = id;
 	}
 
-	@Column(columnDefinition="VARCHAR(6) NOT NULL",name="date")
+	@Column(columnDefinition="VARCHAR(7) NOT NULL",name="date")
 	public String getDate() {
 		return date;
 	}
