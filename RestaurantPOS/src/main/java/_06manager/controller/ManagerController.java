@@ -67,8 +67,8 @@ public class ManagerController {
 		
 		// 呼叫靜態列印方法
 		MainPrinter.printBill(orderBean, OrderDetailBeanSet);
+		MainPrinter.printForBK(orderBean, OrderDetailBeanSet);
 		
-		MainPrinter.printBill(orderBean, OrderDetailBeanSet);
 		
 		return "redirect:/";
 	}

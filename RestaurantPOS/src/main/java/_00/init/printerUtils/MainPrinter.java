@@ -1,12 +1,17 @@
 package _00.init.printerUtils;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Set;
 
 import _00.init.util.GlobalService;
 import _00.init.util.SystemUtils2018;
 import _00model.OrderBean;
 import _00model.OrderDetailBean;
+import _00.init.printerUtils.*;
 
 public class MainPrinter {
 
@@ -20,9 +25,6 @@ public class MainPrinter {
 		// 初始化印表機
 		posPrinter.initPos();
 		posPrinter.bold(true);
-//		posPrinter.printTabSpace(2);
-//		posPrinter.printWordSpace(1);
-//		posPrinter.printLocation(1);
 		posPrinter.printText("EEIT105");
 		posPrinter.printLocation(1);
 		posPrinter.printTextNewLine("----------------------------------------------");
@@ -74,4 +76,67 @@ public class MainPrinter {
 	}
 	
 	}
+
+	public static void printForBK(OrderBean orderBean,Set<OrderDetailBean> OrderDetailBeanSet) {
+		
+		 Socket socket = null;
+	        try {
+	        	String printContent = "";
+	            socket = new Socket();
+	            socket.connect(new InetSocketAddress(GlobalService.IP, 9100), 4000);
+	            
+	            System.out.println("CashierDesk=====小票机连接成功，IP：" + GlobalService.IP);
+	            
+	            OutputStream os = socket.getOutputStream();
+	            
+	            
+	            printContent += PrinterCmdUtils.bothDouble();
+	            printContent += PrinterCmdUtils.boldOn();
+	            printContent += "廚房單\n";
+	            printContent += "叫號機: "+orderBean.getCallNo()+"\n";
+	            
+	            printContent += PrinterCmdUtils.boldOff();
+	            printContent += PrinterCmdUtils.ZoomCancel();
+	            printContent += PrinterCmdUtils.longitudinalDouble();
+	            printContent += "--數量--------------------品名------\n";
+	            printContent += PrinterCmdUtils.bothDouble();
+	            printContent += PrinterCmdUtils.boldOn();
+	            for(OrderDetailBean set:OrderDetailBeanSet) {
+	            	 printContent += " "+set.getQty()+"\t\t"+set.getProductName()+"\n\n";
+	            	
+	            	
+	            }
+	            printContent += PrinterCmdUtils.boldOff();
+	            printContent += PrinterCmdUtils.ZoomCancel();
+	           
+	            // 切纸命令
+	            String text = printContent + "\n\n\n\n\n\n";
+	            byte[] CMD_INIT = { 27, 64 };
+	            os.write(CMD_INIT);
+	            os.write(text.getBytes("BIG5"));
+	            final byte[] CMD_CUT = { 0x1D, 0x56, 0x01 };
+	            os.write(CMD_CUT);
+	            System.out.println("CashierDesk=====小票机打印完成，IP：" +  GlobalService.IP);
+	            
+
+	        } catch (UnknownHostException e) {
+	        
+	            System.out.println("CashierDesk=====小票机连接失败，IP：" +  GlobalService.IP);
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            System.out.println("CashierDesk=====小票机连接失败，IP：" +  GlobalService.IP);
+	            e.printStackTrace();
+	        } finally {
+	            if (socket != null) {
+	                try {
+	                    socket.close();
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+		
+		}
+
+
 }
