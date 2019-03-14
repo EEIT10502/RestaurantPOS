@@ -30,7 +30,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages= {"_01foodAndBeverages","_02employee","_03product","_04schedule","_05financial","_00.init","_06manager"})
+@ComponentScan(basePackages= {"_01foodAndBeverages","_02employee","_03product","_04schedule","_05financial","_00.init","_06manager","_07dailyClosing"})
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
