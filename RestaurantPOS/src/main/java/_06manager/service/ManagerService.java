@@ -1,10 +1,13 @@
 package _06manager.service;
 
 import java.util.List;
+import java.util.Map;
 
+import _00model.CumulativeTurnoverBean;
 import _00model.ManagerBean;
 import _00model.OrderBean;
 import _00model.OrderDetailBean;
+import _00model.TargetTurnoverBean;
 
 public interface ManagerService {
 	
@@ -39,4 +42,24 @@ public interface ManagerService {
 	 * @return 回傳一個OrderBean
 	 */
 	public OrderBean getOrderBeanByOrderNo(String orderNo);
+	/**
+	 * 取得最新的一筆CumulativeTurnoverBean
+	 * @return 回傳一個CumulativeTurnoverBean
+	 */
+	public CumulativeTurnoverBean getLastCumulativeTurnoverBean();
+	/**key:value
+	 * key:來客數
+	 * key:翻桌率
+	 * key:客平均消費
+	 * @param date 傳入一個格式是yyyy-MM-dd的日期字串
+	 * @return 回傳一個Map物件  
+	 */
+	public Map<String, Object> getDayCheckAnalysisDate(String date);
+	/**
+	 * 取得含有當月份目標營業額的TargetTurnoverBean
+	 * @return 一個TargetTurnoverBean
+	 */
+	public TargetTurnoverBean getMonthTarget();
+	
+	
 }
