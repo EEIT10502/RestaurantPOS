@@ -28,35 +28,26 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#checkout").click(function() {
-// 		alert("11");
-		
+	$("#checkout").click(function() {		
         var moneyReceivedBtn=$("#moneyReceivedBtn").val();
 		var turnoverBtn = $("#turnoverBtn").val();
 		
-		window.alert("當日實收金額 : "+moneyReceivedBtn); 
-		window.alert("當日實收金額 : "+turnoverBtn); 
-        
-
-        $.ajax({
+        $.ajax({     	
                 type :'POST',
-                url  : '/RestaurantPOS/close/checkDiffAmount.action',
+                url  :'/RestaurantPOS/close/checkDiffAmount.action',
                 data : {
                 	"moneyReceivedInsert" : moneyReceivedBtn,
                 	"totalSalesAmountToday": turnoverBtn
                 },
-//                 dataType: "text",
-                error: function(xhr) {
+                error: function() {
 			      	alert('Ajax request 發生錯誤');
 			    },
 			    success: function(response) {
 			    	var Dif = response;
 			    	document.getElementById("aftercheck").innerHTML = Dif;
-			    	
+			    	document.getElementById("shortoverAmountBtn").value = Dif;
+			    	alert('當日實收金額 與 當日應收金額 有差異!!');
 			    }
-//                 success : function(happy) {
-//                     $("#output").html(happy);                            
-//             }
             })
     });
 });

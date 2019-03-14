@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import _00model.CumulativeTurnoverBean;
 import _07dailyClosing.service.DailyClosingService;
@@ -44,6 +45,7 @@ public class DailyClosingController {
 	}
 	
 	@RequestMapping(value = "/close/checkDiffAmount.action", method = RequestMethod.POST)
+	@ResponseBody
 	public String checkDiffAmount(@RequestParam(value = "moneyReceivedInsert", required = false) String moneyReceivedInsert, @RequestParam(value = "totalSalesAmountToday", required = false) String totalSalesAmountToday, Model model) {
 		System.out.println(12);
 		System.out.println("moneyReceivedInsert:"+moneyReceivedInsert);
@@ -53,6 +55,7 @@ public class DailyClosingController {
 		int moneyReceivedInsertCount = Integer.parseInt(moneyReceivedInsert.trim());
 		
 		String Dif = String.valueOf((totalSalesAmountTodayCount-moneyReceivedInsertCount));
+		System.out.println("Dif:"+Dif);
 		
 		return Dif;// 按JSP目錄層
 	}
