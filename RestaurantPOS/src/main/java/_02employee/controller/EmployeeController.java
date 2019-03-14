@@ -1,30 +1,27 @@
 package _02employee.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import _00.init.util.GlobalService;
 import _00model.EmployeeBean;
 import _02employee.service.EmployeeService;
 
@@ -53,19 +51,6 @@ public class EmployeeController {
 		return "empManage/empInsert";
 	}
 
-//	Index.jsp開超連結，方便查看登入
-//	@RequestMapping("/manage/managelogin")
-//	public String empLogin(Model model) {
-//		System.out.println("管理員登入");
-//
-//		return "manage/managelogin";
-//	}
-
-//	// 白名單
-//	@InitBinder
-//	public void whiteListing(WebDataBinder binder) {
-//		binder.setAllowedFields("empNo", "empName", "gender", "position", "tel", "addr", "remark", "status", "empImg");
-//	}
 
 	// 新增員工資料1
 	@RequestMapping(value = "/empManage/empInsert", method = RequestMethod.GET)
@@ -77,20 +62,65 @@ public class EmployeeController {
 
 	// 新增員工資料2
 	@RequestMapping(value = "/empManage/empInsert", method = RequestMethod.POST)
-	public String processAddNewEmpForm(@ModelAttribute("employeeBean") EmployeeBean employeeBean, BindingResult result,
+	public String processAddNewEmpForm(@ModelAttribute("employeeBean") EmployeeBean employeeBean, Model model,BindingResult result,
 			HttpServletRequest req) {
-		String[] suppressedFields = result.getSuppressedFields();
-		if (suppressedFields.length > 0) {
-			throw new RuntimeException("嘗試傳入不允許的欄位:" + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		
+		
+		//錯誤訊息
+		Map<String, String> errors = new HashMap<>();
+		model.addAttribute("modelErrors", errors);
+		
+		// 員工姓名
+		String employeeNameInsert = employeeBean.getEmpName();
+		if (employeeNameInsert == null || employeeNameInsert.length() == 0) {
+			errors.put("errorOfEmployeeName", "請輸入員工姓名");
 		}
-
+		
+		// 員工電話
+		String employeeTelInsert = employeeBean.getTel();
+		if (employeeTelInsert == null || employeeTelInsert.length() == 0) {
+			errors.put("errorOfEmployeeTel", "請輸入員工電話");
+		}
+//
+//		// 員工地址
+		String employeeAddrInsert = employeeBean.getAddr();
+		if (employeeAddrInsert == null || employeeAddrInsert.length() == 0) {
+			errors.put("errorOfEmployeeAddr", "請輸入員工地址");
+		}
+//
+//		// 員工職位(選項)
+		String positionInsert = employeeBean.getPosition();
+		if (positionInsert == null || positionInsert.equals("-1")) {
+			errors.put("errorOfPosition", "請選擇職位");
+		}
+//
+//		// 員工性別(選項)
+		String genderInsert = employeeBean.getGender();
+		if (genderInsert == null || genderInsert.equals("-1")) {
+			errors.put("errorOfGender", "請選擇性別");
+		}
+//
+//		// 員工狀態(選項)
+		String empStatusInsert = employeeBean.getStatus();
+		if (empStatusInsert == null || empStatusInsert.equals("-1")) {
+			errors.put("errorOfEmpStatus", "請選擇就職狀況");
+		}
+//		
+//		//員工照片
+		Blob empImage = employeeBean.getImg();
+		if (empImage == null || ((MultipartFile) empImage).isEmpty() ) {
+			errors.put("errorOfEmpPictures", "請上傳照片");
+		}
+		
+		//照片方法
 		MultipartFile empImg = employeeBean.getEmpImg();
-		String originalFileName = empImg.getOriginalFilename();
-		employeeBean.setFileName(originalFileName);
+		
+//		String originalFileName = empImg.getOriginalFilename();
+//		employeeBean.setFileName(originalFileName);
 
-		String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+//		String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
 //		String rootDirectory = context.getRealPath("/");
-		// 建立Blob物件，交由Hibernate 寫入資料庫
+//		 建立Blob物件，交由Hibernate 寫入資料庫
 		if (empImg != null && !empImg.isEmpty()) {
 			try {
 				byte[] b = empImg.getBytes();
@@ -114,6 +144,17 @@ public class EmployeeController {
 //			e.printStackTrace();
 //			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 //		}
+		if (errors != null && !errors.isEmpty()) {
+			System.out.println("14");
+			return "productManage/productInsert";
+		}
+		
+		Integer currentEmpNo = employeeBean.getEmpNo();
+		Integer empNoInsert = employeeService.getCurrentEmpNo(currentEmpNo);
+				if(empNoInsert == null || empNoInsert.equals(0))
+				employeeBean.setEmpNo(empNoInsert+1);
+		
+		
 		return "redirect:/empManage/empQuery";
 	}
 
@@ -173,6 +214,8 @@ public class EmployeeController {
 //		}
 //		return b;
 //	}
+	
+	
 
 	// 列出所有員工
 	@RequestMapping("/empManage/empQuery")
@@ -188,6 +231,28 @@ public class EmployeeController {
 //			model.addAttribute("empQueryFor1", employeeService.getEmployeesByNo(empNo));
 //			return "empManage/empQueryFor1";
 //		}
+	
+//	//列出職員類別
+	@ModelAttribute("empCateList")
+	public List<String> getEmpCategoryList() {
+		List<String> empCateList = new ArrayList<String>();
+		empCateList.add(GlobalService.Employee_CATE_waiter);
+		empCateList.add(GlobalService.Employee_CATE_EChef);
+		empCateList.add(GlobalService.Employee_CATE_MChef);
+		empCateList.add(GlobalService.Employee_CATE_manager);
+		return empCateList;
+	}
+	
+	
+	//列出員工就職狀況
+	@ModelAttribute("empStatusList")
+	public List<String> getEmpStatusList() {
+		List<String> empStatusList = new ArrayList<String>();
+		empStatusList.add(GlobalService.Employee_Status_In_Service);
+		empStatusList.add(GlobalService.Employee_Status_Resignate);
+		empStatusList.add(GlobalService.Employee_Status_Leave_of_absence);
+		return empStatusList;
+	}
 
 	// 點入單筆員工的資料 ID版
 	@RequestMapping("/empManage/empQueryFor1")
@@ -201,7 +266,7 @@ public class EmployeeController {
 	public String getEmployeeEditPage(@RequestParam("empId") Integer empId, Model model) {
 		EmployeeBean employeeBean = employeeService.getEmployeesById(empId);
 		model.addAttribute("empEdit", employeeBean);
-
+		System.out.println(employeeBean);
 		return "empManage/empEdit";
 	}
 	
@@ -210,30 +275,27 @@ public class EmployeeController {
 	public String updateEmployee(@RequestParam("empId") Integer empId,
 			@ModelAttribute("empEdit") EmployeeBean employeeBean, BindingResult result,
 			HttpServletRequest req) {
-		System.out.println("PLEASE!!");
-//		EmployeeBean employeeBean2 = employeeService.getEmployeesById(employeeBean);
-//		System.out.println(employeeBean2);
-		System.out.println(employeeBean);
+		MultipartFile empImg = employeeBean.getEmpImg();
+		// 建立Blob物件，交由Hibernate 寫入資料庫
+				if (empImg != null && !empImg.isEmpty()) {
+					try {
+						byte[] b = empImg.getBytes();
+						Blob blob = new SerialBlob(b);
+						employeeBean.setImg(blob);
+						;
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+					}
+				}
+		
+		
 		employeeService.updateEmployee(employeeBean);
-		System.out.println("PLEASE UPDATE!!");
 		
 		return "redirect:/empManage/empQueryFor1";
 	}
 	
-//	FROM 阿賢
-//	 @RequestMapping(value = "/updateSchedule", method = RequestMethod.GET)
-//	 public String getUpdateScheduleForm(Model model, @RequestParam("scheduleId") Integer scheduleId) {
-//	  Schedule updateSchedule = scheuleService.getScheduleByPrimaryKey(scheduleId);
-//	  model.addAttribute("schedule", updateSchedule);
-//	  return "schedule/updateSchedule";
-//	 }
-//
-//	 @RequestMapping(value = "/updateSchedule", method = RequestMethod.POST)
-//	 public String UpdateScheduleForm(@ModelAttribute("schedule")Schedule schedule, BindingResult result,
-//	   HttpServletRequest request) {
-//	  scheuleService.updateScheduleByPrimaryKey(schedule);
-//	  return "redirect:/scheduleManage";
-//	 }
+
 	
 
 //		@RequestMapping(value = "/employeeInsert.action", method = RequestMethod.POST)
@@ -255,55 +317,9 @@ public class EmployeeController {
 //				}
 //			}
 	//
-//			// 員工姓名
-//			String employeeNameInsert = employeeBean.getEmpName();
-//			if (employeeNameInsert == null || employeeNameInsert.length() == 0) {
-//				errors.put("errorOfEmployeeName", "請輸入員工姓名");
-//			}
-	//
-//			// 員工電話
-//			String employeeTelInsert = employeeBean.getTel();
-//			if (employeeTelInsert == null || employeeTelInsert.length() == 0) {
-//				errors.put("errorOfEmployeeTel", "請輸入員工電話");
-//			}
-	//
-//			// 員工地址
-//			String employeeAddrInsert = employeeBean.getAddr();
-//			if (employeeAddrInsert == null || employeeAddrInsert.length() == 0) {
-//				errors.put("errorOfEmployeeAddr", "請輸入員工地址");
-//			}
-	//
-//			// 員工職位(選項)
-//			String positionInsert = employeeBean.getPosition();
-//			if (positionInsert == null || positionInsert.equals("-1")) {
-//				errors.put("errorOfPosition", "請選擇職位");
-//			}
-	//
-//			// 員工性別(選項)
-//			String genderInsert = employeeBean.getGender();
-//			if (genderInsert == null || genderInsert.equals("-1")) {
-//				errors.put("errorOfGender", "請選擇性別");
-//			}
-	//
-//			// 員工狀態(選項)
-//			String empStatusInsert = employeeBean.getStatus();
-//			if (empStatusInsert == null || empStatusInsert.equals("-1")) {
-//				errors.put("errorOfEmpStatus", "請選擇性別");
-//			}
 //			
-//			//員工照片
-//			Blob empImage = employeeBean.getImg();
-//			//  建立Blob物件，交由 Hibernate 寫入資料庫
-//			if (empImage != null && !((MultipartFile) empImage).isEmpty() ) {
-//				try {
-//					byte[] b = empImage.getBytes(0, 0);
-//					Blob blob = new SerialBlob(b);
-//					employeeBean.setImg(blob);
-//				} catch(Exception e) {
-//					e.printStackTrace();
-//					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
-//				}
-//			}
+	//
+//			
 //			
 	//
 //			// 員工備註(可null)

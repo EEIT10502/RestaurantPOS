@@ -33,8 +33,8 @@ border:1px solid black
 <tr>
 <td rowspan="10"><img width="100px" height="100px" src="<c:url value='/getPicture/${empQueryFor1.empId}'/>"></td>
 <td>序號</td><td>${empQueryFor1.empId}</td></tr>
-<tr><td>狀態</td><td>${empQueryFor1.status}</td></tr>
 <tr><td>編號</td><td>${empQueryFor1.empNo}</td></tr>
+<tr><td>狀態</td><td>${empQueryFor1.status}</td></tr>
 <tr><td>姓名</td><td>${empQueryFor1.empName}</td></tr>
 <tr><td>性別</td><td>${empQueryFor1.gender}</td></tr>
 <tr><td>職位</td><td>${empQueryFor1.position}</td></tr>

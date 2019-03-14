@@ -41,6 +41,7 @@ border:1px solid black
 <jsp:include page="../sideBar.jsp" flush="true" /> 
 <div class="w3-container" style="margin-left:160px">
 <h1>員工資料查詢</h1>
+<input type="text" >
 <table style="border:1px solid black">
 <tr><th>序號</th><th>狀態</th><th>員工編號</th><th>員工姓名</th><th>性別</th>
 <th>職位</th><th>電話</th><th>地址</th><th>照片</th><th>備註</th></tr>

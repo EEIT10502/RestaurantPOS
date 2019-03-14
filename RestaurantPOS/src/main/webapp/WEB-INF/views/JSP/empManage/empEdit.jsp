@@ -35,6 +35,12 @@ td,th{
 
 border:1px solid black
 }
+
+img{
+width: 100px;
+height:100px
+
+}
 </style>
 
 <script type="text/javascript">
@@ -56,24 +62,24 @@ function confirmUpdate(userId){
 
 <div class="w3-container" style="margin-left:160px">
 <h1>員工資料查詢</h1>
+<input path="empId" id="empId" name= "empId" type="hidden" value="${empEdit.empId}"/>
 <table>
 <tr>
-<td rowspan="10"><img width="100px" height="100px" src="<c:url value='/getPicture/${empEdit.empId}'/>">
-<P><form:input path="empImg" type='file'  />empImg</td>
+<%-- <img src="<c:url value='/getPicture/${empEdit.empId}'/>"> --%>
+<td rowspan="10">
+<form:input path="empImg" type='file' value=""/></td>
 
-<td>編號</td><td><form:input path="empId" id="empId" name= "empId" type="number" value="${empEdit.empId}"/></td>
 
 
 </tr>
 
-<tr><td>狀態</td><td><form:input path="status" value="${empEdit.status}"/></td></tr>
 <tr><td>編號</td><td><form:input path="empNo" value="${empEdit.empNo}"/></td></tr>
+<tr><td>狀態</td><td><form:input path="status" value="${empEdit.status}"/></td></tr>
 <tr><td>姓名</td><td><form:input path="empName" value="${empEdit.empName}"/></td></tr>
 <tr><td>性別</td><td><form:input path="gender" value="${empEdit.gender}"/></td></tr>
 <tr><td>職位</td><td><form:input path="position" value="${empEdit.position}"/></td></tr>
 <tr><td>電話</td><td><form:input path="tel" value="${empEdit.tel}"/></td></tr>
 <tr><td>地址</td><td><form:input path="addr" value="${empEdit.addr}"/></td></tr>
-<tr><td>檔案名稱</td><td><form:input path="fileName" value="${empEdit.fileName}"/></td></tr>
 <tr><td>備註</td><td><form:input path="remark" value="${empEdit.remark}"/></td></tr>
 </table>
 

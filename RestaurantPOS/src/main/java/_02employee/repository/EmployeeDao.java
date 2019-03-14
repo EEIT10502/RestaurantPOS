@@ -18,6 +18,13 @@ public interface EmployeeDao {
 	//更新員工資料
 	void updateEmployee(EmployeeBean employee);
 
+	//取得員工編號
+	Integer getCurrentEmpNo(int currentEmpNo);
+	
+	//列出職員類別
+	List<String> getAllEmpCategories();
+	
+	
 //	// 以員工NO查詢員工
 //	public EmployeeBean getEmployeesByNo(String empNo);
 	
@@ -25,10 +32,9 @@ public interface EmployeeDao {
 	public EmployeeBean getEmployeesById(int empId);
 	
 	// 以職位查詢員工
-//	List<EmployeeBean> getEmployeesByPosition(String position);
+	List<EmployeeBean> getEmployeesByPosition(String position);
 
 
-	public ManagerBean checkIDPassword(String mAccount,String mPwd);
 	
 	
 	

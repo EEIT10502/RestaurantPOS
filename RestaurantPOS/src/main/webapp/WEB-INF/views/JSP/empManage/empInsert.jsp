@@ -79,6 +79,7 @@ p.errorMessage[type="redError"] {
 					<form:option value="-1" label="請選擇"/>
 					<form:option value="服務生"  label="服務生"/>
 					<form:option value="廚師" label="廚師"/>
+					<form:option value="主廚" label="主廚"/>
 					<form:option value="經理" label="經理"/>
 					<form:option value="其他" label="其他"/>
 					</form:select>

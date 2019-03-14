@@ -16,4 +16,16 @@ public class GlobalService {
 	//product查詢所需資料_開始
 	public static final int ITEMS_PER_PAGE = 5;
 	//product查詢所需資料_結束
+	
+	
+	//employee
+	//職位
+	public static final String Employee_CATE_waiter = "服務生";
+	public static final String Employee_CATE_EChef= "廚師";
+	public static final String Employee_CATE_MChef = "主廚";
+	public static final String Employee_CATE_manager = "經理";
+	//就業狀態
+	public static final String Employee_Status_In_Service = "在職";
+	public static final String Employee_Status_Resignate = "離職";
+	public static final String Employee_Status_Leave_of_absence = "留職停薪";
 }

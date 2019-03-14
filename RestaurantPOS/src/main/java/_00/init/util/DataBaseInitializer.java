@@ -19,20 +19,20 @@ public class DataBaseInitializer {
 		SessionFactory factory= HibernateUtils.getSessionFactory();
 		
 		//建立Menu資料
-		//new MenuTableInit(factory).initMenu();
+		new MenuTableInit(factory).initMenu();
 		
 		//建立Manger資料 ，之後密碼會改暗碼
-		//new ManagerTableInit(factory).initManager();
+		new ManagerTableInit(factory).initManager();
 		
 		//建立Employee資料
-		//new EmployeeTableInit(factory).InitEmployee();
+		new EmployeeTableInit(factory).InitEmployee();
 		
 		//建立CumulativeTurnover資料
-		//new CumulativeTurnoverTableInit(factory).initCumulativeTurnover();
+		new CumulativeTurnoverTableInit(factory).initCumulativeTurnover();
 		
 		
 		//建立TargetTurnover資料
-		//new TargetTurnoverTableInit(factory).initTargetTurnover();
+		new TargetTurnoverTableInit(factory).initTargetTurnover();
 		
 		
 		//建立Order資料
@@ -48,7 +48,7 @@ public class DataBaseInitializer {
 		//
 		
 		//建立Attendence資料
-		//new AttendenceTableInit(factory).initAttendence();
+		new AttendenceTableInit(factory).initAttendence();
 		
 		factory.close();
 		System.out.println("建構表格完成!");

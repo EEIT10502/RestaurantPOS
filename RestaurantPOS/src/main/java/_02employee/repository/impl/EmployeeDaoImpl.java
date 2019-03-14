@@ -64,13 +64,35 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			session.update(employee);
 		}
 		
-		//登入登出
+		
+		//列出職員類別
+		@SuppressWarnings("unchecked")
 		@Override
-		public ManagerBean checkIDPassword(String mAccount, String mPwd) {
+		public List<String> getAllEmpCategories() {
+			List<String> list  = null;
+			String hql = "SELECT DISTINCT position FROM Employee";
+			Session session = factory.getCurrentSession();
+			list = session.createQuery(hql).list();
+			return list;
+		}
+
+		//取得現有員工編號最大值
+		@Override
+		public Integer getCurrentEmpNo(int currentEmpNo) {
+				String hql = "SELECT MAX(empNo) FROM Employee";
+				Session session = factory.getCurrentSession();
+				Integer currentEmpNo1 = (Integer) session.createQuery(hql).setParameter(0, currentEmpNo).uniqueResult();
+				return currentEmpNo1;
+			}
+
+
+		@Override
+		public List<EmployeeBean> getEmployeesByPosition(String position) {
 			// TODO Auto-generated method stub
 			return null;
 		}
 
+		
 
 		
 //	@SuppressWarnings("unchecked")
