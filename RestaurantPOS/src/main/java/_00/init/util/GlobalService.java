@@ -16,4 +16,9 @@ public class GlobalService {
 	//product查詢所需資料_開始
 	public static final int ITEMS_PER_PAGE = 5;
 	//product查詢所需資料_結束
+	
+	//下面兩個是給出單機的IP位置和編碼方式
+	public static final String IP="192.168.1.100";
+	public static final String Encoding="BIG5";
+	
 }

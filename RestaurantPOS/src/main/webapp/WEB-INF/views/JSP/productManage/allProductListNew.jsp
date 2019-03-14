@@ -32,25 +32,25 @@ td.errorMessage[type="redError"] {
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
 <!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
 <!-- 	crossorigin="anonymous"></script> -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	crossorigin="anonymous"></script>
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" -->
+<!-- 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" -->
+<!-- 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" -->
+<!-- 	crossorigin="anonymous"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
 <!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
 <!-- 	crossorigin="anonymous"></script> -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-	crossorigin="anonymous"></script>
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" -->
+<!-- 	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" -->
+<!-- 	crossorigin="anonymous"></script> -->
+<!-- <script -->
+<!-- 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" -->
+<!-- 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" -->
+<!-- 	crossorigin="anonymous"></script> -->
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
@@ -66,6 +66,7 @@ td.errorMessage[type="redError"] {
 						<th scope="col">價格</th>
 						<th scope="col">狀態</th>
 					</tr>
+					
 					<c:forEach var='product' items='${productsListGetByPage}'
 						varStatus="status">
 						<tr class="">
@@ -92,82 +93,118 @@ td.errorMessage[type="redError"] {
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-
-									<form:form class='center' action="${pageContext.request.contextPath}/productManage/allProductListEdit.action/${product.pId}" modelAttribute="MenuBean" method="put">
+									<form class='center' name="editForm${product.pId}" action="${pageContext.request.contextPath}/productManage/allProductListEdit.action/${product.pId}?currentPageNoBtn=${currentPageNo}" method="post">
 										<div class="modal-body">
-											<%-- 												<form> --%>
-											<input type="hidden" name="_method" id='put' value="">
-											    <input type="" name="pId" value="${product.pId}" >
-											    <input type="" name="productNo" value="${product.productNo}" >
-<%-- 											    <input type="hidden" name="productName" value="${product.productName}" > --%>
-											<!--     <input type="hidden" name="finalDecision" value="" >  -->
-
+<!-- 											<input type="hidden" name="_method" id='put' value=""> -->
+											<input type="hidden" name="pIdEdit" value="${product.pId}" >
+											<input type="hidden" name="productNoEdit" value="${product.productNo}" >
 											<div class="form-group row">
-												<label for="cateEdit${product.pId}"
-													class="col-sm-2 col-form-label">類別</label>
+												<label for="cateEdit${product.pId}" class="col-sm-2 col-form-label">類別</label>
 												<div class="col-sm-10">
-													<form:select path="cate" id="cateEdit${product.pId}"
-														class="form-control">
-														<form:option value="${product.cate}">${product.cate}</form:option>
-														<form:options items="${cateList}" />
-													</form:select>
-													<%--       <form:input path="name" type="text" class="form-control" id="cateEdit${product.pId}" value="${product.cate}"> --%>
-												</div>
+													<select name="cateEdit" id="cateEdit${product.pId}" class="form-control">
+														<c:forEach var='cates' items='${cateList}'>
+															<c:if test="${product.cate == cates}">
+																<option selected="selected"><c:out value="${cates}" /></option>
+															</c:if>
+															<c:if test="${product.cate!=cates}" >
+																<option><c:out value="${cates}" /></option>
+															</c:if>
+														</c:forEach>
+													</select>
+ 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="productNameEdit${product.pId}"
 													class="col-sm-2 col-form-label">商品名稱</label>
 												<div class="col-sm-10">
-<%-- 													<form:input id="productNameEdit${product.pId}" path="productName" type='text' name="productName" class='form-control' /> --%>
-													    <input type="text" class="form-control" id="productNameEdit${product.pId}" value="${product.productName}"/> 
+													<input id="productNameEdit${product.pId}" type="text" class="form-control" name="productNameEdit" value="${product.productName}"/> 
+													<span id="productNameEditError${product.pId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="priceEdit${product.pId}"
 													class="col-sm-2 col-form-label">價格</label>
 												<div class="col-sm-10">
-<%-- 													<form:input id="priceEdit${product.pId}" path="price" type='text' class='form-control' name="iPrice" /> --%>
-													    <input type="text" class="form-control" id="priceEdit${product.pId}" value="${product.price}">
+													<input id="priceEdit${product.pId}" type="text" class="form-control" name="priceEdit" value="${product.price}" onkeyup="value=value.replace(/[^\d.]/g,'')">
+													<span id="priceEditError${product.pId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="productStatusEdit${product.pId}"
 													class="col-sm-2 col-form-label">狀態</label>
 												<div class="col-sm-10">
-													<form:select path="productStatus"
-														id="productStatusEdit${product.pId}" class="form-control">
-														<form:option value="${product.productStatus}">${product.productStatus}</form:option>
-														<form:options items="${productStatusList}" />
-													</form:select>
-													<%-- 	     <select class="form-control" id="inlineFormCustomSelectPref"> --%>
-													<%-- 		    <option selected>${product.productStatus}</option> --%>
-													<%-- 		    <option items="${productStatusList}" /> --%>
-													<%-- 	  	</select> --%>
+													<select name="productStatusEdit" id="productStatusEdit${product.pId}" class="form-control">
+														<c:forEach var='productStatus' items='${productStatusList}'>
+															<c:if test="${product.productStatus == productStatus}">
+																<option selected="selected"><c:out value="${productStatus}" /></option>
+															</c:if>
+															<c:if test="${product.productStatus!=productStatus}" >
+																<option><c:out value="${productStatus}" /></option>
+															</c:if>
+														</c:forEach>
+													</select>
 												</div>
-												<!--     <div class="col-sm-10"> -->
-												<%--       <input type="text" class="form-control" id="priceEdit${productStatus.pId}" value="${product.productStatus}"> --%>
-												<!--     </div> -->
 											</div>
-
-											<!--   <div class="form-group row"> -->
-											<!--     <div class="col-sm-10"> -->
-											<!--       <button type="submit" class="btn btn-primary">Sign in</button> -->
-											<!--     </div> -->
-											<!--   </div> -->
-											<%-- </form> --%>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">關閉</button>
-											<button type="submit" class="btn btn-primary">儲存更新</button>
+											<button type="submit" id="submit${product.pId}" class="btn btn-primary">儲存更新</button>
 										</div>
-									</form:form>
+									</form>
 								</div>
 
 							</div>
 						</div>
-
 						<!-- Modal 結束-->
+						<script>
+							var flag="";
+							document.addEventListener("DOMContentLoaded", function() {
+								document.getElementById("productNameEdit${product.pId}").addEventListener("blur", function () {
+									if (document.getElementById("productNameEdit${product.pId}").value == "") {
+										document.getElementById("productNameEditError${product.pId}").innerHTML = "<span style='color:red'><i>商品名稱不可空白";
+										if (flag.indexOf("${product.pId}A") == -1) {
+											flag = flag.concat("${product.pId}A");
+										}													
+										document.getElementById("submit${product.pId}").disabled=true;
+									} else{
+										if (flag.indexOf("${product.pId}A") != -1) {
+											flag = flag.replace("${product.pId}A","");
+											document.getElementById("productNameEditError${product.pId}").innerHTML = "";
+										}
+										if (flag.indexOf("${product.pId}A") == -1 && flag.indexOf("${product.pId}B") == -1) {
+											document.getElementById("productNameEditError${product.pId}").innerHTML = "";
+											document.getElementById("submit${product.pId}").disabled=false;
+										}
+										
+									}
+								});
+							})
+
+							document.addEventListener("DOMContentLoaded", function() {
+								document.getElementById("priceEdit${product.pId}").addEventListener("blur", function () {
+									var reg = /[^\d.]/g;
+									if (document.getElementById("priceEdit${product.pId}").value == "") {
+										document.getElementById("priceEditError${product.pId}").innerHTML = "<span style='color:red'><i>價格不可空白";
+										if (flag.indexOf("${product.pId}B") == -1) {
+											flag = flag.concat("${product.pId}B");
+										}
+										document.getElementById("submit${product.pId}").disabled=true;
+									} else{
+										if (flag.indexOf("${product.pId}B") != -1) {
+											flag = flag.replace("${product.pId}B","");
+											document.getElementById("priceEditError${product.pId}").innerHTML = "";
+										}
+										if (flag.indexOf("${product.pId}A") == -1 && flag.indexOf("${product.pId}B") == -1) {
+											document.getElementById("priceEditError${product.pId}").innerHTML = "";
+											document.getElementById("submit${product.pId}").disabled=false;
+										}
+									}
+								});
+							})	
+							
+
+						</script>
 					</c:forEach>
 					<tr>
 						<td colspan="6" class="errorMessage" type="redError">${noItemString}</td>
