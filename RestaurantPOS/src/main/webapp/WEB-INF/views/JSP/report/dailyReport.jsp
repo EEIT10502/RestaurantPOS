@@ -76,6 +76,13 @@
 						<th>實收金額</th>
 					</tr>
 					<c:forEach var="dTableO" items="${listDailyOrder}" varStatus="loop">
+						<c:set var="totalList" value="${totalList + dTableO[1]}" />
+						<c:set var="totalCusFlow" value="${totalCusFlow + dTableO[2]}" />
+						<c:set var="totalMoney" value="${totalMoney + dTableO[3]}" />
+						<c:set var="totalShort"
+							value="${totalShort + listDailyCumu[loop.count-1].shortoverAmount}" />
+						<c:set var="totalReceived"
+							value="${totalReceived + listDailyCumu[loop.count-1].moneyReceived}" />
 						<tr>
 							<td>${dTableO[0]}</td>
 							<td>${dTableO[1]}</td>
@@ -87,11 +94,11 @@
 					</c:forEach>
 					<tr>
 						<th>總計</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${totalList}</td>
+						<td>${totalCusFlow}</td>
+						<td>${totalMoney}</td>
+						<td>${totalShort}</td>
+						<td>${totalReceived}</td>
 					</tr>
 				</table>
 			</div>
