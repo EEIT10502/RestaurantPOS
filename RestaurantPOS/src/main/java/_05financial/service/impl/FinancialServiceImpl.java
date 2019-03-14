@@ -42,6 +42,11 @@ public class FinancialServiceImpl implements FinancialService {
 	}
 	@Transactional
 	@Override
+	public List<MenuBean> getMenuProductByCate() {
+		return dao.getMenuProductByCate();
+	}
+	@Transactional
+	@Override
 	public List<CumulativeTurnoverBean> getCumulativeTurnoverByDate2(String Date1) {
 		return dao.getCumulativeTurnoverByDate2(Date1);
 	}
@@ -50,5 +55,4 @@ public class FinancialServiceImpl implements FinancialService {
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1) {
 		return dao.getTargetTurnoverBeanByDate(Date1);
 	}
-
 }

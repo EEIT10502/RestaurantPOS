@@ -46,6 +46,8 @@ public class FinancialController {
 	public String productReport(Model model) {
 		List<MenuBean> listMenuCate = service.getMenuCate();
 		model.addAttribute("listMenuCate", listMenuCate);
+		List<MenuBean> listMenuPro = service.getMenuProductByCate();
+		model.addAttribute("listMenuPro", listMenuPro);
 		return "report/productReport";
 	}
 

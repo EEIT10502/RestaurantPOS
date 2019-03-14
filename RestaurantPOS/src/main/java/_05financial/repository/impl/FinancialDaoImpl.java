@@ -103,10 +103,14 @@ public class FinancialDaoImpl implements FinancialDao {
 	}
 	
 	// productRport
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getMenuProductByCate() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "SELECT productName FROM MenuBean";
+		Session session = factory.getCurrentSession();
+		List<MenuBean> listProductMenu = session.createQuery(hql).getResultList();
+		
+		return listProductMenu;
 	}
 	
 	// goalReport
