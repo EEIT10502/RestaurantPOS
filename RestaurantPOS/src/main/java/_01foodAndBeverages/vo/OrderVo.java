@@ -9,6 +9,16 @@ public class OrderVo {
 	private String qty;
 	
 	private String subTotal;
+	
+	private String callNo;
+	
+	private String cusFlow;
+	
+	private String totalAmount;
+	
+	
+
+
 
 	public String getItemName() {
 		return itemName;
@@ -40,6 +50,30 @@ public class OrderVo {
 
 	public void setSubTotal(String subTotal) {
 		this.subTotal = subTotal;
+	}
+
+	public String getCallNo() {
+		return callNo;
+	}
+
+	public void setCallNo(String callNo) {
+		this.callNo = callNo;
+	}
+
+	public String getCusFlow() {
+		return cusFlow;
+	}
+
+	public void setCusFlow(String cusFlow) {
+		this.cusFlow = cusFlow;
+	}
+
+	public String getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(String totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 }
