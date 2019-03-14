@@ -119,10 +119,8 @@
 				
 					$('#oL1').after(row);
 					var subTotal1 = parseInt($("#opSubtotal" + itemNo).html());
-					
-					total= total1 + subTotal1;
+					total= total1 + subTotal1; //總金額加總
 					$("#oTotal").html(total);
-					
 					
 					itemNo++;
 				
@@ -132,20 +130,28 @@
 		});
 			
 	});
+	
+	function deltable(){
+		$("#oTotal").html("0");
+		$("#tablelist  tr:not(:first):not(:last)").empty("");
+		
+	}
+	
 	function delItem(obj) {
 		$(obj).closest('tr').remove();
 	}
 	
 	function modifyQty(itemNo, price){
-		var qty = parseInt($("#opQty"+ itemNo).val());
+		var qty = parseInt($("#opQty"+ itemNo).val());//修改單品數量，小計連動。
 		var subTotal = qty*price;
 		$('#opSubtotal' + itemNo).html(subTotal);
-		$('#hidSubtotal' + itemNo).html(subTotal);
+		$('#hidSubtotal' + itemNo).val(subTotal);
 		
-		var y = parseInt($("#oTotal").html());
+		var y = parseInt($("#oTotal").html()); //修改單品數量，總金額連動。
 		var totalAmount=0;
 		totalAmount = y + (qty-1)*price;
 		$("#oTotal").html(totalAmount);
+		$('#hidoTotal').val(totalAmount);
 		
 	}
 	
@@ -208,9 +214,18 @@
 			sidedish.className += "hiddenList";
 		}
 	}
+	
+	 function ShowTime()
+     {
+         var NowDate = new Date();
+         var d = NowDate.getDay();
+         var dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+         document.getElementById('showbox').innerHTML = '目前時間：' + NowDate.toLocaleString() + '（' + dayNames[d] + '）';
+         setTimeout('ShowTime()', 1000);
+     }
 </script>
 
-<body>
+<body onload="ShowTime()">
 	<form:form method="post" action="/RestaurantPOS/order/payment" modelAttribute="orderForm">
 <%-- 	<form action="/RestaurantPOS/order/payment" method="post" > --%>
 		<div class="container-fluid">
@@ -219,8 +234,8 @@
 				<div class="col-md-9">
 					<h4 style="text-align: center">點餐頁面</h4>
 				</div>
-				<div class="col-md-3">
-					<h5>系統時間:</h5>
+				<div class="col-md-3" id="showbox">
+					系統時間
 				</div>
 			</div>
 			<div class="row">
@@ -229,10 +244,10 @@
 						<tr>
 							<td><input type="button" value="回首頁" id="oIndex"
 								name="oIndex"></td>
-							<td><input type="text" value="" id="oPeople" name="oPeople">人</td>
-							<td><input type="text" value="" id="oCall" name="oCall">號</td>
+							<td><input type="text" value="" id="oPeople" name="orderVos.cusFlow">人</td>
+							<td><input type="text" value="" id="oCall" name="orderVos.callNo">號</td>
 							<td><input type="reset" value="全部清除" id="oReset"
-								name="oReset"></td>
+								name="oReset" onclick="deltable()"></td>
 							<td><input type="submit" value="下一步" id="oNext" name="oNext"></td>
 						</tr>
 					</table>
@@ -244,7 +259,7 @@
 				<!-- 左方清單 -->
 				<div class="col-md-8">
 					<table style="margin: 0px auto" width="100%" border="1"
-						style="table-layout:fixed">
+						style="table-layout:fixed" id="tablelist">
 						<tr>
 							<th>項目</th>
 							<th>價格</th>
@@ -261,11 +276,12 @@
 						</tr>
 						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
-							<td colspan="3" id="oTotal" name="oTotal">0</td>
+							<td colspan="3" id="oTotal" name="oTotal">0
+								<input type="hidden" id="hidoTotal" name="orderVos.totalAmount"/>
+							</td>
 						</tr>
 					</table>
 				</div>
-
 				<!-- 右方按鈕 -->
 
 				<div class="col-md-4">
