@@ -19,7 +19,7 @@
 
 <body>
 <jsp:include page="../sideBar.jsp" flush="true" /> 
-<form>
+<form action="productReportGet" method="post">
 <!-- 報表版面 -->
 <div class="w3-container" style="margin-left:160px">
 <div>
@@ -31,19 +31,21 @@
 	<input type="date" id="pDate2" name="pDate2"><p>
 
 	<!-- 類別下拉選單 -->
-	<select>
-		<option id="pcSelOpt" name="pcSelOpt"></option>
+	<select id="pcSelOpt" name="pcSelOpt">
+		<c:forEach var="pcSel" items="${listMenuCate}">
+		<option>${pcSel}</option>
+		</c:forEach>
 	</select>
 	<!-- 單品下拉選單 -->
-	<select>
-		<option id="pSelOpt" name="pSelOpt"></option>
+	<select id="pSelOpt" name="pSelOpt">
+		<option></option>
 	</select>
 	
 	<input type="submit" value="查詢" id="pSel" name="pSel">
 </div>
 
 <div>
-	<h4>xxxx年xx月xx日</h4>  <!-- 顯示查詢年月日 -->
+	<h4>選擇日期：${pDate1}至${pDate2}</h5>
 	<input type="button" value="匯出報表" id="pExport" name="pExport">
 	
 	<table border="1">

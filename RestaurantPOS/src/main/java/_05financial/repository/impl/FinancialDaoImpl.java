@@ -101,7 +101,14 @@ public class FinancialDaoImpl implements FinancialDao {
 
 		return listCate;
 	}
-
+	
+	// productRport
+	@Override
+	public List<MenuBean> getMenuProductByCate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	// goalReport
 	@SuppressWarnings("unchecked")
 	@Override
@@ -115,7 +122,6 @@ public class FinancialDaoImpl implements FinancialDao {
 		}
 		java.sql.Date beginDate = new java.sql.Date(uDate1.getTime());
 
-//		System.out.println(beginDate);
 		// hql
 		String hql = "FROM CumulativeTurnoverBean c WHERE c.date=:beginDate";
 		Session session = factory.getCurrentSession();
@@ -129,14 +135,12 @@ public class FinancialDaoImpl implements FinancialDao {
 	@Override
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1) {
 		String beginDate = Date1.substring(0, 7);
-//		System.out.println(beginDate);
-
 		// hql
 		String hql = "FROM TargetTurnoverBean WHERE date=:beginDate";
 		Session session = factory.getCurrentSession();
 		List<TargetTurnoverBean> listgoalturn = session.createQuery(hql).setParameter("beginDate", beginDate)
 				.getResultList();
-		System.out.println(listgoalturn + " from IDao");
+
 		return listgoalturn;
 	}
 }
