@@ -100,7 +100,7 @@
 			<a href="<c:url value='/report/goalReport'/>" class="w3-bar-item w3-button">營運目標達成率</a>
 		</div>
 		
-		<a href="<c:url value='/manage/DayCheckOut'/>" class="w3-button w3-block w3-left-align">日結清機</a>
+		<a href="<c:url value=''/>" class="w3-button w3-block w3-left-align">日結清機</a>
 		<a href="#" class="w3-bar-item w3-button">登出</a>
 	</div>
 <!-- 	左方菜單結束 -->

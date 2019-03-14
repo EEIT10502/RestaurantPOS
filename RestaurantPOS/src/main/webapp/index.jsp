@@ -54,7 +54,7 @@ $(document).ready(function(){
 		
 			</td>
 			<td>
-			<input type="button" value="日結" onclick="location.href='close/dailyClosing.jsp'">
+			<input type="button" value="無用" onclick="location.href='close/dailyClosing.jsp'">
 			</td>
 		</tr>
 		<tr>
