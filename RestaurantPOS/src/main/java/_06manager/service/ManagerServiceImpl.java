@@ -1,14 +1,17 @@
 package _06manager.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import _00model.CumulativeTurnoverBean;
 import _00model.ManagerBean;
 import _00model.OrderBean;
 import _00model.OrderDetailBean;
+import _00model.TargetTurnoverBean;
 import _06manager.repository.ManagerDao;
 
 
@@ -60,5 +63,35 @@ public class ManagerServiceImpl implements ManagerService{
 		
 		return dao.getOrderBeanByOrderNo(orderNo);
 	}
+	
+	@Transactional
+	@Override
+	public CumulativeTurnoverBean getLastCumulativeTurnoverBean() {
+		
+		return dao.getLastCumulativeTurnoverBean();
+	}
+	
+	@Transactional
+	@Override
+	public Map<String, Object> getDayCheckAnalysisDate(String date) {
+		
+		
+		return dao.getDayCheckAnalysisDate(date);
+	}
+	@Transactional
+	@Override
+	public TargetTurnoverBean getMonthTarget() {
+		
+		return dao.getMonthTarget();
+	}
+	@Transactional
+	@Override
+	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date) {
+		
+		return dao.getCumulativeTurnoverByDate(date);
+	}
+	
+	
+	
 
 }
