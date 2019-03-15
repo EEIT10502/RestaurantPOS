@@ -31,7 +31,7 @@ $(document).ready(function(){
 	$("#checkout").click(function() {		
         var moneyReceivedBtn=$("#moneyReceivedBtn").val();
 		var turnoverBtn = $("#turnoverBtn").val();
-		
+
         $.ajax({     	
                 type :'POST',
                 url  :'/RestaurantPOS/close/checkDiffAmount.action',
