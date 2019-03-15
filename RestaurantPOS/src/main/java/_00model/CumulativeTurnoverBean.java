@@ -17,7 +17,6 @@ public class CumulativeTurnoverBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	
 	Integer id;
 	Date date;
 	Integer turnover;
@@ -29,9 +28,27 @@ public class CumulativeTurnoverBean implements Serializable
 
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CumulativeTurnoverBean [id=");
+		builder.append(id);
+		builder.append(", date=");
+		builder.append(date);
+		builder.append(", turnover=");
+		builder.append(turnover);
+		builder.append(", moneyReceived=");
+		builder.append(moneyReceived);
+		builder.append(", shortoverAmount=");
+		builder.append(shortoverAmount);
+		builder.append(", cumulativeTurnover=");
+		builder.append(cumulativeTurnover);
+		builder.append("]");
+		return builder.toString();
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
 	public Integer getId() {
 		return id;
 	}

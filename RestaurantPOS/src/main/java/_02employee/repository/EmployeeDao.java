@@ -3,6 +3,7 @@ package _02employee.repository;
 
 import java.util.List;
 
+import _00model.AttendenceBean;
 import _00model.EmployeeBean;
 import _00model.ManagerBean;
 
@@ -29,6 +30,9 @@ public interface EmployeeDao {
 
 
 	public ManagerBean checkIDPassword(String mAccount,String mPwd);
+	
+	//Tai
+	List<AttendenceBean> getAllAttendence();
 	
 	
 	

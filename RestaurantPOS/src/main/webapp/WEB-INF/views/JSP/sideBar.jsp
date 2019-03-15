@@ -53,6 +53,18 @@
 					.replace(" w3-green", "");
 		}
 	}
+	//打開排班選單
+	function openScheduleList() {
+		var x = document.getElementById("demoScheduleList");
+		if (x.className.indexOf("w3-show") == -1) {
+			x.className += " w3-show";
+			x.previousElementSibling.className += " w3-green";
+		} else {
+			x.className = x.className.replace(" w3-show", "");
+			x.previousElementSibling.className = x.previousElementSibling.className
+					.replace(" w3-green", "");
+		}
+	}
 //打開報表選單
 	function openReportList() {
 		var x = document.getElementById("demoReportList");
@@ -90,6 +102,12 @@
 		<div id="demoGoodsList" class="w3-hide w3-white w3-card">
 			<a href="<c:url value='/productManage/allProductList.action'/>" class="w3-bar-item w3-button">商品查詢/修改</a>
 			<a href="<c:url value='/productManage/productInsert.action'/>" class="w3-bar-item w3-button">商品新增</a>
+		</div>
+		
+		<button class="w3-button w3-block w3-left-align" onclick="openScheduleList()">排班管理 <i class="fa fa-caret-down"></i></button>
+		<div id="demoScheduleList" class="w3-hide w3-white w3-card">
+			<a href="schedule" class="w3-bar-item w3-button">班別管理</a>
+			<a href="calendar" class="w3-bar-item w3-button">排班管理</a>
 		</div>
 
 		<!-- 報表系統 -->
