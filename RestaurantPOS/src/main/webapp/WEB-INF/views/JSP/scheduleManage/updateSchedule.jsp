@@ -9,25 +9,33 @@
 <style type="text/css">
 fieldset {
 	border: 1px solid rgb(255, 232, 57);
-	width: 400px;
+	width: 200px;
 	margin: auto;
+}
+.hiddenList {
+	display: none;
+}
+
+td.errorMessage[type="redError"] {
+	color: red;
 }
 </style>
 
+
 <title>修改班別</title>
 <script type="text/javascript">
-  function confirmDelete(userId){
-	  var result = confirm("確定刪除此筆記錄(帳號:" + userId.trim() + ")?");
+  function confirmDelete(scheduleId){
+	  var result = confirm("確定刪除此筆記錄(帳號:" + scheduleId.trim() + ")?");
 	  if (result) {
 		  document.forms[0].putOrDelete.value = "DELETE";
 	      return true;
 	  }
 	  return false;
   }
-  function confirmUpdate(userId){
-	  var result = confirm("確定送出此筆記錄(帳號:" + userId.trim() + ")?");
+  function confirmUpdate(scheduleId){
+	  var result = confirm("確定送出此筆記錄(帳號:" + scheduleId.trim() + ")?");
 	  if (result) {
-		  document.forms[0].putOrDelete.value = "PUT";
+		  document.forms[0].putOrDelete.value = "POST";
 	      return true;
 	  }
 	  return false;
@@ -37,33 +45,30 @@ fieldset {
 
 </head>
 <body>
-	<section>
-		<div class="container">
-			<h1 style="text-align: center">修改排班資料</h1>
-		</div>
-	</section>
-	<hr width="3">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='PUT' modelAttribute="scheduleBean"
-			class='form-horizontal' action="${pageContext.request.contextPath}/schedule/${schedule.pk}">
+		<form:form method='POST' modelAttribute="scheduleBean"
+			class='form-horizontal' enctype="multipart/form-data">
+			<input type="hidden" name="_method"  id='putOrDelete'   value="" >
 			<fieldset>
 				<legend>修改排班資料</legend>
-
-
-<!-- <div style="padding:30px;width:300px;height:auto;"> -->
-<!-- 	<div id="message"></div> -->
-<!-- 	<div class='worker'> -->
-<%-- 	<form action="https://shift.ekko.com.tw/shift/ajax_add_worker.html" method="put" accept-charset="utf-8" class="inline" id="work_form"><div style="display:none"> --%>
-<!-- <input type="hidden" name="ci_csrf_token" value="2c163ac48add011afc5a1880e87412af" /> -->
-<!-- </div> -->
-
+				
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='schedule'>
+						ID</label>
+					<div class="col-lg-10">
+						<form:input id="shcedule${schedule.scheduleId}" path="scheduleId" type='button'
+							class='form:input-large' readonly="readonly"/> 
+					</div>
+				</div>
+				
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='schedule'>
 						班別名稱 </label>
 					<div class="col-lg-10">
-						<form:input id="schedule" path="schedule" type='text'
+						<form:input id="shcedule${schedule.schedule}" path="schedule" type='text'
 							class='form:input-large' />
+							
 					</div>
 				</div>
 
@@ -71,7 +76,7 @@ fieldset {
 					<div class="col-lg-10">
 						<label class="control-label col-lg-2 col-lg-2" for='color'>
 							顏色</label>
-						<form:input id="color" path="color" name="color" type="text"
+						<form:input id="shcedule${schedule.color}" path="color" name="color" type="text"
 							class='form:input-large' />
 					</div>
 				</div>
@@ -80,7 +85,7 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
 						開始時間 </label>
 					<div class="col-lg-10">
-						<form:input id="startTime" path="startTime" type='text'
+						<form:input id="shcedule${schedule.startTime}" path="startTime" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
@@ -88,7 +93,7 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2" for='endTime'>
 						結束時間 </label>
 					<div class="col-lg-10">
-						<form:input id="endTime" path="endTime" type='text'
+						<form:input id="shcedule${schedule.endTime}" path="endTime" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
@@ -96,7 +101,7 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2" for='restTime'>
 						休息時間 </label>
 					<div class="col-lg-10">
-						<form:input id="restTime" path="restTime" type='text'
+						<form:input id="shcedule${schedule.restTime}" path="restTime" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
@@ -104,16 +109,19 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2" for='totalTime'>
 						總時間 </label>
 					<div class="col-lg-10">
-						<form:input id="totalTime" path="totalTime" type='text'
+						<form:input id="shcedule${schedule.totalTime}" path="totalTime" type='text'
 							class='form:input-large' />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<input type="submit" value="更新" name='updateBtn' onclick="return confirmUpdate('${schedule.id}');"> 
-            			<input type="submit" value="刪除" name='deleteBtn' onclick="return confirmDelete('${schedule.id}');" >
+            			<input type="submit" value="送出" name='updateBtn' onclick="return confirmUpdate('${schedule.scheduleId}');"/>
+            			<input type="submit" value="刪除" name='deleteBtn' onclick="return confirmDelete('${schedule.scheduleId}');" >
 					</div>
 				</div>
+				<c:if test="${not empty requestScope.modify}">   
+           <c:remove var="member" scope="request" />       
+         </c:if>
 				<script type="text/javascript">
 					$(document).ready(function() {
 						$("a#add_worker, a#edit").live('click', function(e) {
@@ -150,7 +158,7 @@ fieldset {
 							e.preventDefault();
 							$.ajax({
 								url: 'https://shift.ekko.com.tw/group/ajax_add_worker.html',
-								type: 'PUT',
+								type: 'POST',
 								dataType : 'json',
 								data: { 
 										name: $("input[name='name']").val(), 

@@ -2,8 +2,6 @@ package _00model;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +24,8 @@ public class ScheduleBean implements Serializable {
 	Time restTime;
 	Integer totalTime;
 
-	/*-----------------------------------新增班表資料-----------------------------------*/
+	public ScheduleBean() {
+	}
 
 	public ScheduleBean(Integer scheduleId,
 	String schedule,
@@ -44,18 +43,12 @@ public class ScheduleBean implements Serializable {
 		this.totalTime = totalTime;
 	}
 
-
 	
-	public ScheduleBean() {
-	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Integer getscheduleId() {
+	public Integer getScheduleId() {
 		return scheduleId;
 	}
 
-	public void setscheduleId(Integer scheduleId) {
+	public void setScheduleId(Integer scheduleId) {
 		this.scheduleId = scheduleId;
 	}
 	

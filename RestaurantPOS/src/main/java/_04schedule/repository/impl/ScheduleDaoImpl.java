@@ -1,9 +1,6 @@
 package _04schedule.repository.impl;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -72,11 +69,11 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	
 	@Override
 	public void updateSchedule(ScheduleBean schedule) {
-		System.out.println("1");
+//		String hql = "UPDATE ScheduleBean SET schedule=:schedule WHERE scheduleId=:scheduleId";
 		Session session = factory.getCurrentSession();
-		System.out.println("2");
+		System.out.println(schedule.getScheduleId());	//ID
+		System.out.println(schedule.getSchedule());		//班別
 		session.update(schedule);
-		System.out.println("3");
 	}
 
 	/*-----------------------------------新增班表資料-----------------------------------*/
@@ -86,6 +83,15 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		session.save(schedule);
 
 	}
+	/*-----------------------------------刪除班表資料-----------------------------------*/
+	@Override
+	public void deleteScheduleByPrimaryKey(int scheduleId) {
+		Session session = factory.getCurrentSession();
+		ScheduleBean sb = new ScheduleBean();
+		sb.setScheduleId(scheduleId);
+		session.delete(sb);	
+	}
+	
 	
 	@Override
 	public ScheduleBean findByPrimaryKey(int scheduleId) {

@@ -43,15 +43,20 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public ScheduleBean findByPrimaryKey(int scheduleId) {
 		return scheduleDao.findByPrimaryKey(scheduleId);
 	}
-
+	@Transactional
 	@Override
 	public ScheduleBean findBySchedule(String schedule) {
 		return scheduleDao.findBySchedule(schedule);
 	}
-
+	@Transactional
 	@Override
 	public void updateSchedule(ScheduleBean schedule) {
 		scheduleDao.updateSchedule(schedule);
+	}
+	@Transactional
+	@Override
+	public 	void deleteScheduleByPrimaryKey(int scheduleId) {
+		scheduleDao.deleteScheduleByPrimaryKey(scheduleId);
 	}
 	
 	@Transactional
@@ -67,6 +72,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 		
 		scheduleDao.addAttendence(attendenceBean);
 	}
+
+
 
 	
 }

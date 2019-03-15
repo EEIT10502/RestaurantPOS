@@ -38,22 +38,20 @@
 <title>CLASS</title>
 </head>
 <body>
-
+<%-- 	<jsp:include page="../sideBar.jsp" flush="true" /> --%>
 	<div class="container prepend-top append-bottom">
 		<div class="span-24 header"></div>
 		<div id="menu" class="span-24 last">
 			<div class="append-1 last" style="margin-top: 1em;">
-				<span>Hello, <strong><a
-						href="https://shift.ekko.com.tw/profile.html">睿</a></strong></span><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
-					href="https://shift.ekko.com.tw/logout.html">登出</a></span>
 			</div>
 		</div>
 		<div id="main" class="span-24">
 			<div id="content" class="span-22 prepend-1 append-1">
 				<div class='mainInfo'>
 					<ul class='tabs'>
-						<li><a href="schedule/prepare">班別</a></li>
-						<li><a href="schedule" class="selected">組員</a></li>
+					<li><a href="productInsert.action">回首頁</a></li>
+						<li><a href="calendar">班別</a></li>
+						<li><a href="schedule" class="selected">班別查詢</a></li>
 						<!-- 						<li><a href="https://shift.ekko.com.tw/group/embed.html">內崁程式碼</a></li> -->
 					</ul>
 					<div class='fieldset span-22'>

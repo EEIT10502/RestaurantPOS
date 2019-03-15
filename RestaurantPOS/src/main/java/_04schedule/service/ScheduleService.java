@@ -9,18 +9,22 @@ import _00model.ScheduleBean;
 
 @Component("ScheduleServiceDemo")
 public interface ScheduleService {
-	List<ScheduleBean> findAllSchedule();
-
-	void saveSchedule(ScheduleBean schedule);
-
-	ScheduleBean findByPrimaryKey(int scheduleId);
-	
-	ScheduleBean findBySchedule(String schedule);
-	
-	void updateSchedule(ScheduleBean scheduleId);
-
 	public EmployeeBean checkByEmpNo(String empNo);
 	
 	public void addAttendence(AttendenceBean attendenceBean);
+	
+	ScheduleBean findByPrimaryKey(int scheduleId);
+
+	ScheduleBean findBySchedule(String schedule);
+
+	void saveSchedule(ScheduleBean schedule);
+
+	void updateSchedule(ScheduleBean schedule);
+
+	void deleteScheduleByPrimaryKey(int scheduleId);
+	
+	List<ScheduleBean> findAllSchedule();
+
+
 
 }

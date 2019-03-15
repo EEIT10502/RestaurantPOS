@@ -9,7 +9,7 @@
 <style type="text/css">
 fieldset {
 	border: 1px solid rgb(255, 232, 57);
-	width: 400px;
+	width: 200px;
 	margin: auto;
 }
 </style>
@@ -19,18 +19,13 @@ fieldset {
 
 </head>
 <body>
-	<section>
-		<div class="container">
-			<h1 style="text-align: center">排班資料維護</h1>
-		</div>
-	</section>
 	<hr width="3">
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="scheduleBean"
 			class='form-horizontal'>
 			<fieldset>
-				<legend>新增排班資料</legend>
+				<legend>新增資料</legend>
 
 
 
@@ -44,16 +39,6 @@ fieldset {
 				</div>
 
 				<div class="form-group">
-					<!-- 					<label class="control-label col-lg-2 col-lg-2" for='color'> -->
-					<!-- 						顏色 </label> -->
-					<!-- 					<div class="col-lg-10"> -->
-					<%-- 						<form:select id="color" path="color"> --%>
-					<%-- 							<form:option value="-1">請選擇</form:option> --%>
-					<%-- 							<form:option value="#000000">#000000</form:option> --%>
-					<%-- 							<form:option value="#111111">#111111</form:option> --%>
-					<%-- 							<form:option value="#001100">#001100</form:option> --%>
-					<%-- 						</form:select> --%>
-					<!-- 					</div> -->
 					<div class="col-lg-10">
 						<label class="control-label col-lg-2 col-lg-2" for='color'>
 							顏色</label>
@@ -66,7 +51,7 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
 						開始時間 </label>
 					<div class="col-lg-10">
-						<form:input id="startTime" path="startTime" type='text'
+						<form:input id="startTime" path="startTime" type='select'
 							class='form:input-large' />
 					</div>
 				</div>
