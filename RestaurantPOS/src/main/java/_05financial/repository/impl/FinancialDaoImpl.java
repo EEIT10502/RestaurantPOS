@@ -81,7 +81,7 @@ public class FinancialDaoImpl implements FinancialDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getMenuCate() {
-		String hql = "SELECT cate FROM MenuBean m GROUP BY cate";
+		String hql = "SELECT cate FROM MenuBean GROUP BY cate";
 		Session session = factory.getCurrentSession();
 		List<MenuBean> listCateMenu = session.createQuery(hql).getResultList();
 
@@ -105,10 +105,10 @@ public class FinancialDaoImpl implements FinancialDao {
 	// productRport
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MenuBean> getMenuProductByCate() {
-		String hql = "SELECT productName FROM MenuBean";
+	public List<MenuBean> getMenuProductByCate(String Cate) {
+		String hql = "FROM MenuBean WHERE category=:Cate";
 		Session session = factory.getCurrentSession();
-		List<MenuBean> listProductMenu = session.createQuery(hql).getResultList();
+		List<MenuBean> listProductMenu = session.createQuery(hql).setParameter("Cate", Cate).getResultList();
 		
 		return listProductMenu;
 	}

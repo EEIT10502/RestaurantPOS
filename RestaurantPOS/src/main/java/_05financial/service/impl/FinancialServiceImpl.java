@@ -42,8 +42,8 @@ public class FinancialServiceImpl implements FinancialService {
 	}
 	@Transactional
 	@Override
-	public List<MenuBean> getMenuProductByCate() {
-		return dao.getMenuProductByCate();
+	public List<MenuBean> getMenuProductByCate(String Cate) {
+		return dao.getMenuProductByCate(Cate);
 	}
 	@Transactional
 	@Override

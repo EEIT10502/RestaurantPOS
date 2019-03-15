@@ -2,16 +2,19 @@ package _05financial.controller;
 
 import java.util.List;
 
+import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import _00model.CumulativeTurnoverBean;
 import _00model.MenuBean;
 import _00model.OrderBean;
 import _00model.TargetTurnoverBean;
+import _05financial.repository.Result;
 import _05financial.service.FinancialService;
 
 @Controller
@@ -46,8 +49,36 @@ public class FinancialController {
 	public String productReport(Model model) {
 		List<MenuBean> listMenuCate = service.getMenuCate();
 		model.addAttribute("listMenuCate", listMenuCate);
-		List<MenuBean> listMenuPro = service.getMenuProductByCate();
+
+//		List<MenuBean> listMenuPro = service.getMenuProductByCate(Cate);
+//		model.addAttribute("listMenuPro", listMenuPro);
+		
+//		System.out.println(listMenuCate + " this is Controller");
+//		System.out.println(Cate + " this is Controller");
+//		System.out.println(listMenuPro + " this is Controller");
+		return "report/productReport";
+	}
+//	@RequestMapping("/report/productReportCate")
+//	@ResponseBody
+//	public String productReportCate(Model model) {
+//		List<MenuBean> listMenuCate = service.getMenuCate();
+//		model.addAttribute("listMenuCate", listMenuCate);
+//		System.out.println(listMenuCate + " this is Controller");
+//		Result<String> rs = new Result<>();
+//		List<String> codeCategorys = facilityDictService.searchCodeCategory();
+//		String codeCate = StringUtil.collectionToCommaDelimitedString(codeCategorys);
+//		rs.setData(listMenuCate);
+//		System.out.println("here");
+//		return null;
+//	}
+	
+	@RequestMapping("/report/productReportPro")
+	public String productReportPro(Model model, @RequestParam("pcSelOpt") String Cate) {
+		model.addAttribute("Cate", Cate);
+		
+		List<MenuBean> listMenuPro = service.getMenuProductByCate(Cate);
 		model.addAttribute("listMenuPro", listMenuPro);
+		
 		return "report/productReport";
 	}
 
@@ -75,7 +106,7 @@ public class FinancialController {
 
 		model.addAttribute("csDate1", csDate1);
 		model.addAttribute("csDate2", csDate2);
-		model.addAttribute("csSelOpt", csSelOpt);
+//		model.addAttribute("csSelOpt", csSelOpt);
 
 		List<OrderBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
 		model.addAttribute("listCatee", listCatee);
@@ -94,14 +125,16 @@ public class FinancialController {
 
 		model.addAttribute("pDate1", pDate1);
 		model.addAttribute("pDate2", pDate2);
-		model.addAttribute("pcSelOpt", pcSelOpt);
-		model.addAttribute("pSelOpt", pSelOpt);
-
+//		model.addAttribute("pcSelOpt", pcSelOpt);
+		
 //		List<OrderBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
 //		model.addAttribute("listCatee", listCatee);
 
 		List<MenuBean> listMenuCate = service.getMenuCate();
 		model.addAttribute("listMenuCate", listMenuCate);
+		
+//		List<MenuBean> listMenuPro = service.getMenuProductByCate(pcSelOpt);
+//		model.addAttribute("listMenuPro", listMenuPro);
 
 		return "report/productReport";
 	}
