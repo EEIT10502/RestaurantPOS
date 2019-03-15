@@ -32,4 +32,11 @@ public interface ManagerService {
 	 * @return 一個OrderBean
 	 */
 	public OrderBean getLastOrderBean();
+	
+	/**
+	 * 根據傳入的orderNo傳回一個OrderBean
+	 * @param orderNo 訂單號碼 不要傳orderId 要傳orderNo
+	 * @return 回傳一個OrderBean
+	 */
+	public OrderBean getOrderBeanByOrderNo(String orderNo);
 }

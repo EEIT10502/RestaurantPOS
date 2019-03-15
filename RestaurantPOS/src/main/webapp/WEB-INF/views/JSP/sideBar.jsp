@@ -16,9 +16,10 @@
 </head>
 <title>左側下拉式超連結選單</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
+<script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -117,8 +118,8 @@
 			<a href="<c:url value='/report/productReport'/>" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
 			<a href="<c:url value='/report/goalReport'/>" class="w3-bar-item w3-button">營運目標達成率</a>
 		</div>
-
-		<a href="#" class="w3-button w3-block w3-left-align">使用者姓名</a>
+		
+		<a href="<c:url value='/close/dailyClosing.action'/>" class="w3-button w3-block w3-left-align">日結清機</a>
 		<a href="#" class="w3-bar-item w3-button">登出</a>
 	</div>
 <!-- 	左方菜單結束 -->

@@ -29,7 +29,6 @@ public class ManagerDaoImpl implements ManagerDao{
 
 
 	//提供檢查用的
-
 	@Override
 	public ManagerBean checkIDPassword(String mAccount, String mPwd) {
 		
@@ -61,13 +60,7 @@ public class ManagerDaoImpl implements ManagerDao{
 		Session session = factory.getCurrentSession();
 		List<OrderDetailBean>orderDetailList = session.createQuery(hql).setParameter("orderId", orderId)
 																	   .getResultList();
-		if(orderDetailList!=null) {
-			System.out.println("取得資料");
-		}else {
-			System.out.println("無法取得資料");
-		}
-		
-		
+
 		return orderDetailList;
 	}
 
@@ -80,10 +73,6 @@ public class ManagerDaoImpl implements ManagerDao{
 		String hql="SELECT MAX(orderId) FROM OrderBean";
 		Session session = factory.getCurrentSession();
 		maxOrderId =(Integer)session.createQuery(hql).uniqueResult();
-		
-		if(maxOrderId==0) {
-			System.out.println("取不到值");
-		}
 		
 		return maxOrderId;
 	}
@@ -99,6 +88,22 @@ public class ManagerDaoImpl implements ManagerDao{
 		Session session = factory.getCurrentSession();
 		
 		orderBean = (OrderBean) session.createQuery(hql).setMaxResults(1).uniqueResult();
+		
+		return orderBean;
+	}
+
+	//根據傳入的orderNo 取得對應的OrderBean
+	@Override
+	public OrderBean getOrderBeanByOrderNo(String orderNo) {
+		OrderBean orderBean = null;
+		
+		String hql="FROM OrderBean WHERE orderNo = :orderNo";
+		
+		Session session = factory.getCurrentSession();
+		
+		orderBean = (OrderBean) session.createQuery(hql)
+									   .setParameter("orderNo", orderNo)
+									   .uniqueResult();
 		
 		return orderBean;
 	}
