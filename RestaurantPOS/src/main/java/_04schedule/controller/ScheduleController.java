@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,8 +72,6 @@ public class ScheduleController {
 		ScheduleBean schedule = scheduleService.findByPrimaryKey(scheduleId);
 		model.addAttribute(schedule);
 		System.out.println("--顯示單筆Schedule資料，然後導向更新畫面--");
-		System.out.println(schedule.getScheduleId());
-		
 		return "scheduleManage/updateSchedule";
 	}
 
@@ -82,18 +79,17 @@ public class ScheduleController {
 	@RequestMapping(value = "/schedule/update", method = RequestMethod.POST)
 	public String updateSchedule(@ModelAttribute("scheduleBean") ScheduleBean scheduleBean,
 			HttpServletRequest request) {
-		System.out.println("1"+scheduleBean.getScheduleId());
 		System.out.println("--準備修改單筆Schedule資料--");
 		scheduleService.updateSchedule(scheduleBean);
 		System.out.println("--返回原始畫面--");
-		System.out.println("2"+scheduleBean.getScheduleId());
 		return "redirect:/schedule";
 	}
 	
-	// 刪除單筆Schedule資料
+	// 刪除單筆Schedule資料			//做不到此方法
 		@RequestMapping(value = "/schedule/update", method = RequestMethod.DELETE)
 		public String deleteSchedule(@ModelAttribute("scheduleBean") Integer scheduleId, Model model, 
 				HttpServletRequest req) {
+			System.out.println("進入delete方法, scheduleId="+scheduleId);
 			System.out.println("--準備刪除單筆Schedule資料--");
 			scheduleService.deleteScheduleByPrimaryKey(scheduleId);
 			System.out.println("--刪除單筆Schedule資料--");

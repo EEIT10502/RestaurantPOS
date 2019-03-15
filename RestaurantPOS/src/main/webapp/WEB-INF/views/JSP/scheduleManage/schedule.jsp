@@ -63,6 +63,7 @@
 						<table class="group append-bottom">
 							<thead>
 								<tr>
+									<th class="span-3">#</th>
 									<th class="span-3">名稱</th>
 									<th class="span-3">識別色</th>
 									<th class="span-2">開始時間</th>
@@ -75,6 +76,7 @@
 							<tbody>
 								<c:forEach var="schedule" items="${schedule}">
 									<tr>
+										<td>${schedule.scheduleId}</td>
 										<td>${schedule.schedule}</td>
 										<td><div width="20" height="20" style="width:20px;height:20px;border:1px solid #eee;background-color:${schedule.color}">&nbsp;</div></td>
 										<!-- 										<td><div width="20" height="20" -->
@@ -89,9 +91,7 @@
 										<td>
 										<a href="<c:url value='/schedule/update?id=${schedule.scheduleId}'/>"
 											title="編輯" class="image edit span-1" id="edit">編輯</a>
-											
-										<a href="https://shift.ekko.com.tw/group/delete_worker/14143.html"
-											title="刪除" class="image delete span-1" id="delete">刪除</a></td>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>

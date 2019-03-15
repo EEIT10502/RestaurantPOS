@@ -11,8 +11,7 @@ public interface ScheduleDao {
 	public EmployeeBean checkByEmpNo(String empNo);
 	
 	public void addAttendence(AttendenceBean attendenceBean);
-	
-	
+	//
 	ScheduleBean findByPrimaryKey(int scheduleId);
 
 	ScheduleBean findBySchedule(String schedule);
@@ -23,6 +22,8 @@ public interface ScheduleDao {
 
 	void deleteScheduleByPrimaryKey(int scheduleId);
 	
+	void deleteAllSchedule();
+		
 	List<ScheduleBean> findAllSchedule();
 	
 	

@@ -69,7 +69,7 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	
 	@Override
 	public void updateSchedule(ScheduleBean schedule) {
-//		String hql = "UPDATE ScheduleBean SET schedule=:schedule WHERE scheduleId=:scheduleId";
+//		String hql = "UPDATE ScheduleBean SET schedule s =:schedule WHERE scheduleId d=:scheduleId";
 		Session session = factory.getCurrentSession();
 		System.out.println(schedule.getScheduleId());	//ID
 		System.out.println(schedule.getSchedule());		//班別
@@ -84,20 +84,29 @@ public class ScheduleDaoImpl implements ScheduleDao{
 
 	}
 	/*-----------------------------------刪除班表資料-----------------------------------*/
+	@SuppressWarnings("unused")
 	@Override
 	public void deleteScheduleByPrimaryKey(int scheduleId) {
 		Session session = factory.getCurrentSession();
-		ScheduleBean sb = new ScheduleBean();
-		sb.setScheduleId(scheduleId);
-		session.delete(sb);	
+		String hql = "FROM Schedule WHERE scheduleId=:scheduleId";
+		ScheduleBean scheduleBean = new ScheduleBean();
+		scheduleBean.setScheduleId(scheduleId);
+		session.delete(scheduleBean);	
 	}
 	
+	@Override
+	public void deleteAllSchedule() {
+		Session session = factory.getCurrentSession();
+		String hql = "DELETE FROM Schedule";
+		session.createQuery(hql).executeUpdate();
+	}
 	
 	@Override
 	public ScheduleBean findByPrimaryKey(int scheduleId) {
 		ScheduleBean sb = null;
 		Session session = factory.getCurrentSession();
 		sb = session.get(ScheduleBean.class, scheduleId);
+		System.out.println(scheduleId);
 		return sb;
 	}
 
@@ -114,11 +123,5 @@ public class ScheduleDaoImpl implements ScheduleDao{
 			sb = list.get(0);
 		return sb;
 	}
-	
-	
-
-
-	
-	
 
 }
