@@ -40,17 +40,20 @@ public class AttendenceTableInit {
 				String empNo = token[0];
 				String Sdate= token[1];
 				String checkStatus = token[2];
-				String SclockTime = token[3];
+				String SclockTime = token[3];//
+				String empName=token[4];
 				
 				Date date = strToDate(Sdate);
 				Time clockTime = strToTime(SclockTime);
 				
 				AttendenceBean attendence = new AttendenceBean();
 				
-				attendence.setEmpNo(empNo);
+				attendence.setEmpNo(empNo);//
 				attendence.setDate(date);
 				attendence.setCheckStatus(checkStatus);
 				attendence.setClockTime(clockTime);
+				attendence.setEmpName(empName);
+				
 				
 				session.save(attendence);
 				
