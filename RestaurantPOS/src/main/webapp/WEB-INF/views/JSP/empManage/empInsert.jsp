@@ -36,7 +36,11 @@ p.errorMessage[type="redError"] {
 	crossorigin="anonymous">
 	
 </script>
-
+<style type="text/css">
+p.errorMessage[type="redError"] {
+	color: red;
+}
+</style>
 
 <body>
 		<jsp:include page="../sideBar.jsp" flush="true" />
@@ -52,18 +56,22 @@ p.errorMessage[type="redError"] {
 				<div class="form-group">
 					<label for='empNo'>員工編號</label>
 					<form:input id="empNo" path="empNo" type='text' name="empNo" />
+
 				</div>
 				<div class="form-group">
 					<label for='empName'>員工姓名</label>
 					<form:input id="empName" path="empName" type='text' name="empName" />
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeName}
 				</div>
 				<div>
 					<label for='tel'>電話</label>
 					<form:input id="tel" path="tel" type='text' name="tel" />
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeTel}
 				</div>
 				<div>
 					<label for='Tel'>地址</label>
 					<form:input id="addr" path="addr" type='text' name="addr" />
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeAddr}
 				</div>
 				<div>
 					<label for='Tel'>性別</label>
@@ -72,6 +80,7 @@ p.errorMessage[type="redError"] {
 					<form:option value="男" label="男"/>
 					<form:option value="女" label="女"/>
 					</form:select>
+					<p class="errorMessage" type="redError">${modelErrors.errorOfGender}
 				</div>
 				<div>
 					<label for='position'>職位</label>
@@ -83,6 +92,7 @@ p.errorMessage[type="redError"] {
 					<form:option value="經理" label="經理"/>
 					<form:option value="其他" label="其他"/>
 					</form:select>
+					<p class="errorMessage" type="redError">${modelErrors.errorOfPosition}
 				</div>
 				
 				<div>
@@ -94,11 +104,13 @@ p.errorMessage[type="redError"] {
 					<form:option value="離職"  label="離職"/>
 					<form:option value="其他"  label="其他"/>
 					</form:select>
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmpStatus}
 				</div>
 				<div>
 				
 				<label for='empImg'>圖片</label>
 					<form:input id="empImg" path="empImg" type='file' name="empImg" />
+					
 				</div>
 				
 				<div>

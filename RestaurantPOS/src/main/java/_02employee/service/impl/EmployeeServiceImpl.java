@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import _00model.EmployeeBean;
+import _00model.MenuBean;
 import _02employee.repository.EmployeeDao;
 import _02employee.service.EmployeeService;
 
@@ -52,26 +53,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	}
 
-	// 取得目前員工編號
-	@Transactional
-	@Override
-	public Integer getCurrentEmpNo(int currentEmpNo) {
-		employeeDao.getCurrentEmpNo(currentEmpNo);
-		return null;
-	}
-
-	// 列出職員類別
-	@Transactional
-	@Override
-	public List<String> getEmpAllCategories() {
-		return employeeDao.getAllEmpCategories();
-	}
-
-	// 取得員工職位
-	@Transactional
-	@Override
-	public List<EmployeeBean> getEmployeesByPosition(String position) {
-		return employeeDao.getEmployeesByPosition(position);
-	}
+	
 
 }

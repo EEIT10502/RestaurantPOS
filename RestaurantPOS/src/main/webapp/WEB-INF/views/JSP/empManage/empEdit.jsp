@@ -65,9 +65,9 @@ function confirmUpdate(userId){
 <input path="empId" id="empId" name= "empId" type="hidden" value="${empEdit.empId}"/>
 <table>
 <tr>
-<%-- <img src="<c:url value='/getPicture/${empEdit.empId}'/>"> --%>
+<img src="<c:url value='/getPicture/${empEdit.empId}'/>">
 <td rowspan="10">
-<form:input path="empImg" type='file' value=""/></td>
+<form:input path="empImg" type='file'/></td>
 
 
 

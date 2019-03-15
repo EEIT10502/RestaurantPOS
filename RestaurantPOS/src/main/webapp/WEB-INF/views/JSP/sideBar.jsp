@@ -99,8 +99,8 @@
 			<a href="<c:url value='/report/productReport'/>" class="w3-bar-item w3-button">單品<br>銷售狀況</a>
 			<a href="<c:url value='/report/goalReport'/>" class="w3-bar-item w3-button">營運目標達成率</a>
 		</div>
-
-		<a href="#" class="w3-button w3-block w3-left-align">使用者姓名</a>
+		
+		<a href="<c:url value=''/>" class="w3-button w3-block w3-left-align">日結清機</a>
 		<a href="#" class="w3-bar-item w3-button">登出</a>
 	</div>
 <!-- 	左方菜單結束 -->

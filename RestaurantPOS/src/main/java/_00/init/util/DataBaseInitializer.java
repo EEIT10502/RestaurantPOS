@@ -1,6 +1,5 @@
 package _00.init.util;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import _00.init.tableInit.AttendenceTableInit;

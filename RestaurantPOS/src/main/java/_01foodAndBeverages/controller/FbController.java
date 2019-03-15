@@ -73,6 +73,9 @@ public class FbController {
 				System.out.println("price:" + v.getPrice());
 				System.out.println("qty:" + v.getQty());
 				System.out.println("subTotal:" + v.getSubTotal());
+				System.out.println("callNo:" + v.getCallNo());
+				System.out.println("cusFlow:" + v.getCusFlow());
+				System.out.println("totalAmount:" + v.getTotalAmount());
 			}
 		}
 		return mv;

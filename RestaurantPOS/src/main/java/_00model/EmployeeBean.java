@@ -23,7 +23,7 @@ public class EmployeeBean implements Serializable {
 	
 	
 	Integer empId;
-	Integer empNo;
+	String empNo;
 	String empName;
 	String gender;
 	String position;
@@ -70,13 +70,13 @@ public class EmployeeBean implements Serializable {
 		this.empId = empId;
 	}
 
-	@Column(columnDefinition="INT NOT NULL",name="empNo")
-	public Integer getEmpNo() {
+	@Column(columnDefinition="VARCHAR(10) NOT NULL",name="empNo")
+	public String getEmpNo() {
 		return empNo;
 	}
 
 
-	public void setEmpNo(Integer empNo) {
+	public void setEmpNo(String empNo) {
 		this.empNo = empNo;
 	}
 
