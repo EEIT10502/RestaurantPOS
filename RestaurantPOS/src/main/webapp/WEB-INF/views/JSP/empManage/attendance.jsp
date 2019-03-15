@@ -65,21 +65,21 @@
 				<th>員工編號</th>
 				<th>員工姓名</th>
 				<th>日期</th>
-				<th>上班打卡</th>
-				<th>下班打卡</th>
+				<th>狀態</th>
+				<th>時間</th>
 				<th>備註</th>
 			</tr>
-			<%--		<c:forEach var="gTable" items="">
+					<c:forEach var="Attendence" items="${Attendence}" varStatus="status">
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${Attendence.attendenceId}</td>
+					<td>${Attendence.empNo}</td>
+					<td>${Attendence.empName}</td>
+					<td>${Attendence.date}</td>
+					<td>${Attendence.checkStatus}</td>
+					<td>${Attendence.clockTime}</td>
 					<td></td>
 				</tr>
-		</c:forEach> --%>
+		</c:forEach>
 		</table>
 		<!-- 	商品列表結束 -->
 		<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input

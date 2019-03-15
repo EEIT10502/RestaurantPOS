@@ -14,8 +14,7 @@ import javax.persistence.Table;
 @Table(name = "Schedule")
 public class ScheduleBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	Integer scheduleId;
 	String schedule;
 	String color;
@@ -27,13 +26,8 @@ public class ScheduleBean implements Serializable {
 	public ScheduleBean() {
 	}
 
-	public ScheduleBean(Integer scheduleId,
-	String schedule,
-	String color,
-	Time startTime,
-	Time endTime,
-	Time restTime,
-	Integer totalTime) {
+	public ScheduleBean(Integer scheduleId, String schedule, String color, Time startTime, Time endTime, Time restTime,
+			Integer totalTime) {
 		this.scheduleId = scheduleId;
 		this.schedule = schedule;
 		this.color = color;
@@ -43,7 +37,8 @@ public class ScheduleBean implements Serializable {
 		this.totalTime = totalTime;
 	}
 
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getScheduleId() {
 		return scheduleId;
 	}
@@ -51,8 +46,7 @@ public class ScheduleBean implements Serializable {
 	public void setScheduleId(Integer scheduleId) {
 		this.scheduleId = scheduleId;
 	}
-	
-	
+
 	@Column(columnDefinition = "NVARCHAR(50) NOT NULL", name = "schedule")
 	public String getSchedule() {
 		return schedule;
@@ -88,6 +82,7 @@ public class ScheduleBean implements Serializable {
 	public void setEndTime(Time endTime) {
 		this.endTime = endTime;
 	}
+
 	@Column(columnDefinition = "TIME NOT NULL", name = "restTime")
 	public Time getRestTime() {
 		return restTime;
