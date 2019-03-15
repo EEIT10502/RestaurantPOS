@@ -162,6 +162,21 @@ public class ManagerDaoImpl implements ManagerDao{
 		
 		return TTBean;
 	}
+
+	//根據傳入的日期取得一筆CumulativeTurnoverBean
+	@Override
+	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date) {
+		
+		CumulativeTurnoverBean CTBean = null;
+		//型態轉換問題直接用拼接字串方式解決
+		String hql="FROM CumulativeTurnoverBean WHERE date ='"+date+"'";
+		
+		Session session = factory.getCurrentSession();
+		CTBean = (CumulativeTurnoverBean) session.createQuery(hql)												 
+												 .uniqueResult();
+		
+		return CTBean;
+	}
 	
 	
 	

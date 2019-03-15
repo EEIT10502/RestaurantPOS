@@ -60,6 +60,11 @@ public interface ManagerService {
 	 * @return 一個TargetTurnoverBean
 	 */
 	public TargetTurnoverBean getMonthTarget();
-	
+	/**
+	 * 透過傳入的時間字串取得一筆CumulativeTurnoverBean (字串格式:yyyy-MM-dd)
+	 * @param date 時間字串
+	 * @return 一個CumulativeTurnoverBean
+	 */
+	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date);
 	
 }

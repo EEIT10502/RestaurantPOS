@@ -46,24 +46,24 @@ public class ManagerController {
 		//System.out.println("進入日結");
 		
 		//取得當日的yyyy-MM-dd格式字串 
-		String date=SystemUtils2018.getDate();
-		
+		//String date=SystemUtils2018.getDate();  //系統正式上線用這個
+		String date ="2019-03-05";  			  //因無當日最新數據，先用假資料測試
 		//準備一個有當日數據分析的MAP
 		Map<String, Object> mapData = managerservice.getDayCheckAnalysisDate(date);
 		
 		//準備當日營業數據，放入MAP
-		CumulativeTurnoverBean CTBean = managerservice.getLastCumulativeTurnoverBean();
+		CumulativeTurnoverBean CTBean = managerservice.getCumulativeTurnoverByDate(date);
 		mapData.put("CumulativeTurnover", CTBean);
 		
 		//準備一個目標營業額，放入MAP
 		TargetTurnoverBean TTBean = managerservice.getMonthTarget();
 		mapData.put("TargetTurnover",TTBean);
 		
-		
+//		System.out.println("date: "+date);
+//		System.out.println("CTBean: "+CTBean.getCumulativeTurnover());
 //		System.out.println("TTBean: "+TTBean.getTargetTurnover());
 //		System.out.println("來客數:"+mapData.get("來客數"));
-//		System.out.println("翻桌率:"+mapData.get("翻桌率"));
-//		System.out.println("客平均消費:"+mapData.get("客平均消費"));
+
 		
 		//呼叫列印方法，列印日結清機單
 		MainPrinter.printDayCheck(mapData);

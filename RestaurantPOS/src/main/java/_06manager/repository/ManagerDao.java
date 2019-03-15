@@ -35,5 +35,6 @@ public interface ManagerDao {
 	//取得當月份目標營業額
 	public TargetTurnoverBean getMonthTarget();
 	
-	
+	//依照傳入的日期字串從CumulativeTurnover中得到一筆資料
+	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date);
 }

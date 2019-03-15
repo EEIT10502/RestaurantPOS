@@ -167,7 +167,7 @@ public class MainPrinter {
 	            
 	            printContent += PrinterCmdUtils.bothDouble();
 	            printContent += PrinterCmdUtils.boldOn();
-	            printContent += "\t\t\t清機單\n";
+	            printContent += "\t\t清機單\n";
 	            printContent += PrinterCmdUtils.boldOff();
 	            printContent += PrinterCmdUtils.ZoomCancel();
 	            printContent += PrinterCmdUtils.longitudinalDouble();
@@ -176,9 +176,10 @@ public class MainPrinter {
 	           
 	            printContent += "現金收入: "+CTBean.getMoneyReceived()+"\n";
 	            printContent += "現金短溢: "+CTBean.getShortoverAmount()+"\n";
-	            printContent += "銷售總額: "+CTBean.getCumulativeTurnover()+"\n";
-	            printContent += "累計營業額: "+TTBean.getTargetTurnover()+"\n";
-	            printContent += "目標達成率: "+SystemUtils2018.getAchievingRate(CTBean.getCumulativeTurnover(), TTBean.getTargetTurnover())+"\n";
+	            printContent += "銷售金額: "+CTBean.getTurnover()+"\n";
+	            printContent += "日累積營業額: "+CTBean.getCumulativeTurnover()+"\n";
+	            printContent += "月目標營業額: "+TTBean.getTargetTurnover()+"\n";
+	            printContent += "月目標達成率: "+SystemUtils2018.getAchievingRate(CTBean.getCumulativeTurnover(), TTBean.getTargetTurnover())+"\n";
 	            printContent +="\n\n\n\n\n\n";
 	            printContent +="數據分析: \n";
 	            printContent +="今日來客數: "+mapData.get("來客數")+" 人\n";
