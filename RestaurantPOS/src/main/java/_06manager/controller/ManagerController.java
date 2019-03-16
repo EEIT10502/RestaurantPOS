@@ -116,7 +116,7 @@ public class ManagerController {
 //		MainActivity pos = new MainActivity();
 //		pos.onClick();
 		
-		return "manage/managelogin";
+		return "manage/login";
 	}
 
 	@RequestMapping(value = "/manage/managelogin.check", method = RequestMethod.POST)
@@ -143,7 +143,7 @@ public class ManagerController {
 
 		// errorMsgMap不為空，表示裡面有錯誤訊息，跳轉到登入頁面重新輸入
 		if (!errorMsgMap.isEmpty()) {
-			return "manage/managelogin";
+			return "manage/login";
 		}
 
 		ManagerBean managerBean = null;
@@ -158,7 +158,7 @@ public class ManagerController {
 			} else {
 				// 為空表示找不到，肯定輸入錯誤!回到登入頁面
 				errorMsgMap.put("LoginError", "該帳號不存在或密碼錯誤");
-				return "manage/managelogin";
+				return "manage/login";
 			}
 
 		} catch (RuntimeException e) {
