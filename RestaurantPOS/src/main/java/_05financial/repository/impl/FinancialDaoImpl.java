@@ -60,7 +60,6 @@ public class FinancialDaoImpl implements FinancialDao {
 				.setParameter("endDate", endDate).getResultList();
 
 		return listDailyOrder;
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -81,7 +80,7 @@ public class FinancialDaoImpl implements FinancialDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getMenuCate() {
-		String hql = "SELECT cate FROM MenuBean m GROUP BY cate";
+		String hql = "SELECT cate FROM MenuBean GROUP BY cate";
 		Session session = factory.getCurrentSession();
 		List<MenuBean> listCateMenu = session.createQuery(hql).getResultList();
 
@@ -102,6 +101,30 @@ public class FinancialDaoImpl implements FinancialDao {
 		return listCate;
 	}
 
+	// productRport
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuBean> getMenuProductByCate(String Cate) {
+		String hql = "FROM MenuBean WHERE cate=:Cate";
+		Session session = factory.getCurrentSession();
+		List<MenuBean> listProductMenu = session.createQuery(hql).setParameter("Cate", Cate).getResultList();
+
+		return listProductMenu;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderBean[]> getProductByDate(String Date1, String Date2, String Product) {
+		// to sql.Date
+		stringToDate(Date1, Date2);
+		// hql
+		String hql = "SELECT cast(d.orderBean.orderTime as date), sum(qty), sum(productPrice) FROM OrderDetailBean d WHERE d.orderBean.orderTime>=:beginDate and d.orderBean.orderTime<=:endDate and productName=:Product GROUP BY cast(d.orderBean.orderTime as date)";
+		Session session = factory.getCurrentSession();
+		List<OrderBean[]> listProuct = session.createQuery(hql).setParameter("beginDate", beginDate)
+				.setParameter("endDate", endDate).setParameter("Product", Product).getResultList();
+		
+		return listProuct;
+	}
+
 	// goalReport
 	@SuppressWarnings("unchecked")
 	@Override
@@ -114,8 +137,6 @@ public class FinancialDaoImpl implements FinancialDao {
 			e.printStackTrace();
 		}
 		java.sql.Date beginDate = new java.sql.Date(uDate1.getTime());
-
-//		System.out.println(beginDate);
 		// hql
 		String hql = "FROM CumulativeTurnoverBean c WHERE c.date=:beginDate";
 		Session session = factory.getCurrentSession();
@@ -129,14 +150,13 @@ public class FinancialDaoImpl implements FinancialDao {
 	@Override
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1) {
 		String beginDate = Date1.substring(0, 7);
-//		System.out.println(beginDate);
-
 		// hql
 		String hql = "FROM TargetTurnoverBean WHERE date=:beginDate";
 		Session session = factory.getCurrentSession();
 		List<TargetTurnoverBean> listgoalturn = session.createQuery(hql).setParameter("beginDate", beginDate)
 				.getResultList();
-		System.out.println(listgoalturn + " from IDao");
+
 		return listgoalturn;
 	}
+
 }

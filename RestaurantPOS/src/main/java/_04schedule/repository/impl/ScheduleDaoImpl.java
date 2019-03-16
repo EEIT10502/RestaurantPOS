@@ -1,8 +1,7 @@
 package _04schedule.repository.impl;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import _00model.AttendenceBean;
 import _00model.EmployeeBean;
+import _00model.ScheduleBean;
 import _04schedule.repository.ScheduleDao;
 
 
@@ -54,10 +54,74 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	}
 
 	
-	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<ScheduleBean> findAllSchedule() {
+		String hql = "FROM ScheduleBean";
+		Session session = null;
+		List<ScheduleBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).getResultList();
+		return list;
+	}
 
+	/*-----------------------------------修改班表資料-----------------------------------*/
+	
+	@Override
+	public void updateSchedule(ScheduleBean schedule) {
+//		String hql = "UPDATE ScheduleBean SET schedule s =:schedule WHERE scheduleId d=:scheduleId";
+		Session session = factory.getCurrentSession();
+		System.out.println(schedule.getScheduleId());	//ID
+		System.out.println(schedule.getSchedule());		//班別
+		session.update(schedule);
+	}
 
+	/*-----------------------------------新增班表資料-----------------------------------*/
+	@Override
+	public void saveSchedule(ScheduleBean schedule) {
+		Session session = factory.getCurrentSession();
+		session.save(schedule);
+
+	}
+	/*-----------------------------------刪除班表資料-----------------------------------*/
+	@SuppressWarnings("unused")
+	@Override
+	public void deleteScheduleByPrimaryKey(int scheduleId) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Schedule WHERE scheduleId=:scheduleId";
+		ScheduleBean scheduleBean = new ScheduleBean();
+		scheduleBean.setScheduleId(scheduleId);
+		session.delete(scheduleBean);	
+	}
 	
+	@Override
+	public void deleteAllSchedule() {
+		Session session = factory.getCurrentSession();
+		String hql = "DELETE FROM Schedule";
+		session.createQuery(hql).executeUpdate();
+	}
 	
+	@Override
+	public ScheduleBean findByPrimaryKey(int scheduleId) {
+		ScheduleBean sb = null;
+		Session session = factory.getCurrentSession();
+		sb = session.get(ScheduleBean.class, scheduleId);
+		System.out.println(scheduleId);
+		return sb;
+	}
+
+	@Override
+	public ScheduleBean findBySchedule(String schedule) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Schedule WHERE schedule=:schedule";
+		ScheduleBean sb = null;
+		@SuppressWarnings("unchecked")
+		List<ScheduleBean> list = session.createQuery(hql)
+								.setParameter("schedule", schedule)
+								.getResultList();
+		if (!list.isEmpty()) 
+			sb = list.get(0);
+		return sb;
+	}
 
 }

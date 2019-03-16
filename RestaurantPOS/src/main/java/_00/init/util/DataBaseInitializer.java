@@ -1,6 +1,5 @@
 package _00.init.util;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import _00.init.tableInit.AttendenceTableInit;
@@ -32,7 +31,7 @@ public class DataBaseInitializer {
 		
 		
 		//建立TargetTurnover資料
-		//new TargetTurnoverTableInit(factory).initTargetTurnover();
+		new TargetTurnoverTableInit(factory).initTargetTurnover();
 		
 		
 		//建立Order資料
