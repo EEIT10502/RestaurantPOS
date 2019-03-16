@@ -1,10 +1,13 @@
 package _06manager.repository;
 
 import java.util.List;
+import java.util.Map;
 
+import _00model.CumulativeTurnoverBean;
 import _00model.ManagerBean;
 import _00model.OrderBean;
 import _00model.OrderDetailBean;
+import _00model.TargetTurnoverBean;
 
 public interface ManagerDao {
 	
@@ -22,4 +25,16 @@ public interface ManagerDao {
 	
 	//按照orderNo 取回一個OrderBean給列印功能使用
 	public OrderBean getOrderBeanByOrderNo(String orderNo);
+	
+	//從CumulativeTurnover中得到最新一筆資料
+	public CumulativeTurnoverBean getLastCumulativeTurnoverBean();
+	
+	//依照傳入的日期字串從OrderBean 取得數據分析(今日來客數、客平均消費、翻桌率) 日期格式 yyyy-MM-dd
+	public Map<String,Object> getDayCheckAnalysisDate(String date);
+
+	//取得當月份目標營業額
+	public TargetTurnoverBean getMonthTarget();
+	
+	//依照傳入的日期字串從CumulativeTurnover中得到一筆資料
+	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date);
 }

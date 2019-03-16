@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import _00model.AttendenceBean;
 import _00model.EmployeeBean;
 import _00model.ManagerBean;
 import _02employee.repository.EmployeeDao;
@@ -71,6 +72,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 			managerBean = dao.checkIDPassword(mAccount, mPwd);
 			
 			return managerBean;
+		}
+
+		@Transactional
+		@Override
+		public List<AttendenceBean> getAllAttendence() {
+			return employeeDao.getAllAttendence();
 		}
 
 	

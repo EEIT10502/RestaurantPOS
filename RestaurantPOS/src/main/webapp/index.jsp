@@ -81,14 +81,16 @@ $(document).ready(function(){
 	<br>
 	<br>
 	<br>
-	<a href="<c:url value="/manage/queryOne"/>">
+	<a href="<c:url value="/manage/printDayCheck"/>">
 	<input type="button" value="按我" id="clickMe"/>
 	</a>
 	<h6><a href="productManage/productInsert.action" >商品管理頁面:productInsert</a></h6>
 	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
+	<h6><a href="schedule">排班:schInsert</a></h6>
 	<h6><a href="empManage/empQuery">員工查詢頁面:empQuery</a></h6>
 	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
 <!-- 	商品管理連結_結束 -->
+
 
 <!-- 	sidebar連結_開始 -->
 <!--	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>  -->

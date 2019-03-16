@@ -130,10 +130,34 @@ public class SystemUtils2018 {
 		return strDate;
 	}
 	
+	public static String getMonth() {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+		Date date = new Date();
+		String strDate = format.format(date);
+		
+		return strDate;
+		
+	}
+	/**將傳入的參數相除轉換成%數顯示
+	 * 累計營業額/目標營業額 =目標達成率
+	 * @param cumulativeTurnover  累計營業額
+	 * @param targetTurnover 	目標營業額
+	 * @return 回傳一個字串(如:45%)
+	 */
+	public static String getAchievingRate(int cumulativeTurnover,int targetTurnover) {
+		String rate ="";
+		
+		float achievingRate = (float)cumulativeTurnover/targetTurnover;
+		rate = Integer.toString((int) (achievingRate*100))+"%";
+		return rate;
+	}
 	//測試你的方法
 	public static void main(String[] args) {
 		
-		//System.out.println(SystemUtils2018.getTimeForPrinter());
+
+		
+		
 	}
 
 }

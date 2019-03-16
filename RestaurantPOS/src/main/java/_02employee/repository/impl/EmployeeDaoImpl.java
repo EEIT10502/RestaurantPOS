@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _00model.AttendenceBean;
 import _00model.EmployeeBean;
 import _00model.ManagerBean;
 import _02employee.repository.EmployeeDao;
@@ -69,6 +70,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		public ManagerBean checkIDPassword(String mAccount, String mPwd) {
 			// TODO Auto-generated method stub
 			return null;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<AttendenceBean> getAllAttendence() {
+			String hql = "FROM AttendenceBean";
+		    Session session = null;
+		    List<AttendenceBean> list = new ArrayList<>();
+		    session = factory.getCurrentSession();
+		    list = session.createQuery(hql).getResultList();
+		    return list;
+			
 		}
 
 		
