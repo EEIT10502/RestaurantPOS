@@ -84,7 +84,7 @@
 			var total1=0;
 			var total1 = parseInt($("#oTotal").html());
 			
-			$("#")
+			
 			$.ajax({
 			    url: '/RestaurantPOS/order/getPrice',
 			    type: 'post',
@@ -93,8 +93,10 @@
 			      	alert('Ajax request 發生錯誤');
 			    },
 			    success: function(response) {
-			     var vPrice = response;
-				 var subTotal = vPrice * 1
+			        var vPrice = response.price;
+			        var vCategory = response.cate;
+			        var vProductNo = response.productNo;
+				    var subTotal = vPrice * 1
 				
 			        var row = '';
 					row += '<tr>';
@@ -114,14 +116,15 @@
 					row += '	<input type="hidden" id="hidOpItem' + itemNo + '" name="orderVos[' + itemNo + '].itemName" value="' + v + '" />';
 					row += '	<input type="hidden" id="hidOpPrice' + itemNo + '" name="orderVos[' + itemNo + '].price" value="' + vPrice + '" />';
 					row += '	<input type="hidden" id="hidSubtotal' + itemNo + '" name="orderVos[' + itemNo + '].subTotal" value="' + subTotal + '" />';
-					
+					row += '	<input type="hidden" id="hidCategory' + itemNo + '" name="orderVos[' + itemNo + '].category" value="' + vCategory + '" />';
+					row += '	<input type="hidden" id="hidProductNo' + itemNo + '" name="orderVos[' + itemNo + '].productNo" value="' + vProductNo + '" />';
 					row += '</tr>';
 				
 					$('#oL1').after(row);
 					var subTotal1 = parseInt($("#opSubtotal" + itemNo).html());
 					total= total1 + subTotal1; //總金額加總
 					$("#oTotal").html(total);
-					
+					$('#hidoTotal').attr("value",total);
 					itemNo++;
 				
 			    }
@@ -129,12 +132,24 @@
 			
 		});
 			
+		$('#oNext').click(function() {
+			var people = $('#oPeople').val();
+			var call = $('#oCall').val();
+			if (!people) {
+				alert('「請輸入人數」');
+				return;
+			}
+			if(!call){
+				alert('「請輸入叫號機號碼」');
+				return;
+			}
+			$('#dataForm').submit();
+		});
 	});
 	
 	function deltable(){
 		$("#oTotal").html("0");
 		$("#tablelist  tr:not(:first):not(:last)").empty("");
-		
 	}
 	
 	function delItem(obj) {
@@ -151,7 +166,7 @@
 		var totalAmount=0;
 		totalAmount = y + (qty-1)*price;
 		$("#oTotal").html(totalAmount);
-		$('#hidoTotal').val(totalAmount);
+		$('#hidoTotal').attr("value",totalAmount);
 		
 	}
 	
@@ -226,7 +241,7 @@
 </script>
 
 <body onload="ShowTime()">
-	<form:form method="post" action="/RestaurantPOS/order/payment" modelAttribute="orderForm">
+	<form:form id="dataForm" method="post" action="/RestaurantPOS/order/payment" modelAttribute="orderForm">
 <%-- 	<form action="/RestaurantPOS/order/payment" method="post" > --%>
 		<div class="container-fluid">
 			<!-- 標頭 -->
@@ -235,7 +250,7 @@
 					<h4 style="text-align: center">點餐頁面</h4>
 				</div>
 				<div class="col-md-3" id="showbox">
-					系統時間
+<!-- 					系統時間 -->
 				</div>
 			</div>
 			<div class="row">
@@ -244,11 +259,11 @@
 						<tr>
 							<td><input type="button" value="回首頁" id="oIndex"
 								name="oIndex"></td>
-							<td><input type="text" value="" id="oPeople" name="orderVos.cusFlow">人</td>
-							<td><input type="text" value="" id="oCall" name="orderVos.callNo">號</td>
+							<td><input type="text" value="" id="oPeople" name="cusFlow">人</td>
+							<td><input type="text" value="" id="oCall" name="callNo">號</td>
 							<td><input type="reset" value="全部清除" id="oReset"
 								name="oReset" onclick="deltable()"></td>
-							<td><input type="submit" value="下一步" id="oNext" name="oNext"></td>
+							<td><input type="button" value="下一步" id="oNext" name="oNext"></td>
 						</tr>
 					</table>
 				</div>
@@ -277,8 +292,8 @@
 						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
 							<td colspan="3" id="oTotal" name="oTotal">0
-								<input type="hidden" id="hidoTotal" name="orderVos.totalAmount"/>
 							</td>
+							<input type="hidden" id="hidoTotal" name="totalAmount" value=""/>
 						</tr>
 					</table>
 				</div>

@@ -38,6 +38,12 @@ public class OrderBean implements Serializable {
 	
 	Set<OrderDetailBean> OrderDetailBean = new LinkedHashSet<>();
 
+
+
+	public OrderBean() {
+		
+	}
+	
 	public OrderBean(Integer orderId,String orderNo,Integer cusFlow,Timestamp orderTime,Integer totalPrice
 			,String callNo) {
 		this.orderId=orderId;
@@ -50,9 +56,6 @@ public class OrderBean implements Serializable {
 	
 	
 	
-	public OrderBean() {
-		
-	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -65,7 +68,7 @@ public class OrderBean implements Serializable {
 		this.orderId = orderId;
 	}
 
-	@Column(columnDefinition="VARCHAR(12) NOT NULL",name="orderNo",unique=true)
+	@Column(columnDefinition="VARCHAR(14) NOT NULL",name="orderNo",unique=true)
 	public String getOrderNo() {
 		return orderNo;
 	}
@@ -109,7 +112,7 @@ public class OrderBean implements Serializable {
 	}
 	
 
-	@OneToMany(mappedBy="orderBean",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="orderBean",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public Set<OrderDetailBean> getOrderDetailBean() {
 		return OrderDetailBean;
 	}

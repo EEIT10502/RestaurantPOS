@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../../css/final.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/final.css"> --%>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mynumkb.css">
 <title>結帳</title>
 </head>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -24,8 +30,35 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
-<body>
-	<form>
+<script>
+function ShowTime()
+{
+    var NowDate = new Date();
+    var d = NowDate.getDay();
+    var dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+    document.getElementById('showbox').innerHTML = '目前時間：' + NowDate.toLocaleString() + '（' + dayNames[d] + '）';
+    setTimeout('ShowTime()', 1000);
+}
+
+$(function(){
+	$('#oReceived').blur(function() {
+		var received = parseInt($('#oReceived').val());
+		console.log(received);
+		var totalAmount = parseInt(${totalAmount});
+		console.log(totalAmount);
+		var change = received - totalAmount ;
+		console.log(change);
+		
+		$('#oChange').html(change + "元");
+	});
+});
+
+
+
+</script>
+<body onload="ShowTime()">
+	<form:form method="post" action="/RestaurantPOS/order/confirmPayment" modelAttribute="orderForm">
+	
 		<div class="container-fluid">
 			<!-- 標頭 -->
 			<div class="row">
@@ -34,12 +67,13 @@
 				</div>
 				<div class="col-md-8">
 					<h4 style="text-align: center">結帳頁面</h4>
+					<input type="submit" value="結帳" id="oNext" name="oNext">
 				</div>
-				<div class="col-md-3">
-					<h5>系統時間：</h5>
+				<div class="col-md-3" id="showbox">
+					<!-- 系統時間 --> 
 				</div>
 			</div>
-
+			</div>
 			<!-- 點餐部分 -->
 			<div class="row">
 				<!-- 左方清單 -->
@@ -53,21 +87,52 @@
 							<th>小計</th>
 							<th>備註</th>
 						</tr>
-						<tr id="ol1" name="ol1">
-							<td id="opItem1" name="opItem1"></td>
-							<td id="opPrice1" name="opPrice1"></td>
-							<td></td>
-							<td id="opSubtotal1" name="opSubtotal1"></td>
-							<td id="" name=""></td>
-						</tr>
+						<c:forEach var='orderVos' items='${orderVos}' varStatus="idx">
+							<tr>	
+								<td>
+									${orderVos.itemName}
+									<input type="hidden" id="itemName${idx.index}" name="orderVos1[${idx.index}].itemName" value="${orderVos.itemName}">
+								</td>
+								<td>
+								    ${orderVos.price}
+								    <input type="hidden" id="price${idx.index}" name="orderVos1[${idx.index}].price" value="${orderVos.price}">
+								</td>
+								<td>
+									${orderVos.qty}
+									 <input type="hidden" id="qty${idx.index}" name="orderVos1[${idx.index}].qty" value="${orderVos.qty}">
+								</td>
+								<td>
+									${orderVos.subTotal}
+									 <input type="hidden" id="subTotal${idx.index}" name="orderVos1[${idx.index}].subTotal" value="${orderVos.subTotal}">
+									 <input type="hidden" id="category${idx.index}" name="orderVos1[${idx.index}].category" value="${orderVos.category}">
+									 <input type="hidden" id="productNo${idx.index}" name="orderVos1[${idx.index}].productNo" value="${orderVos.productNo}">
+								</td>
+							
+								<td></td>
+							</tr>
+						</c:forEach>
 						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
-							<td colspan="2" id="oTotal" name="oTotal"></td>
+							<td colspan="2" id="oTotal" name="oTotal">
+								${totalAmount}
+								<input type="hidden" id="totalAmount" name="totalAmount" value="${totalAmount}">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" style="text-align: right">
+								用餐人數：${cusFlow}位
+								<input type="hidden" id="cusFlow" name="cusFlow" value="${cusFlow}">
+							</td>
+							<td colspan="3" style="text-align: right">
+								叫號機號碼：${callNo}號
+								<input type="hidden" id="callNo" name="callNo" value="${callNo}">
+							</td>
 						</tr>
 						<tr>
 							<th colspan="3" style="text-align: right">收：</th>
-							<td colspan="2" id="oReceived" name="oReceived">
-							<input type="text" id="oReceived" name="oReceived"></td>
+							<td colspan="2" >
+							<input type="text" id="oReceived" name="oReceived" value="">元
+							</td>
 						</tr>
 						<tr>
 							<th colspan="3" style="text-align: right">找：</th>
@@ -75,56 +140,12 @@
 						</tr>
 					</table>
 				</div>
-
-
-				<!-- 右方按鈕 -->
-				<div class="col-md-4">
-					<table border="1">
-						<tr>
-							<td rowspan="3" id="punchTable">
-								<table border="1">
-									<!-- 		<table border="1" id="p" style="visibility:hidden"> -->
-									<tbody>
-										<tr>
-											<td><button onclick="demo(this,1)">7</button></td>
-											<td><button onclick="demo(this,1)">8</button></td>
-											<td><button onclick="demo(this,1)">9</button></td>
-										</tr>
-										<tr>
-											<td><button onclick="demo(this,1)">4</button></td>
-											<td><button onclick="demo(this,1)">5</button></td>
-											<td><button onclick="demo(this,1)">6</button></td>
-										</tr>
-
-										<tr>
-											<td><button onclick="demo(this,1)">3</button></td>
-											<td><button onclick="demo(this,1)">2</button></td>
-											<td><button onclick="demo(this,1)">1</button></td>
-										</tr>
-										<tr>
-											<td><button onclick="demo(this,2)">全部清除</button></td>
-											<td><button onclick="demo(this,1)">0</button></td>
-											<td><button onclick="demo(this,3)">清除</button></td>
-										</tr>
-									</tbody>
-								</table> <!-- 			<table style="margin:0px auto" width="100%" border="1"> -->
-								<!-- 				<tr> --> <!-- 					<th colspan="3" style="text-align:center">輸入金額</th> -->
-								<!-- 				</tr> --> <!-- 				<tr> --> <!-- 					<td><input type="button" value="1" id="oc1" name="oc1"></td> -->
-								<!-- 					<td><input type="button" value="2" id="" name=""></td> -->
-								<!-- 					<td><input type="button" value="3" id="" name=""></td> -->
-								<!-- 				</tr> --> <!-- 				<tr> --> <!-- 					<td><input type="button" value="4" id="oc1" name="oc1"></td> -->
-								<!-- 					<td><input type="button" value="5" id="" name=""></td> -->
-								<!-- 					<td><input type="button" value="6" id="" name=""></td> -->
-								<!-- 				</tr> --> <!-- 				<tr> --> <!-- 					<td><input type="button" value="7" id="oc1" name="oc1"></td> -->
-								<!-- 					<td><input type="button" value="8" id="" name=""></td> -->
-								<!-- 					<td><input type="button" value="9" id="" name=""></td> -->
-								<!-- 				</tr> --> <!-- 				<tr> --> <!-- 					<td><input type="button" value="確定" id="oc1" name="oc1"></td> -->
-								<!-- 					<td><input type="button" value="0" id="" name=""></td> -->
-								<!-- 					<td><input type="button" value="清除" id="oc1" name="oc1"></td> -->
-								<!-- 				</tr> --> <!-- 			</table> -->
-				</div>
 			</div>
-		</div>
-	</form>
+	</form:form>
+	
+	<!-- 數字鍵盤script -->
+	<script src="${pageContext.request.contextPath}/css/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/css/mynumkb.js"></script>
+	<script>$("#oReceived").mynumkb();</script>
 </body>
 </html>
