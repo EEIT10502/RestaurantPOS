@@ -1,10 +1,9 @@
 package _07dailyClosing.repository.impl;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,15 +44,71 @@ public class DailyClosingDaoImpl implements DailyClosingDao {
 	public Integer getTodayTurnover(String date) {
 		stringToDate(date);
 
-		String hql = "SELECT SUM(totalPrice) FROM OrderBean WHERE orderTime>=:beginDate and orderTime<=:endDate";	
-		Session session = factory.getCurrentSession();
-		long todayTurnoverTypeLong = (long) session.createQuery(hql)
-				.setParameter("beginDate", beginDate)
-				.setParameter("endDate", endDate)
-				.uniqueResult();
-		Integer todayTurnover = (int) todayTurnoverTypeLong;
-		System.out.println("todayTurnoverDao:" + todayTurnover);
-		return todayTurnover;
+		try {
+			String hql = "SELECT SUM(totalPrice) FROM OrderBean WHERE orderTime>=:beginDate and orderTime<=:endDate";	
+			Session session = factory.getCurrentSession();
+			long todayTurnoverTypeLong = (long) session.createQuery(hql)
+					.setParameter("beginDate", beginDate)
+					.setParameter("endDate", endDate)
+					.uniqueResult();
+			Integer todayTurnover = (int) todayTurnoverTypeLong;
+			System.out.println("todayTurnoverDao:" + todayTurnover);
+			return todayTurnover;
+		} catch (java.lang.NullPointerException e) {
+			System.out.println("本日截至目前沒有賺到錢錢~QQ");
+			return null;
+		}
 	}
+	
+	@Override
+	public Integer getMaxIdNumber() {
+		String hql = "SELECT MAX(id) FROM CumulativeTurnoverBean";	
+		Session session = factory.getCurrentSession();
+		Integer maxIdNumber = (Integer) session.createQuery(hql).uniqueResult();
+		System.out.println("maxIdNumber:" + maxIdNumber);
+		return maxIdNumber;
+	}
+	
+	@Override
+	public Integer getCTPrevious() {
+		Integer maxIdNumber = getMaxIdNumber();
+		String hql = "SELECT cumulativeTurnover FROM CumulativeTurnoverBean WHERE id = ?0";	
+		Session session = factory.getCurrentSession();
+		Integer getCTPrevious = (Integer) session.createQuery(hql)
+				.setParameter(0, maxIdNumber)
+				.uniqueResult();
+		System.out.println("getCTPrevious:" + getCTPrevious);
+		return getCTPrevious;
+	}
+	
+	@Override
+	public void addDailyClosing(CumulativeTurnoverBean cumulativeTurnoverBean) {
+		Session session = factory.getCurrentSession();
+		session.save(cumulativeTurnoverBean);
+	}
+
+	@Override
+	public Integer completeCheckToday(java.sql.Date today) {
+		String hql = "select (id) from CumulativeTurnoverBean where date = '"+today+"'";
+		Session session = factory.getCurrentSession();
+		Integer yesterdayPK = (Integer) session.createQuery(hql)
+//				.setParameter(0, maxIdNumber)
+				.uniqueResult();
+		return yesterdayPK;
+	}
+	
+	@Override
+	public CumulativeTurnoverBean getAllById(Integer id) {
+//		Integer maxIdNumber = getMaxIdNumber();
+		String hql = "FROM CumulativeTurnoverBean WHERE id = ?0";	
+		Session session = factory.getCurrentSession();
+		CumulativeTurnoverBean cumulativeTurnoverBean = (CumulativeTurnoverBean) session.createQuery(hql)
+				.setParameter(0, id)
+				.uniqueResult();
+		System.out.println("cumulativeTurnoverBean All:" + cumulativeTurnoverBean);
+		return cumulativeTurnoverBean;
+	}
+
+
 
 }

@@ -12,6 +12,11 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <title>日結清機</title>
+<style type="text/css">
+span.errorMessage[type="redError"] {
+	color: red;
+}
+</style>
 </head>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script
@@ -31,7 +36,9 @@ $(document).ready(function(){
 	$("#checkout").click(function() {		
         var moneyReceivedBtn=$("#moneyReceivedBtn").val();
 		var turnoverBtn = $("#turnoverBtn").val();
-		
+		if($("#moneyReceivedBtn").val()==""){
+			alert("請輸入當日實收金額");
+		}else{
         $.ajax({     	
                 type :'POST',
                 url  :'/RestaurantPOS/close/checkDiffAmount.action',
@@ -43,12 +50,23 @@ $(document).ready(function(){
 			      	alert('Ajax request 發生錯誤');
 			    },
 			    success: function(response) {
-			    	var Dif = response;
-			    	document.getElementById("aftercheck").innerHTML = Dif;
-			    	document.getElementById("shortoverAmountBtn").value = Dif;
-			    	alert('當日實收金額 與 當日應收金額 有差異!!');
+			    	var Diff = -response;
+			    	document.getElementById("afterCheck").innerHTML = Diff + "  元";
+			    	document.getElementById("shortoverAmountBtn").value = Diff;
+
+			    	if(Diff != 0){
+			    		if(Diff >= 0){
+			    			document.getElementById("afterCheckString").innerHTML ="本日有溢收金額";
+			    		}
+			    		if(Diff <= 0){
+			    			document.getElementById("afterCheckString").innerHTML ="本日有短收金額";
+			    		}
+			    	}else{
+			    		document.getElementById("afterCheckString").innerHTML ="當日實收金額 與 當日應收金額 '無'差異";
+			    	}
 			    }
             })
+		}
     });
 });
 </script>
@@ -67,8 +85,7 @@ $(document).ready(function(){
 						</label>
 						<div class="col-sm-10">
 							${todayString}
-<%-- 							<form:input id="dateBtn" path="date" type='text' --%>
-<%-- 								name="iDate" class='form:input-large' /> --%>
+							<form:hidden id="dateBtn" path="date" name="iDate" class='form:input-large' /> 
 <%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfProductName} --%>
 						</div>
 					</div>
@@ -78,8 +95,7 @@ $(document).ready(function(){
 						</label>
 						<div class="col-sm-10">
 							${totalSalesAmountToday}  元
-							<form:input id="turnoverBtn" path="turnover" type='text'
-								class='form:input-large' name="iTurnover" /> 
+							<form:hidden  id="turnoverBtn" path="turnover" class='form:input-large' name="iTurnover" /> 
 <%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%> 
 						</div>
 
@@ -89,24 +105,67 @@ $(document).ready(function(){
 							當日實收金額
 						</label>
 						<div class='col-sm-10'>
-							<form:input id="moneyReceivedBtn" path="moneyReceived" type='text'
-								class='form:input-large' name="iMoneyReceived" placeholder="請輸入當日實收金額"/>
-							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice}
-						 	<input type="button" id="checkout" value="check" />
+							
+<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
+						 	<c:if test="${closingCompletedToday == null}">
+						 		<form:input id="moneyReceivedBtn" path="moneyReceived" type='text' class='form:input-large' name="iMoneyReceived" placeholder="請輸入當日實收金額" onkeyup="value=value.replace(/[^\d.]/g,'')"/>
+						 		<input type="button" id="checkout" value="check" class="btn btn-info"/>
+						 	</c:if>
+						 	<c:if test="${closingCompletedToday != null}">
+						 		<form:input disabled="true" id="moneyReceivedBtnCompleted" path="moneyReceived" type='text' class='form:input-large' name="iMoneyReceived" placeholder="請輸入當日實收金額" onkeyup="value=value.replace(/[^\d.]/g,'')"/>
+						 		<input type="button" disabled="disabled" id="checkoutCompleted" value="check" class="btn btn-info"/>
+						 	</c:if>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class='col-sm-2 col-form-label' for="shortoverAmountBtn"> 
 							( 短 )溢收金額
 						</label>
-						<div class='col-sm-10'>
-							<form:input id="shortoverAmountBtn" path="shortoverAmount" type='text'
-								class='form:input-large' name="iShortoverAmount" />
-								<span id="aftercheck"></span>
-<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
-						</div>
+						<c:if test="${closingCompletedToday == null}">
+							<div class='col-sm-10'>
+								<form:hidden id="shortoverAmountBtn" path="shortoverAmount" class='form:input-large' name="iShortoverAmount" />
+									<span id="afterCheck">尚未輸入當日實收金額</span>
+	<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
+							</div>
+							<label class='col-sm-2 col-form-label' ></label>
+							<div  class='col-sm-10'>
+								<span id="afterCheckString" class="errorMessage" type="redError"></span>
+							</div>
+						</c:if>
+						<c:if test="${closingCompletedToday != null}">
+							<div class='col-sm-10'>
+<%-- 								<form:hidden id="shortoverAmountBtn" path="shortoverAmount" class='form:input-large' name="iShortoverAmount" /> --%>
+<!-- 									<span id="afterCheck">尚未輸入當日實收金額</span> -->
+	<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
+								${shortoverAmountToday}  元
+							</div>
+							<label class='col-sm-2 col-form-label' ></label>
+							<c:if test="${closingCompletedToday == null}">
+								<div  class='col-sm-10'>
+									<span id="afterCheckString" class="errorMessage" type="redError"></span>
+								</div>
+							</c:if>
+							<c:if test="${closingCompletedToday != null}">					
+									<div  class='col-sm-10'>
+										<span id="afterCheckStringCompleted" class="errorMessage" type="redError">${shortoverAmountTodayString}</span>
+									</div>
+							</c:if>
+						</c:if>
 					</div>
-					
+					<div class="form-group row">
+					<label class='col-sm-2 col-form-label' ></label>
+					<div class='col-sm-10'>
+						<c:if test="${closingCompletedToday == null}">
+							<input id="submitClosing" type='submit' class='btn btn-primary' value="日結確認" />
+							<input id="resetClosing" type='reset' class='btn btn-primary' value="清除" />
+						</c:if>
+						<c:if test="${closingCompletedToday != null}">
+							<input disabled="disabled" id="submitClosingCompleted" type='submit' class='btn btn-primary' value="日結確認" />
+							<input disabled="disabled" id="resetClosingCompleted" type='reset' class='btn btn-primary' value="清除" />
+							<span id="afterCheckStringCompleted" class="errorMessage" type="redError">${closingCompletedToday}</span>		
+						</c:if>
+					</div>
+				</div>
 				</fieldset>
 			</form:form>
 

@@ -125,6 +125,7 @@ public class ScheduleController {
 			attendenceBean.setEmpNo(empNO);
 			attendenceBean.setClockTime(dtime);
 			attendenceBean.setDate((java.sql.Date) ddate);
+			attendenceBean.setEmpName(emp.getEmpName());
 
 			scheduleService.addAttendence(attendenceBean); // 新增
 			Msg.put("msg", "打卡成功");
