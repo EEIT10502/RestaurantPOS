@@ -169,7 +169,23 @@ public class ManagerController {
 		// return "redirect:/";
 
 		// 預設登入後前往查詢員工頁面
-		return "empManage/empQuery";
+		return "redirect:/toDashBoard";
+		//return "redirect:/toDashBoard";
+	}
+	
+	@RequestMapping("/toDashBoard")
+	public String toDashBoard() {
+		
+		
+		
+		return "DashBoard/dashboard";
+	}
+	
+	@RequestMapping("/close/close")
+	public String toClose() {
+		System.out.println("goto!");
+		
+		return "close/closeBoardTest";
 	}
 
 }
