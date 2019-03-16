@@ -21,6 +21,8 @@ public interface FinancialDao {
 	
 	public List<MenuBean> getMenuProductByCate(String Cate);
 	
+	public List<OrderBean[]> getProductByDate(String Date1, String Date2, String Product); 
+	
 	public List<CumulativeTurnoverBean> getCumulativeTurnoverByDate2(String Date1);
 	
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1);

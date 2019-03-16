@@ -49,36 +49,6 @@ public class FinancialController {
 	public String productReport(Model model) {
 		List<MenuBean> listMenuCate = service.getMenuCate();
 		model.addAttribute("listMenuCate", listMenuCate);
-
-//		List<MenuBean> listMenuPro = service.getMenuProductByCate(Cate);
-//		model.addAttribute("listMenuPro", listMenuPro);
-		
-//		System.out.println(listMenuCate + " this is Controller");
-//		System.out.println(Cate + " this is Controller");
-//		System.out.println(listMenuPro + " this is Controller");
-		return "report/productReport";
-	}
-//	@RequestMapping("/report/productReportCate")
-//	@ResponseBody
-//	public String productReportCate(Model model) {
-//		List<MenuBean> listMenuCate = service.getMenuCate();
-//		model.addAttribute("listMenuCate", listMenuCate);
-//		System.out.println(listMenuCate + " this is Controller");
-//		Result<String> rs = new Result<>();
-//		List<String> codeCategorys = facilityDictService.searchCodeCategory();
-//		String codeCate = StringUtil.collectionToCommaDelimitedString(codeCategorys);
-//		rs.setData(listMenuCate);
-//		System.out.println("here");
-//		return null;
-//	}
-	
-	@RequestMapping("/report/productReportPro")
-	public String productReportPro(Model model, @RequestParam("pcSelOpt") String Cate) {
-		model.addAttribute("Cate", Cate);
-		
-		List<MenuBean> listMenuPro = service.getMenuProductByCate(Cate);
-		model.addAttribute("listMenuPro", listMenuPro);
-		
 		return "report/productReport";
 	}
 
@@ -86,13 +56,12 @@ public class FinancialController {
 	@RequestMapping("/report/dailyReportGet")
 	public String dailyReportGet(Model model, @RequestParam("dDate1") String dDate1,
 			@RequestParam("dDate2") String dDate2) {
-
 		model.addAttribute("dDate1", dDate1);
 		model.addAttribute("dDate2", dDate2);
-
+		// OrderBean裡的欄位資料
 		List<OrderBean[]> listDailyOrder = service.getOrderByDate(dDate1, dDate2);
 		model.addAttribute("listDailyOrder", listDailyOrder);
-
+		// TurnoverBean裡的欄位資料
 		List<CumulativeTurnoverBean> listDailyCumu = service.getCumulativeTurnoverByDate(dDate1, dDate2);
 		model.addAttribute("listDailyCumu", listDailyCumu);
 
@@ -103,18 +72,26 @@ public class FinancialController {
 	@RequestMapping("/report/categoryReportGet")
 	public String categoryReportGet(Model model, @RequestParam("csDate1") String csDate1,
 			@RequestParam("csDate2") String csDate2, @RequestParam("csSelOpt") String csSelOpt) {
-
 		model.addAttribute("csDate1", csDate1);
 		model.addAttribute("csDate2", csDate2);
-//		model.addAttribute("csSelOpt", csSelOpt);
-
+		model.addAttribute("csSelOpt", csSelOpt);
+		// OrderBean裡的欄位資料
 		List<OrderBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
 		model.addAttribute("listCatee", listCatee);
-
+		// 類別報表下拉選單
 		List<MenuBean> listMenuCate = service.getMenuCate();
 		model.addAttribute("listMenuCate", listMenuCate);
 
 		return "report/categoryReport";
+	}
+
+	// 單品報表單品取得
+	@RequestMapping("/report/productReportPro")
+	@ResponseBody
+	public List<MenuBean> productReportPro(Model model, @RequestParam("pcSelOpt") String Cate) {
+		List<MenuBean> listMenuPro = service.getMenuProductByCate(Cate);
+
+		return listMenuPro;
 	}
 
 	// 單品報表
@@ -122,19 +99,16 @@ public class FinancialController {
 	public String productReportGet(Model model, @RequestParam("pDate1") String pDate1,
 			@RequestParam("pDate2") String pDate2, @RequestParam("pcSelOpt") String pcSelOpt,
 			@RequestParam("pSelOpt") String pSelOpt) {
-
 		model.addAttribute("pDate1", pDate1);
 		model.addAttribute("pDate2", pDate2);
-//		model.addAttribute("pcSelOpt", pcSelOpt);
-		
-//		List<OrderBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
-//		model.addAttribute("listCatee", listCatee);
+		model.addAttribute("pcSelOpt", pcSelOpt);
+		model.addAttribute("pSelOpt", pSelOpt);
 
+		List<OrderBean[]> listProuct = service.getProductByDate(pDate1, pDate2, pSelOpt);
+		model.addAttribute("listProuct", listProuct);
+		// 單品報表類別下拉選單
 		List<MenuBean> listMenuCate = service.getMenuCate();
 		model.addAttribute("listMenuCate", listMenuCate);
-		
-//		List<MenuBean> listMenuPro = service.getMenuProductByCate(pcSelOpt);
-//		model.addAttribute("listMenuPro", listMenuPro);
 
 		return "report/productReport";
 	}
@@ -142,12 +116,11 @@ public class FinancialController {
 	// 營運目標報表
 	@RequestMapping("/report/goalReportGet")
 	public String goalReportGet(Model model, @RequestParam("gMonth1") String gMonth1) {
-
 		model.addAttribute("gMonth1", gMonth1);
-
+		// CumulativeTurnoverBean的欄位資料
 		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
 		model.addAttribute("listgoalCum", listgoalCum);
-
+		// TargetTurnoverBean的欄位資料
 		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
 		model.addAttribute("listgoalturn", listgoalturn);
 
