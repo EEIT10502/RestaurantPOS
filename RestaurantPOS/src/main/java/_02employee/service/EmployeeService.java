@@ -3,6 +3,7 @@ package _02employee.service;
 import java.util.List;
 
 import _00model.AttendenceBean;
+import _00model.CumulativeTurnoverBean;
 import _00model.EmployeeBean;
 import _00model.ManagerBean;
 
@@ -32,4 +33,6 @@ public interface EmployeeService {
 
 	//Tai
 	List<AttendenceBean> getAllAttendence();
+	
+	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
 }

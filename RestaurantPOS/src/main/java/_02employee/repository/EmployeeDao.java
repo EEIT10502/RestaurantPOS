@@ -6,6 +6,7 @@ import java.util.List;
 import _00model.AttendenceBean;
 import _00model.EmployeeBean;
 import _00model.ManagerBean;
+import _00model.MenuBean;
 
 
 public interface EmployeeDao {
@@ -34,6 +35,8 @@ public interface EmployeeDao {
 	//Tai
 	List<AttendenceBean> getAllAttendence();
 	
-	
+	//以日期查詢員工出勤
+	void stringToDate(String Date1, String Date2);
+	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
 	
 }

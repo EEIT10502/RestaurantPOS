@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import _00model.AttendenceBean;
+import _00model.CumulativeTurnoverBean;
 import _00model.EmployeeBean;
 import _00model.ManagerBean;
 import _02employee.repository.EmployeeDao;
@@ -79,6 +80,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		public List<AttendenceBean> getAllAttendence() {
 			return employeeDao.getAllAttendence();
 		}
+
+		@Override
+		public List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2) {
+			return employeeDao.getAttendenceListByDate(Date1, Date2);
+		}
+
 
 	
 	
