@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import _00model.MenuBean;
+import _00model.OrderBean;
 import _01foodAndBeverages.repository.FbDao;
 import _01foodAndBeverages.service.FbService;
 
@@ -40,9 +41,16 @@ public class FbServiceImpl implements FbService {
 	
 	@Transactional
 	@Override
-	public Integer getProductPriceByName(String productName) {
+	public MenuBean getProductListByName(String productName){
 		
-		return dao.getProductPriceByName(productName);
+		return dao.getProductListByName(productName);
+	}
+	
+	@Transactional
+	@Override
+	public void insertOrder(OrderBean ob) {
+		 dao.insertOrder(ob);
+		
 	}
 	
 	
