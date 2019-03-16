@@ -62,6 +62,7 @@
 
 					<!-- 類別下拉選單 -->
 					<select id="csSelOpt" name="csSelOpt">
+					<option>--請選擇--</option>
 						<c:forEach var="csSel" items="${listMenuCate}">
 							<option>${csSel}</option>
 						</c:forEach>
@@ -96,9 +97,6 @@
 						<td>${totalPrice}</td>
 					</tr>
 				</table>
-
-				<input type="button" value="上一頁" id="csBPage" name="csBPage">
-				<input type="button" value="上一頁" id="csNPage" name="csNPage">
 			</div>
 		</div>
 	</form>
