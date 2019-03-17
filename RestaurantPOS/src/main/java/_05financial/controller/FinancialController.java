@@ -126,4 +126,17 @@ public class FinancialController {
 
 		return "report/goalReport";
 	}
+	
+//	@RequestMapping("/report/goalReportGetPDF")
+//	public String goalReportGetPDF(Model model, @RequestParam("gMonth1") String gMonth1) {
+//		model.addAttribute("gMonth1", gMonth1);
+//		 CumulativeTurnoverBean的欄位資料
+//		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
+//		model.addAttribute("listgoalCum", listgoalCum);
+//		 TargetTurnoverBean的欄位資料
+//		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
+//		model.addAttribute("listgoalturn", listgoalturn);
+//
+//		return "report/goalReport";
+//	}
 }
