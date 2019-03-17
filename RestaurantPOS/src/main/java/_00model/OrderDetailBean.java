@@ -34,6 +34,24 @@ public class OrderDetailBean implements Serializable {
 	public OrderDetailBean() {
 		
 	}
+	
+	
+	
+	public OrderDetailBean(Integer orderDetailId, String category, Integer productNo, String productName, Integer qty,
+			String specialReq, Integer productPrice) {
+		
+		this.orderDetailId = orderDetailId;
+		this.category = category;
+		this.productNo = productNo;
+		this.productName = productName;
+		this.qty = qty;
+		this.specialReq = specialReq;
+		this.productPrice = productPrice;
+		
+	}
+
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="orderDetailId")

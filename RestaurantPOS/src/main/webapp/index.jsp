@@ -17,13 +17,10 @@
 #content{
 width: 322px;
 }
-
 button{
 width: 80px;
 height: 70px;
-
 }
-
 </style>
 <script type="text/javascript">
 //隱藏或顯示計算機
@@ -92,6 +89,7 @@ $(document).ready(function(){
 <!-- 	商品管理連結_結束 -->
 
 
+
 <!-- 	sidebar連結_開始 -->
 <!--	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>  -->
 <!-- 	sidebar連結_結束 -->
@@ -99,7 +97,6 @@ $(document).ready(function(){
 
 </body>
 <script>
-
 		//這裡開始是給計算機用的script
 		
 		//連接字串功能
