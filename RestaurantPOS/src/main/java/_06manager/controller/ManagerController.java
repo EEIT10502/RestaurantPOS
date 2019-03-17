@@ -180,7 +180,7 @@ public class ManagerController {
 		
 		return "DashBoard/dashboard";
 	}
-	
+	//跳轉到日結清機
 	@RequestMapping("/close/close")
 	public String toClose() {
 		System.out.println("goto!");
