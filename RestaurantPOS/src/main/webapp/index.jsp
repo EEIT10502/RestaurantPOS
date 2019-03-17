@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@ $(document).ready(function(){
 </head>
 <body id="login">
   <div class="login-logo">
-    <h1>Welcome</h1>
+     <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt=""/></a>
   </div>
   <!--內文從這裡開始-->
   <div class="app-cam" >
@@ -74,15 +75,16 @@ $(document).ready(function(){
           </div>
           <!-- 後台管理 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
+          		
                 <a href="<spring:url value='/manage/managelogin' />">
                 <div class="r3_counter_box">
                   <i class="pull-left fa fa-user icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong>後台管理</strong></h5>
-                    
+                   <h5><strong>後台管理</strong></h5>
                   </div>
                 </div>
                 </a>
+                
           </div>
           <div class="clearfix"> </div>
         </div>
