@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +33,7 @@
 	// 結束日大於起始日判斷
 	jQuery(document).ready(function($) {
 		$("#gMonth1").datepicker({
+			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
 		});
 	});
@@ -70,7 +72,7 @@
 							<td>${listgoalturn[loop.count-1].targetTurnover}</td>
 							<td>${gTable.cumulativeTurnover}</td>
 							<td>${listgoalturn[loop.count-1].targetTurnover - gTable.cumulativeTurnover}</td>
-							<td>${gTable.cumulativeTurnover / listgoalturn[loop.count-1].targetTurnover * 100}%</td>
+							<td><fmt:formatNumber type="number" value="${gTable.cumulativeTurnover / listgoalturn[loop.count-1].targetTurnover * 100}" maxFractionDigits="2"/>%</td>
 						</tr>
 					</c:forEach>
 				</table>

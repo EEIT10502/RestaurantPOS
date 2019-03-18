@@ -2,7 +2,6 @@ package _05financial.controller;
 
 import java.util.List;
 
-import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import _00model.CumulativeTurnoverBean;
 import _00model.MenuBean;
 import _00model.OrderBean;
 import _00model.TargetTurnoverBean;
-import _05financial.repository.Result;
 import _05financial.service.FinancialService;
 
 @Controller
