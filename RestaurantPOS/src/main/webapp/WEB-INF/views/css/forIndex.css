@@ -1,18 +1,18 @@
         #all{
             margin: auto;
-            width: 60%;
+            width: 80%;
         }
         #cal{
             background-color: #ee5757;
             color: #ffffff;
-            font-size: 15px;
+            font-size: 20px;
             font-family: sans-serif;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border: none;
             border-radius: 12px;
             margin: 5px 5px;
-            cursor: pointer;
+            cursor: pointer; 
             box-shadow:  0 2px #999;
             padding: 0;
         }
@@ -24,15 +24,16 @@
             transform: translateY(2px);
         }
         input[type=text]{
-            width: 118px;
-            height: 20px;
-            font-size: 20px;
+            width: 200px;
+            height: 40px;
+            font-size: 30px;
             color: #9b9999;
-           border-radius: 5px;
-           padding: 3px 3px;
+           	border-radius: 5px;
+           	padding: 3px 3px;
+           	margin-bottom: 10px;
         }
         form{
-            border: 1px solid #eaeaea;
+           
             background-color: #ffffff;
             width: 212px;
             height: 280px;
@@ -49,4 +50,9 @@
             font-family: sans-serif;
             font-size: 50px;
             text-align: center; 
+        }
+        #checkIn,#checkOut{
+        	margin-top: 5px;
+        	margin-bottom: 5px;
+        
         }

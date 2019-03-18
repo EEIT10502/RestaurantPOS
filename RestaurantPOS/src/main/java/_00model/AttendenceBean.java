@@ -64,7 +64,7 @@ public class AttendenceBean implements Serializable {
 		this.empNo = empNo;
 	}
 	
-	@Column(columnDefinition = "VARCHAR(10) NOT NULL", name = "empNane")
+	@Column(columnDefinition = "VARCHAR(10) NOT NULL", name = "empName")
 	public String getEmpName() {
 		return empName;
 	}
