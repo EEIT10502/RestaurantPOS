@@ -86,6 +86,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return employeeDao.getAttendenceListByDate(Date1, Date2);
 		}
 
+		@Override
+		public EmployeeBean findByPrimaryKey(int key) {
+			return employeeDao.findByPrimaryKey(key);
+		}
+
 
 	
 	

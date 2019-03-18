@@ -39,4 +39,7 @@ public interface EmployeeDao {
 	void stringToDate(String Date1, String Date2);
 	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
 	
+	//匯出檔案
+	EmployeeBean findByPrimaryKey(int key);
+	
 }

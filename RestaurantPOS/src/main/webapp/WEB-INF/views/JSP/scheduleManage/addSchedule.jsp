@@ -6,6 +6,16 @@
 <html>
 <head>
 
+  <!-- jQuery v1.9.1 -->
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <!-- pickadate.js v3.5.6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+
 <style type="text/css">
 fieldset {
 	border: 1px solid rgb(255, 232, 57);
@@ -51,8 +61,8 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
 						開始時間 </label>
 					<div class="col-lg-10">
-						<form:input id="startTime" path="startTime" type='select'
-							class='form:input-large' />
+						<form:input id="startTime" path="startTime" type='text'
+							class="example" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -60,7 +70,7 @@ fieldset {
 						結束時間 </label>
 					<div class="col-lg-10">
 						<form:input id="endTime" path="endTime" type='text'
-							class='form:input-large' />
+							class="example" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -68,7 +78,7 @@ fieldset {
 						休息時間 </label>
 					<div class="col-lg-10">
 						<form:input id="restTime" path="restTime" type='text'
-							class='form:input-large' />
+							class="example" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -180,6 +190,10 @@ fieldset {
 		});
 	});
 </script>
+<!-- <script type="text/javascript"> -->
+<!--  	$( ".example" ).pickatime(); -->
+<!--  	twelvehour: true; -->
+<!-- </script> -->
 			</fieldset>
 		</form:form>
 	</section>

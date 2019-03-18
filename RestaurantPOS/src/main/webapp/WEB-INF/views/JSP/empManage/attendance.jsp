@@ -54,7 +54,7 @@
 	<!-- 搜尋列結束 -->
 	<!-- 匯出 -->
 	<div>
-		<input type="button" value="匯出檔案" id="dExport" name="dExport">
+		<a href='attendance.xls' >多筆會員資料查詢(EXCEL格式)</a><br>
 	</div>
 	<!-- 		匯出與寄信結束 -->
 	<!-- 商品列表開始 -->

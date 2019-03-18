@@ -114,6 +114,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			return EmpNameListByDate;
 		}
 
+		@Override
+		public EmployeeBean findByPrimaryKey(int key) {
+			Session session = factory.getCurrentSession();
+			EmployeeBean employeeBean = session.get(EmployeeBean.class, key);
+			return employeeBean;
+		}
+
 		
 
 		

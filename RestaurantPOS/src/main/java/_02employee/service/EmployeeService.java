@@ -35,4 +35,6 @@ public interface EmployeeService {
 	List<AttendenceBean> getAllAttendence();
 	
 	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
+	
+	EmployeeBean findByPrimaryKey(int key);
 }

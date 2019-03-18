@@ -54,11 +54,11 @@ td.errorMessage[type="redError"] {
 				<legend>修改排班資料</legend>
 				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='scheduleId'>
+					<label class="control-label col-lg-2 col-lg-2 hide" for='scheduleId'>
 						ID</label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.scheduleId}" path="scheduleId" type='text'
-							class='form:input-large' readonly="true"/> 
+							class='form:input-large hide' readonly="true"/> 
 					</div>
 				</div>
 				

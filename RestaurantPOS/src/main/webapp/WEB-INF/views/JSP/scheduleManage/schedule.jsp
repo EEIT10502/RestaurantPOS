@@ -29,8 +29,8 @@
 <link type="text/css" rel="stylesheet"
 	href="https://shift.ekko.com.tw/asset/css/jquery.simple-color-picker.css"
 	media="screen, projection" />
-<script type="text/javascript"
-	src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
+<!-- <script type="text/javascript" -->
+<!-- 	src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script> -->
 <script type="text/javascript"
 	src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript"

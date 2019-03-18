@@ -153,7 +153,7 @@ body {
 					allDayText: '員工名稱',
 // 					allDaySlot: false,	//allDay?域的文本?容
 					timeFormat:'',
-					sta
+					
 		            drop : function() {
 						// is the "remove after drop" checkbox checked?
 						if ($('#drop-remove').is(':checked')) {

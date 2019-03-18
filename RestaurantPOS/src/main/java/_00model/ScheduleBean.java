@@ -2,6 +2,7 @@ package _00model;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +19,15 @@ public class ScheduleBean implements Serializable {
 	Integer scheduleId;
 	String schedule;
 	String color;
-	Time startTime;
-	Time endTime;
+	Timestamp startTime;
+	Timestamp endTime;
 	Time restTime;
 	Integer totalTime;
 
 	public ScheduleBean() {
 	}
 
-	public ScheduleBean(Integer scheduleId, String schedule, String color, Time startTime, Time endTime, Time restTime,
+	public ScheduleBean(Integer scheduleId, String schedule, String color, Timestamp startTime, Timestamp endTime, Time restTime,
 			Integer totalTime) {
 		this.scheduleId = scheduleId;
 		this.schedule = schedule;
@@ -65,21 +66,21 @@ public class ScheduleBean implements Serializable {
 		this.color = color;
 	}
 
-	@Column(columnDefinition = "TIME NOT NULL", name = "startTime")
-	public Time getStartTime() {
+	@Column(name = "startTime")
+	public Timestamp getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Time startTime) {
+	public void setStartTime(Timestamp startTime) {
 		this.startTime = startTime;
 	}
 
-	@Column(columnDefinition = "TIME NOT NULL", name = "endTime")
-	public Time getEndTime() {
+	@Column(name = "endTime")
+	public Timestamp getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Time endTime) {
+	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
 
