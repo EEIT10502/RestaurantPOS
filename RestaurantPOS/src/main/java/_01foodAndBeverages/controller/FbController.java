@@ -160,27 +160,12 @@ public class FbController {
 		return mv;
 	}
 	
-	@ModelAttribute("menu")
-	public List<MenuBean> getMenuList(){
-		return service.getProductByCategory("飯類");
-	}
-	@ModelAttribute("noodle")
-	public List<MenuBean> getNoodleList(){
-		return service.getProductByCategory("麵類");
-	}
-	@ModelAttribute("soup")
-	public List<MenuBean> getSoupList(){
-		return service.getProductByCategory("湯類");
-	}
-	@ModelAttribute("vegetable")
-	public List<MenuBean> getVegetableList(){
-		return service.getProductByCategory("菜類");
-	}
-	@ModelAttribute("sidedish")
-	public List<MenuBean> getSidedishList(){
-		return service.getProductByCategory("小菜類");
-	}
 	
-	
+	@RequestMapping("/outfield/modifyOrder")
+	public String cancel(Model model) {
+		
+		return "/outfield/order";
+	}
+
 }
 	

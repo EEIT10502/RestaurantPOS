@@ -12,7 +12,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/final.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/final.css"> --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mynumkb.css">
 
 
 <title>結帳</title>
@@ -46,15 +47,18 @@ $(function(){
 		var received = parseInt($('#oReceived').val());
 		var totalAmount = parseInt(${totalAmount});
 		var change = received - totalAmount ;
+	
 		$('#oChange').html(change + "元");
+		
 	});
 });
 
 
 </script>
 
-<body onload="ShowTime()">
-	<form:form method="post" action="/RestaurantPOS/order/confirmPayment" modelAttribute="orderForm">
+
+<body onload="ShowTime()" >
+	<form:form method="post" action="/RestaurantPOS/order/confirmPayment" modelAttribute="orderForm" id="form1">
 	
 		<div class="container-fluid">
 			<!-- 標頭 -->
@@ -135,12 +139,18 @@ $(function(){
 						</tr>
 						<tr>
 							<th colspan="3" style="text-align: right">找零：</th>
-							<td colspan="2" id="oChange" name="oChange"></td>
+							<td colspan="2" id="oChange" name="oChange" >0元</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 	</form:form>
 
+<!-- 	數字鍵盤script -->
+	<script src="${pageContext.request.contextPath}/css/jquery.min.js"></script> 
+ 	<script src="${pageContext.request.contextPath}/css/mynumkb.js"></script> 
+	<script> -->
+		$("#oReceived").mynumkb();
+	</script> 
 </body>
 </html>

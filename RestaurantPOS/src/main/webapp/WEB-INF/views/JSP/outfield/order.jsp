@@ -134,6 +134,7 @@
 		$('#oNext').click(function() {
 			var people = $('#oPeople').val();
 			var call = $('#oCall').val();
+			
 			if (!people) {
 				alert('「請輸入用餐人數」');
 				return;
@@ -142,6 +143,14 @@
 				alert('「請輸入叫號機號碼」');
 				return;
 			}
+			
+			if(call<1 || call >10){
+				alert('「請輸入1-10」');
+				return;
+			}
+			
+	
+			
 			$('#dataForm').submit();
 		});
 	});
