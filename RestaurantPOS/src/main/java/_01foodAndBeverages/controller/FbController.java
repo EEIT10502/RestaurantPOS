@@ -75,7 +75,7 @@ public class FbController {
 		ModelAndView mv = new ModelAndView("/outfield/payment");
 		//System.out.println(orderForm);
 		List<OrderVo> orderVos = orderForm.getOrderVos();
-		List<OrderVo> newOrderVos = new ArrayList<OrderVo>();
+		List<OrderVo> newOrderVos = new ArrayList<OrderVo>();  //解決修改數量未點選修改的問題
 
 		Integer newTotalAmount = 0;
 
@@ -94,17 +94,17 @@ public class FbController {
 		mv.setViewName("/outfield/payment");
 	
 		
-		if (orderVos != null && orderVos.size() > 0) {
-			for (OrderVo v : orderVos) {
-				System.out.println("itemName:" + v.getItemName());
-				System.out.println("price:" + v.getPrice());
-				System.out.println("qty:" + v.getQty());
-				System.out.println("subTotal:" + v.getSubTotal());
-				System.out.println("category:" + v.getCategory());
-				System.out.println("producetno:" + v.getProductNo());
-				//System.out.println("totalAmount:" + v.getTotalAmount());
-			}
-		}
+//		if (orderVos != null && orderVos.size() > 0) {
+//			for (OrderVo v : orderVos) {
+//				System.out.println("itemName:" + v.getItemName());
+//				System.out.println("price:" + v.getPrice());
+//				System.out.println("qty:" + v.getQty());
+//				System.out.println("subTotal:" + v.getSubTotal());
+//				System.out.println("category:" + v.getCategory());
+//				System.out.println("producetno:" + v.getProductNo());
+//				//System.out.println("totalAmount:" + v.getTotalAmount());
+//			}
+//		}
 		return mv;
 	}
 	
@@ -161,6 +161,15 @@ public class FbController {
 //		System.out.println("callNo:" + orderForm.getCallNo());
 		return mv;
 	}
+
+	
+	
+	@RequestMapping("/outfield/modifyOrder")
+	public String cancel(Model model) {
+		
+		return "/outfield/order";
+	}
+
 
 }
 	
