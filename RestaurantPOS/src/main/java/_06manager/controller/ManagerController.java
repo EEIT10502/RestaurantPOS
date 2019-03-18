@@ -14,7 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import _00.init.printerUtils.MainPrinter;
+import org.springframework.web.bind.annotation.RequestParam;
 import _00.init.printerUtils.MainPrinter;
 import _00.init.util.SystemUtils2018;
 import _00.init.printerUtils.MainPrinter;
@@ -111,8 +112,11 @@ public class ManagerController {
 	@RequestMapping("/manage/managelogin")
 	public String empLogin(Model model) {
 		System.out.println("管理員登入");
-
-		return "manage/managelogin";
+		
+//		MainActivity pos = new MainActivity();
+//		pos.onClick();
+		
+		return "manage/login";
 	}
 
 	@RequestMapping(value = "/manage/managelogin.check", method = RequestMethod.POST)
@@ -139,7 +143,7 @@ public class ManagerController {
 
 		// errorMsgMap不為空，表示裡面有錯誤訊息，跳轉到登入頁面重新輸入
 		if (!errorMsgMap.isEmpty()) {
-			return "manage/managelogin";
+			return "manage/login";
 		}
 
 		ManagerBean managerBean = null;
@@ -154,7 +158,7 @@ public class ManagerController {
 			} else {
 				// 為空表示找不到，肯定輸入錯誤!回到登入頁面
 				errorMsgMap.put("LoginError", "該帳號不存在或密碼錯誤");
-				return "manage/managelogin";
+				return "manage/login";
 			}
 
 		} catch (RuntimeException e) {
@@ -165,7 +169,23 @@ public class ManagerController {
 		// return "redirect:/";
 
 		// 預設登入後前往查詢員工頁面
-		return "empManage/empQuery";
+		return "redirect:/toDashBoard";
+		//return "redirect:/toDashBoard";
+	}
+	
+	@RequestMapping("/toDashBoard")
+	public String toDashBoard() {
+		
+		
+		
+		return "DashBoard/dashboard";
+	}
+	//跳轉到日結清機
+	@RequestMapping("/close/close")
+	public String toClose() {
+		System.out.println("goto!");
+		
+		return "close/closeBoardTest";
 	}
 
 }

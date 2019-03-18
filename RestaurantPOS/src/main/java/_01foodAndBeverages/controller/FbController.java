@@ -109,7 +109,7 @@ public class FbController {
 	
 	@RequestMapping("/order/confirmPayment")
 	public ModelAndView confirmPayment(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
-		ModelAndView mv = new ModelAndView("/outfield/order");
+		ModelAndView mv = new ModelAndView("redirect:/outfield/order");
 		System.out.println(orderForm);
 		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
 		
@@ -143,17 +143,7 @@ public class FbController {
 		
 		
 		
-		List<MenuBean>  list1 = service.getProductByCategory("飯類");
-		List<MenuBean>  list2 = service.getProductByCategory("麵類");
-		List<MenuBean>  list3 = service.getProductByCategory("湯類");
-		List<MenuBean>  list4 = service.getProductByCategory("菜類");
-		List<MenuBean>  list5 = service.getProductByCategory("小菜類");
-		
-		mv.addObject("menu",list1);
-		mv.addObject("noodle", list2);
-		mv.addObject("soup", list3);
-		mv.addObject("vegetable", list4);
-		mv.addObject("sidedish", list5);
+
 		
 //		
 //		if (orderVos1 != null && orderVos1.size() > 0) {
@@ -169,5 +159,28 @@ public class FbController {
 //		System.out.println("callNo:" + orderForm.getCallNo());
 		return mv;
 	}
+	
+	@ModelAttribute("menu")
+	public List<MenuBean> getMenuList(){
+		return service.getProductByCategory("飯類");
+	}
+	@ModelAttribute("noodle")
+	public List<MenuBean> getNoodleList(){
+		return service.getProductByCategory("麵類");
+	}
+	@ModelAttribute("soup")
+	public List<MenuBean> getSoupList(){
+		return service.getProductByCategory("湯類");
+	}
+	@ModelAttribute("vegetable")
+	public List<MenuBean> getVegetableList(){
+		return service.getProductByCategory("菜類");
+	}
+	@ModelAttribute("sidedish")
+	public List<MenuBean> getSidedishList(){
+		return service.getProductByCategory("小菜類");
+	}
+	
+	
 }
 	
