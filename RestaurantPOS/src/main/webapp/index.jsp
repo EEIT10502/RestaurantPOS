@@ -18,7 +18,7 @@
 <script src="<c:url value="/js/jquery.min.js"/>"></script>
 <!----webfonts--->
 <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
+<!---//webfontss--->  
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 <link rel='stylesheet' href='<c:url value="/css/forIndex.css"/>'  type="text/css" />
