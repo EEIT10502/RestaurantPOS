@@ -26,7 +26,6 @@
 	</style>
 	<title>點餐</title>
 </head>
-
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -131,12 +130,12 @@
 			});
 			
 		});
-			
+		//檢查來客數、叫號機號碼是否為空白
 		$('#oNext').click(function() {
 			var people = $('#oPeople').val();
 			var call = $('#oCall').val();
 			if (!people) {
-				alert('「請輸入人數」');
+				alert('「請輸入用餐人數」');
 				return;
 			}
 			if(!call){
@@ -257,8 +256,12 @@
 				<div class="col-md-9">
 					<table style="margin: 0px auto">
 						<tr>
-							<td><input type="button" value="回首頁" id="oIndex"
-								name="oIndex"></td>
+							<td>
+								<a href="../index.jsp" />
+								<input type="button" value="回首頁" id="oIndex"
+								name="oIndex">
+								</a>
+							</td>
 							<td><input type="text" value="" id="oPeople" name="cusFlow">人</td>
 							<td><input type="text" value="" id="oCall" name="callNo">號</td>
 							<td><input type="reset" value="全部清除" id="oReset"

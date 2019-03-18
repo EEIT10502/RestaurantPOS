@@ -8,14 +8,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/final.css"> --%>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/final.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mynumkb.css">
+
 <title>結帳</title>
 </head>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -30,6 +29,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
+
 <script>
 function ShowTime()
 {
@@ -40,22 +40,19 @@ function ShowTime()
     setTimeout('ShowTime()', 1000);
 }
 
+//收現找零計算
 $(function(){
-	$('#oReceived').blur(function() {
+	$('input#oReceived').on('blur',function() {
 		var received = parseInt($('#oReceived').val());
-		console.log(received);
 		var totalAmount = parseInt(${totalAmount});
-		console.log(totalAmount);
 		var change = received - totalAmount ;
-		console.log(change);
-		
 		$('#oChange').html(change + "元");
 	});
 });
 
 
-
 </script>
+
 <body onload="ShowTime()">
 	<form:form method="post" action="/RestaurantPOS/order/confirmPayment" modelAttribute="orderForm">
 	
@@ -63,7 +60,9 @@ $(function(){
 			<!-- 標頭 -->
 			<div class="row">
 				<div class="col-md-1">
+					<a href="<spring:url value='/outfield/modifyOrder' />">
 					<input type="button" value="上一步" id="pBack" name="pBack">
+					</a>
 				</div>
 				<div class="col-md-8">
 					<h4 style="text-align: center">結帳頁面</h4>
@@ -123,7 +122,7 @@ $(function(){
 								用餐人數：${cusFlow}位
 								<input type="hidden" id="cusFlow" name="cusFlow" value="${cusFlow}">
 							</td>
-							<td colspan="3" style="text-align: right">
+							<td colspan="2" style="text-align: right">
 								叫號機號碼：${callNo}號
 								<input type="hidden" id="callNo" name="callNo" value="${callNo}">
 							</td>
@@ -131,21 +130,17 @@ $(function(){
 						<tr>
 							<th colspan="3" style="text-align: right">收：</th>
 							<td colspan="2" >
-							<input type="text" id="oReceived" name="oReceived" value="">元
+							<input type="text" id="oReceived" name="oReceived">元
 							</td>
 						</tr>
 						<tr>
-							<th colspan="3" style="text-align: right">找：</th>
+							<th colspan="3" style="text-align: right">找零：</th>
 							<td colspan="2" id="oChange" name="oChange"></td>
 						</tr>
 					</table>
 				</div>
 			</div>
 	</form:form>
-	
-	<!-- 數字鍵盤script -->
-	<script src="${pageContext.request.contextPath}/css/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/css/mynumkb.js"></script>
-	<script>$("#oReceived").mynumkb();</script>
+
 </body>
 </html>
