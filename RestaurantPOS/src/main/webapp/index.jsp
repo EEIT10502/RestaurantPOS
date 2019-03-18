@@ -22,6 +22,8 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 <link rel='stylesheet' href='<c:url value="/css/forIndex.css"/>'  type="text/css" />
+<!-- 使用微軟正黑體 -->
+<link rel="stylesheet" href="<c:url value="/fonts/PageFont.css"/>" type="text/css"/> 
 <script type="text/javascript">
 //隱藏或顯示計算機
 $(document).ready(function(){
@@ -37,7 +39,7 @@ $(document).ready(function(){
 </head>
 <body id="login">
   <div class="login-logo">
-     <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt=""/></a>
+   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt=""/></a>--> 
   </div>
   <!--內文從這裡開始-->
   <div class="app-cam" >
@@ -103,8 +105,14 @@ $(document).ready(function(){
           </div>
           <!-- 空白格 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
-              <div class="r3_counter_box">                   
-              </div>
+                  <a href="<c:url value="/manage/queryOne"/>" >
+              	  <div class="r3_counter_box">
+                  <i class="pull-left fa fa-clock-o icon-rounded"></i>
+                  <div class="stats">
+                    <h5><strong >測試列印</strong></h5>                 
+                  </div>
+	              </div>
+	              </a>                   
           </div>
             <div class="clearfix"> </div>
           </div>

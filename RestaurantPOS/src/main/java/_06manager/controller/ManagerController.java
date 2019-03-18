@@ -47,8 +47,8 @@ public class ManagerController {
 		//System.out.println("進入日結");
 		
 		//取得當日的yyyy-MM-dd格式字串 
-		//String date=SystemUtils2018.getDate();  //系統正式上線用這個
-		String date ="2019-03-05";  			  //因無當日最新數據，先用假資料測試
+		String date=SystemUtils2018.getDate();  //系統正式上線用這個
+		//String date ="2019-03-05";  			  //因無當日最新數據，先用假資料測試
 		//準備一個有當日數據分析的MAP
 		Map<String, Object> mapData = managerservice.getDayCheckAnalysisDate(date);
 		
@@ -69,7 +69,7 @@ public class ManagerController {
 		//呼叫列印方法，列印日結清機單
 		MainPrinter.printDayCheck(mapData);
 		
-		return "redirect:/";
+		return "redirect:/close/dailyClosing.action";
 	}
 	
 	// 可根據傳入的OrderNo列印單據 用於丟單時補單
@@ -88,7 +88,7 @@ public class ManagerController {
 	//流程:員工於點餐畫面按下"結帳"->資料INSERT進入資料庫，控制器交棒給本控制器撈資料
 	@RequestMapping("/manage/getLastOne")
 	public String prepareMessageForPrinter_LastOne(Model model) {
-
+		System.out.println("進入準備列印資料控制器");
 		orderBean = managerservice.getLastOrderBean();
 		OrderDetailBeanSet = orderBean.getOrderDetailBean();
 		
@@ -100,13 +100,13 @@ public class ManagerController {
 	// 負責列印的控制器
 	@RequestMapping("/printer")
 	public String Printer() {
-		
+		System.out.println("進入列印控制器");
 		// 呼叫靜態列印方法
 		MainPrinter.printBill(orderBean, OrderDetailBeanSet);
 		MainPrinter.printForBK(orderBean, OrderDetailBeanSet);
 		
 		
-		return "redirect:/";
+		return "redirect:/outfield/order";
 	}
 
 	@RequestMapping("/manage/managelogin")
@@ -174,9 +174,11 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("/toDashBoard")
-	public String toDashBoard() {
+	public String toDashBoard(Model model) {
+		TargetTurnoverBean TTBean = null;
+		TTBean = managerservice.getMonthTarget();
 		
-		
+		model.addAttribute("TTBean",TTBean);
 		
 		return "DashBoard/dashboard";
 	}
