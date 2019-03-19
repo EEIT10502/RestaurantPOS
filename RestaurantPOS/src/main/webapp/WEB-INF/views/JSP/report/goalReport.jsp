@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,15 +34,26 @@
 	jQuery(document).ready(function($) {
 		$("#gMonth1").datepicker({
 			maxDate : new Date,
-			dateFormat : "yy-mm-dd"
+			dateFormat : "yy-mm-dd",
+			changeYear : true,
+			changeMonth : true
 		});
 	});
+	//轉PDF帶值
+	$(function() {
+		$("#gExport").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/goalReportGetPDF");
+					$("#form1").submit();
+				});
+	})
 </script>
 
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	<form action="goalReportGet" method="post">
+	<form action="goalReportGet" method="post" id="form1">
 		<!-- 報表版面 -->
 		<div class="w3-container" style="margin-left: 160px">
 			<div>
@@ -50,7 +61,7 @@
 			</div>
 			<div>
 				<h3>選擇欲查詢日期</h3>
-				<input type="text" id="gMonth1" name="gMonth1">
+				<input type="text" id="gMonth1" name="gMonth1" readonly>
 				<p>
 
 					<input type="submit" value="查詢" id="gSel" name="gSel">
@@ -72,7 +83,9 @@
 							<td>${listgoalturn[loop.count-1].targetTurnover}</td>
 							<td>${gTable.cumulativeTurnover}</td>
 							<td>${listgoalturn[loop.count-1].targetTurnover - gTable.cumulativeTurnover}</td>
-							<td><fmt:formatNumber type="number" value="${gTable.cumulativeTurnover / listgoalturn[loop.count-1].targetTurnover * 100}" maxFractionDigits="2"/>%</td>
+							<td><fmt:formatNumber type="number"
+									value="${gTable.cumulativeTurnover / listgoalturn[loop.count-1].targetTurnover * 100}"
+									maxFractionDigits="2" />%</td>
 						</tr>
 					</c:forEach>
 				</table>

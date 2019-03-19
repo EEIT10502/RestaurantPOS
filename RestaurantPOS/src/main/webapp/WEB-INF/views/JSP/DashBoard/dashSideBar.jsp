@@ -41,10 +41,10 @@
 					<li id="menu-academico"><a href="#"><i	class="lnr lnr-chart-bars"></i> <span>報表查詢</span> 
 						<span	class="fa fa-angle-right" style="float: right"></span></a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="xxx">日報表</a></li>
-							<li id="menu-academico-avaliacoes"><a href="xxx">類別銷售表</a></li>
-							<li id="menu-academico-avaliacoes"><a href="xxx">單品銷售表</a></li>
-							<li id="menu-academico-boletim"><a href="xxx">營運目標查詢</a></li>
+							<li id="menu-academico-avaliacoes"><a href="../report/dailyReport">日報表</a></li>
+							<li id="menu-academico-avaliacoes"><a href="../report/categoryReport">類別銷售表</a></li>
+							<li id="menu-academico-avaliacoes"><a href="../report/productReport">單品銷售表</a></li>
+							<li id="menu-academico-boletim"><a href="../report/goalReport">營運目標查詢</a></li>
 						</ul>
 					</li>
 					<!-- 日結 -->

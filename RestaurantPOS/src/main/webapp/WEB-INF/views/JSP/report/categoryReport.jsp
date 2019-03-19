@@ -32,11 +32,15 @@
 	jQuery(document).ready(function($) {
 		$("#csDate2").datepicker({
 			maxDate : new Date,
-			dateFormat : "yy-mm-dd"
+			dateFormat : "yy-mm-dd",
+			changeYear : true,
+			changeMonth : true
 		});
 		$("#csDate1").datepicker({
 			maxDate : new Date,
-			dateFormat : "yy-mm-dd"
+			dateFormat : "yy-mm-dd",
+			changeYear : true,
+			changeMonth : true
 		}).bind("change", function() {
 			var minValue = $(this).val();
 			minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
@@ -44,13 +48,23 @@
 			$("#csDate2").datepicker("option", "minDate", minValue);
 		})
 	});
+
+	//轉PDF帶值
+	$(function() {
+		$("#csExport").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/categoryReportGetPDF");
+					$("#form1").submit();
+				});
+	})
 </script>
 
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 
-	<form action="categoryReportGet" method="post">
+	<form action="categoryReportGet" method="post" id="form1">
 		<!-- 報表版面 -->
 		<div class="w3-container" style="margin-left: 160px">
 			<div>
@@ -58,15 +72,21 @@
 			</div>
 			<div>
 				<h3>選擇欲查詢日期</h3>
-				<input type="text" id="csDate1" name="csDate1">~ <input
-					type="text" id="csDate2" name="csDate2">
+				<input type="text" id="csDate1" name="csDate1" readonly
+					value="${csDate1}">~ <input type="text" id="csDate2"
+					name="csDate2" readonly value="${csDate2}">
 				<p>
 
 					<!-- 類別下拉選單 -->
-					<select id="csSelOpt" name="csSelOpt">
-					<option>--請選擇--</option>
+					<select id="csSelOpt" name="csSelOpt"">
+						<option>--請選擇--</option>
 						<c:forEach var="csSel" items="${listMenuCate}">
-							<option>${csSel}</option>
+							<c:if test="${csSelOpt == csSel}">
+								<option selected="selected"><c:out value="${csSel}" /></option>
+							</c:if>
+							<c:if test="${csSelOpt!=csSel}">
+								<option><c:out value="${csSel}" /></option>
+							</c:if>
 						</c:forEach>
 					</select> <input type="submit" value="查詢" id="csSel" name="csSel">
 			</div>
@@ -83,8 +103,8 @@
 						<th>銷售金額</th>
 					</tr>
 					<c:forEach var="pTable" items="${listCatee}">
-						<c:set var="totalQty" value="${totalQty + pTable[1]}"/>
-						<c:set var="totalPrice" value="${totalPrice + pTable[2]}"/>
+						<c:set var="totalQty" value="${totalQty + pTable[1]}" />
+						<c:set var="totalPrice" value="${totalPrice + pTable[2]}" />
 						<tr>
 							<td>${pTable[0]}</td>
 							<td>${csSelOpt}</td>
