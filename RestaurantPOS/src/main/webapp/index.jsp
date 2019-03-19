@@ -91,31 +91,7 @@ $(document).ready(function(){
           <div class="clearfix"> </div>
         </div>
 
-<<<<<<< HEAD
-	
-<!-- 	商品管理連結_開始 -->
-<!--下面幾行係為了開發方便(在首頁直接出現連結，連到商品、員工管理相關頁面)，故之後確定商品、員工管理入口後再修改 -->
-<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<a href="<c:url value="/manage/queryOne"/>">
-	<input type="button" value="按我" id="clickMe"/>
-	</a>
-	<h6><a href="productManage/productInsert.action" >商品管理頁面:productInsert</a></h6>
-	<h6><a href="empManage/empInsert">員工管理頁面:empInsert</a></h6>
-	<h6><a href="empManage/allEmployeeList.action">員工查詢頁面:empQuery</a></h6>
-	<h6><a href="manage/managelogin">管理登入頁面:manageLogin</a></h6>
-<!-- 	商品管理連結_結束 -->
 
-<!-- 	sidebar連結_開始 -->
-<!--	<h6><a href="sideBar">sidebar頁面:sidebar</a></h6>  -->
-<!-- 	sidebar連結_結束 -->
-	
-
-=======
         <div class="box_1">
           <!-- 出勤打卡 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
