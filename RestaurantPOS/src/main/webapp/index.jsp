@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$("#showPunch").click(function(){
 		$("#punchTable").toggle();
 		$("#logo").toggle();
-	//	alert("OOO");
+	
 	});
 	
 });
