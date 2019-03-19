@@ -62,7 +62,7 @@ $(document).ready(function(){
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="">
-	<fieldset class="w3-container" style="margin-left: 160px">
+	<fieldset class="w3-container" style="margin-left: 260px">
 			<div id="allList" class="">
 <%-- 			<form class='center' name="" action="" method="post"> --%>
 				<table class="table" border="1">
