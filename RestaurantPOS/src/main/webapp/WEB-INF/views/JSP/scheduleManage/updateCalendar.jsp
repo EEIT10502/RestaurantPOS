@@ -47,76 +47,98 @@ td.errorMessage[type="redError"] {
 <body>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="scheduleBean"
+		<form:form method='POST' modelAttribute="calendarBean"
 			class='form-horizontal' enctype="multipart/form-data">
 			<input type="hidden" name="_method"  id='putOrDelete'   value="" >
 			<fieldset>
-				<legend>修改班別資料</legend>
+				<legend>修改排班資料</legend>
 				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 hide" for='scheduleId'>
-						ID</label>
+					<label class="control-label col-lg-2 col-lg-2 hide" for='calendarId'>
+						calendarId</label>
 					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.scheduleId}" path="scheduleId" type='text'
+						<form:input id="calendar${calendar.calendarId}" path="calendarId" type='text'
 							class='form:input-large hide' readonly="true"/> 
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2 hide" for='employee.empId'>
+						empId</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.employee.empId}" path="employee.empId" type='text'
+ 							class='form:input-large hide' readonly="true"/>  
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2 hide" for='schedule.scheduleId'>
+						scheduleId</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.schedule.scheduleId}" path="schedule.scheduleId" type='text'
+ 							class='form:input-large hide' readonly="true"/>  
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2 hide" for='date'>
+						date</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.date}" path="date" type='text'
+ 							class='form:input-large hide' readonly="true"/>  
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='day1'>
+						day1</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.day1}" path="day1" type='text'/> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='day2'>
+						day2</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.day2}" path="day2" type='text'/> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='day3'>
+						day3</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.day3}" path="day3" type='text'/> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='day4'>
+						day4</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.day4}" path="day4" type='text'/> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='day5'>
+						day5</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.day5}" path="day5" type='text'/> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='day6'>
+						day6</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.day6}" path="day6" type='text'/> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for='day7'>
+						day7</label>
+					<div class="col-lg-10">
+						<form:input id="calendar${calendar.day7}" path="day7" type='text'/> 
+					</div>
+				</div>
+				
 				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='schedule'>
-						班別名稱 </label>
-					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.schedule}" path="schedule" type='text'
-							class='form:input-large' />
-							
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-lg-10">
-						<label class="control-label col-lg-2 col-lg-2" for='color'>
-							顏色</label>
-						<form:input id="shcedule${schedule.color}" path="color" name="color" type="text"
-							class='form:input-large' />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
-						開始時間 </label>
-					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.startTime}" path="startTime" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='endTime'>
-						結束時間 </label>
-					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.endTime}" path="endTime" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='restTime'>
-						休息時間 </label>
-					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.restTime}" path="restTime" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='totalTime'>
-						總時間 </label>
-					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.totalTime}" path="totalTime" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
-				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-            			<input type="submit" value="送出" name='updateBtn' onclick="return confirmUpdate('${schedule.scheduleId}');"/>
-            			<input type="submit" value="刪除" name='deleteBtn' onclick="return confirmDelete('${schedule.scheduleId}');" >
+            			<input type="submit" value="送出" name='updateBtn' onclick="return confirmUpdate('${calendar.calendarId}');"/>
 					</div>
 				</div>
 				<c:if test="${not empty requestScope.modify}">   

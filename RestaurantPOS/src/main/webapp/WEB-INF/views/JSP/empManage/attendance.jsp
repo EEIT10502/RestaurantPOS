@@ -32,7 +32,7 @@
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 
-	<form action="">
+	<form id="datatable">
 		<div class="w3-container" style="margin-left: 160px">
 			<h2>員工出勤查詢</h2>
 

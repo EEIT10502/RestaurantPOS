@@ -29,8 +29,8 @@
 <link type="text/css" rel="stylesheet"
 	href="https://shift.ekko.com.tw/asset/css/jquery.simple-color-picker.css"
 	media="screen, projection" />
-<!-- <script type="text/javascript" -->
-<!-- 	src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script> -->
+<script type="text/javascript"
+	src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript"
 	src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript"
@@ -38,20 +38,22 @@
 <title>CLASS</title>
 </head>
 <body>
-<%-- 	<jsp:include page="../sideBar.jsp" flush="true" /> --%>
+
 	<div class="container prepend-top append-bottom">
 		<div class="span-24 header"></div>
 		<div id="menu" class="span-24 last">
 			<div class="append-1 last" style="margin-top: 1em;">
+				<span>Hello, <strong><a
+						href="https://shift.ekko.com.tw/profile.html">睿</a></strong></span><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
+					href="https://shift.ekko.com.tw/logout.html">登出</a></span>
 			</div>
 		</div>
 		<div id="main" class="span-24">
 			<div id="content" class="span-22 prepend-1 append-1">
 				<div class='mainInfo'>
 					<ul class='tabs'>
-					<li><a href="productInsert.action">回首頁</a></li>
-						<li><a href="calendar">班別</a></li>
-						<li><a href="schedule" class="selected">班別查詢</a></li>
+						<li><a href="calendar">排班表</a></li>
+						<li><a href="schedule">班別表</a></li>
 						<!-- 						<li><a href="https://shift.ekko.com.tw/group/embed.html">內崁程式碼</a></li> -->
 					</ul>
 					<div class='fieldset span-22'>
@@ -63,24 +65,22 @@
 						<table class="group append-bottom">
 							<thead>
 								<tr>
-									<th class="span-3">#</th>
-									<th class="span-3">名稱</th>
-									<th class="span-3">識別色</th>
+									<th class="span-2">名稱</th>
+									<th class="span-2">識別色</th>
 									<th class="span-2">開始時間</th>
 									<th class="span-2">結束時間</th>
 									<th class="span-2">休息時間</th>
 									<th class="span-2">總時間</th>
-									<th class="span-2 last">操作</th>
+									<th class="span-3 last">操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="schedule" items="${schedule}">
 									<tr>
-										<td>${schedule.scheduleId}</td>
 										<td>${schedule.schedule}</td>
 										<td><div width="20" height="20" style="width:20px;height:20px;border:1px solid #eee;background-color:${schedule.color}">&nbsp;</div></td>
 										<!-- 										<td><div width="20" height="20" -->
-										<!-- 												style="width: 20px; height: 20px; border: 1px solid #eee; background-color: color=JColorChooser.showDialog(this, ”选色”, color);">&nbsp;</div></td> -->
+										<!-- 												style="width: 20px; height: 20px; border: 1px solid #eee; background-color: color=JColorChooser.showDialog(this, ”?色”, color);">&nbsp;</div></td> -->
 										<td><fmt:formatDate value="${schedule.startTime}"
 												pattern="hh:mm" /></td>
 										<td><fmt:formatDate value="${schedule.endTime}"
@@ -91,7 +91,9 @@
 										<td>
 										<a href="<c:url value='/schedule/update?id=${schedule.scheduleId}'/>"
 											title="編輯" class="image edit span-1" id="edit">編輯</a>
-										</td>
+											
+										<a href="https://shift.ekko.com.tw/group/delete_worker/14143.html"
+											title="刪除" class="image delete span-1" id="delete">刪除</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

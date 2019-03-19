@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import _00model.AttendenceBean;
+import _00model.CalendarBean;
 import _00model.EmployeeBean;
 import _00model.ScheduleBean;
 import _04schedule.repository.ScheduleDao;
@@ -122,6 +123,42 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		if (!list.isEmpty()) 
 			sb = list.get(0);
 		return sb;
+	}
+
+	//查詢所有員工
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<CalendarBean> getAllEmpName() {
+		String hql = "FROM CalendarBean";
+		Session session = null;
+		List<CalendarBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).getResultList();
+		return list;
+	}
+
+	//修改員工班別
+	@Override
+	public CalendarBean findByPrimary(int calendarId) {
+		CalendarBean sb = null;
+		Session session = factory.getCurrentSession();
+		sb = session.get(CalendarBean.class, calendarId);
+		System.out.println(calendarId);
+		return sb;
+	}
+	
+	@Override
+	public void updateCalendar(CalendarBean calendar) {
+		Session session = factory.getCurrentSession();
+		session.update(calendar);
+		
+	}
+	
+	@Override
+	public CalendarBean testGet(int id) {
+		Session session = factory.getCurrentSession();
+		return session.get(CalendarBean.class, id);
+		
 	}
 
 }
