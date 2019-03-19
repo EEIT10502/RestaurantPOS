@@ -135,7 +135,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 //	}
 
 	
-
+//==========================================================================test排班_開始
+		@SuppressWarnings("unchecked")
+		public List<String> getAllEmployeesName() {
+			  String hql = "SELECT empName FROM EmployeeBean";
+			    Session session = null;
+			    List<String> list = new ArrayList<>();
+			    session = factory.getCurrentSession();
+			    list = session.createQuery(hql).getResultList();
+			    return list;
+		}
+//==========================================================================test排班_結束
 		
 	
 

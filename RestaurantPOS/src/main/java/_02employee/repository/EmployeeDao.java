@@ -42,4 +42,10 @@ public interface EmployeeDao {
 	//匯出檔案
 	EmployeeBean findByPrimaryKey(int key);
 	
+	//==========================================================================test排班_開始
+	List<String> getAllEmployeesName();
+	//==========================================================================test排班_結束
 }
+
+	
+

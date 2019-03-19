@@ -51,6 +51,9 @@ p.errorMessage[type="redError"] {
 							code='spring.productInsert.form.productInsertData.label' />
 					</h1>
 				</div>
+				<div>
+					<p class="errorMessage" type="redError">${insertComplete}
+				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='productNameBtn'>
 						<spring:message code='spring.productInsert.form.productName.label' />

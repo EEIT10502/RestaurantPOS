@@ -60,6 +60,9 @@ span.errorMessage[type="redError"] {
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='allProductList.action?' />">所有商品</a></li>
 
+<!-- <li class="nav-item"><a class="nav-link" -->
+<%-- 							href="<c:url value='allProductListExcel.action' />">11</a></li> --%>
+
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" data-toggle="dropdown"

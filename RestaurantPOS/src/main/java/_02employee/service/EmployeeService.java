@@ -37,4 +37,8 @@ public interface EmployeeService {
 	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
 	
 	EmployeeBean findByPrimaryKey(int key);
+	
+	//==========================================================================test排班_開始
+	List<String> getAllEmployeesName();
+	//==========================================================================test排班_結束
 }
