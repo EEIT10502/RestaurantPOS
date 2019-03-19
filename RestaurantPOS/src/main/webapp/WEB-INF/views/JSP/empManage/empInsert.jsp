@@ -36,11 +36,14 @@ p.errorMessage[type="redError"] {
 	crossorigin="anonymous">
 	
 </script>
-
+<style type="text/css">
+p.errorMessage[type="redError"] {
+	color: red;
+}
+</style>
 
 <body>
-		<jsp:include page="../sideBar.jsp" flush="true" />
-
+	<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="">
 
 		<form:form method='POST' modelAttribute="employeeBean"
@@ -49,67 +52,66 @@ p.errorMessage[type="redError"] {
 				<div class="container">
 					<h1>員工資料填寫</h1>
 				</div>
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<label for='empNo'>員工編號</label> -->
+				<%-- 					<form:input id="empNo" path="empNo" type='text' name="empNo" /> --%>
+				<!-- 				</div> -->
 				<div class="form-group">
-					<label for='empNo'>員工編號</label>
-					<form:input id="empNo" path="empNo" type='text' name="empNo" />
-				</div>
-				<div class="form-group">
-					<label for='empName'>員工姓名</label>
+					<label for='empName'>姓名</label>
 					<form:input id="empName" path="empName" type='text' name="empName" />
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeName}
 				</div>
 				<div>
 					<label for='tel'>電話</label>
 					<form:input id="tel" path="tel" type='text' name="tel" />
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeTel}
 				</div>
 				<div>
 					<label for='Tel'>地址</label>
 					<form:input id="addr" path="addr" type='text' name="addr" />
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeAddr}
 				</div>
 				<div>
 					<label for='Tel'>性別</label>
 					<form:select id="gender" path="gender" name="gender">
-					<form:option value="-1" label="請選擇"/>
-					<form:option value="男" label="男"/>
-					<form:option value="女" label="女"/>
+						<form:option value="-1" label="請選擇" />
+						<form:options items="${empGender}" />
 					</form:select>
+					<p class="errorMessage" type="redError">${modelErrors.errorOfGender}
 				</div>
 				<div>
 					<label for='position'>職位</label>
 					<form:select id="position" path="position" name="position">
-					<form:option value="-1" label="請選擇"/>
-					<form:option value="服務生"  label="服務生"/>
-					<form:option value="廚師" label="廚師"/>
-					<form:option value="經理" label="經理"/>
-					<form:option value="其他" label="其他"/>
+						<form:option value="-1" label="請選擇" />
+						<form:options items="${empPositionList}" />
 					</form:select>
+					<p class="errorMessage" type="redError">${modelErrors.errorOfPosition}
 				</div>
-				
+
 				<div>
 					<label for='status'>狀態</label>
 					<form:select id="status" path="status" name="status">
-					<form:option value="-1" label="請選擇"/>
-					<form:option value="在職" label="在職"/>
-					<form:option value="留職停薪"  label="留職停薪"/>
-					<form:option value="離職"  label="離職"/>
-					<form:option value="其他"  label="其他"/>
+						<form:option value="-1" label="請選擇" />
+						<form:options items="${empStatusList}" />
 					</form:select>
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmpStatus}
 				</div>
 				<div>
-				
-				<label for='empImg'>圖片</label>
+					<label for='empImg'>圖片</label>
 					<form:input id="empImg" path="empImg" type='file' name="empImg" />
+					<p class="errorMessage" type="redError">${modelErrors.errorOfEmpPicture}
 				</div>
-				
+
 				<div>
 					<label for='remark'>備註</label>
 					<form:input id="remark" path="remark" type='text' name="remark" />
 				</div>
-				
-<div>
-<input id="addbtn" type="submit" value="送出"/>
-<input id="resetbtn" type="reset" value="清除"/>
 
-</div>
+				<div>
+					<input id="addbtn" type="submit" value="送出" /> <input
+						id="resetbtn" type="reset" value="清除" />
+
+				</div>
 			</fieldset>
 		</form:form>
 	</section>

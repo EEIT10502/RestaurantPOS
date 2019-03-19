@@ -54,7 +54,7 @@ td.errorMessage[type="redError"] {
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
-		<fieldset class="w3-container" style="margin-left: 160px">
+		<fieldset class="w3-container" style="margin-left: 260px">
 			<div id="allList" class="">
 				<table class="table table-hover">
 					<tr>
