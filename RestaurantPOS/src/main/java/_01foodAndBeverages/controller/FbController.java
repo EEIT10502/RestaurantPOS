@@ -162,9 +162,34 @@ public class FbController {
 	
 	
 	@RequestMapping("/outfield/modifyOrder")
-	public String cancel(Model model) {
+	public ModelAndView modify(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
+		ModelAndView mv = new ModelAndView("forward:/outfield/order");
+		//System.out.println(orderForm);
+		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
+		System.out.println(orderForm);
 		
-		return "/outfield/order";
+		
+		mv.addObject("orderVos1",orderVos1);
+		mv.addObject("callNo",orderForm.getCallNo());
+		mv.addObject("cusFlow",orderForm.getCusFlow());
+		mv.addObject("totalAmount",orderForm.getTotalAmount());
+		
+		if (orderVos1 != null && orderVos1.size() > 0) {
+		for (OrderVo v : orderVos1) {
+			System.out.println("itemName:" + v.getItemName());
+			System.out.println("price:" + v.getPrice());
+			System.out.println("qty:" + v.getQty());
+			System.out.println("subTotal:" + v.getSubTotal());
+			System.out.println("category:" + v.getCategory());
+			System.out.println("producetno:" + v.getProductNo());
+			//System.out.println("totalAmount:" + v.getTotalAmount());
+		}
+	}
+		
+		
+		
+		
+		return mv;
 	}
 
 }

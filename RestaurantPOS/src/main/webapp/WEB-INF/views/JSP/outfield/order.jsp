@@ -298,6 +298,32 @@
 						<tr id="oL1" style="display:none">
 						
 						</tr>
+						<c:forEach var='orderVos1' items='${orderVos1}' varStatus="idx">
+							<tr>	
+								<td>
+									${orderVos1.itemName}
+									<input type="hidden" id="itemName${idx.index}" name="orderVos1[${idx.index}].itemName" value="${orderVos.itemName}">
+								<td>
+								    ${orderVos1.price}
+								     <input type="hidden" id="price${idx.index}" name="orderVos1[${idx.index}].price" value="${orderVos.price}">
+								</td>
+								<td>
+									${orderVos1.qty}
+									 <input type="hidden" id="qty${idx.index}" name="orderVos1[${idx.index}].qty" value="${orderVos.qty}">
+								</td>
+								<td>
+									${orderVos1.subTotal}
+									<input type="hidden" id="subTotal${idx.index}" name="orderVos1[${idx.index}].subTotal" value="${orderVos.subTotal}">
+									 <input type="hidden" id="category${idx.index}" name="orderVos1[${idx.index}].category" value="${orderVos.category}">
+									 <input type="hidden" id="productNo${idx.index}" name="orderVos1[${idx.index}].productNo" value="${orderVos.productNo}">
+							
+								<td></td>
+								<td>
+								<input type="button" value="口味" id="opFlaver' " name="opFlaver">
+								<input type="button" value="刪除" id="opDelete' " name="opDelete" onclick="delItem(this)">
+								</td>
+							</tr>
+						</c:forEach>
 						<tr>
 							
 						</tr>

@@ -51,8 +51,12 @@ $(function(){
 		$('#oChange').html(change + "元");
 		
 	});
+	
+	$('#pBack').click(function() {
+		$('#form1').attr("action", "/RestaurantPOS/outfield/modifyOrder");
+		$('#form1').submit();
+	});
 });
-
 
 </script>
 
@@ -64,9 +68,9 @@ $(function(){
 			<!-- 標頭 -->
 			<div class="row">
 				<div class="col-md-1">
-					<a href="<spring:url value='/outfield/modifyOrder' />">
+					
 					<input type="button" value="上一步" id="pBack" name="pBack">
-					</a>
+					
 				</div>
 				<div class="col-md-8">
 					<h4 style="text-align: center">結帳頁面</h4>
