@@ -39,7 +39,7 @@ $(document).ready(function(){
 </head>
 <body id="login">
   <div class="login-logo">
-   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt=""/></a>--> 
+   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt="a"/></a>--> 
   </div>
   <!--內文從這裡開始-->
   <div class="app-cam" >
