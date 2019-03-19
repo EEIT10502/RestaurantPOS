@@ -19,11 +19,7 @@
 
 					<div class="header">
 						<div class="head-t">
-							<div class="logo">
-								<a href="<c:url value="/toDashBoard"/>">
-								<img src="${pageContext.request.contextPath}/images/logo.png"class="img-responsive" alt=""> 
-								</a>
-							</div>
+
 							<!-- start header_right -->
 
 							<div class="clearfix"></div>

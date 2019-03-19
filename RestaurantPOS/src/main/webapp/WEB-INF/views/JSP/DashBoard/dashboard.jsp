@@ -56,6 +56,20 @@
 
 							toggle = !toggle;
 						});
+				
+				$('#demo-pie-1').pieChart(
+						{
+							barColor : '#3bb2d0',
+							trackColor : '#eee',
+							lineCap : 'round',
+							lineWidth : 8,
+							
+							onStep : function(from, to, percent) {
+								$(this.element).find('.pie-value').text(
+										Math.round(percent) + '%');
+							}
+						});
+				 $("#demo-pie-1").data("percent",35);
 
 			});
 	function ShowTime() {
@@ -85,13 +99,13 @@
 					<div class="col-md-5 skil">
 						<div class="content-top-1">
 							<div class="col-md-6 top-content">
-								<h5>目標</h5>
-								<label>8761</label>
+								<h5>月目標:</h5>
+								<label>$ ${TTBean.targetTurnover}</label>
 								
 							</div>
 							<div class="col-md-6 top-content1">
-								<div id="demo-pie-1" class="pie-title-center" data-percent="30">
-									<span class="pie-value">25%</span>
+								<div id="demo-pie-1" class="pie-title-center" data-percent="100">
+									<span class="pie-value">30</span>
 								</div>
 							</div>
 							<div class="clearfix"></div>
