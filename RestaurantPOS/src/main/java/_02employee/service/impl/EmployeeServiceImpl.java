@@ -1,8 +1,10 @@
 package _02employee.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,7 +84,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	
 	
-
+		//==========================================================================test排班_開始
+		@Transactional
+				public List<String> getAllEmployeesName() {
+					  
+					    return employeeDao.getAllEmployeesName();
+				}
+		//==========================================================================test排班_結束
 	
 
 

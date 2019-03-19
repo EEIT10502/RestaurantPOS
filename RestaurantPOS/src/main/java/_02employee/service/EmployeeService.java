@@ -32,4 +32,9 @@ public interface EmployeeService {
 
 	//Tai
 	List<AttendenceBean> getAllAttendence();
+	
+	
+	//==========================================================================test排班_開始
+	List<String> getAllEmployeesName();
+	//==========================================================================test排班_結束
 }

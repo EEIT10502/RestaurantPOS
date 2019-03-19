@@ -25,7 +25,7 @@
 					<li id="menu-academico"><a href="#"><i class="lnr lnr-gift"></i> <span>商品管理</span> 
 					     <span	class="fa fa-angle-right" style="float: right"></span></a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="xxx">商品查詢/修改</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/productManage/allProductListtest.action'/>">商品查詢/修改</a></li>
 							<li id="menu-academico-boletim"><a href="xxx">商品新增</a></li>
 						</ul>
 					</li>

@@ -261,7 +261,11 @@ td.errorMessage[type="redError"] {
 
 		</fieldset>
 	</section>
-	<section></section>
-
+	
+<!-- 	排班測試_開始 -->
+	<section>
+		<a class="page-link" href="<c:url value='test/scheduleTest.action' />" >排班</a>
+	</section>
+<!-- 	排班測試_結束 -->
 </body>
 </html>
