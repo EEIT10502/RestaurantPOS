@@ -1,77 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-<title>首頁</title>
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<link rel='stylesheet' href='${pageContext.request.contextPath}/css/forIndex.css'  type="text/css" />
-<style>
-#content{
-width: 322px;
-}
-
-button{
-width: 80px;
-height: 70px;
-
-}
-
-</style>
+<title>Index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <!-- Bootstrap Core CSS -->
+<link href="<c:url value="/css/bootstrap.min.css"/>" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="<c:url value="/css/IndexStyle.css"/>" rel='stylesheet' type='text/css' />
+<link href="<c:url value="/css/font-awesome.css"/>" rel="stylesheet"> 
+<!-- jQuery -->
+<script src="<c:url value="/js/jquery.min.js"/>"></script>
+<!----webfonts--->
+<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<!---//webfontss--->  
+<!-- Bootstrap Core JavaScript -->
+<script src="<c:url value="/js/bootstrap.min.js"/>"></script>
+<link rel='stylesheet' href='<c:url value="/css/forIndex.css"/>'  type="text/css" />
+<!-- 使用微軟正黑體 -->
+<link rel="stylesheet" href="<c:url value="/fonts/PageFont.css"/>" type="text/css"/> 
 <script type="text/javascript">
 //隱藏或顯示計算機
 $(document).ready(function(){
 	$("#showPunch").click(function(){
 		$("#punchTable").toggle();
 		$("#logo").toggle();
-		
+	
 	});
 	
 });
 	
 </script>
 </head>
-<body>
-<form>
-	<table border="1">
-		<tr>
-			<td rowspan="3" id="logo" name="logo" id="logo" name="logo">LOGO</td>
-			<td rowspan="3" id="punchTable" style="display:none;">
-         	<jsp:include page="Calculator.jsp"/>
-			</td>
-			<!-- 進入點餐畫面 -->
-			<td>
-			<a href="<spring:url value='/outfield/order' />">
-			<input type="button" value="點餐"  id="toOrderPage" name="toOrderPage">
-			</a>
-		
-			</td>
-			<td>
-			<input type="button" value="無用" onclick="location.href='close/dailyClosing.jsp'">
-			</td>
-		</tr>
-		<tr>
-			<!-- 顯示打卡視窗 -->
-			<td>
-			<input type="button" value="打卡"  id="showPunch" name="showPunch">
-			</td>
-			<!-- 先進入經理登入頁，再進入管理功能 -->
-			<td>
-			<a href="<spring:url value='/manage/managelogin' />">
-			<input type="button" value="管理"  id="toManage" name="toManage">
-			</a>
-			</td>
-		</tr>
-	</table>
-	</form>
+<body id="login">
+  <div class="login-logo">
+   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt=""/></a>--> 
+  </div>
+  <!--內文從這裡開始-->
+  <div class="app-cam" >
+    <!--內文-->
+    <div class="content_bottom">
+      <!--內文左半部-->
+      	 <!-- LOGO -->
+      <div class="col-md-4 span_4" >
+          <div class="r3_counter_box" id="logo">
+              <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
+              <div class="stats">
+                <h5><strong>45%%</strong></h5>
+                <span>New Orders</span>
+              </div>
+          </div>
+          <!-- 打卡機 -->
+          <div class="r3_counter_box" style="display: none;" id="punchTable">
+				<jsp:include page="Calculator.jsp"/>
+          </div>
+      </div>
+      <!--內文右半部-->
+      <div class="col-md-8 span_4">
+        <div class="col_2">
+          <div class="box_1">
+          <!-- 點餐系統 -->
+          <div class="col-md-6 col_1_of_2 span_1_of_2">
+              <a href="<spring:url value='/outfield/order' />">
+              <div class="r3_counter_box">
+                  <i class="pull-left fa fa-shopping-cart icon-rounded"></i>
+                  <div class="stats">
+                    <h5><strong>點餐系統</strong></h5>
+                  </div>                 
+              </div>
+              </a>
+          </div>
+          <!-- 後台管理 -->
+          <div class="col-md-6 col_1_of_2 span_1_of_2">
+          		
+                <a href="<spring:url value='/manage/managelogin' />">
+                <div class="r3_counter_box">
+                  <i class="pull-left fa fa-user icon-rounded"></i>
+                  <div class="stats">
+                   <h5><strong>後台管理</strong></h5>
+                  </div>
+                </div>
+                </a>
+                
+          </div>
+          <div class="clearfix"> </div>
+        </div>
 
+<<<<<<< HEAD
 	
 <!-- 	商品管理連結_開始 -->
 <!--下面幾行係為了開發方便(在首頁直接出現連結，連到商品、員工管理相關頁面)，故之後確定商品、員工管理入口後再修改 -->
@@ -95,9 +115,57 @@ $(document).ready(function(){
 <!-- 	sidebar連結_結束 -->
 	
 
+=======
+        <div class="box_1">
+          <!-- 出勤打卡 -->
+          <div class="col-md-6 col_1_of_2 span_1_of_2">
+              <a href="##" id="showPunch">
+              <div class="r3_counter_box">
+                  <i class="pull-left fa fa-clock-o icon-rounded"></i>
+                  <div class="stats">
+                    <h5><strong >出勤打卡</strong></h5>                 
+                  </div>
+              </div>
+              </a>
+          </div>
+          <!-- 空白格 -->
+          <div class="col-md-6 col_1_of_2 span_1_of_2">
+                  <a href="<c:url value="/manage/queryOne"/>" >
+              	  <div class="r3_counter_box">
+                  <i class="pull-left fa fa-clock-o icon-rounded"></i>
+                  <div class="stats">
+                    <h5><strong >測試列印</strong></h5>                 
+                  </div>
+	              </div>
+	              </a>                   
+          </div>
+            <div class="clearfix"> </div>
+          </div>
+          <div class="box_1">
+          	  <!-- 空白格 -->
+              <div class="col-md-6 col_1_of_2 span_1_of_2">
+                  <div class="r3_counter_box">
+                  </div>
+              </div>
+               <!-- 空白格 -->
+              <div class="col-md-6 col_1_of_2 span_1_of_2">
+                  <div class="r3_counter_box">  
+                  </div>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+        </div>
+		</div>
+    </div>
+  </div>
+  <!--內文從這裡結束-->
+   <div class="clearfix"> </div>
+   <div class="copy_layout login">
+      <p>Copyright &copy; 2019.Company name All rights reserved.</p>
+   </div>
+>>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
 </body>
 <script>
-
 		//這裡開始是給計算機用的script
 		
 		//連接字串功能

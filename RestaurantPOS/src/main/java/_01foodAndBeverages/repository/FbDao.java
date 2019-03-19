@@ -3,6 +3,7 @@ package _01foodAndBeverages.repository;
 import java.util.List;
 
 import _00model.MenuBean;
+import _00model.OrderBean;
 
 
 
@@ -14,6 +15,8 @@ public interface FbDao {
 	
 	MenuBean getProductById(Integer pId);
 	
-	Integer getProductPriceByName(String productName);
+	MenuBean getProductListByName(String productName);
+	
+	void insertOrder(OrderBean ob);
 	
 }

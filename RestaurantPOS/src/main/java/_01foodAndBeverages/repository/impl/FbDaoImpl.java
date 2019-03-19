@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import _00model.MenuBean;
+import _00model.OrderBean;
 import _01foodAndBeverages.repository.FbDao;
 
 @Repository
@@ -48,12 +49,17 @@ public class FbDaoImpl implements FbDao {
 	}
 
 	@Override
-	public Integer getProductPriceByName(String productName) {
+	public MenuBean getProductListByName(String productName) {
 		String hql= "FROM MenuBean b WHERE b.productName = :productName";
 		Session session = factory.getCurrentSession();
-		MenuBean menuBean = (MenuBean) session.createQuery(hql).setParameter("productName", productName).getSingleResult();
-		Integer price = menuBean.getPrice();
-		return price;
+		MenuBean menuBean = (MenuBean) session.createQuery(hql).setParameter("productName", productName).getSingleResult();		
+		return menuBean;
+	}
+
+	@Override
+	public void insertOrder(OrderBean ob) {
+		Session session = factory.getCurrentSession();
+		session.save(ob);
 	}
 	
 	

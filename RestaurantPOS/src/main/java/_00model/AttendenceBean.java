@@ -10,63 +10,67 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 @Entity
 @Table(name = "Attendence")
 public class AttendenceBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	Integer attendenceId;
 	String empNo;
+	String empName;
 	Date date;
 	String checkStatus;
 	Time clockTime;
-	
-	
-
 
 	public AttendenceBean() {
-		
+
 	}
-	public AttendenceBean(String empNo,Date date,String checkStatus,Time clockTime) {
-		this.empNo=empNo;
-		this.date=date;
-		this.checkStatus=checkStatus;
-		this.clockTime=clockTime;
+
+	public AttendenceBean(String empNo, Date date, String checkStatus, Time clockTime) {
+		this.empNo = empNo;
+		this.date = date;
+		this.checkStatus = checkStatus;
+		this.clockTime = clockTime;
 	}
-	
-	
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getAttendenceId() {
 		return attendenceId;
 	}
-
 
 	public void setAttendenceId(Integer attendenceId) {
 		this.attendenceId = attendenceId;
 	}
 
-	@Column(columnDefinition="Date NOT NULL",name="date")
+	@Column(columnDefinition = "Date NOT NULL", name = "date")
 	public Date getDate() {
 		return date;
 	}
-
 
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	@Column(columnDefinition="VARCHAR(10) NOT NULL",name="empNO")
+	@Column(columnDefinition = "VARCHAR(10) NOT NULL", name = "empNo")
 	public String getEmpNo() {
 		return empNo;
 	}
 
-
 	public void setEmpNo(String empNo) {
 		this.empNo = empNo;
+	}
+	
+	@Column(columnDefinition = "VARCHAR(10) NOT NULL", name = "empName")
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
 	public Time getClockTime() {
@@ -76,6 +80,7 @@ public class AttendenceBean implements Serializable {
 	public void setClockTime(Time clockTime) {
 		this.clockTime = clockTime;
 	}
+
 	public String getCheckStatus() {
 		return checkStatus;
 	}
@@ -84,24 +89,4 @@ public class AttendenceBean implements Serializable {
 		this.checkStatus = checkStatus;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-	
-	
-	
 }

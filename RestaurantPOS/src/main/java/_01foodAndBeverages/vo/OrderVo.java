@@ -6,20 +6,16 @@ public class OrderVo {
 	
 	private String price;
 	
-	private String qty;
+	private Integer qty;
 	
-	private String subTotal;
+	private Integer subTotal;
 	
-	private String callNo;
+	private String category;
 	
-	private String cusFlow;
-	
-	private String totalAmount;
+	private Integer productNo;
 	
 	
-
-
-
+	
 	public String getItemName() {
 		return itemName;
 	}
@@ -36,44 +32,38 @@ public class OrderVo {
 		this.price = price;
 	}
 
-	public String getQty() {
+	public Integer getQty() {
 		return qty;
 	}
 
-	public void setQty(String qty) {
+	public void setQty(Integer qty) {
 		this.qty = qty;
 	}
 
-	public String getSubTotal() {
+	public Integer getSubTotal() {
 		return subTotal;
 	}
 
-	public void setSubTotal(String subTotal) {
+	public void setSubTotal(Integer subTotal) {
 		this.subTotal = subTotal;
 	}
 
-	public String getCallNo() {
-		return callNo;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCallNo(String callNo) {
-		this.callNo = callNo;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getCusFlow() {
-		return cusFlow;
+	public Integer getProductNo() {
+		return productNo;
 	}
 
-	public void setCusFlow(String cusFlow) {
-		this.cusFlow = cusFlow;
+	public void setProductNo(Integer productNo) {
+		this.productNo = productNo;
 	}
 
-	public String getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(String totalAmount) {
-		this.totalAmount = totalAmount;
-	}
+	
 
 }

@@ -1,38 +1,39 @@
         #all{
             margin: auto;
-            width: 60%;
+            width: 80%;
         }
         #cal{
-            background-color: #ee5757;
-            color: #ffffff;
-            font-size: 15px;
-            font-family: sans-serif;
-            width: 30px;
-            height: 30px;
-            border: none;
+            background-color: #ffffff;
+            color: 	#000000;
+            font-size: 20px;
+            font-family: Microsoft JhengHei;
+            width: 40px;
+            height: 40px;
+            border: 2px black solid;
             border-radius: 12px;
             margin: 5px 5px;
-            cursor: pointer;
+            cursor: pointer; 
             box-shadow:  0 2px #999;
             padding: 0;
         }
         #cal:hover{
-            background-color: #50e2e2;
+            background-color:#888888;
 
         }
         #cal:active{
             transform: translateY(2px);
         }
         input[type=text]{
-            width: 118px;
-            height: 20px;
-            font-size: 20px;
+            width: 200px;
+            height: 40px;
+            font-size: 30px;
             color: #9b9999;
-           border-radius: 5px;
-           padding: 3px 3px;
+           	border-radius: 5px;
+           	padding: 3px 3px;
+           	margin-bottom: 10px;
         }
         form{
-            border: 1px solid #eaeaea;
+           
             background-color: #ffffff;
             width: 212px;
             height: 280px;
@@ -49,4 +50,21 @@
             font-family: sans-serif;
             font-size: 50px;
             text-align: center; 
+        }
+        #checkIn,#checkOut{
+        	margin-top: 5px;
+        	margin-bottom: 5px;
+        	height: 140px;
+        	background-color: #ffffff;
+            color: 	#000000;
+            font-size: 20px;
+            font-family: Microsoft JhengHei;
+            width: 50px;
+            border: 2px black solid;
+            border-radius: 12px;
+            margin: 5px 5px;
+            cursor: pointer; 
+            box-shadow:  0 2px #999;
+            padding: 0;
+        
         }

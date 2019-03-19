@@ -1,13 +1,17 @@
 package _02employee.service.impl;
 
 import java.sql.Blob;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import _00model.AttendenceBean;
 import _00model.EmployeeBean;
 import _00model.MenuBean;
 import _02employee.repository.EmployeeDao;
@@ -265,7 +269,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 //		return 0;
 //	}
 	
+		@Transactional
+		@Override
+		public List<AttendenceBean> getAllAttendence() {
+			return employeeDao.getAllAttendence();
+		}
+
+		//==========================================================================test排班_開始
+		@Transactional
+				public List<String> getAllEmployeesName() {
+					  
+					    return employeeDao.getAllEmployeesName();
+				}
+		//==========================================================================test排班_結束
 	
-	
+
 
 }

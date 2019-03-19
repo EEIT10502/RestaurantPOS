@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -55,7 +55,7 @@ td.errorMessage[type="redError"] {
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
-		<fieldset class="w3-container" style="margin-left: 160px">
+		<fieldset class="w3-container" style="margin-left: 260px">
 			<div id="allList" class="">
 				<table class="table table-hover">
 					<tr>
@@ -261,7 +261,11 @@ td.errorMessage[type="redError"] {
 
 		</fieldset>
 	</section>
-	<section></section>
-
+	
+<!-- 	排班測試_開始 -->
+	<section style="margin-left: 260px">
+		<a class="page-link" href="<c:url value='test/scheduleTest.action' />" >排班</a>
+	</section>
+<!-- 	排班測試_結束 -->
 </body>
 </html>

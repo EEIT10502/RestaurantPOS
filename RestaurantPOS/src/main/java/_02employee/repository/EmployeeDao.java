@@ -1,11 +1,9 @@
 package _02employee.repository;
 
 
-import java.sql.Blob;
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import _00model.AttendenceBean;
 import _00model.EmployeeBean;
 
 
@@ -160,6 +158,14 @@ public interface EmployeeDao {
 	//13.取得各員工狀態數量
 	long getTotalEmployeeCountsByEmployeeStatus();
 	
+	//Tai
+	List<AttendenceBean> getAllAttendence();
 	
 	
+	//==========================================================================test排班_開始
+	List<String> getAllEmployeesName();
+	//==========================================================================test排班_結束
 }
+
+	
+
