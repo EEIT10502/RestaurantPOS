@@ -44,7 +44,7 @@ p.errorMessage[type="redError"] {
 
 		<form:form method='POST' modelAttribute="MenuBean"
 			class='form-horizontal'>
-			<fieldset class="w3-container" style="margin-left: 160px">
+			<fieldset class="w3-container" style="margin-left: 260px">
 				<div class="container">
 					<h1>
 						<spring:message
