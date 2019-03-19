@@ -14,7 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import _00.init.printerUtils.MainPrinter;
+import org.springframework.web.bind.annotation.RequestParam;
 import _00.init.printerUtils.MainPrinter;
 import _00.init.util.SystemUtils2018;
 import _00.init.printerUtils.MainPrinter;
@@ -46,8 +47,8 @@ public class ManagerController {
 		//System.out.println("進入日結");
 		
 		//取得當日的yyyy-MM-dd格式字串 
-		//String date=SystemUtils2018.getDate();  //系統正式上線用這個
-		String date ="2019-03-05";  			  //因無當日最新數據，先用假資料測試
+		String date=SystemUtils2018.getDate();  //系統正式上線用這個
+		//String date ="2019-03-05";  			  //因無當日最新數據，先用假資料測試
 		//準備一個有當日數據分析的MAP
 		Map<String, Object> mapData = managerservice.getDayCheckAnalysisDate(date);
 		
@@ -68,7 +69,7 @@ public class ManagerController {
 		//呼叫列印方法，列印日結清機單
 		MainPrinter.printDayCheck(mapData);
 		
-		return "redirect:/";
+		return "redirect:/close/dailyClosing.action";
 	}
 	
 	// 可根據傳入的OrderNo列印單據 用於丟單時補單
@@ -87,7 +88,7 @@ public class ManagerController {
 	//流程:員工於點餐畫面按下"結帳"->資料INSERT進入資料庫，控制器交棒給本控制器撈資料
 	@RequestMapping("/manage/getLastOne")
 	public String prepareMessageForPrinter_LastOne(Model model) {
-
+		System.out.println("進入準備列印資料控制器");
 		orderBean = managerservice.getLastOrderBean();
 		OrderDetailBeanSet = orderBean.getOrderDetailBean();
 		
@@ -99,20 +100,23 @@ public class ManagerController {
 	// 負責列印的控制器
 	@RequestMapping("/printer")
 	public String Printer() {
-		
+		System.out.println("進入列印控制器");
 		// 呼叫靜態列印方法
 		MainPrinter.printBill(orderBean, OrderDetailBeanSet);
 		MainPrinter.printForBK(orderBean, OrderDetailBeanSet);
 		
 		
-		return "redirect:/";
+		return "redirect:/outfield/order";
 	}
 
 	@RequestMapping("/manage/managelogin")
 	public String empLogin(Model model) {
 		System.out.println("管理員登入");
-
-		return "manage/managelogin";
+		
+//		MainActivity pos = new MainActivity();
+//		pos.onClick();
+		
+		return "manage/login";
 	}
 
 	@RequestMapping(value = "/manage/managelogin.check", method = RequestMethod.POST)
@@ -139,7 +143,7 @@ public class ManagerController {
 
 		// errorMsgMap不為空，表示裡面有錯誤訊息，跳轉到登入頁面重新輸入
 		if (!errorMsgMap.isEmpty()) {
-			return "manage/managelogin";
+			return "manage/login";
 		}
 
 		ManagerBean managerBean = null;
@@ -154,7 +158,7 @@ public class ManagerController {
 			} else {
 				// 為空表示找不到，肯定輸入錯誤!回到登入頁面
 				errorMsgMap.put("LoginError", "該帳號不存在或密碼錯誤");
-				return "manage/managelogin";
+				return "manage/login";
 			}
 
 		} catch (RuntimeException e) {
@@ -165,7 +169,25 @@ public class ManagerController {
 		// return "redirect:/";
 
 		// 預設登入後前往查詢員工頁面
-		return "empManage/empQuery";
+		return "redirect:/toDashBoard";
+		//return "redirect:/toDashBoard";
+	}
+	
+	@RequestMapping("/toDashBoard")
+	public String toDashBoard(Model model) {
+		TargetTurnoverBean TTBean = null;
+		TTBean = managerservice.getMonthTarget();
+		
+		model.addAttribute("TTBean",TTBean);
+		
+		return "DashBoard/dashboard";
+	}
+	//跳轉到日結清機
+	@RequestMapping("/close/close")
+	public String toClose() {
+		System.out.println("goto!");
+		
+		return "close/closeBoardTest";
 	}
 
 }
