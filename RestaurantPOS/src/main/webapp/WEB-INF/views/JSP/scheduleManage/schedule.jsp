@@ -10,9 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="icon" type="image/png" href="/favicon.ico" />
-<meta name="keywords" content="線上排班、排班表、派班表" />
-<meta name="description" content="簡單易用線上排班系統，提供滑鼠拖拉設定排班、列印及網頁內崁碼功能。" />
-<!--[if lt IE 8]><link type="text/css" rel="stylesheet" href="/asset/css/ie.css" media="screen, projection" /><![endif]-->
 <link type="text/css" rel="stylesheet"
 	href="https://shift.ekko.com.tw/asset/css/screen.css"
 	media="screen, projection" />
@@ -35,6 +32,7 @@
 	src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript"
 	src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
+	
 <title>CLASS</title>
 </head>
 <body>
@@ -42,11 +40,6 @@
 	<div class="container prepend-top append-bottom">
 		<div class="span-24 header"></div>
 		<div id="menu" class="span-24 last">
-			<div class="append-1 last" style="margin-top: 1em;">
-				<span>Hello, <strong><a
-						href="https://shift.ekko.com.tw/profile.html">睿</a></strong></span><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a
-					href="https://shift.ekko.com.tw/logout.html">登出</a></span>
-			</div>
 		</div>
 		<div id="main" class="span-24">
 			<div id="content" class="span-22 prepend-1 append-1">

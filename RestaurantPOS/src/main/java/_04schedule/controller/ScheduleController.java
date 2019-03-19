@@ -156,6 +156,13 @@ public class ScheduleController {
 	@RequestMapping(value = "/calendar/update", method = RequestMethod.GET)
 	public String showCalendar(@RequestParam("id") Integer calendarId, Model model) {
 		CalendarBean calendarBean = scheduleService.findByPrimary(calendarId);
+		
+		List<ScheduleBean> ss = scheduleService.findAllSchedule();	
+		for(ScheduleBean listRow:ss) {
+			System.out.println("班別:"+listRow.getSchedule());
+		}
+		model.addAttribute("ss",ss);
+		
 		model.addAttribute(calendarBean);
 		System.out.println(calendarBean.getDay1());
 		System.out.println("--顯示單筆Schedule資料，然後導向更新畫面--");

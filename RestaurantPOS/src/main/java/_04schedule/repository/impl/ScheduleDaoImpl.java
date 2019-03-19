@@ -58,10 +58,10 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<ScheduleBean> findAllSchedule() {
-		String hql = "FROM ScheduleBean";
 		Session session = null;
-		List<ScheduleBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
+		List<ScheduleBean> list = new ArrayList<>();
+		String hql = "FROM ScheduleBean";
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
@@ -72,8 +72,8 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	public void updateSchedule(ScheduleBean schedule) {
 //		String hql = "UPDATE ScheduleBean SET schedule s =:schedule WHERE scheduleId d=:scheduleId";
 		Session session = factory.getCurrentSession();
-		System.out.println(schedule.getScheduleId());	//ID
-		System.out.println(schedule.getSchedule());		//班別
+//		System.out.println(schedule.getScheduleId());	//ID
+//		System.out.println(schedule.getSchedule());		//班別
 		session.update(schedule);
 	}
 

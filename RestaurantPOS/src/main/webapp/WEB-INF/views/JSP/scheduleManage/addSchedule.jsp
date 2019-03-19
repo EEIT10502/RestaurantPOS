@@ -97,21 +97,21 @@ fieldset {
 					</div>
 				</div>
 				<script type="text/javascript">
-				$('.example').pickatime({
-					  'showDuration' : true,
-					  'timeFormat' : 'H:i',
-					  'scrollDefault' : true,
-					  'selectOnBlur' : true,
-					  'show2400' : true,
-					  'showDuration' : true,
-					  'showOn' : [ "click", "focus" ],
-					  'showOnFocus' : true,
-					  'durationTime' : 'minTime',
-					  'forceRoundTime' : true,
-					  'maxTime' : null,
-					  'minTime' : null,
-					     'step': 30
-					 });
+// 				$('.example').pickatime({
+// 					  'showDuration' : true,
+// 					  'timeFormat' : 'H:i',
+// 					  'scrollDefault' : true,
+// 					  'selectOnBlur' : true,
+// 					  'show2400' : true,
+// 					  'showDuration' : true,
+// 					  'showOn' : [ "click", "focus" ],
+// 					  'showOnFocus' : true,
+// 					  'durationTime' : 'minTime',
+// 					  'forceRoundTime' : true,
+// 					  'maxTime' : null,
+// 					  'minTime' : null,
+// 					     'step': 30
+// 					 });
 					$(document).ready(function() {
 						$("a#add_worker, a#edit").live('click', function(e) {
 							e.preventDefault();
