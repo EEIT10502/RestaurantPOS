@@ -18,17 +18,19 @@
 <script src="<c:url value="/js/jquery.min.js"/>"></script>
 <!----webfonts--->
 <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->  
+<!---//webfontss--->  
 <!-- Bootstrap Core JavaScript -->
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
 <link rel='stylesheet' href='<c:url value="/css/forIndex.css"/>'  type="text/css" />
+<!-- 使用微軟正黑體 -->
+<link rel="stylesheet" href="<c:url value="/fonts/PageFont.css"/>" type="text/css"/> 
 <script type="text/javascript">
 //隱藏或顯示計算機
 $(document).ready(function(){
 	$("#showPunch").click(function(){
 		$("#punchTable").toggle();
 		$("#logo").toggle();
-	//	alert("OOO");
+	
 	});
 	
 });
@@ -37,7 +39,7 @@ $(document).ready(function(){
 </head>
 <body id="login">
   <div class="login-logo">
-     <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt=""/></a>
+   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt="a"/></a>--> 
   </div>
   <!--內文從這裡開始-->
   <div class="app-cam" >
@@ -89,6 +91,7 @@ $(document).ready(function(){
           <div class="clearfix"> </div>
         </div>
 
+
         <div class="box_1">
           <!-- 出勤打卡 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
@@ -103,8 +106,14 @@ $(document).ready(function(){
           </div>
           <!-- 空白格 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
-              <div class="r3_counter_box">                   
-              </div>
+                  <a href="<c:url value="/manage/queryOne"/>" >
+              	  <div class="r3_counter_box">
+                  <i class="pull-left fa fa-clock-o icon-rounded"></i>
+                  <div class="stats">
+                    <h5><strong >測試列印</strong></h5>                 
+                  </div>
+	              </div>
+	              </a>                   
           </div>
             <div class="clearfix"> </div>
           </div>
@@ -130,6 +139,7 @@ $(document).ready(function(){
    <div class="copy_layout login">
       <p>Copyright &copy; 2019.Company name All rights reserved.</p>
    </div>
+>>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
 </body>
 <script>
 		//這裡開始是給計算機用的script

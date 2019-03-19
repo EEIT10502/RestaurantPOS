@@ -1,5 +1,5 @@
 html, body{
-	font-family: 'Roboto', sans-serif;
+	font-family: Microsoft JhengHei, sans-serif;
     font-size: 100%;
   	overflow-x: hidden;
 	background:#FFFFFF;
@@ -23,10 +23,10 @@ a {
     background-color:none;
 }
 body p{
-  font-family: 'Roboto', sans-serif;
+  font-family: Microsoft JhengHei, sans-serif;
 }
 h1, h2, h3, h4, h5 {
-    	font-family: 'Montserrat', sans-serif;
+    	font-family: Microsoft JhengHei, sans-serif;
 }
 a {
   color: #008DE7;
@@ -169,7 +169,7 @@ label.col-sm-2.control-label {
     z-index: 2;
     background-color: #b52e31;
     font-size:0.9em;
-    font-family: 'Roboto', sans-serif;
+    font-family: Microsoft JhengHei, sans-serif;
 	border:none;
 	border-left: 4px solid #b52e31;
 }
@@ -1460,7 +1460,7 @@ h3.sub-tittle {
 .top-content h5 {
     font-size: 1.3em;
     color: #B3AEAE;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 微軟正黑體, sans-serif;
 }
 .top-content label {
     font-size: 2.3em;
@@ -2566,7 +2566,7 @@ list-style: none;
 }
 .footer h4 {
   color:#B52E31;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 微軟正黑體, sans-serif;
   font-weight: 400;
   margin: 0 0 1em;
 }

@@ -97,6 +97,6 @@ public class DailyClosingController {
 		cumulativeTurnoverBean.setCumulativeTurnover(cumulativeTurnoverToday);
 		service.addDailyClosing(cumulativeTurnoverBean);
 
-		return "redirect:/close/dailyClosing.action";
+		return "redirect:/manage/printDayCheck";
 	}
 }

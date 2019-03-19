@@ -10,7 +10,7 @@
 			<div class="menu">
 				<ul id="menu">
 					<!-- 回首頁 -->
-					<li><a href="<c:url value="/"/>"><i class="fa fa-tachometer"></i><span>Home</span></a></li>
+					<li><a href="<c:url value="/toDashBoard"/>"><i class="fa fa-tachometer"></i><span>後台首頁</span></a></li>
 					<!-- 人事管理 -->
 					<li id="menu-academico"><a href="#">
 					       <i class="lnr lnr-users"></i><span>人事管理</span>
@@ -25,7 +25,7 @@
 					<li id="menu-academico"><a href="#"><i class="lnr lnr-gift"></i> <span>商品管理</span> 
 					     <span	class="fa fa-angle-right" style="float: right"></span></a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="xxx">商品查詢/修改</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/productManage/allProductListtest.action'/>">商品查詢/修改</a></li>
 							<li id="menu-academico-boletim"><a href="xxx">商品新增</a></li>
 						</ul>
 					</li>
@@ -48,8 +48,8 @@
 						</ul>
 					</li>
 					<!-- 日結 -->
-					<li><a href="<c:url value="/close/close"/>"><i class="lnr lnr-leaf"></i> <span>日結清機</span></a></li>
-
+					<li><a href="<c:url value="/close/dailyClosing.action"/>"><i class="lnr lnr-leaf"></i> <span>日結清機</span></a></li>
+					<li><a href="<c:url value="/"/>"><i class="fa fa-tachometer"></i><span>系統首頁</span></a></li>
 				</ul>
 			</div>
 			</div>

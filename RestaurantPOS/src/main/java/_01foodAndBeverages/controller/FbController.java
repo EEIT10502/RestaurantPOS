@@ -49,6 +49,7 @@ public class FbController {
 	//在index頁面使用這個連結進入點餐畫面
 	@RequestMapping("/outfield/order")
 	public String order(Model model) {
+		System.out.println("進入回首頁");
 		List<MenuBean>  list1 = service.getProductByCategory("飯類");
 		List<MenuBean>  list2 = service.getProductByCategory("麵類");
 		List<MenuBean>  list3 = service.getProductByCategory("湯類");
@@ -74,7 +75,7 @@ public class FbController {
 		ModelAndView mv = new ModelAndView("/outfield/payment");
 		//System.out.println(orderForm);
 		List<OrderVo> orderVos = orderForm.getOrderVos();
-		List<OrderVo> newOrderVos = new ArrayList<OrderVo>();
+		List<OrderVo> newOrderVos = new ArrayList<OrderVo>();  //解決修改數量未點選修改的問題
 
 		Integer newTotalAmount = 0;
 
@@ -93,23 +94,24 @@ public class FbController {
 		mv.setViewName("/outfield/payment");
 	
 		
-		if (orderVos != null && orderVos.size() > 0) {
-			for (OrderVo v : orderVos) {
-				System.out.println("itemName:" + v.getItemName());
-				System.out.println("price:" + v.getPrice());
-				System.out.println("qty:" + v.getQty());
-				System.out.println("subTotal:" + v.getSubTotal());
-				System.out.println("category:" + v.getCategory());
-				System.out.println("producetno:" + v.getProductNo());
-				//System.out.println("totalAmount:" + v.getTotalAmount());
-			}
-		}
+//		if (orderVos != null && orderVos.size() > 0) {
+//			for (OrderVo v : orderVos) {
+//				System.out.println("itemName:" + v.getItemName());
+//				System.out.println("price:" + v.getPrice());
+//				System.out.println("qty:" + v.getQty());
+//				System.out.println("subTotal:" + v.getSubTotal());
+//				System.out.println("category:" + v.getCategory());
+//				System.out.println("producetno:" + v.getProductNo());
+//				//System.out.println("totalAmount:" + v.getTotalAmount());
+//			}
+//		}
 		return mv;
 	}
 	
 	@RequestMapping("/order/confirmPayment")
 	public ModelAndView confirmPayment(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/outfield/order");
+		System.out.println("進入結帳控制器");
+		ModelAndView mv = new ModelAndView("redirect:/manage/getLastOne");
 		System.out.println(orderForm);
 		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
 		
@@ -159,28 +161,40 @@ public class FbController {
 //		System.out.println("callNo:" + orderForm.getCallNo());
 		return mv;
 	}
-	
-	@ModelAttribute("menu")
-	public List<MenuBean> getMenuList(){
-		return service.getProductByCategory("飯類");
-	}
-	@ModelAttribute("noodle")
-	public List<MenuBean> getNoodleList(){
-		return service.getProductByCategory("麵類");
-	}
-	@ModelAttribute("soup")
-	public List<MenuBean> getSoupList(){
-		return service.getProductByCategory("湯類");
-	}
-	@ModelAttribute("vegetable")
-	public List<MenuBean> getVegetableList(){
-		return service.getProductByCategory("菜類");
-	}
-	@ModelAttribute("sidedish")
-	public List<MenuBean> getSidedishList(){
-		return service.getProductByCategory("小菜類");
-	}
+
 	
 	
+	@RequestMapping("/outfield/modifyOrder")
+	public ModelAndView modify(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
+		ModelAndView mv = new ModelAndView("forward:/outfield/order");
+		//System.out.println(orderForm);
+		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
+		System.out.println(orderForm);
+		
+		
+		mv.addObject("orderVos1",orderVos1);
+		mv.addObject("callNo",orderForm.getCallNo());
+		mv.addObject("cusFlow",orderForm.getCusFlow());
+		mv.addObject("totalAmount",orderForm.getTotalAmount());
+		
+		if (orderVos1 != null && orderVos1.size() > 0) {
+		for (OrderVo v : orderVos1) {
+			System.out.println("itemName:" + v.getItemName());
+			System.out.println("price:" + v.getPrice());
+			System.out.println("qty:" + v.getQty());
+			System.out.println("subTotal:" + v.getSubTotal());
+			System.out.println("category:" + v.getCategory());
+			System.out.println("producetno:" + v.getProductNo());
+			//System.out.println("totalAmount:" + v.getTotalAmount());
+		}
+	}
+		
+		
+		
+		
+		return mv;
+	}
+
+
 }
 	
