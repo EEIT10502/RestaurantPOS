@@ -49,7 +49,7 @@ span.errorMessage[type="redError"] {
 	crossorigin="anonymous"></script>
 <body>
 	<section class="">
-		<fieldset class="w3-container" style="margin-left: 160px">
+		<fieldset class="w3-container" style="margin-left: 260px">
 			<h1>商品查詢/修改</h1>
 
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -59,6 +59,9 @@ span.errorMessage[type="redError"] {
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link"
 							href="<c:url value='allProductList.action?' />">所有商品</a></li>
+
+<!-- <li class="nav-item"><a class="nav-link" -->
+<%-- 							href="<c:url value='allProductListExcel.action' />">11</a></li> --%>
 
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"

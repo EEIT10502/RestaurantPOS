@@ -25,12 +25,11 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-
-
 @Configuration
 @EnableWebMvc
 
-@ComponentScan(basePackages= {"_01foodAndBeverages","_02employee","_03product","_04schedule","_05financial","_00.init","_06manager","_07dailyClosing"})
+@ComponentScan(basePackages = { "_01foodAndBeverages", "_02employee", "_03product", "_04schedule", "_05financial",
+		"_00.init", "_06manager", "_07dailyClosing" })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
@@ -49,7 +48,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
 		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
 		resolver.setContentNegotiationManager(manager);
-		
+
 		List<ViewResolver> resolvers = new ArrayList<ViewResolver>();
 
 		resolvers.add(jspViewResolver());
@@ -57,7 +56,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	
 	@Bean
 	public ViewResolver jspViewResolver() {
 		System.out.println("jspViewResolver");
@@ -67,41 +65,37 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/css/**")
-				.addResourceLocations("/WEB-INF/views/css/");
-		registry.addResourceHandler("/js/**")
-				.addResourceLocations("/WEB-INF/views/js/");
-		registry.addResourceHandler("/fonts/**")
-				.addResourceLocations("/WEB-INF/views/fonts/");
-		registry.addResourceHandler("/images/**")
-				.addResourceLocations("/WEB-INF/views/images/");
-	
+		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
+		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");
+		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/fonts/");
+		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/images/");
+
 	}
-	
-	
+
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource resource = new ResourceBundleMessageSource();
 		resource.setBasename("messages");
 		return resource;
-		
+
 	}
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
-	} 
-	
-	//定義檔案上傳所需要的Bean
+	}
+
+	// 定義檔案上傳所需要的Bean
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setDefaultEncoding("UTF-8");
 		resolver.setMaxUploadSize(81920000);
 		return resolver;
-		
+
 	}
 
 }

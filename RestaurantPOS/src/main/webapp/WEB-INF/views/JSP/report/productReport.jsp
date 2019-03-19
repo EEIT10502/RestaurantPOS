@@ -34,9 +34,11 @@
 	//結束日大於起始日判斷
 	jQuery(document).ready(function($) {
 		$("#pDate2").datepicker({
+			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
 		});
 		$("#pDate1").datepicker({
+			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
 		}).bind("change", function() {
 			var minValue = $(this).val();

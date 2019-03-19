@@ -40,7 +40,7 @@ public class FinancialServiceImpl implements FinancialService {
 
 	@Transactional
 	@Override
-	public List<OrderBean[]> getCateByDate(String Date1, String Date2, String Cate) {
+	public List<OrderDetailBean[]> getCateByDate(String Date1, String Date2, String Cate) {
 		return dao.getCateByDate(Date1, Date2, Cate);
 	}
 

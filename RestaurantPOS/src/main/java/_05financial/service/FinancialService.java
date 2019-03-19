@@ -16,7 +16,7 @@ public interface FinancialService {
 	
 	public List<MenuBean> getMenuCate();
 	
-	public List<OrderBean[]> getCateByDate(String Date1, String Date2, String Cate);
+	public List<OrderDetailBean[]> getCateByDate(String Date1, String Date2, String Cate);
 	
 	public List<MenuBean> getMenuProductByCate(String Cate);
 	

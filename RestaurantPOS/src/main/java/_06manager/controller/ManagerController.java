@@ -180,7 +180,7 @@ public class ManagerController {
 		
 		model.addAttribute("TTBean",TTBean);
 		
-		return "DashBoard/dashboard";
+		return "DashBoard";
 	}
 	//跳轉到日結清機
 	@RequestMapping("/close/close")

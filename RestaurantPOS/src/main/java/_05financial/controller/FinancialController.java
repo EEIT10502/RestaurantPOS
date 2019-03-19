@@ -2,19 +2,19 @@ package _05financial.controller;
 
 import java.util.List;
 
-import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import _00model.CumulativeTurnoverBean;
 import _00model.MenuBean;
 import _00model.OrderBean;
+import _00model.OrderDetailBean;
 import _00model.TargetTurnoverBean;
-import _05financial.repository.Result;
 import _05financial.service.FinancialService;
 
 @Controller
@@ -76,7 +76,7 @@ public class FinancialController {
 		model.addAttribute("csDate2", csDate2);
 		model.addAttribute("csSelOpt", csSelOpt);
 		// OrderBean裡的欄位資料
-		List<OrderBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
+		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
 		model.addAttribute("listCatee", listCatee);
 		// 類別報表下拉選單
 		List<MenuBean> listMenuCate = service.getMenuCate();
@@ -126,4 +126,62 @@ public class FinancialController {
 
 		return "report/goalReport";
 	}
+	// 營運目標PDF
+//	@RequestMapping(value = "/report/goalReportGetPDF", method = RequestMethod.GET)
+//	public ModelAndView goalReportGetPDF(Model model, @RequestParam("gMonth1") String gMonth1) {
+//		// CumulativeTurnoverBean的欄位資料
+//		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
+//		model.addAttribute("listgoalCum", listgoalCum);
+//		// TargetTurnoverBean的欄位資料
+//		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
+//		model.addAttribute("listgoalturn", listgoalturn);
+//		//兩個list合併成一個list
+//		List<Object> listGoalReportPdf = new ArrayList<Object>();
+//		for(int i=0; i<listgoalCum.size(); i++) {
+//			listGoalReportPdf.add(listgoalCum.get(i));
+//		}
+//		for(int i=0; i<listgoalturn.size(); i++) {
+//			listGoalReportPdf.add(listgoalturn.get(i));
+//		}
+//		
+//		
+////		listGoalReportPdf.add(listgoalCum);
+////		listGoalReportPdf.add(listgoalturn);
+//		
+//		return new ModelAndView("report/goalReport");
+//	}
+
+	// URL為 /members, 搭配 GET方法可以傳回所有紀錄。
+	// 加入produces屬性可以說明產生之資料的格式: produces = "application/pdf"
+	// 查詢所有Member紀錄，本方法可以產生 PDF格式的回應
+//	@RequestMapping(value = "/report/goalReportGetPDF", method = RequestMethod.POST, produces = "application/pdf")
+//	public String goalReportGetPDF(Model model, @RequestParam("gMonth1") String gMonth1) {
+//		model.addAttribute("gMonth1", gMonth1);
+//		
+//		System.out.println(gMonth1);
+//		// CumulativeTurnoverBean的欄位資料
+//		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
+//		model.addAttribute("listgoalCum", listgoalCum);
+//		// TargetTurnoverBean的欄位資料
+//		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
+//		model.addAttribute("listgoalturn", listgoalturn);
+//		return "report/goalReport";
+//	}
+	//類別報表PDF
+	@RequestMapping(value = "/report/categoryReportGetPDF", method = RequestMethod.POST, produces = "application/pdf")
+	public String goalReportGetPDF(Model model, @RequestParam("csDate1") String csDate1,
+			@RequestParam("csDate2") String csDate2, @RequestParam("csSelOpt") String csSelOpt) {
+		model.addAttribute("csDate1", csDate1);
+		model.addAttribute("csDate2", csDate2);
+		model.addAttribute("csSelOpt", csSelOpt);
+
+		System.out.println(csDate1 + " PDF TEST!!!");
+		
+		// OrderBean裡的欄位資料
+		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
+		model.addAttribute("listCatee", listCatee);
+
+		return "report/categoryReport";
+	}
+
 }
