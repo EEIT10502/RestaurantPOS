@@ -40,9 +40,8 @@ public class EmployeeTableInit {
 				 String addr = token[0];
 				 String empName = token[1];
 				 
-				 String empNo = token[2];
-//				 Integer empNo = Integer.parseInt(SempNo);
-//				 Integer empNo = Integer.parseInt(SempNo);
+				 String SempNo = token[2];
+				 Integer empNo = Integer.parseInt(SempNo);
 				 
 				 String gender = token[3];
 				 String Simg = token[4];

@@ -1,11 +1,12 @@
 package _02employee.repository;
 
 
+import java.sql.Blob;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import _00model.EmployeeBean;
-import _00model.ManagerBean;
-import _00model.MenuBean;
 
 
 public interface EmployeeDao {
@@ -28,10 +29,13 @@ public interface EmployeeDao {
 	//	1-1.取得現有職位(MAX)編號
 	Integer getCurrentPositionNumber(String positionInsert);
 	
+//	//TEST
+//	Integer getCurrentPositionNumber();
+	
 	//	1-2.設定就業狀態select(status)
 	void setStatusSelect(String statusSelect);
 	
-	//	1-3.設定職位select(position)
+	//	1-3.設定職位select(position)??不用@override嗎
 	void setPositionSelect(String positionSelect);
 
 	//2.更新：員工資料
@@ -65,7 +69,7 @@ public interface EmployeeDao {
 	public EmployeeBean getEmployeesById(int empId);
 	
 	//3.搜尋：以員工編號empNo
-//	public EmployeeBean getEmployeesByNo(String empNo);
+	public EmployeeBean getEmployeesByNo(String empNo);
 	
 	
 	//4.status-以就業狀態顯示
@@ -106,6 +110,16 @@ public interface EmployeeDao {
 	 * 1.取得員工總數
 	 * 2.取得總頁數
 	 * 3.取得員工列表頁數
+	 * 4.取得每頁顯示的員工數量
+	 * 5.設定每頁顯示的員工數量
+	 * 6.取得現在頁數
+	 * 7.設定現在頁數
+	 * 8.取得搜尋後總員工數量
+	 * 9.取得搜尋後總頁數
+	 * 10.取得各職位總數
+	 * 11.取得各職位總頁數
+	 * 12.取得各員工狀態頁面
+	 * 13.取得各員工狀態數量
 	 */
 	//1.取得員工總數
 	long getTotalEmployeesCounts();
@@ -114,7 +128,7 @@ public interface EmployeeDao {
 	int getTotalPages();
 	
 	//3.取得員工列表頁數
-	List<MenuBean> getEmployeesListGetByPage();
+	List<EmployeeBean> getEmployeesListGetByPage();
 	
 	//4.取得每頁顯示的員工數量
 	int getEmployeesPerPage();
@@ -135,16 +149,17 @@ public interface EmployeeDao {
 	int getTotalPagesBySearch();
 	
 	//10.取得各職位總數
-	long getTotalEmployeesCountsByCate();
+	long getTotalEmployeesCountsByPosition();
 	
 	//11.取得各職位總頁數
-	int getTotalPagesByCate();
+	int getTotalPagesByPosition();
 	
 	//12.取得各員工狀態頁面
 	int getTotalPagesByEmployeesStatus();
 	
 	//13.取得各員工狀態數量
-	long getTotalItemCountsByProductStatus();
+	long getTotalEmployeeCountsByEmployeeStatus();
+	
 	
 	
 }
