@@ -167,21 +167,40 @@ public class FinancialController {
 //		model.addAttribute("listgoalturn", listgoalturn);
 //		return "report/goalReport";
 //	}
-	//類別報表PDF
-	@RequestMapping(value = "/report/categoryReportGetPDF", method = RequestMethod.POST, produces = "application/pdf")
-	public String goalReportGetPDF(Model model, @RequestParam("csDate1") String csDate1,
+//	// 類別報表PDF
+//	@RequestMapping(value = "/report/categoryReportGetPDF", method = RequestMethod.GET, produces = "application/pdf")
+//	public String goalReportGetPDF(Model model, @RequestParam("csDate1") String csDate1,
+//			@RequestParam("csDate2") String csDate2, @RequestParam("csSelOpt") String csSelOpt) {
+//		model.addAttribute("csDate1", csDate1);
+//		model.addAttribute("csDate2", csDate2);
+//		model.addAttribute("csSelOpt", csSelOpt);
+//		System.out.println(csDate1 + " PDF TEST!!!");
+//
+//		// OrderBean裡的欄位資料
+//		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
+//		model.addAttribute("listCatee", listCatee);
+//		// 類別報表下拉選單
+//		List<MenuBean> listMenuCate = service.getMenuCate();
+//		model.addAttribute("listMenuCate", listMenuCate);
+//		return "report/categoryReport";
+//	}
+	// 類別報表Excel
+	@RequestMapping(value = "/report/categoryReportGetExcel", method = RequestMethod.POST, produces = "application/vnd.ms-excel")
+	public String queryAllMembersExcel(Model model, @RequestParam("csDate1") String csDate1,
 			@RequestParam("csDate2") String csDate2, @RequestParam("csSelOpt") String csSelOpt) {
 		model.addAttribute("csDate1", csDate1);
 		model.addAttribute("csDate2", csDate2);
 		model.addAttribute("csSelOpt", csSelOpt);
-
-		System.out.println(csDate1 + " PDF TEST!!!");
 		
-		// OrderBean裡的欄位資料
-		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
-		model.addAttribute("listCatee", listCatee);
+		System.out.println(csDate1 + " Start Excel TEST!!!");
 
-		return "report/categoryReport";
+		// OrderBean裡的欄位資料
+		List<OrderDetailBean> listCatee2 = service.getCateByDate2(csDate1, csDate2, csSelOpt);
+		model.addAttribute("listCatee2", listCatee2);
+		// 類別報表下拉選單
+		List<MenuBean> listMenuCate = service.getMenuCate();
+		model.addAttribute("listMenuCate", listMenuCate);
+		return "categoryReport/excel";
 	}
 
 }

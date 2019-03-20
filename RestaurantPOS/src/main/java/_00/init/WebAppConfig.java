@@ -25,6 +25,9 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import _05financial.viewresolver.PdfViewResolver;
+
+
 @Configuration
 @EnableWebMvc
 
@@ -52,6 +55,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		List<ViewResolver> resolvers = new ArrayList<ViewResolver>();
 
 		resolvers.add(jspViewResolver());
+
+		resolvers.add(pdfViewResolver(context));
+
 		resolvers.add(excelViewResolver());
 		resolver.setViewResolvers(resolvers);
 		return resolver;
@@ -102,7 +108,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		resolver.setDefaultEncoding("UTF-8");
 		resolver.setMaxUploadSize(81920000);
 		return resolver;
+	}
 
+	@Bean
+	public ViewResolver pdfViewResolver(ServletContext context) {
+		return new PdfViewResolver(context);
 	}
 
 }
