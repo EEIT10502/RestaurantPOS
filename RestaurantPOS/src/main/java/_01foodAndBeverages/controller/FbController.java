@@ -82,11 +82,14 @@ public class FbController {
 		for (OrderVo v : orderVos) {
 			System.out.println("price:" + v.getPrice());
 			System.out.println("qty:" + v.getQty());
-			
-			int subTotal = v.getQty()*Integer.parseInt(v.getPrice());
+		
+			if(v.getQty() != null | v.getPrice() !=null) {
+				
+			int subTotal = v.getQty() * Integer.parseInt(v.getPrice());
 			v.setSubTotal(subTotal);
 			newOrderVos.add(v);
 			newTotalAmount += subTotal;
+			}
 		}
 				
 		mv.addObject("orderVos",newOrderVos);

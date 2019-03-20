@@ -54,7 +54,7 @@
 		$("#csExport").click(
 				function() {
 					$("#form1").attr("action",
-							"/RestaurantPOS/report/categoryReportGetPDF");
+							"/RestaurantPOS/report/categoryReportGetExcel");
 					$("#form1").submit();
 				});
 	})
@@ -66,15 +66,15 @@
 
 	<form action="categoryReportGet" method="post" id="form1">
 		<!-- 報表版面 -->
-		<div class="w3-container" style="margin-left: 160px">
+		<div class="w3-container" style="margin-left: 260px">
 			<div>
 				<h2>類別銷售分析</h2>
 			</div>
 			<div>
 				<h3>選擇欲查詢日期</h3>
-				<input type="text" id="csDate1" name="csDate1" readonly
-					value="${csDate1}">~ <input type="text" id="csDate2"
-					name="csDate2" readonly value="${csDate2}">
+				<input type="text" id="csDate1" name="csDate1" value="${csDate1}" readonly
+					>~ <input type="text" id="csDate2"
+					name="csDate2" value="${csDate2}" readonly>
 				<p>
 
 					<!-- 類別下拉選單 -->
@@ -94,7 +94,7 @@
 			<div>
 				<h5>選擇日期：${csDate1}至${csDate2}</h5>
 				<input type="button" value="匯出報表" id="csExport" name="csExport">
-
+<%-- 				<a type="button" href="<c:url value='/report/categoryReportGetExcel?csDate1=${csDate1}&csDate2=${csDate2}&csSelOpt=${csSelOpt}'/>"> TO PDF</a> --%>
 				<table border="1">
 					<tr>
 						<th>日期</th>

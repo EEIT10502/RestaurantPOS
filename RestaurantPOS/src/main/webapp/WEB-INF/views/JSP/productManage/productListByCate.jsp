@@ -55,7 +55,7 @@ td.errorMessage[type="redError"] {
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
-			<div id="allList" class="">
+			<div id="allList" class="row">
 				<table class="table table-hover">
 					<tr>
 						<th scope="col">#</th>
@@ -207,52 +207,65 @@ td.errorMessage[type="redError"] {
 						<td colspan="6" class="errorMessage" type="redError">${noItemString}</td>
 					</tr>
 				</table>
-				<nav aria-label="...">
-					<ul class="pagination">
-						<c:if test="${currentPageNo <= 1}">
-							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=1&whichCate=${whichCate}' />"
-								tabindex="-1" aria-disabled="true">First Page</a></li>
-						</c:if>
-						<c:if test="${currentPageNo > 1}">
-							<li class="page-item"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=1&whichCate=${whichCate}' />"
-								tabindex="-1" aria-disabled="true">First Page</a></li>
-						</c:if>
-						<c:if test="${currentPageNo <= 1}">
-							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo-1}&whichCate=${whichCate}' />"
-								tabindex="-1" aria-disabled="true">Previous</a></li>
-						</c:if>
-						<c:if test="${currentPageNo > 1}">
-							<li class="page-item"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo-1}&whichCate=${whichCate}' />"
-								tabindex="-1" aria-disabled="true">Previous</a></li>
-						</c:if>
-
-						<c:if test="${currentPageNo != totalPages}">
-							<li class="page-item"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo+1}&whichCate=${whichCate}' />">Next</a>
-							</li>
-						</c:if>
-						<c:if test="${currentPageNo == totalPages}">
-							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo+1}&whichCate=${whichCate}' />">Next</a>
-							</li>
-						</c:if>
-						<c:if test="${currentPageNo == totalPages}">
-							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${totalPages}&whichCate=${whichCate}' />"
-								tabindex="-1" aria-disabled="true">Last Page</a></li>
-						</c:if>
-						<c:if test="${currentPageNo != totalPages}">
-							<li class="page-item"><a class="page-link"
-								href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${totalPages}&whichCate=${whichCate}' />"
-								tabindex="-1" aria-disabled="true">Last Page</a></li>
-						</c:if>
+			</div>
+			<div class="row">
+				<div class="col-4">
+					<nav aria-label="...">
+						<ul class="pagination">
+							<c:if test="${currentPageNo <= 1}">
+								<li class="page-item disabled"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=1&whichCate=${whichCate}' />"
+									tabindex="-1" aria-disabled="true">First Page</a></li>
+							</c:if>
+							<c:if test="${currentPageNo > 1}">
+								<li class="page-item"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=1&whichCate=${whichCate}' />"
+									tabindex="-1" aria-disabled="true">First Page</a></li>
+							</c:if>
+							<c:if test="${currentPageNo <= 1}">
+								<li class="page-item disabled"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo-1}&whichCate=${whichCate}' />"
+									tabindex="-1" aria-disabled="true">Previous</a></li>
+							</c:if>
+							<c:if test="${currentPageNo > 1}">
+								<li class="page-item"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo-1}&whichCate=${whichCate}' />"
+									tabindex="-1" aria-disabled="true">Previous</a></li>
+							</c:if>
+	
+							<c:if test="${currentPageNo != totalPages}">
+								<li class="page-item"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo+1}&whichCate=${whichCate}' />">Next</a>
+								</li>
+							</c:if>
+							<c:if test="${currentPageNo == totalPages}">
+								<li class="page-item disabled"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${currentPageNo+1}&whichCate=${whichCate}' />">Next</a>
+								</li>
+							</c:if>
+							<c:if test="${currentPageNo == totalPages}">
+								<li class="page-item disabled"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${totalPages}&whichCate=${whichCate}' />"
+									tabindex="-1" aria-disabled="true">Last Page</a></li>
+							</c:if>
+							<c:if test="${currentPageNo != totalPages}">
+								<li class="page-item"><a class="page-link"
+									href="<c:url value='ProductListByCate.action?currentPageNoBtnCate=${totalPages}&whichCate=${whichCate}' />"
+									tabindex="-1" aria-disabled="true">Last Page</a></li>
+							</c:if>
+							
+						</ul>
+					</nav>
+				</div>
+			
+				<div class="col-4">
+					<ul style="list-style-type:none">
 						<li class="page-item">第${currentPageNo}頁 /共${totalPages}頁</li>
 					</ul>
-				</nav>
+				</div>
+				<div class="col">
+						<jsp:include page="../productManage/productFooterPrintExcel.jsp" flush="true" />
+				</div>
 			</div>
 		</fieldset>
 	</section>
