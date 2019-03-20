@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,10 +53,7 @@ $(function(){
 		
 	});
 	
-	$('#pBack').click(function() {
-		$('#form1').attr("action", "/RestaurantPOS/outfield/modifyOrder");
-		$('#form1').submit();
-	});
+
 });
 
 </script>
@@ -69,8 +67,10 @@ $(function(){
 			<div class="row">
 				<div class="col-md-1">
 					
-					<input type="button" value="上一步" id="pBack" name="pBack">
+					<input type="button" value="取消訂單" id="pBack" name="pBack" onclick="location.href='/RestaurantPOS/outfield/cancelOrder'">
 					
+					
+			
 				</div>
 				<div class="col-md-8">
 					<h4 style="text-align: center">結帳頁面</h4>

@@ -22,7 +22,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import _00model.OrderBean;
+import _00model.OrderDetailBean;
 import _05financial.viewresolver.AbstractITextPdfView;
 
 public class MultipleMembersPdfView extends AbstractITextPdfView {
@@ -41,6 +41,7 @@ public class MultipleMembersPdfView extends AbstractITextPdfView {
 
 	// 設定字型物件
 	private void init() throws Exception {
+		System.out.println("init()");
 		bfChinese = BaseFont.createFont(fontPath, "Identity-H", BaseFont.NOT_EMBEDDED);
 		titleFont = new Font(bfChinese, 18, Font.BOLD);
 		normalFont = new Font(bfChinese, 14, Font.NORMAL);
@@ -51,10 +52,11 @@ public class MultipleMembersPdfView extends AbstractITextPdfView {
 	@Override
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		System.out.println("buildPdfDocument()");
 		init();
 		// 處理文章式資料
-//		processArticle(document);
+		processArticle(document);
+		
 		// 由新頁開始列印表格
 		document.newPage();
 		// 處理表格式資料
@@ -77,16 +79,16 @@ public class MultipleMembersPdfView extends AbstractITextPdfView {
 
 	}
 
-//	private void processArticle(Document document) throws Exception {
-//		addTitle(document, "圖片搜尋「idiot」出現川普 Google執行長：無手動干預", titleFont);
-//		String file01 = "/text/News01.txt";
-//		addParagraph(document, file01, "UTF-8");
-//
-//		addTitle(document, "\n\n高薪工作人人愛", titleFont);
-//		String file02 = "/text/News02.txt";
-//		addParagraph(document, file02, "UTF-8");
-//
-//	}
+	private void processArticle(Document document) throws Exception {
+		addTitle(document, "圖片搜尋「idiot」出現川普 Google執行長：無手動干預", titleFont);
+		String file01 = "/text/News01.txt";
+		addParagraph(document, file01, "UTF-8");
+
+		addTitle(document, "\n\n高薪工作人人愛", titleFont);
+		String file02 = "/text/News02.txt";
+		addParagraph(document, file02, "UTF-8");
+
+	}
 
 	private PdfPTable createTable(Map<String, Object> model, String[] title, int columnCount) {
 		PdfPTable table = new PdfPTable(columnCount); // PDF文件的直欄數量
@@ -98,19 +100,23 @@ public class MultipleMembersPdfView extends AbstractITextPdfView {
 
 	@SuppressWarnings("unchecked")
 	private void setTableData(PdfPTable table, Map<String, Object> model) {
-//		System.out.println("model=" + model);
+		System.out.println("model=" + model);
 
 //		List<Member> list =  (List<Member>) model.get("allMembers");
-		List<OrderBean[]> listCatee = (List<OrderBean[]>) model.get("listCatee");
+		List<OrderDetailBean[]> listCatee = (List<OrderDetailBean[]>) model.get("listCatee");
 
-		for (OrderBean[] o : listCatee) {
+		for (OrderDetailBean[] o : listCatee) {
 //			MyTextPdfPCell cell1 = new MyTextPdfPCell();
 //			cell1.setPhrase(new Phrase(o.getDate()));
 //			table.addCell(cell1);
 
 			MyTextPdfPCell cell1 = new MyTextPdfPCell();
-			cell1.setPhrase(new Phrase(o[0].get);
+			cell1.setPhrase(new Phrase(o[0].getQty()));
 			table.addCell(cell1);
+			
+			MyTextPdfPCell cell2 = new MyTextPdfPCell();
+			cell2.setPhrase(new Phrase(o[1].getProductPrice()));
+			table.addCell(cell2);
 
 //			MyTextPdfPCell cell1 = new MyTextPdfPCell();
 //			cell1.setPhrase(new Phrase(m.getId(), normalFont));
