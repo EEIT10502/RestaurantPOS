@@ -12,3 +12,10 @@ input[type=text]{
     display: inline;
     font-size: 30px;
 }
+.inLine{
+    display: inline;
+}
+
+.countWidth{
+    width: 150px;
+}

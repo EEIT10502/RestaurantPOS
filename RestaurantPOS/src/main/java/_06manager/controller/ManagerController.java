@@ -194,7 +194,7 @@ public class ManagerController {
 	public String toNewOrders() {
 		System.out.println("goto!");
 		
-		return "outfield/orders";
+		return "outfield/newPayment";
 	}
 	
 	
