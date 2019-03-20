@@ -25,6 +25,8 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+
+
 @Configuration
 @EnableWebMvc
 
@@ -72,7 +74,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		System.out.println("excelViewResolver");
 		return new _00.init.viewresolver.ExcelViewResolver();
 	}
-
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");

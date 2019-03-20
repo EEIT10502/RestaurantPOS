@@ -177,17 +177,28 @@
 	
 	function modifyQty(itemNo, price){
 		var qty = parseInt($("#opQty"+ itemNo).val());//修改單品數量，小計連動。
-		var subTotal = qty*price;
-		$('#opSubtotal' + itemNo).html(subTotal);
-		$('#hidSubtotal' + itemNo).val(subTotal);
+		var subTotal =parseInt($('#opSubtotal' + itemNo).html());
+		var subTotal1 = qty*price;
+		$('#opSubtotal' + itemNo).html(subTotal1);
+		$('#hidSubtotal' + itemNo).val(subTotal1);
 		
+		if((subTotal-subTotal1)<0){
 		var y = parseInt($("#oTotal").html()); //修改單品數量，總金額連動。
 		var totalAmount=0;
 		totalAmount = y + (qty-1)*price;
 		$("#oTotal").html(totalAmount);
 		$('#hidoTotal').attr("value",totalAmount);
-		
-	}
+		}
+		else{
+			qty1 = (subTotal-subTotal1)/price;         //修改單品數量，總金額連動。
+			var y = parseInt($("#oTotal").html());
+			totalAmount = y-(qty1*price);
+			$("#oTotal").html(totalAmount);
+			$('#hidoTotal').attr("value",totalAmount);	
+		}	
+			
+		}
+	
 	
 	function riceList() {
 		var x = document.getElementById("riceList");
@@ -260,6 +271,8 @@
 </script>
 
 <body onload="ShowTime()">
+<%-- <a href='<c:url value="/members.pdf"/>' >多筆產品資料查詢(PDF格式)</a><br> --%>
+<a href="/RestaurantPOS/members.pdf">多筆產品資料查詢(PDF格式)</a><br>
 	<form:form id="dataForm" method="post" action="/RestaurantPOS/order/payment" modelAttribute="orderForm">
 <%-- 	<form action="/RestaurantPOS/order/payment" method="post" > --%>
 		<div class="container-fluid">
