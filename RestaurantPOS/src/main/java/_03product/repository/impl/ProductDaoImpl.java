@@ -50,6 +50,45 @@ public class ProductDaoImpl implements ProductDao {
 		allProductsList = session.createQuery(hql).getResultList();
 		return allProductsList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuBean> getAllProductsListGetByCate() {
+		String hql = "From MenuBean where cate = ?0 Order By productNo";
+
+		Session session = factory.getCurrentSession();
+		List<MenuBean> ProductsListGetByCate = new ArrayList<>();
+		ProductsListGetByCate = session.createQuery(hql)
+				.setParameter(0, cateSelect)
+				.getResultList();
+		return ProductsListGetByCate;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuBean> getAllProductsListGetByProductStatus() {
+		String hql = "From MenuBean where productStatus = ?0 Order By productNo";
+
+		Session session = factory.getCurrentSession();
+		List<MenuBean> ProductsListGetByProductStatus = new ArrayList<>();
+		ProductsListGetByProductStatus = session.createQuery(hql)
+				.setParameter(0, statusSelect)
+				.getResultList();
+		return ProductsListGetByProductStatus;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MenuBean> getAllProductsListGetBySearch() {
+		String hql = "From MenuBean where productName like :key Order By productNo";
+
+		Session session = factory.getCurrentSession();
+		List<MenuBean> ProductsListGetBySearch = new ArrayList<>();
+		ProductsListGetBySearch = session.createQuery(hql)
+				.setParameter("key", '%' + searchBarString + '%')
+				.getResultList();
+		return ProductsListGetBySearch;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

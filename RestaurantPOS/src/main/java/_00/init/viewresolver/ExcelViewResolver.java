@@ -12,9 +12,9 @@ public class ExcelViewResolver implements ViewResolver{
 		
 		View view = null;
 		if (viewName.startsWith("productManage/excel")) {
-			view = new _03product.view.MultipleMembersExcelView();
+			view = new _03product.view.MultipleProductExcelView();
 		} else if (viewName.startsWith("_01/cnvr/displayMember"))  {
-			view = new _03product.view.SingleMemberExcelView();
+//			view = new _03product.view.SingleMemberExcelView();
 		} 
 		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
 		return view;

@@ -19,10 +19,11 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
-import _01.model.Member;
+import _00.init.util.GlobalService;
+import _00model.MenuBean;
 
-public class SingleMemberExcelView extends AbstractXlsView  {
-
+public class MultipleProductExcelView extends AbstractXlsView  {
+	
 	Sheet sheet;	
 	String sheetName = "sheet 1";
 	HSSFFont chiTextFont = null;
@@ -31,12 +32,10 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 	int rowCount = 0;
 	int colCount = 0;
 	short fontSize = 16;
-	
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model,
 			Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
 		rowCount = 0;
 		colCount = 0;
 		setSheetProperties(workbook);
@@ -44,6 +43,7 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 		populateExcelCells(model, workbook);
 
 	}
+
 	private void setSheetProperties(Workbook workbook) {
 		// 由 workbook產生Sheet物件
 		sheet = workbook.createSheet(sheetName);
@@ -65,6 +65,7 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 		titleFont = chiTextFont;
 	}
 
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void populateExcelCells(Map<String, Object> model, Workbook workbook) {
 		Sheet sheet = workbook.getSheet(sheetName);
 		
@@ -118,30 +119,49 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 		styleDate.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
 		
-        Member m = (Member) model.get("member");
+        List<MenuBean> menuBeans = (List<MenuBean>) model.get("allMenuBean");
         
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
-		
+		for(MenuBean m : menuBeans) {
 			colCount = 0;
 			row = sheet.createRow(rowCount++);
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getId());
+			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleCenter);
+//			cell.setCellValue(m.getpId());
 			
 			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleName);
-			cell.setCellValue(m.getName());
+			cell.setCellStyle(styleCenter);
+			cell.setCellValue(rowCount-1);
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
-			DecimalFormat  df = new DecimalFormat("#,###,###.00");
-			cell.setCellValue(df.format(m.getBalance()));
+			DecimalFormat  dfNo = new DecimalFormat("###");
+			cell.setCellValue(dfNo.format(m.getProductNo()));
 			
 			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleDate);
-			cell.setCellValue(m.getBirthday());
+			cell.setCellStyle(styleName);
+			cell.setCellValue(m.getProductName());
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleRight);
+			DecimalFormat  dfPrice = new DecimalFormat("#,###,###.00");
+			cell.setCellValue(dfPrice.format(m.getPrice()));
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleName);
+			cell.setCellValue(m.getCate());
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleName);
+			cell.setCellValue(m.getProductStatus());
+			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleDate);
+//			cell.setCellValue(m.getBirthday());
+		}
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i=0; i < columnCount; i++){
 			sheet.autoSizeColumn(i);
@@ -149,7 +169,7 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 	}
 
 	private void createExcelHeaders(Workbook workbook) {
-		String[] labels = {"帳號", "姓名", "餘額", "生日"};
+		String[] labels = {GlobalService.EXCEL_HEADER_COUNT, GlobalService.EXCEL_HEADER_PRODUCTNO, GlobalService.EXCEL_HEADER_PRODUCTNAME, GlobalService.EXCEL_HEADER_PRICE, GlobalService.EXCEL_HEADER_CATE, GlobalService.EXCEL_HEADER_PRODUCTSTATUS};
 		
 		
 		CellStyle titleStyle = workbook.createCellStyle();
@@ -177,4 +197,5 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 			cell.setCellValue(labels[n]);
 		}
 	}
+
 }
