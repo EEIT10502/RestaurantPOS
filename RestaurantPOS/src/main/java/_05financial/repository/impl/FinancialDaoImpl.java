@@ -145,7 +145,7 @@ public class FinancialDaoImpl implements FinancialDao {
 
 		return listgoalCum;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1) {
