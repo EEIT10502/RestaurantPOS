@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import _00.init.util.GlobalService;
 import _00model.EmployeeBean;
@@ -532,6 +533,16 @@ public class ProductController {
 //		e.printStackTrace();
 //		}
 //		}
+	
+	@RequestMapping(value = "/productManage/allProductListExcel", method = RequestMethod.GET, 
+			produces = "application/vnd.ms-excel")
+	@ResponseBody
+	public String queryAllProductExcel(Model model) {
+		List<MenuBean> menuBean = service.getAllProducts();
+		model.addAttribute("allMembers", menuBean);
+		System.out.println("222");
+		return "_01/cnvr/showMembers";
+	}
 	
 	//==========================================================================test排班_開始
 	@Autowired
