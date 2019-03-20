@@ -39,7 +39,7 @@ $(document).ready(function(){
 </head>
 <body id="login">
   <div class="login-logo">
-   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt=""/></a>--> 
+   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt="a"/></a>--> 
   </div>
   <!--內文從這裡開始-->
   <div class="app-cam" >
@@ -91,6 +91,7 @@ $(document).ready(function(){
           <div class="clearfix"> </div>
         </div>
 
+
         <div class="box_1">
           <!-- 出勤打卡 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
@@ -138,6 +139,7 @@ $(document).ready(function(){
    <div class="copy_layout login">
       <p>Copyright &copy; 2019.Company name All rights reserved.</p>
    </div>
+>>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
 </body>
 <script>
 		//這裡開始是給計算機用的script

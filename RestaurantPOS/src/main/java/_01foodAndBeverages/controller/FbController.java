@@ -80,10 +80,16 @@ public class FbController {
 		Integer newTotalAmount = 0;
 
 		for (OrderVo v : orderVos) {
-			int subTotal = v.getQty()*Integer.parseInt(v.getPrice());
+			System.out.println("price:" + v.getPrice());
+			System.out.println("qty:" + v.getQty());
+		
+			if(v.getQty() != null | v.getPrice() !=null) {
+				
+			int subTotal = v.getQty() * Integer.parseInt(v.getPrice());
 			v.setSubTotal(subTotal);
 			newOrderVos.add(v);
 			newTotalAmount += subTotal;
+			}
 		}
 				
 		mv.addObject("orderVos",newOrderVos);
@@ -112,6 +118,7 @@ public class FbController {
 	public ModelAndView confirmPayment(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
 		System.out.println("進入結帳控制器");
 		ModelAndView mv = new ModelAndView("redirect:/manage/getLastOne");
+//		ModelAndView mv = new ModelAndView("/outfield/order");
 		System.out.println(orderForm);
 		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
 		
@@ -164,37 +171,23 @@ public class FbController {
 
 	
 	
-	@RequestMapping("/outfield/modifyOrder")
-	public ModelAndView modify(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
-		ModelAndView mv = new ModelAndView("forward:/outfield/order");
-		//System.out.println(orderForm);
-		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
-		System.out.println(orderForm);
+	@RequestMapping("/outfield/cancelOrder")
+	public String cancel(Model model) {
+		System.out.println("進入回首頁");
+		List<MenuBean>  list1 = service.getProductByCategory("飯類");
+		List<MenuBean>  list2 = service.getProductByCategory("麵類");
+		List<MenuBean>  list3 = service.getProductByCategory("湯類");
+		List<MenuBean>  list4 = service.getProductByCategory("菜類");
+		List<MenuBean>  list5 = service.getProductByCategory("小菜類");
+	
+		model.addAttribute("menu", list1);
+		model.addAttribute("noodle", list2);
+		model.addAttribute("soup", list3);
+		model.addAttribute("vegetable", list4);
+		model.addAttribute("sidedish", list5);
 		
-		
-		mv.addObject("orderVos1",orderVos1);
-		mv.addObject("callNo",orderForm.getCallNo());
-		mv.addObject("cusFlow",orderForm.getCusFlow());
-		mv.addObject("totalAmount",orderForm.getTotalAmount());
-		
-		if (orderVos1 != null && orderVos1.size() > 0) {
-		for (OrderVo v : orderVos1) {
-			System.out.println("itemName:" + v.getItemName());
-			System.out.println("price:" + v.getPrice());
-			System.out.println("qty:" + v.getQty());
-			System.out.println("subTotal:" + v.getSubTotal());
-			System.out.println("category:" + v.getCategory());
-			System.out.println("producetno:" + v.getProductNo());
-			//System.out.println("totalAmount:" + v.getTotalAmount());
-		}
+		return "/outfield/order";
 	}
-		
-		
-		
-		
-		return mv;
-	}
-
 
 }
 	
