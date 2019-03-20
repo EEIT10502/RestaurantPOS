@@ -1,0 +1,38 @@
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+}
+.sideColor{
+background:	 #68B0EA;
+color: #ffffff;
+
+}
+.my-barHover{
+background: #68B0EA;
+}
+
+.w3-bar-item , .w3-button{
+	color: #68B0EA
+	font-weight:bold;
+	font-size:20px;
+}
+.sideWidth{
+	width: 250px;
+}
+.sideBarColHight{
+	height: 45px;
+}
+#showbox{
+	color: black;
+	font-size: 18px;
+}
+.top_left{
+	
+	margin-top: 10px;
+	margin-right: 20px;
+}
