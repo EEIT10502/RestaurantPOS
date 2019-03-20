@@ -163,21 +163,103 @@
 	
 	function modifyQty(itemNo, price){
 		var qty = parseInt($("#opQty"+ itemNo).val());//修改單品數量，小計連動。
-		var subTotal = qty*price;
-		$('#opSubtotal' + itemNo).html(subTotal);
-		$('#hidSubtotal' + itemNo).val(subTotal);
+		var subTotal =parseInt($('#opSubtotal' + itemNo).html());
+		var subTotal1 = qty*price;
+		$('#opSubtotal' + itemNo).html(subTotal1);
+		$('#hidSubtotal' + itemNo).val(subTotal1);
 		
+<<<<<<< HEAD
 		var y = parseInt($("#oTotal").val()); //修改單品數量，總金額連動。
+=======
+		if((subTotal-subTotal1)<0){
+		var y = parseInt($("#oTotal").html()); //修改單品數量，總金額連動。
+>>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
 		var totalAmount=0;
 		totalAmount = y + (qty-1)*price;
 		$("#oTotal").val(totalAmount);
 		$('#hidoTotal').attr("value",totalAmount);
+<<<<<<< HEAD
 		
 	}
     
     
     
      function ShowTime()
+=======
+		}
+		else{
+			qty1 = (subTotal-subTotal1)/price;         //修改單品數量，總金額連動。
+			var y = parseInt($("#oTotal").html());
+			totalAmount = y-(qty1*price);
+			$("#oTotal").html(totalAmount);
+			$('#hidoTotal').attr("value",totalAmount);	
+		}	
+			
+		}
+	
+	
+	function riceList() {
+		var x = document.getElementById("riceList");
+		hiddenAllList();
+		x.className = x.className.replace("hiddenList", "");
+	}
+	
+	function soupList() {
+		var x = document.getElementById("soupList");
+		hiddenAllList();
+		x.className = x.className.replace("hiddenList", "");
+	}
+	
+	function noodleList() {
+		var x = document.getElementById("noodleList");
+		hiddenAllList();
+		x.className = x.className.replace("hiddenList", "");
+	}
+	function vegetableList() {
+		var x = document.getElementById("vegetableList");
+		hiddenAllList();
+		x.className = x.className.replace("hiddenList", "");
+	}
+	
+	function sidedishList() {
+		var x = document.getElementById("sidedishList");
+		hiddenAllList();
+		x.className = x.className.replace("hiddenList", "");
+	}
+	
+	function hiddenAllList() {
+		var rice = document.getElementById("riceList");
+		var noodle = document.getElementById("noodleList");
+		var soup = document.getElementById("soupList");
+		var vegetable = document.getElementById("vegetableList");
+		var sidedish = document.getElementById("sidedishList");
+		
+		// 		if (allProduct.className.indexOf("hiddenList") == -1) {
+		// 			allProduct.className += "hiddenList";
+		// 		} 
+		if (rice.className.indexOf("hiddenList") == -1) {
+			rice.className += "hiddenList";
+		}
+		
+		if (soup.className.indexOf("hiddenList") == -1) {
+			soup.className += "hiddenList";
+		}
+		
+		if (noodle.className.indexOf("hiddenList") == -1) {
+			noodle.className += "hiddenList";
+		}
+		
+		if (vegetable.className.indexOf("hiddenList") == -1) {
+			vegetable.className += "hiddenList";
+		}
+		
+		if (sidedish.className.indexOf("hiddenList") == -1) {
+			sidedish.className += "hiddenList";
+		}
+	}
+	
+	 function ShowTime()
+>>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
      {
          var NowDate = new Date();
          var d = NowDate.getDay();
@@ -189,7 +271,44 @@
     </script>
     
 
+
 </head>
+
+<body onload="ShowTime()">
+<%-- <a href='<c:url value="/members.pdf"/>' >多筆產品資料查詢(PDF格式)</a><br> --%>
+<a href="/RestaurantPOS/members.pdf">多筆產品資料查詢(PDF格式)</a><br>
+<form:form id="dataForm" method="post" action="/RestaurantPOS/order/payment" modelAttribute="orderForm">
+<%-- 	<form action="/RestaurantPOS/order/payment" method="post" > --%>
+		<div class="container-fluid">
+			<!-- 標頭 -->
+			<div class="row">
+				<div class="col-md-9">
+					<h4 style="text-align: center">點餐頁面</h4>
+				</div>
+				<div class="col-md-3" id="showbox">
+<!-- 					系統時間 -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-9">
+					<table style="margin: 0px auto">
+						<tr>
+							<td>
+								<a href="../index.jsp" />
+								<input type="button" value="回首頁" id="oIndex"
+								name="oIndex">
+								</a>
+							</td>
+							<td><input type="text" value="" id="oPeople" name="cusFlow">人</td>
+							<td><input type="text" value="" id="oCall" name="callNo">號</td>
+							<td><input type="reset" value="全部清除" id="oReset"
+								name="oReset" onclick="deltable()"></td>
+							<td><input type="button" value="下一步" id="oNext" name="oNext"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
 
 <body class="fix-header  card-no-border" onload="ShowTime()">
 <form:form id="dataForm" method="post" action="/RestaurantPOS/order/payment" modelAttribute="orderForm">
