@@ -185,9 +185,18 @@ public class ManagerController {
 	//跳轉到日結清機
 	@RequestMapping("/close/close")
 	public String toClose() {
-		System.out.println("goto!");
+		
 		
 		return "close/closeBoardTest";
 	}
+	//跳轉到新點餐測試
+	@RequestMapping("/manage/toNewOrders")
+	public String toNewOrders() {
+		System.out.println("goto!");
+		
+		return "outfield/orders";
+	}
+	
+	
 
 }

@@ -72,7 +72,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/fonts/");
 		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/images/");
-
+		registry.addResourceHandler("/assets/plugins/bootstrap/css/**").addResourceLocations("/WEB-INF/views/assets/plugins/bootstrap/css/");
+		registry.addResourceHandler("/assets/plugins/bootstrap/js/**").addResourceLocations("/WEB-INF/views/assets/plugins/bootstrap/js/");
+		registry.addResourceHandler("/assets/plugins/jquery/**").addResourceLocations("/WEB-INF/views/assets/plugins/jquery/");
+		/// http://localhost:8080/RestaurantPOS/assets/plugins/jquery/jquery.min.js net::ERR_ABORTED 404
 	}
 
 	@Bean

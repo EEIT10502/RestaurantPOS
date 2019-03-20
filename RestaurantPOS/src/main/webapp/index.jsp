@@ -106,11 +106,11 @@ $(document).ready(function(){
           </div>
           <!-- 空白格 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
-                  <a href="<c:url value="/manage/queryOne"/>" >
+                  <a href="<c:url value="/manage/toNewOrders"/>" >
               	  <div class="r3_counter_box">
                   <i class="pull-left fa fa-clock-o icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong >測試列印</strong></h5>                 
+                    <h5><strong >測試點餐</strong></h5>                 
                   </div>
 	              </div>
 	              </a>                   
