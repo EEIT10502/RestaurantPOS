@@ -158,5 +158,20 @@ public class FinancialDaoImpl implements FinancialDao {
 
 		return listgoalturn;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderDetailBean> getCateByDate2(String Date1, String Date2, String Cate) {
+		// to sql.Date
+				stringToDate(Date1, Date2);
+				// hql
+				String hql = "SELECT cast(d.orderBean.orderTime as date), sum(qty), sum(productPrice) FROM OrderDetailBean d WHERE d.orderBean.orderTime>=:beginDate and d.orderBean.orderTime<=:endDate and category=:Cate GROUP BY cast(d.orderBean.orderTime as date)";
+				Session session = factory.getCurrentSession();
+				List<OrderDetailBean> listCate = session.createQuery(hql).setParameter("beginDate", beginDate)
+						.setParameter("endDate", endDate).setParameter("Cate", Cate).getResultList();
+
+				return listCate;
+	}
 
 }
