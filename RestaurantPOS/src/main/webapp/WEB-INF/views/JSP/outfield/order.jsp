@@ -118,7 +118,7 @@
 					row += '	<input type="hidden" id="hidCategory' + itemNo + '" name="orderVos[' + itemNo + '].category" value="' + vCategory + '" />';
 					row += '	<input type="hidden" id="hidProductNo' + itemNo + '" name="orderVos[' + itemNo + '].productNo" value="' + vProductNo + '" />';
 					row += '</tr>';
-				
+					
 					$('#oL1').after(row);
 					var subTotal1 = parseInt($("#opSubtotal" + itemNo).html());
 					total= total1 + subTotal1; //總金額加總
@@ -371,6 +371,7 @@
 							<td><input type="button" value="小菜類" onclick="sidedishList()"></td>
 						</tr>
 					</table>
+					
 					<div id="riceList" class=""
 						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
 						<c:forEach var='menu1' items='${menu}'>
@@ -378,6 +379,7 @@
 								value="${menu1.productName}">
 						</c:forEach>
 					</div>
+					
 					<div id="noodleList" class="hiddenList"
 						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
 						<c:forEach var='noodle' items='${noodle}'>
@@ -385,6 +387,7 @@
 								value="${noodle.productName}">
 						</c:forEach>
 					</div>
+					
 					<div id="soupList" class="hiddenList"
 						style="border-color: #aaaaee; border-width: 3px; border-style: solid; padding: 5px">
 						<c:forEach var='soup' items='${soup}'>

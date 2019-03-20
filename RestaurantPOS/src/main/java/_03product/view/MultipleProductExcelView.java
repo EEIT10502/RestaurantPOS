@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.document.AbstractXlsView;
 import _00.init.util.GlobalService;
 import _00model.MenuBean;
 
-public class MultipleMembersExcelView extends AbstractXlsView  {
+public class MultipleProductExcelView extends AbstractXlsView  {
 	
 	Sheet sheet;	
 	String sheetName = "sheet 1";
@@ -135,13 +135,11 @@ public class MultipleMembersExcelView extends AbstractXlsView  {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
 			cell.setCellValue(rowCount-1);
-			System.out.println("colCount1:"+colCount);
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
 			DecimalFormat  dfNo = new DecimalFormat("###");
 			cell.setCellValue(dfNo.format(m.getProductNo()));
-			System.out.println("colCount2:"+colCount);
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleName);

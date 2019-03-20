@@ -1,6 +1,5 @@
-package _03product.view;
-  
-import java.text.DecimalFormat;
+package _05financial.view;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,11 +18,12 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
-import _01.model.Member;
+import _00.init.util.GlobalService;
+import _00model.OrderDetailBean;
 
-public class SingleMemberExcelView extends AbstractXlsView  {
+public class MultipleMembersExcelView extends AbstractXlsView {
 
-	Sheet sheet;	
+	Sheet sheet;
 	String sheetName = "sheet 1";
 	HSSFFont chiTextFont = null;
 	HSSFFont engTextFont = null;
@@ -31,40 +31,39 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 	int rowCount = 0;
 	int colCount = 0;
 	short fontSize = 16;
-	
+
 	@Override
-	protected void buildExcelDocument(Map<String, Object> model,
-			Workbook workbook, HttpServletRequest request,
+	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
 		rowCount = 0;
 		colCount = 0;
 		setSheetProperties(workbook);
-        createExcelHeaders(workbook);
+		createExcelHeaders(workbook);
 		populateExcelCells(model, workbook);
 
 	}
+
 	private void setSheetProperties(Workbook workbook) {
 		// 由 workbook產生Sheet物件
 		sheet = workbook.createSheet(sheetName);
 		// 由 workbook產生HSSFont物件
-		chiTextFont= (HSSFFont)workbook.createFont();
+		chiTextFont = (HSSFFont) workbook.createFont();
 		// 設定字型名稱
 		chiTextFont.setFontName("新細明體");
-		// 設定字號		
+		// 設定字號
 		chiTextFont.setFontHeightInPoints(fontSize);
-		//--------------------------------------
+		// --------------------------------------
 		// 由 workbook產生HSSFont物件
-		engTextFont= (HSSFFont)workbook.createFont();
+		engTextFont = (HSSFFont) workbook.createFont();
 		// 設定字型名稱
 		engTextFont.setFontName("Arial");
 		// 設定字號
 		engTextFont.setFontHeightInPoints(fontSize);
-		
-		
+
 		titleFont = chiTextFont;
 	}
 
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void populateExcelCells(Map<String, Object> model, Workbook workbook) {
 		Sheet sheet = workbook.getSheet(sheetName);
 		
@@ -118,30 +117,51 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 		styleDate.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
 		
-        Member m = (Member) model.get("member");
+		List<OrderDetailBean> orderDetailBeans = (List<OrderDetailBean>) model.get("listCatee2");
         
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
-		
+		for(OrderDetailBean o : orderDetailBeans) {
 			colCount = 0;
 			row = sheet.createRow(rowCount++);
+			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleCenter);
+//			cell.setCellValue(m.getpId());
+			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleCenter);
-			cell.setCellValue(m.getId());
+			cell.setCellValue(rowCount-1);
+			System.out.println("colCount1:"+colCount);
+			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleRight);
+//			DecimalFormat  dfNo = new DecimalFormat("###");
+//			cell.setCellValue(o[0].getOrderBean());
+//			System.out.println("colCount2:"+colCount);
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleName);
-			cell.setCellValue(m.getName());
+			cell.setCellValue(o.getQty());
 			
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
-			DecimalFormat  df = new DecimalFormat("#,###,###.00");
-			cell.setCellValue(df.format(m.getBalance()));
+//			DecimalFormat  dfPrice = new DecimalFormat("#,###,###.00");
+			cell.setCellValue(o.getProductPrice());
 			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleDate);
-			cell.setCellValue(m.getBirthday());
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleName);
+//			cell.setCellValue(m.getCate());
+//			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleName);
+//			cell.setCellValue(m.getProductStatus());
+			
+//			cell = row.createCell(colCount++);
+//			cell.setCellStyle(styleDate);
+//			cell.setCellValue(m.getBirthday());
+		}
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i=0; i < columnCount; i++){
 			sheet.autoSizeColumn(i);
@@ -149,32 +169,33 @@ public class SingleMemberExcelView extends AbstractXlsView  {
 	}
 
 	private void createExcelHeaders(Workbook workbook) {
-		String[] labels = {"帳號", "姓名", "餘額", "生日"};
-		
-		
+		String[] labels = { GlobalService.EXCEL_HEADER_COUNT, GlobalService.EXCEL_HEADER_PRODUCTNO,
+				GlobalService.EXCEL_HEADER_PRODUCTNAME, GlobalService.EXCEL_HEADER_PRICE,
+				GlobalService.EXCEL_HEADER_CATE, GlobalService.EXCEL_HEADER_PRODUCTSTATUS };
+
 		CellStyle titleStyle = workbook.createCellStyle();
-		
+
 		titleStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
 		titleStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		titleStyle.setAlignment(CellStyle.ALIGN_CENTER);
 		titleStyle.setFont(titleFont);
-		
+
 		titleStyle.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
 		titleStyle.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
 		titleStyle.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
 		titleStyle.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
-		
-		
+
 		// 建立Excel表的標頭
 		Row row = null;
 		Cell cell = null;
 		row = sheet.createRow(rowCount++);
 		colCount = 0;
 		// Create header cells
-		for(int n =0; n < labels.length; n++) {
+		for (int n = 0; n < labels.length; n++) {
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(titleStyle);
 			cell.setCellValue(labels[n]);
 		}
 	}
+
 }

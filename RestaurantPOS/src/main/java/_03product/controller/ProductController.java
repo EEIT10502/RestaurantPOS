@@ -468,10 +468,57 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productManage/excel/allProductList", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
-	public String queryAllProductExcel(Model model) {
+	public String queryAllProductExcel(
+			@RequestParam(value = "whichCate", required = false) String cateSelect,
+			@RequestParam(value = "whichStatus", required = false) String StatusSelect,
+			@RequestParam(value = "searchBar", required = false) String searchBarString,
+			Model model) {
+		System.out.println("coming");
+
+		System.out.println("cateSelect:" + cateSelect);
+		System.out.println("StatusSelect:" + StatusSelect);
+		System.out.println("searchBarString:" + searchBarString);
+		
+		if (cateSelect.isEmpty() && StatusSelect.isEmpty() && searchBarString.isEmpty()) {
+			List<MenuBean> allProductsList = new ArrayList<>();
+			allProductsList = service.getAllProducts();
+			model.addAttribute("allMenuBean", allProductsList);
+
+			return "productManage/excel";
+		}
+		
+		if (!cateSelect.isEmpty()) {
+			service.setCateSelect(cateSelect);
+			
+			List<MenuBean> allProductsListGetByCate = new ArrayList<>();
+			allProductsListGetByCate = service.getAllProductsListGetByCate();
+			model.addAttribute("allMenuBean", allProductsListGetByCate);
+
+			return "productManage/excel";
+		}
+
+		if (!StatusSelect.isEmpty()) {
+			service.setStatusSelect(StatusSelect);
+
+			List<MenuBean> allProductsListGetByProductStatus = new ArrayList<>();
+			allProductsListGetByProductStatus = service.getAllProductsListGetByProductStatus();
+			model.addAttribute("allMenuBean", allProductsListGetByProductStatus);
+
+			return "productManage/excel";
+		}
+
+		if (!searchBarString.isEmpty()) {
+			service.setSearchBarString(searchBarString);
+			List<MenuBean> allProductListBySearch = new ArrayList<>();
+			allProductListBySearch = service.getAllProductsListGetBySearch();
+			model.addAttribute("allMenuBean", allProductListBySearch);
+
+			return "productManage/excel";
+		}
+		
 		List<MenuBean> menuBean = service.getAllProducts();
 		model.addAttribute("allMenuBean", menuBean);
-//		System.out.println("222");
+
 		return "productManage/excel";
 	}
 
@@ -481,107 +528,56 @@ public class ProductController {
 			@RequestParam(value = "whichCate", required = false) String cateSelect,
 			@RequestParam(value = "whichStatus", required = false) String StatusSelect,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
-		System.out.println("coming");
-
-		System.out.println("currentPageNo:" + currentPageNo);
-		System.out.println("cateSelect:" + cateSelect);
-		System.out.println("StatusSelect:" + StatusSelect);
-		System.out.println("searchBarString:" + searchBarString);
 		
 		int currentPageNoInt = Integer.parseInt(currentPageNo.trim());
 
 		if (cateSelect.isEmpty() && StatusSelect.isEmpty() && searchBarString.isEmpty()) {
-			System.out.println("所有商品");
-			
 			service.setCurrentPageNo(currentPageNoInt);
 
 			List<MenuBean> productsListGetByPage = new ArrayList<>();
 			productsListGetByPage = service.getProductsListGetByPage();
 			model.addAttribute("allMenuBean", productsListGetByPage);
 
-			if (productsListGetByPage.isEmpty()) {
-//				model.addAttribute("noItemString", "查無資料");
-//				model.addAttribute("currentPageNo", 0);
-//				model.addAttribute("totalPages", 0);
-//
-//				return "productManage/allProductListNew";
-			}
-
-//			model.addAttribute("currentPageNo", currentPageNoInit);
-//			model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
-//			model.addAttribute("totalPages", service.getTotalPages());
-
 			return "productManage/excel";
 		}
 		
 		if (!cateSelect.isEmpty()) {
-			System.out.println("類別");
+			service.setCurrentPageNo(currentPageNoInt);
+
+			service.setCateSelect(cateSelect);
+
+			List<MenuBean> productsListGetByCate = new ArrayList<>();
+			productsListGetByCate = service.getProductsListGetByCate();
+			model.addAttribute("allMenuBean", productsListGetByCate);
+
+			return "productManage/excel";
 		}
 
 		if (!StatusSelect.isEmpty()) {
-			System.out.println("狀態");
+			service.setCurrentPageNo(currentPageNoInt);
+
+			service.setStatusSelect(StatusSelect);
+
+			List<MenuBean> productsListGetByProductStatus = new ArrayList<>();
+			productsListGetByProductStatus = service.getProductsListGetByProductStatus();
+			model.addAttribute("allMenuBean", productsListGetByProductStatus);
+
+			return "productManage/excel";
 		}
 
 		if (!searchBarString.isEmpty()) {
-			System.out.println("搜尋BAR");
-			
-			if (searchBarString.isEmpty()) {
-				model.addAttribute("allMenuBean", "請輸入查詢條件");
-//				model.addAttribute("currentPageNo", 0);
-//				model.addAttribute("totalPages", 0);
-				return "productManage/excel";
-			}
-
-			if (currentPageNo == null) {
-				currentPageNoInit = 1;
-			} else {
-				try {
-					currentPageNoInit = Integer.parseInt(currentPageNo.trim());
-				} catch (NumberFormatException e) {
-					currentPageNoInit = 1;
-				}
-			}
-
-			service.setCurrentPageNo(currentPageNoInit);
+			service.setCurrentPageNo(currentPageNoInt);
 			service.setSearchBarString(searchBarString);
 			List<MenuBean> productListBySearch = new ArrayList<>();
 			productListBySearch = service.getProductsListGetBySearch();
-			model.addAttribute("productListBySearch", productListBySearch);
+			model.addAttribute("allMenuBean", productListBySearch);
 
-			if (productListBySearch.isEmpty()) {
-				if (currentPageNoInit > 1) {
-					currentPageNoInit = Integer.parseInt(currentPageNo.trim());
-					currentPageNoInit = currentPageNoInit - 1;
-					service.setCurrentPageNo(currentPageNoInit);
-
-					productListBySearch = new ArrayList<>();
-					productListBySearch = service.getProductsListGetBySearch();
-					model.addAttribute("productListBySearch", productListBySearch);
-					model.addAttribute("currentPageNo", currentPageNoInit);
-					model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
-					model.addAttribute("totalPages", service.getTotalPagesBySearch());
-
-					return "productManage/productListBySearch";
-				}
-				model.addAttribute("noItemString", "查無資料");
-				model.addAttribute("currentPageNo", 0);
-				model.addAttribute("totalPages", 0);
-
-				return "productManage/productListBySearch";
-			}
-
-			model.addAttribute("currentPageNo", currentPageNoInit);
-			model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
-			model.addAttribute("totalPages", service.getTotalPagesBySearch());
+			return "productManage/excel";
 		}
 
-//		List<MenuBean> menuBeans = (List<MenuBean>) modelget.get("productsListGetByPage");
-//		System.out.println("menuBeans:"+menuBeans);
-
-//		List<MenuBean> menuBean = service.getAllProducts();
-//		model.addAttribute("allMenuBean", menuBeans);
-//		System.out.println("allMenuBean:"+allMenuBean);
-//		System.out.println("222");
+		List<MenuBean> menuBean = service.getAllProducts();
+		model.addAttribute("allMenuBean", menuBean);
+		
 		return "productManage/excel";
 	}
 

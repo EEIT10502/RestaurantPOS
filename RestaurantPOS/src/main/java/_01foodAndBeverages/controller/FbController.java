@@ -124,9 +124,11 @@ public class FbController {
 		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
 		
 		String callNo = orderForm.getCallNo();
+		System.out.println("callNo:"+callNo);
 		Integer cusFlow = orderForm.getCusFlow();
+		System.out.println("cusFlow:"+cusFlow);
 		Integer totalPrice = orderForm.getTotalAmount();
-		
+		System.out.println("totalPrice:"+totalPrice);
 		Timestamp orderTime = new Timestamp(System.currentTimeMillis()); 
 		String orderNo = SeqUtils.getSeqNo();
 		OrderBean ob = new OrderBean(null,orderNo,cusFlow,orderTime,totalPrice,callNo);
