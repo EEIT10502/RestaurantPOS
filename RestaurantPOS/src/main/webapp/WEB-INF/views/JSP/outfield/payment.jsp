@@ -176,7 +176,7 @@ $(function(){
                                             <div class="col-md-4 col-8 align-self-center" >
                                                 <p id="" class="inLine">找零:&nbsp;&nbsp;</p>
                                                 <input type="text" id="oChange" name="oChange" value="0" class="inLine" style="width:150px"  readonly>                                               
-                                                <input type="hidden" id="hidoTotal" name="totalAmount" value=""/>
+                                                
                                             </div>   
                                             </div>
                                             <!--底下結帳部分-->
