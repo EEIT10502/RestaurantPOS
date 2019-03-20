@@ -169,8 +169,13 @@ $(function(){
                                            
                                             <div class="col-md-4 col-8 align-self-center" >
                                                <p id="" class="inLine">總計:&nbsp;&nbsp;</p>
-                                               <input type="text" id="oTotal" name="oTotal" value="${totalAmount}" class="inLine" style="width:150px"  readonly>                                               
-                                               <input type="hidden" id="totalAmount" name="totalAmount" value="${totalAmount}">
+                                               <!-- <input type="text" id="oTotal" name="oTotal" value="${totalAmount}" class="inLine" style="width:150px"  readonly>                                              
+                                               
+                                               <input type="hidden" id="totalAmount" name="totalAmount" value="${totalAmount}">--> 
+                                               <td colspan="2" id="oTotal" name="oTotal">
+													${totalAmount}
+													<input type="text" id="totalAmount" name="totalAmount" value="${totalAmount}">
+											   </td>
                                             </div>   
                                             
                                             <div class="col-md-4 col-8 align-self-center" >
