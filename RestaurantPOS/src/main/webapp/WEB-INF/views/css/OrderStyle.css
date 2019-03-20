@@ -6533,13 +6533,13 @@ File: scss
  ============================================================== */
 @media (min-width: 1024px) {
   .page-wrapper {
-    margin-left: 40px; }
+    margin-left: 0px; }
   .footer {
     left: 240px; } }
 
 @media (max-width: 1023px) {
   .page-wrapper {
-    margin-left: 60px;
+    margin-left: 0px;
     -webkit-transition: 0.2s ease-in;
     -o-transition: 0.2s ease-in;
     transition: 0.2s ease-in; }
@@ -6569,7 +6569,7 @@ File: scss
     display: inline-block;
     line-height: 40px; }
   .mini-sidebar .page-wrapper {
-    margin-left: 60px; }
+    margin-left: 0px; }
   .mini-sidebar .footer {
     left: 60px; }
   .flex-wrap {

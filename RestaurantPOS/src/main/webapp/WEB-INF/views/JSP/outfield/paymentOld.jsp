@@ -53,10 +53,7 @@ $(function(){
 		
 	});
 	
-// 	$('#pBack').click(function() {
-// 		$('#form1').attr("action", "/RestaurantPOS/outfield/modifyOrder");
-// 		$('#form1').submit();
-// 	});
+
 });
 
 </script>

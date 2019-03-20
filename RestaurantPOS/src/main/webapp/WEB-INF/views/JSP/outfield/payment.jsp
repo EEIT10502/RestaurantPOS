@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib  uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,7 @@
 <script src="<c:url value="/assets/plugins/bootstrap/js/bootstrap.min.js"/>"></script>
 <!--Custom JavaScript -->
 <script src="<c:url value="/js/OrderCustom.min.js"/>"></script>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 function ShowTime()
 {
@@ -36,16 +38,15 @@ function ShowTime()
     document.getElementById('showbox').innerHTML = '目前時間：' + NowDate.toLocaleString() + '（' + dayNames[d] + '）';
     setTimeout('ShowTime()', 1000);
 }
-//收現找零計算
 $(function(){
 	$('input#oReceived').on('blur',function() {
-		var received = parseInt($('#oReceived').val());
+		var received = parseInt($('#oReceived').val());			
 		var totalAmount = parseInt(${totalAmount});
-		var change = received - totalAmount ;
-	
+		var change = received - totalAmount ;		
 		$('#oChange').attr("value",change);
 		
 	});
+});
 </script>
 </head>
 <body class="fix-header  card-no-border" onload="ShowTime()">
@@ -66,13 +67,13 @@ $(function(){
                         <!-- Logo icon -->                        
                         <!-- Light Logo icon -->
                         <b>
-                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="<c:url value="/images/logo-light-icon.png"/>" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span>                         
                          <!-- Light Logo text -->    
-                         <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                         <img src="<c:url value="/images/logo-light-text.png"/>" class="light-logo" alt="homepage" />
                         </span>
                     </a>
                 </div>                
@@ -97,11 +98,11 @@ $(function(){
                     <div class="col-md-3 col-8 align-self-center">
                         <!--佔位符-->
                     </div>
-                    <div class="col-md-3 col-8 align-self-center">                        
+                    <div class="col-md-3 col-8 align-self-center">                                      
                         <input type="text" value="${cusFlow}" id="oPeople" name="oPeople">&nbsp;&nbsp;<i class="fas fa-user fa-2x"></i>
                    		<input type="hidden" id="cusFlow" name="cusFlow" value="${cusFlow}">
                     </div>
-                    <div class="col-md-3 col-8 align-self-center">
+                    <div class="col-md-3 col-8 align-self-center">                    
                         <input type="text" value="${callNo}" id="oCall" name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
                    		<input type="hidden" id="callNo" name="callNo" value="${callNo}">
                     </div>
@@ -162,7 +163,7 @@ $(function(){
                                             <div class="row">
                                             <div class="col-md-4 col-8 align-self-center">
                                                 <p id="" class="inLine">收:&nbsp;&nbsp;</p>
-                                                <input type="text" id="oReceived" name="oReceived" value="0" class="inLine" style="width:150px">                                               
+                                                <input type="text" id="oReceived" name="oReceived"  class="inLine" style="width:150px">                                               
                                                 <input type="hidden" id="hidoTotal" name="totalAmount" value=""/>
                                             </div>
                                            

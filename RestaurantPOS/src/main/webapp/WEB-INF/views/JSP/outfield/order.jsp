@@ -27,7 +27,7 @@
     <script src="<c:url value="/assets/plugins/bootstrap/js/bootstrap.min.js"/>"></script>
     <!--Custom JavaScript -->
     <script src="<c:url value="/js/OrderCustom.min.js"/>"></script>
-   <!--  <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     
     <script>
 	var itemNo = 0;
@@ -120,7 +120,7 @@
 		$('#oNext').click(function() {
 			var people = $('#oPeople').val();
 			var call = $('#oCall').val();
-			var total = $('#oTotal').html();
+			var total = $('#oTotal').val();
 			if (!people) {
 				alert('「請輸入用餐人數！！」');
 				return;
@@ -240,10 +240,10 @@
                         <!--佔位符-->
                     </div>
                     <div class="col-md-3 col-8 align-self-center">
-                        <input type="text" value="" id="oPeople" name="oPeople">&nbsp;&nbsp;<i class="fas fa-user fa-2x"></i>
+                        <input type="text" value="" id="oPeople" name="cusFlow">&nbsp;&nbsp;<i class="fas fa-user fa-2x"></i>
                     </div>
                     <div class="col-md-3 col-8 align-self-center">
-                        <input type="text" value="" id="oCall" name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
+                        <input type="text" value="" id="oCall" name="callNo">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
                     </div>
                     <div class="col-md-3 col-8 align-self-center">                         
                       <input type="reset" value="全部清除" id="oReset" name="oReset" onclick="deltable()" class="btn btn-danger">&nbsp;
