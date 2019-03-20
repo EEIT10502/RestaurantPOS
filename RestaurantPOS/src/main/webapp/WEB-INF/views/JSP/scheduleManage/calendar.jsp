@@ -38,24 +38,24 @@
 <title>CLASS</title>
 </head>
 <body>
-<%-- 	<jsp:include page="../sideBar.jsp" flush="true" /> --%>
-	<div class="container prepend-top append-bottom">
-		<div class="span-24 header"></div>
-		<div id="menu" class="span-24 last">
-			<div class="append-1 last" style="margin-top: 1em;">
-			</div>
-		</div>
+	<jsp:include page="../sideBar.jsp" flush="true" />
+	<fieldset class="w3-container" style="margin-left: 260px">
+		<!-- 	<div class="container prepend-top append-bottom"> -->
+		<!-- 		<div class="span-24 header"></div> -->
+		<!-- 		<div id="menu" class="span-24 last"> -->
+		<!-- 			<div class="append-1 last" style="margin-top: 1em;"></div> -->
+		<!-- 		</div> -->
 		<div id="main" class="span-24">
 			<div id="content" class="span-22 prepend-1 append-1">
 				<div class='mainInfo'>
-					<ul class='tabs'>
-					
-						<li><a href="calendar">排班表</a></li>
-						<li><a href="schedule" class="selected">班別表</a></li>
-						<!-- 						<li><a href="https://shift.ekko.com.tw/group/embed.html">內崁程式碼</a></li> -->
-					</ul>
+<!-- 					<ul class='tabs'> -->
+
+<!-- 						<li><a href="calendar">排班表</a></li> -->
+<!-- 						<li><a href="schedule" class="selected">班別表</a></li> -->
+<!-- 												<li><a href="https://shift.ekko.com.tw/group/embed.html">內崁程式碼</a></li> -->
+<!-- 					</ul> -->
 					<div class='fieldset span-22'>
-						<h3 class="span-2">排班表</h3>
+						<h4 class="span-3">排班表</h4>
 						<table class="group append-bottom">
 							<thead>
 								<tr>
@@ -81,8 +81,8 @@
 										<td><input type="button" value="${calendar.day5}"></td>
 										<td><input type="button" value="${calendar.day6}"></td>
 										<td><input type="button" value="${calendar.day7}"></td>
-										<td>
-										<a href="<c:url value='/calendar/update?id=${calendar.calendarId}'/>"
+										<td><a
+											href="<c:url value='/calendar/update?id=${calendar.calendarId}'/>"
 											title="編輯" class="image edit span-1" id="edit">編輯</a></td>
 									</tr>
 								</c:forEach>
@@ -108,11 +108,12 @@
 			</div>
 		</div>
 
-		<div class="span-24" id="footer">
-			<p>請使用Internet Explorer 90, Firefox 3x, Chrome 10x
-				以上版本之瀏覽器，螢幕解析度1024x768以上，以達使用完整功能及最佳顯示效果。</p>
-		</div>
-	</div>
+		<!-- 		<div class="span-24" id="footer"> -->
+		<!-- 			<p>請使用Internet Explorer 90, Firefox 3x, Chrome 10x -->
+		<!-- 				以上版本之瀏覽器，螢幕解析度1024x768以上，以達使用完整功能及最佳顯示效果。</p> -->
+		<!-- 		</div> -->
+		<!-- 	</div> -->
+	</fieldset>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			if ($("div#status_message").length > 0) {

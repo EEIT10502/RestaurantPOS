@@ -86,7 +86,7 @@ td.errorMessage[type="redError"] {
 						開始時間 </label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.startTime}" path="startTime" type='text'
-							class='form:input-large' />
+							class='example' />
 					</div>
 				</div>
 				<div class="form-group">
@@ -94,25 +94,33 @@ td.errorMessage[type="redError"] {
 						結束時間 </label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.endTime}" path="endTime" type='text'
-							class='form:input-large' />
+							class='example' />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='restTime'>
 						休息時間 </label>
 					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.restTime}" path="restTime" type='text'
-							class='form:input-large' />
+<%-- 						<form:input id="shcedule${schedule.restTime}" path="restTime" type='text' --%>
+<%-- 							class='form:input-large' /> --%>
+							<select name="restTime" id="shcedule${schedule.restTime}" path="restTime" >
+							<option value="0.0">0.0</option>
+							<option value="0.5">0.5</option>
+							<option value="1.0">1.0</option>
+							<option value="1.5">1.5</option>
+							<option value="2.0">2.0</option>
+
+						</select>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='totalTime'>
-						總時間 </label>
-					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.totalTime}" path="totalTime" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class="control-label col-lg-2 col-lg-2" for='totalTime'> -->
+<!-- 						總時數 </label> -->
+<!-- 					<div class="col-lg-10"> -->
+<%-- 						<form:input id="shcedule${schedule.totalTime}" path="totalTime" type='text' --%>
+<%-- 							class='form:input-large' /> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
             			<input type="submit" value="送出" name='updateBtn' onclick="return confirmUpdate('${schedule.scheduleId}');"/>
@@ -123,6 +131,22 @@ td.errorMessage[type="redError"] {
            <c:remove var="member" scope="request" />       
          </c:if>
 				<script type="text/javascript">
+				
+				$(document).ready(function() {
+					$('.example').pickatime({
+						twelvehour : false, // change to 12 hour AM/PM clock from 24 hour
+						donetext : 'OK',
+						format : "HH:i",
+						autoclose : false,
+						vibrate : true
+					});
+					// For adding seconds (00)
+					$('.example').on('change', function() {
+						let receivedVal = $(this).val();
+						$(this).val(receivedVal + ":00");
+					});
+				});
+				
 					$(document).ready(function() {
 						$("a#add_worker, a#edit").live('click', function(e) {
 							e.preventDefault();
@@ -136,8 +160,7 @@ td.errorMessage[type="redError"] {
 							});
 						});
 					})
-				</script>
-				<script type="text/javascript">
+				
 					$(document).ready(function(){
 						$("input#name").focus();
 						$('input#color').simpleColorPicker({ 

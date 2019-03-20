@@ -33,7 +33,7 @@
 	<jsp:include page="../sideBar.jsp" flush="true" />
 
 	<form id="datatable">
-		<div class="w3-container" style="margin-left: 160px">
+		<div class="w3-container" style="margin-left: 260px">
 			<h2>員工出勤查詢</h2>
 
 			<!-- 		搜尋列開始 -->

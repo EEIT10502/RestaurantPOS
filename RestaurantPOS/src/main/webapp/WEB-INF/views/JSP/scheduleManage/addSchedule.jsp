@@ -7,14 +7,23 @@
 <head>
 
 <!-- jQuery v1.9.1 -->
-  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <!-- pickadate.js v3.5.6 -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- pickadate.js v3.5.6 -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
 
 
 
@@ -79,16 +88,14 @@ fieldset {
 					<label class="control-label col-lg-2 col-lg-2" for='restTime'>
 						休息時間 </label>
 					<div class="col-lg-10">
-						<form:input id="restTime" path="restTime" type='text'
-							class="example" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='totalTime'>
-						總時間 </label>
-					<div class="col-lg-10">
-						<form:input id="totalTime" path="totalTime" type='text'
-							class='form:input-large' />
+						<select name="restTime" id="restTime" path="restTime">
+							<option value="0.0">0.0</option>
+							<option value="0.5">0.5</option>
+							<option value="1.0">1.0</option>
+							<option value="1.5">1.5</option>
+							<option value="2.0">2.0</option>
+
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
@@ -97,21 +104,20 @@ fieldset {
 					</div>
 				</div>
 				<script type="text/javascript">
-// 				$('.example').pickatime({
-// 					  'showDuration' : true,
-// 					  'timeFormat' : 'H:i',
-// 					  'scrollDefault' : true,
-// 					  'selectOnBlur' : true,
-// 					  'show2400' : true,
-// 					  'showDuration' : true,
-// 					  'showOn' : [ "click", "focus" ],
-// 					  'showOnFocus' : true,
-// 					  'durationTime' : 'minTime',
-// 					  'forceRoundTime' : true,
-// 					  'maxTime' : null,
-// 					  'minTime' : null,
-// 					     'step': 30
-// 					 });
+				$(document).ready(function() {
+				    $('.example').pickatime({
+				        twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
+				        donetext: 'OK',
+				        format: "HH:i",
+				        autoclose: false,
+				        vibrate: true
+				    });
+				    // For adding seconds (00)
+				    $('.example').on('change', function() {
+				        let receivedVal = $(this).val();
+				        $(this).val(receivedVal + ":00");
+				    });
+				});
 					$(document).ready(function() {
 						$("a#add_worker, a#edit").live('click', function(e) {
 							e.preventDefault();
