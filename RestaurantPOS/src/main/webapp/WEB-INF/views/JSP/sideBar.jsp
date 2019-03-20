@@ -30,8 +30,9 @@
 		<button class="w3-button w3-block w3-left-align sideBarColHight" onclick="openHRList()"><i class="lnr lnr-users"></i>&nbsp&nbsp<span>人事管理</span>&nbsp<i class="fa fa-caret-down"></i></button>
 		<div id="demoHRList" class="w3-hide w3-white w3-card">
 
+
             <a href="<c:url value="/empManage/empInsert.action"/>" class="w3-bar-item w3-btn">新增員工資訊</a>
-			<a href="<c:url value="/empManage/empQuery.action"/>" class="w3-bar-item w3-btn">查詢員工資訊</a>
+			<a href="<c:url value="/empManage/allEmployeeList.action"/>" class="w3-bar-item w3-btn">查詢員工資訊</a>
 			<a href="<c:url value="/empManage/attendance"/>" class="w3-bar-item w3-btn">出勤紀錄查詢</a>
 			<!-- 			<a href="#" class="w3-bar-item w3-button">員工班表</a> -->
 			<!-- 			<a href="#" class="w3-bar-item w3-button">薪資表</a>  -->
