@@ -52,6 +52,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		List<ViewResolver> resolvers = new ArrayList<ViewResolver>();
 
 		resolvers.add(jspViewResolver());
+		resolvers.add(excelViewResolver());
 		resolver.setViewResolvers(resolvers);
 		return resolver;
 	}
@@ -64,6 +65,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		viewResolver.setPrefix("/WEB-INF/views/JSP/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
+	}
+	
+	@Bean
+	public ViewResolver excelViewResolver() {
+		System.out.println("excelViewResolver");
+		return new _00.init.viewresolver.ExcelViewResolver();
 	}
 
 	@Override
