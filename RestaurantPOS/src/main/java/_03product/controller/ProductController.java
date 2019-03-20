@@ -36,11 +36,10 @@ public class ProductController {
 	public String getGoodsInsertPage(@ModelAttribute("insertComplete") String insertComplete, Model model) {
 		MenuBean menuBean = new MenuBean();
 		model.addAttribute("MenuBean", menuBean);
-		
-		if(insertComplete != null) {
+
+		if (insertComplete != null) {
 			model.addAttribute("insertComplete", insertComplete);
 		}
-		
 
 		return "productManage/productInsert";// 按JSP目錄層
 	}
@@ -109,10 +108,10 @@ public class ProductController {
 
 		service.addProduct(menuBean);
 		model.addAttribute("insertComplete", "成功新增一筆資料");
-		
+
 		return "redirect:/productManage/productInsert.action";
 	}
-	
+
 	@RequestMapping(value = "/productManage/allProductList.action")
 	public String getAllProductListPage(
 			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo, Model model) {
@@ -178,7 +177,7 @@ public class ProductController {
 
 		return "redirect:/productManage/allProductList.action?currentPageNoBtn=" + currentPageNoInit;
 	}
-	
+
 	@RequestMapping(value = "/productManage/ProductListByCate.action")
 	public String getProductListByCate(
 			@RequestParam(value = "currentPageNoBtnCate", required = false) String currentPageNo,
@@ -215,7 +214,7 @@ public class ProductController {
 				model.addAttribute("currentPageNo", currentPageNoInit);
 				model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
 				model.addAttribute("totalPages", service.getTotalPagesByCate());
-				
+
 				return "productManage/productListByCate";
 			}
 			model.addAttribute("noItemString", "查無資料");
@@ -302,7 +301,7 @@ public class ProductController {
 				model.addAttribute("currentPageNo", currentPageNoInit);
 				model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
 				model.addAttribute("totalPages", service.getTotalPagesByProductStatus());
-				
+
 				return "productManage/productListByProductStatus";
 			}
 			model.addAttribute("noItemString", "查無資料");
@@ -377,7 +376,7 @@ public class ProductController {
 				currentPageNoInit = 1;
 			}
 		}
-		
+
 		service.setCurrentPageNo(currentPageNoInit);
 		service.setSearchBarString(searchBarString);
 		List<MenuBean> productListBySearch = new ArrayList<>();
@@ -396,7 +395,7 @@ public class ProductController {
 				model.addAttribute("currentPageNo", currentPageNoInit);
 				model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
 				model.addAttribute("totalPages", service.getTotalPagesBySearch());
-				
+
 				return "productManage/productListBySearch";
 			}
 			model.addAttribute("noItemString", "查無資料");
@@ -467,87 +466,129 @@ public class ProductController {
 		ProductStatusList.add(GlobalService.Product_Status_No_Longer_Be_Sold);
 		return ProductStatusList;
 	}
-	
-//	@RequestMapping(value = "/productManage/allProductListExcel.action")
-//	public String getAllProductListPageExcel(
-//			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo, Model model) {
-//		createExcel(getStudent());
-//		
-//		
-//		
-//		return "productManage/allProductListNewtest";
-//	}
-//	
-//	private static List<Student> getStudent() {
-//		List<Student> list = new ArrayList<Student>();
-//		Student student1 = new Student("小明", 8, "二年級");
-//		Student student2 = new Student("小光", 9, "三年級");
-//		Student student3 = new Student("小花", 10, "四年級");
-//		list.add(student1);
-//		list.add(student2);
-//		list.add(student3);
-//		return list;
-//		}
-//	
-//	private static void createExcel(List<Student> list) {
-//		// 建立一個Excel檔案
-//		HSSFWorkbook workbook = new HSSFWorkbook();
-//		// 建立一個工作表
-//		HSSFSheet sheet = workbook.createSheet("學生表一");
-//		// 新增表頭行
-//		HSSFRow hssfRow = sheet.createRow(0);
-//		// 設定單元格格式居中
-//		HSSFCellStyle cellStyle = workbook.createCellStyle();
-//		cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-//		// 新增表頭內容
-//		HSSFCell headCell = hssfRow.createCell(0);
-//		headCell.setCellValue("姓名");
-//		headCell.setCellStyle(cellStyle);
-//		headCell = hssfRow.createCell(1);
-//		headCell.setCellValue("年齡");
-//		headCell.setCellStyle(cellStyle);
-//		headCell = hssfRow.createCell(2);
-//		headCell.setCellValue("年級");
-//		headCell.setCellStyle(cellStyle);
-//		// 新增資料內容
-//		for (int i = 0; i < list.size(); i++  ) {
-//		hssfRow = sheet.createRow((int) i + 1);
-//		Student student = list.get(i);
-//		// 建立單元格，並設定值
-//		HSSFCell cell = hssfRow.createCell(0);
-//		cell.setCellValue(student.getName());
-//		cell.setCellStyle(cellStyle);
-//		cell = hssfRow.createCell(1);
-//		cell.setCellValue(student.getAge());
-//		cell.setCellStyle(cellStyle);
-//		cell = hssfRow.createCell(2);
-//		cell.setCellValue(student.getGrade());
-//		cell.setCellStyle(cellStyle);
-//		}
-//		// 儲存Excel檔案
-//		try {
-//		OutputStream outputStream = new FileOutputStream("D:/students.xls");
-//		workbook.write(outputStream);
-//		outputStream.close();
-//		} catch (Exception e) {
-//		e.printStackTrace();
-//		}
-//		}
-	
-	@RequestMapping(value = "/productManage/allProductListExcel", method = RequestMethod.GET, 
-			produces = "application/vnd.ms-excel")
-	@ResponseBody
+
+	@RequestMapping(value = "/productManage/excel/allProductList", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
 	public String queryAllProductExcel(Model model) {
 		List<MenuBean> menuBean = service.getAllProducts();
-		model.addAttribute("allMembers", menuBean);
-		System.out.println("222");
-		return "_01/cnvr/showMembers";
+		model.addAttribute("allMenuBean", menuBean);
+//		System.out.println("222");
+		return "productManage/excel";
 	}
-	
-	//==========================================================================test排班_開始
+
+	@RequestMapping(value = "/productManage/excel/productListThisPage", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+	public String queryProductListThisPageExcel(
+			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+			@RequestParam(value = "whichCate", required = false) String cateSelect,
+			@RequestParam(value = "whichStatus", required = false) String StatusSelect,
+			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
+		System.out.println("coming");
+
+		System.out.println("currentPageNo:" + currentPageNo);
+		System.out.println("cateSelect:" + cateSelect);
+		System.out.println("StatusSelect:" + StatusSelect);
+		System.out.println("searchBarString:" + searchBarString);
+		
+		int currentPageNoInt = Integer.parseInt(currentPageNo.trim());
+
+		if (cateSelect.isEmpty() && StatusSelect.isEmpty() && searchBarString.isEmpty()) {
+			System.out.println("所有商品");
+			
+			service.setCurrentPageNo(currentPageNoInt);
+
+			List<MenuBean> productsListGetByPage = new ArrayList<>();
+			productsListGetByPage = service.getProductsListGetByPage();
+			model.addAttribute("allMenuBean", productsListGetByPage);
+
+			if (productsListGetByPage.isEmpty()) {
+//				model.addAttribute("noItemString", "查無資料");
+//				model.addAttribute("currentPageNo", 0);
+//				model.addAttribute("totalPages", 0);
+//
+//				return "productManage/allProductListNew";
+			}
+
+//			model.addAttribute("currentPageNo", currentPageNoInit);
+//			model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
+//			model.addAttribute("totalPages", service.getTotalPages());
+
+			return "productManage/excel";
+		}
+		
+		if (!cateSelect.isEmpty()) {
+			System.out.println("類別");
+		}
+
+		if (!StatusSelect.isEmpty()) {
+			System.out.println("狀態");
+		}
+
+		if (!searchBarString.isEmpty()) {
+			System.out.println("搜尋BAR");
+			
+			if (searchBarString.isEmpty()) {
+				model.addAttribute("allMenuBean", "請輸入查詢條件");
+//				model.addAttribute("currentPageNo", 0);
+//				model.addAttribute("totalPages", 0);
+				return "productManage/excel";
+			}
+
+			if (currentPageNo == null) {
+				currentPageNoInit = 1;
+			} else {
+				try {
+					currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+				} catch (NumberFormatException e) {
+					currentPageNoInit = 1;
+				}
+			}
+
+			service.setCurrentPageNo(currentPageNoInit);
+			service.setSearchBarString(searchBarString);
+			List<MenuBean> productListBySearch = new ArrayList<>();
+			productListBySearch = service.getProductsListGetBySearch();
+			model.addAttribute("productListBySearch", productListBySearch);
+
+			if (productListBySearch.isEmpty()) {
+				if (currentPageNoInit > 1) {
+					currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+					currentPageNoInit = currentPageNoInit - 1;
+					service.setCurrentPageNo(currentPageNoInit);
+
+					productListBySearch = new ArrayList<>();
+					productListBySearch = service.getProductsListGetBySearch();
+					model.addAttribute("productListBySearch", productListBySearch);
+					model.addAttribute("currentPageNo", currentPageNoInit);
+					model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
+					model.addAttribute("totalPages", service.getTotalPagesBySearch());
+
+					return "productManage/productListBySearch";
+				}
+				model.addAttribute("noItemString", "查無資料");
+				model.addAttribute("currentPageNo", 0);
+				model.addAttribute("totalPages", 0);
+
+				return "productManage/productListBySearch";
+			}
+
+			model.addAttribute("currentPageNo", currentPageNoInit);
+			model.addAttribute("currentBeginOfItemNo", (currentPageNoInit - 1) * GlobalService.ITEMS_PER_PAGE);
+			model.addAttribute("totalPages", service.getTotalPagesBySearch());
+		}
+
+//		List<MenuBean> menuBeans = (List<MenuBean>) modelget.get("productsListGetByPage");
+//		System.out.println("menuBeans:"+menuBeans);
+
+//		List<MenuBean> menuBean = service.getAllProducts();
+//		model.addAttribute("allMenuBean", menuBeans);
+//		System.out.println("allMenuBean:"+allMenuBean);
+//		System.out.println("222");
+		return "productManage/excel";
+	}
+
+	// ==========================================================================test排班_開始
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	@RequestMapping(value = "/productManage/test/scheduleTest.action", method = RequestMethod.GET)
 	public String scheduleTest(
 //			@RequestParam(value = "pIdEdit", required = false) String pIdEdit,
@@ -557,7 +598,7 @@ public class ProductController {
 //			@RequestParam(value = "cateEdit", required = false) String cateEdit,
 //			@RequestParam(value = "productStatusEdit", required = false) String productStatusEdit,
 //			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo
-			) {
+	) {
 //		int pIdEditParse = Integer.parseInt(pIdEdit.trim());
 //		int productNoEditParse = Integer.parseInt(productNoEdit.trim());
 //		int priceEditParse = Integer.parseInt(priceEdit.trim());
@@ -580,26 +621,26 @@ public class ProductController {
 
 		return "productManage/scheduleTest";
 	}
-	
+
 	@ModelAttribute("scheduleDateList")
 	public List<String> getScheduleDateList(Model model) {
-		
+
 		Date beginDate = new Date();
-		long beginDateJavaUtil = beginDate.getTime(); 
+		long beginDateJavaUtil = beginDate.getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		String beginDateString = dateFormat.format(beginDate);
-		
-		long nextDate = beginDateJavaUtil+24 * 60 * 60 * 1000;
+
+		long nextDate = beginDateJavaUtil + 24 * 60 * 60 * 1000;
 		String nextDateString = dateFormat.format(nextDate);
-		
+
 		List<String> scheduleDateList = new ArrayList<String>();
 		scheduleDateList.add(beginDateString);
 		scheduleDateList.add(nextDateString);
-		
 
 		return scheduleDateList;
 	}
+
 //	@ModelAttribute("scheduleEmpNameList")
 //	public List<String> getScheduleEmpNameList(Model model) {
 //	
@@ -610,22 +651,23 @@ public class ProductController {
 //	}
 	@ModelAttribute("scheduleEmpList")
 	public List<EmployeeBean> getScheduleEmpList(Model model) {
-	
+
 		List<EmployeeBean> ScheduleEmpList = new ArrayList<EmployeeBean>();
 		ScheduleEmpList = employeeService.getAllEmployees();
-		
+
 		return ScheduleEmpList;
 	}
+
 	@ModelAttribute("workTypeList")
 	public List<String> getworkTypeList(Model model) {
-	
+
 		List<String> WorkTypeList = new ArrayList<String>();
 		WorkTypeList.add("早班");
 		WorkTypeList.add("午班");
 		WorkTypeList.add("晚班");
-		
+
 		return WorkTypeList;
 	}
-	
-	//==========================================================================test排班_結束
+
+	// ==========================================================================test排班_結束
 }
