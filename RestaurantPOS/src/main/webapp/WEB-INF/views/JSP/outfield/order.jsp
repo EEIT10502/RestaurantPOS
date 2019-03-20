@@ -109,7 +109,7 @@
 					row += '	<td id="" name=""></td>';
 					row += '	<td>';
 					row += '		<input type="button" value="口味" id="opFlaver' + itemNo + '" name="opFlaver' + itemNo + '">';
-					row += '		<input type="button" value="刪除" id="opDelete' + itemNo + '" name="opDelete' + itemNo + '" onclick="delItem(this);">';
+					row += '		<input type="button" value="刪除" id="opDelete' + itemNo + '" name="opDelete' + itemNo + '" onclick="delItem(this,'+itemNo+');">';
 					row += '	</td>';
 					
 					row += '	<input type="hidden" id="hidOpItem' + itemNo + '" name="orderVos[' + itemNo + '].itemName" value="' + v + '" />';
@@ -134,18 +134,23 @@
 		$('#oNext').click(function() {
 			var people = $('#oPeople').val();
 			var call = $('#oCall').val();
-			
+			var total = $('#oTotal').html();
 			if (!people) {
-				alert('「請輸入用餐人數」');
+				alert('「請輸入用餐人數！！」');
 				return;
 			}
 			if(!call){
-				alert('「請輸入叫號機號碼」');
+				alert('「請輸入叫號機號碼！！」');
 				return;
 			}
 			
 			if(call<1 || call >10){
-				alert('「請輸入1-10」');
+				alert('「叫號機號碼錯誤！！」');
+				return;
+			}
+			
+			if(total==0){
+				alert('「請輸入餐點！！」')
 				return;
 			}
 			
@@ -160,8 +165,14 @@
 		$("#tablelist  tr:not(:first):not(:last)").empty("");
 	}
 	
-	function delItem(obj) {
+	function delItem(obj,itemNo) {
+		var y = parseInt($("#oTotal").html());
+		var totalAmount=0;
+		var subtotal= parseInt($("#opSubtotal"+ itemNo).html());
+		totalAmount = y - subtotal;
+		$("#oTotal").html(totalAmount);
 		$(obj).closest('tr').remove();
+		
 	}
 	
 	function modifyQty(itemNo, price){
@@ -324,9 +335,6 @@
 								</td>
 							</tr>
 						</c:forEach>
-						<tr>
-							
-						</tr>
 						<tr>
 							<th colspan="3" style="text-align: right">總金額：</th>
 							<td colspan="3" id="oTotal" name="oTotal">0
