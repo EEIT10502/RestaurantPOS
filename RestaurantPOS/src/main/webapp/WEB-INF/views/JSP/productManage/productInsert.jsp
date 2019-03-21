@@ -36,8 +36,14 @@ p.errorMessage[type="redError"] {
 	crossorigin="anonymous">
 	
 </script>
-
-
+<script type="text/javascript">
+	function autoInsert() {
+		document.getElementById("productNameBtn").value='宮保雞丁飯';
+		document.getElementById("priceBtn").value='100';
+		document.getElementById("cateBtn").value='飯類';
+		document.getElementById("productStatusBtn").value='販售';
+	}	
+</script>
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="">
@@ -52,6 +58,7 @@ p.errorMessage[type="redError"] {
 					</h1>
 				</div>
 				<div>
+				<input type="button" value="一鍵輸入" onclick="autoInsert()">
 					<p class="errorMessage" type="redError">${insertComplete}
 				</div>
 				<div class="form-group">
