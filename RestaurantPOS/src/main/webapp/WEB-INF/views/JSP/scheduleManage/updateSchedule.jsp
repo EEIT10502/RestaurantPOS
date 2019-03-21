@@ -5,23 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-
-<style type="text/css">
-fieldset {
-	border: 1px solid rgb(255, 232, 57);
-	width: 200px;
-	margin: auto;
-}
-.hiddenList {
-	display: none;
-}
-
-td.errorMessage[type="redError"] {
-	color: red;
-}
-</style>
-
-
+<link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/jquery.simple-color-picker.css" media="screen, projection" />
 <title>修改班別</title>
 <script type="text/javascript">
   function confirmDelete(scheduleId){
@@ -41,16 +25,17 @@ td.errorMessage[type="redError"] {
 	  return false;
   }
 </script>
-<link rel='stylesheet' href='css/styles.css' type="text/css" />
+<!-- <link rel='stylesheet' href='css/styles.css' type="text/css" /> -->
 
 </head>
 <body>
+<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="scheduleBean"
 			class='form-horizontal' enctype="multipart/form-data">
 			<input type="hidden" name="_method"  id='putOrDelete'   value="" >
-			<fieldset>
+			<fieldset class="w3-container" style="margin-left: 260px">
 				<legend>修改班別資料</legend>
 				
 				<div class="form-group">
@@ -67,18 +52,17 @@ td.errorMessage[type="redError"] {
 						班別名稱 </label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.schedule}" path="schedule" type='text'
-							class='form:input-large' />
-							
+							class='form:input-large' autocomplete = "off"/>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<div class="col-lg-10">
 						<label class="control-label col-lg-2 col-lg-2" for='color'>
-							顏色</label>
-						<form:input id="shcedule${schedule.color}" path="color" name="color" type="text"
-							class='form:input-large' />
-					</div>
+							顏色</label><br>
+							<div class="col-lg-10">
+						<form:input id="color" path="color" name="color" type="text"
+							class='form:input-large' autocomplete = "off"/>
+							</div>
 				</div>
 
 				<div class="form-group">
@@ -87,6 +71,7 @@ td.errorMessage[type="redError"] {
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.startTime}" path="startTime" type='text'
 							class='example' />
+							
 					</div>
 				</div>
 				<div class="form-group">
@@ -147,19 +132,19 @@ td.errorMessage[type="redError"] {
 					});
 				});
 				
-					$(document).ready(function() {
-						$("a#add_worker, a#edit").live('click', function(e) {
-							e.preventDefault();
-							$.fancybox(this, {
-								'scrolling' : 'no',
-								'titleShow' : false,
-								'centerOnScroll' : true,
-								'autoScale' : false,
-								'enableEscapeButton' : true,
-								'type' : 'inline'
-							});
-						});
-					})
+// 					$(document).ready(function() {
+// 						$("a#add_worker, a#edit").live('click', function(e) {
+// 							e.preventDefault();
+// 							$.fancybox(this, {
+// 								'scrolling' : 'no',
+// 								'titleShow' : false,
+// 								'centerOnScroll' : true,
+// 								'autoScale' : false,
+// 								'enableEscapeButton' : true,
+// 								'type' : 'inline'
+// 							});
+// 						});
+// 					})
 				
 					$(document).ready(function(){
 						$("input#name").focus();
@@ -244,5 +229,8 @@ td.errorMessage[type="redError"] {
 			</fieldset>
 		</form:form>
 	</section>
+	<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
 </body>
 </html>

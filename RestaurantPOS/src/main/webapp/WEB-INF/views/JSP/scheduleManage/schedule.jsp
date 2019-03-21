@@ -30,60 +30,42 @@
 </head>
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	<%-- <jsp:include page="../productManage/productSearchHead.jsp" flush="true" /> --%>
-	<fieldset class="w3-container" style="margin-left: 260px">
-		<div class='fieldset span-22'>
-			<h3 class="span-2">班別表</h3>
-			<div class="last span-2">
-				<a href="schedule/add" title="新增組員" class="worker span-2 button"
-					id="add_worker">+班表</a>
-			</div>
-			<table class="myDataTalbe">
-				<thead>
+	<%-- 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" /> --%>
+	<section class="">
+		<fieldset class="w3-container" style="margin-left: 260px">
+			<div id="allList" class="row">
+				<table class="table table-hover">
 					<tr>
-						<th class="span-2">名稱</th>
-						<th class="span-2">識別色</th>
-						<th class="span-2">開始時間</th>
-						<th class="span-2">結束時間</th>
-						<th class="span-2">休息時間</th>
-<!-- 						<th class="span-2">總時間</th> -->
-						<th class="span-3 last">操作</th>
+						<th scope="col">#</th>
+						<th scope="col">名稱</th>
+						<th scope="col">識別色</th>
+						<th scope="col">開始時間</th>
+						<th scope="col">結束時間</th>
+						<th scope="col">休息時數</th>
+						<th scope="col">操作</th>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="schedule" items="${schedule}">
-						<tr>
+
+					<c:forEach var='schedule' items='${schedule}' varStatus="status">
+						<tr class="">
+							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
 							<td>${schedule.schedule}</td>
 							<td><div width="20" height="20"
 									style="width:20px;height:20px;border:1px solid #eee;background-color:${schedule.color}">&nbsp;</div></td>
-							<td><fmt:formatDate value="${schedule.startTime}"
- 									pattern="hh:mm" /></td> 
-							<td><fmt:formatDate value="${schedule.endTime}"
- 									pattern="hh:mm" /></td> 
+							<td>${schedule.startTime}</td>
+							<td>${schedule.endTime}</td>
 							<td>${schedule.restTime}</td>
-<%-- 							<td>${schedule.totalTime}</td> --%>
+<%--  							<td>${schedule.totalTime}</td> --%>
 							<td><a
 								href="<c:url value='/schedule/update?id=${schedule.scheduleId}'/>"
-								title="編輯" class="image edit span-1" id="edit">編輯</a> <a
-								href="https://shift.ekko.com.tw/group/delete_worker/14143.html"
-								title="刪除" class="image delete span-1" id="delete">刪除</a></td>
+								title="編輯" class="btn btn-primary" id="edit" type="button">編輯</a></td>
 						</tr>
 					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-
-		<script type="text/javascript">
-			$(function() {
-
-				$(".myDataTalbe").DataTable({
-					searching : false, //關閉filter功能
-					columnDefs : [ {
-						targets : [ 3 ],
-						orderable : false,
-					} ]
-				});
-			});
-		</script>
-	</fieldset>
+					</tbody>
+				</table>
+				<div class="last span-2">
+					<a href="schedule/add" class="btn btn-primary"
+						id="add_worker" style="">新增班表</a>
+				</div>
+			</div>
+		</fieldset>
 </body>

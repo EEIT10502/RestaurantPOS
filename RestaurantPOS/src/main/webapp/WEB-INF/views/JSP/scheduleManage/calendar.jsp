@@ -9,116 +9,63 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="icon" type="image/png" href="/favicon.ico" />
-<meta name="keywords" content="線上排班、排班表、派班表" />
-<meta name="description" content="簡單易用線上排班系統，提供滑鼠拖拉設定排班、列印及網頁內崁碼功能。" />
-<!--[if lt IE 8]><link type="text/css" rel="stylesheet" href="/asset/css/ie.css" media="screen, projection" /><![endif]-->
-<link type="text/css" rel="stylesheet"
-	href="https://shift.ekko.com.tw/asset/css/screen.css"
-	media="screen, projection" />
-<link type="text/css" rel="stylesheet"
-	href="https://shift.ekko.com.tw/asset/css/print.css" media="print" />
-<link type="text/css" rel="stylesheet"
-	href="https://shift.ekko.com.tw/asset/css/plugin/tabs.css"
-	media="screen, projection" />
-<link type="text/css" rel="stylesheet"
-	href="https://shift.ekko.com.tw/asset/css/style.css" />
-<link type="text/css" rel="stylesheet"
-	href="https://shift.ekko.com.tw/asset/css/jquery.fancybox-1.3.4.css"
-	media="screen, projection" />
-<link type="text/css" rel="stylesheet"
-	href="https://shift.ekko.com.tw/asset/css/jquery.simple-color-picker.css"
-	media="screen, projection" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+<!--引用jQuery-->
 <script type="text/javascript"
-	src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!--引用dataTables.js-->
 <script type="text/javascript"
-	src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
-<script type="text/javascript"
-	src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <title>CLASS</title>
 </head>
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	<fieldset class="w3-container" style="margin-left: 260px">
-		<!-- 	<div class="container prepend-top append-bottom"> -->
-		<!-- 		<div class="span-24 header"></div> -->
-		<!-- 		<div id="menu" class="span-24 last"> -->
-		<!-- 			<div class="append-1 last" style="margin-top: 1em;"></div> -->
-		<!-- 		</div> -->
-		<div id="main" class="span-24">
-			<div id="content" class="span-22 prepend-1 append-1">
-				<div class='mainInfo'>
-<!-- 					<ul class='tabs'> -->
+	<%-- 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" /> --%>
+	<section class="">
+		<fieldset class="w3-container" style="margin-left: 260px">
+			<div id="allList" class="row">
+				<table class="table table-hover">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">員工名稱</th>
+						<th scope="col">星期一</th>
+						<th scope="col">星期二</th>
+						<th scope="col">星期三</th>
+						<th scope="col">星期四</th>
+						<th scope="col">星期五</th>
+						<th scope="col">星期六</th>
+						<th scope="col">星期日</th>
+						<th scope="col">操作</th>
+					</tr>
 
-<!-- 						<li><a href="calendar">排班表</a></li> -->
-<!-- 						<li><a href="schedule" class="selected">班別表</a></li> -->
-<!-- 												<li><a href="https://shift.ekko.com.tw/group/embed.html">內崁程式碼</a></li> -->
-<!-- 					</ul> -->
-					<div class='fieldset span-22'>
-						<h4 class="span-3">排班表</h4>
-						<table class="group append-bottom">
-							<thead>
-								<tr>
-									<th class="span-2">員工名稱</th>
-									<th class="span-1">一</th>
-									<th class="span-1">二</th>
-									<th class="span-1">三</th>
-									<th class="span-1">四</th>
-									<th class="span-1">五</th>
-									<th class="span-1">六</th>
-									<th class="span-1">日</th>
-									<th class="span-2 last">修改</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="calendar" items="${calendar}">
-									<tr>
-										<td>${calendar.employee.empName}</td>
-										<td><input type="button" value="${calendar.day1}"></td>
-										<td><input type="button" value="${calendar.day2}"></td>
-										<td><input type="button" value="${calendar.day3}"></td>
-										<td><input type="button" value="${calendar.day4}"></td>
-										<td><input type="button" value="${calendar.day5}"></td>
-										<td><input type="button" value="${calendar.day6}"></td>
-										<td><input type="button" value="${calendar.day7}"></td>
-										<td><a
-											href="<c:url value='/calendar/update?id=${calendar.calendarId}'/>"
-											title="編輯" class="image edit span-1" id="edit">編輯</a></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<script type="text/javascript">
-					$(document).ready(function() {
-						$("a#add_worker, a#edit").live('click', function(e) {
-							e.preventDefault();
-							$.fancybox(this, {
-								'scrolling' : 'no',
-								'titleShow' : false,
-								'centerOnScroll' : true,
-								'autoScale' : false,
-								'enableEscapeButton' : true,
-								'type' : 'inline'
-							});
-						});
-					})
-				</script>
+					<c:forEach var='calendar' items='${calendar}' varStatus="status">
+						<tr class="">
+							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
+							<td>${calendar.employee.empName}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day1}</td>
+							<td style="color:${calendar.schedule}">${calendar.day2}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day3}</td>
+							<td style="color:${calendar.schedule}">${calendar.day4}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day5}</td>
+							<td style="color:${calendar.schedule}">${calendar.day6}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day7}</td>
+							<td><a
+								href="<c:url value='/calendar/update?id=${calendar.calendarId}'/>"
+								title="編輯" class="btn btn-primary" id="edit" type="button">編輯</a></td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
 			</div>
-		</div>
-
-		<!-- 		<div class="span-24" id="footer"> -->
-		<!-- 			<p>請使用Internet Explorer 90, Firefox 3x, Chrome 10x -->
-		<!-- 				以上版本之瀏覽器，螢幕解析度1024x768以上，以達使用完整功能及最佳顯示效果。</p> -->
-		<!-- 		</div> -->
-		<!-- 	</div> -->
-	</fieldset>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			if ($("div#status_message").length > 0) {
-				$("div#status_message").delay(4000).slideUp(1000);
-			}
-		});
-	</script>
+		</fieldset>
 </body>

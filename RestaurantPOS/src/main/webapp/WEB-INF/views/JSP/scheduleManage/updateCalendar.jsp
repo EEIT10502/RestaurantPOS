@@ -6,23 +6,6 @@
 <html>
 <head>
 
-<style type="text/css">
-fieldset {
-	border: 1px solid rgb(255, 232, 57);
-	width: 200px;
-	margin: auto;
-}
-
-.hiddenList {
-	display: none;
-}
-
-td.errorMessage[type="redError"] {
-	color: red;
-}
-</style>
-
-
 <title>修改班別</title>
 <script type="text/javascript">
 	function confirmDelete(scheduleId) {
@@ -46,136 +29,115 @@ td.errorMessage[type="redError"] {
 
 </head>
 <body>
+<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="calendarBean"
 			class='form-horizontal' enctype="multipart/form-data">
 			<input type="hidden" name="_method" id='putOrDelete' value="">
-			<fieldset>
+			<fieldset class="w3-container" style="margin-left: 260px">
 				<legend>修改排班資料</legend>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2 hide"
 						for='calendarId'> calendarId</label>
-					<div class="col-lg-10">
 						<form:input id="calendar${calendar.calendarId}" path="calendarId"
 							type='text' class='form:input-large hide' readonly="true" />
-					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2 hide"
 						for='employee.empId'> empId</label>
-					<div class="col-lg-10">
 						<form:input id="calendar${calendar.employee.empId}"
 							path="employee.empId" type='text' class='form:input-large hide'
 							readonly="true" />
-					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2 hide"
 						for='schedule.scheduleId'> scheduleId</label>
-					<div class="col-lg-10">
 						<form:input id="calendar${calendar.schedule.scheduleId}"
 							path="schedule.scheduleId" type='text'
 							class='form:input-large hide' readonly="true" />
-					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2 hide" for='date'>date</label>
-					<div class="col-lg-10">
 						<form:input id="calendar${calendar.date}" path="date" type='text'
 							class='form:input-large hide' readonly="true" />
-					</div>
 				</div>
 				
 				
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='day1'>
 						day1</label>
-					<div class="col-lg-10">
 						<form:select path="day1">
 						 	<form:option value="-1" label="請選擇"/>
 						 	<c:forEach var="ss" items="${ss}">
 						 	<form:option value="${ss.schedule}">${ss.schedule}</form:option>
 						 	</c:forEach>
 						</form:select>
-					</div>
 				</div>
 				
 				
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='day2'>
 						day2</label>
-					<div class="col-lg-10">
 						<form:select path="day2">
 						 	<form:option value="-1" label="請選擇"/>
 						 	<c:forEach var="ss" items="${ss}">
 						 	<form:option value="${ss.schedule}">${ss.schedule}</form:option>
 						 	</c:forEach>
 						</form:select>
-					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='day3'>
 						day3</label>
-					<div class="col-lg-10">
 						<form:select path="day3">
 						 	<form:option value="-1" label="請選擇"/>
 						 	<c:forEach var="ss" items="${ss}">
 						 	<form:option value="${ss.schedule}">${ss.schedule}</form:option>
 						 	</c:forEach>
 						</form:select>
-					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='day4'>
 						day4</label>
-					<div class="col-lg-10">
 						<form:select path="day4">
 						 	<form:option value="-1" label="請選擇"/>
 						 	<c:forEach var="ss" items="${ss}">
 						 	<form:option value="${ss.schedule}">${ss.schedule}</form:option>
 						 	</c:forEach>
 						</form:select>
-					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='day5'>
 						day5</label>
-					<div class="col-lg-10">
 						<form:select path="day5">
 						 	<form:option value="-1" label="請選擇"/>
 						 	<c:forEach var="ss" items="${ss}">
 						 	<form:option value="${ss.schedule}">${ss.schedule}</form:option>
 						 	</c:forEach>
 						</form:select>
-					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='day6'>
 						day6</label>
-					<div class="col-lg-10">
 						<form:select path="day6">
 						 	<form:option value="-1" label="請選擇"/>
 						 	<c:forEach var="ss" items="${ss}">
 						 	<form:option value="${ss.schedule}">${ss.schedule}</form:option>
 						 	</c:forEach>
 						</form:select>
-					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='day7'>
 						day7</label>
-					<div class="col-lg-10">
 						<form:select path="day7">
 						 	<form:option value="-1" label="請選擇"/>
 						 	<c:forEach var="ss" items="${ss}">
 						 	<form:option value="${ss.schedule}">${ss.schedule}</form:option>
 						 	</c:forEach>
 						</form:select>
-					</div>
 				</div>
 
 
