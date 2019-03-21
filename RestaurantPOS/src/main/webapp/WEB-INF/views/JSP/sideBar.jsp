@@ -31,7 +31,7 @@
 		<div id="demoHRList" class="w3-hide w3-white w3-card">
 
 
-            <a href="<c:url value="/empManage/empInsert.action"/>" class="w3-bar-item w3-btn">新增員工資訊</a>
+            <a href="<c:url value="/empManage/empInsert"/>" class="w3-bar-item w3-btn">新增員工資訊</a>
 			<a href="<c:url value="/empManage/allEmployeeList.action"/>" class="w3-bar-item w3-btn">查詢員工資訊</a>
 			<a href="<c:url value="/empManage/attendance"/>" class="w3-bar-item w3-btn">出勤紀錄查詢</a>
 			<!-- 			<a href="#" class="w3-bar-item w3-button">員工班表</a> -->

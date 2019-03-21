@@ -69,6 +69,8 @@ $(document).ready(function(){
 		}
     });
 });
+
+
 </script>
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />

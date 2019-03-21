@@ -96,8 +96,7 @@ public class FbController {
 		mv.addObject("orderVos",newOrderVos);
 		mv.addObject("callNo",orderForm.getCallNo());
 		mv.addObject("cusFlow",orderForm.getCusFlow());
-		mv.addObject("totalAmount",newTotalAmount);
-		
+		mv.addObject("totalAmount",newTotalAmount);		
 		mv.setViewName("/outfield/payment");
 	
 		

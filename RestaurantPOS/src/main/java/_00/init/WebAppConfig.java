@@ -56,8 +56,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 		resolvers.add(jspViewResolver());
 
-		
-
 		resolvers.add(excelViewResolver());
 		resolver.setViewResolvers(resolvers);
 		return resolver;
@@ -112,6 +110,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		resolver.setMaxUploadSize(81920000);
 		return resolver;
 	}
+
+//	@Bean
+//	public ViewResolver pdfViewResolver(ServletContext context) {
+//		return new PdfViewResolver(context);
+//	}
 
 
 }
