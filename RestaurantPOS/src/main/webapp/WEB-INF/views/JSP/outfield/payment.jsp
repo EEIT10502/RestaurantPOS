@@ -29,7 +29,11 @@
 <!--Custom JavaScript -->
 <script src="<c:url value="/js/OrderCustom.min.js"/>"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+
 <script type="text/javascript">
+
 function ShowTime()
 {
     var NowDate = new Date();
@@ -38,14 +42,23 @@ function ShowTime()
     document.getElementById('showbox').innerHTML = '目前時間：' + NowDate.toLocaleString() + '（' + dayNames[d] + '）';
     setTimeout('ShowTime()', 1000);
 }
+
+
 $(function(){
 	$('input#oReceived').on('blur',function() {
+
+		var received = parseInt($('#oReceived').val());
+		var totalAmount = parseInt(${totalAmount});
+		var change = received - totalAmount ;
+		
+		$('#oChange').val(change + "元");
+		
+		}
 		
 		var received = parseInt($('#oReceived').val());			
 		var totalAmount = parseInt(${totalAmount});		
 		var change = received - totalAmount ;		
 		$('#oChange').attr("value",change);
-		
 	});
 });
 </script>
@@ -64,6 +77,50 @@ $(function(){
             <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">              
                 <!-- Logo -->                
                 <div class="navbar-header">
+<<<<<<< HEAD
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->                        
+                        <!-- Light Logo icon -->
+                        <b>
+                            <img src="<c:url value="/images/logo-light-icon.png"/>" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span>                         
+                         <!-- Light Logo text -->    
+                         <img src="<c:url value="/images/logo-light-text.png"/>" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
+                </div>                
+                <!-- End Logo -->               
+                <div class="navbar-collapse">               
+                    <ul class="navbar-nav my-lg-0">                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  text-muted waves-effect waves-dark " id="showbox" ></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>        
+        <!-- End Topbar header -->
+       
+        <!-- Page wrapper  -->       
+        <div class="page-wrapper">            
+            <!-- Container fluid  -->            
+            <div class="container-fluid">               
+                <!-- Bread crumb and right sidebar toggle -->                
+                <div class="row page-titles">
+                    <div class="col-md-3 col-8 align-self-center">
+                        <!--佔位符-->
+                    </div>
+                    <div class="col-md-3 col-8 align-self-center">                                      
+                        <input type="text" value="${cusFlow}" id="oPeople" name="oPeople">&nbsp;&nbsp;<i class="fas fa-user fa-2x"></i>
+                   		<input type="hidden" id="cusFlow" name="cusFlow" value="${cusFlow}">
+                    </div>
+                    <div class="col-md-3 col-8 align-self-center">                    
+                        <input type="text" value="${callNo}" id="oCall" name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
+                   		<input type="hidden" id="callNo" name="callNo" value="${callNo}">
+=======
                     <a class="navbar-brand" >
                         <!-- Logo icon -->                        
                         <!-- Light Logo icon -->
@@ -106,6 +163,7 @@ $(function(){
                     <div class="col-md-3 col-8 align-self-center">                    
                         <input type="text" value="${callNo}" id="oCall" name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
                    		<input type="hidden" id="callNo" name="callNo" value="${callNo}">                   		
+>>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
                     </div>
                     <div class="col-md-3 col-8 align-self-center">                         
                         <!--佔位符-->
@@ -164,6 +222,18 @@ $(function(){
                                             <div class="row">
                                             <div class="col-md-4 col-8 align-self-center">
                                                 <p id="" class="inLine">收:&nbsp;&nbsp;</p>
+<<<<<<< HEAD
+                                                <input type="text" id="oReceived" name="oReceived"  class="inLine" style="width:150px">                                               
+              
+                                            </div>
+                                           
+                                            <div class="col-md-4 col-8 align-self-center" >
+                                               <p id="" class="inLine">總計:&nbsp;&nbsp;</p>
+                                               <input type="text" id="oTotal" name="oTotal" value="${totalAmount}" class="inLine" style="width:150px"  readonly>                                              
+                                               
+                                               <input type="hidden" id="totalAmount" name="totalAmount" value="${totalAmount}">
+                                              	
+=======
                                                 <input type="text" id="oReceived" name="oReceived"  class="inLine" style="width:150px">                                                
                                             </div>
                                            
@@ -171,6 +241,7 @@ $(function(){
                                                <p id="" class="inLine">總計:&nbsp;&nbsp;</p>
                                                 <input type="text" id="oTotal" name="oTotal" value="${totalAmount}" class="inLine" style="width:150px"  readonly>                                       
                                                 <input type="hidden" id="totalAmount" name="totalAmount" value="${totalAmount}">                               
+>>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
                                             </div>   
                                             
                                             <div class="col-md-4 col-8 align-self-center" >
