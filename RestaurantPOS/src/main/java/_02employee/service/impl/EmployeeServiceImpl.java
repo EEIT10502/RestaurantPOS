@@ -289,8 +289,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 				}
 		//==========================================================================test排班_結束
 
-
-
 		
 		// 14.取得員工圖片
 		@Transactional
