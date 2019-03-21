@@ -68,7 +68,7 @@ $(function(){
             <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">              
                 <!-- Logo -->                
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="<c:url value="/"/>"> <!-- Logo icon -->
                         <!-- Logo icon -->                        
                         <!-- Light Logo icon -->
                         <b>

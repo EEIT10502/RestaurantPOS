@@ -1,5 +1,6 @@
 package _05financial.view;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.view.document.AbstractXlsView;
 import _00.init.util.GlobalService;
 import _00model.OrderDetailBean;
 
-public class MultipleMembersExcelView extends AbstractXlsView {
+public class MultipleCategoryReportExcelView extends AbstractXlsView {
 
 	Sheet sheet;
 	String sheetName = "sheet 1";
@@ -66,112 +67,94 @@ public class MultipleMembersExcelView extends AbstractXlsView {
 	@SuppressWarnings({ "unchecked", "unused" })
 	private void populateExcelCells(Map<String, Object> model, Workbook workbook) {
 		Sheet sheet = workbook.getSheet(sheetName);
-		
-		HSSFCellStyle styleCenter = (HSSFCellStyle)workbook.createCellStyle();
+
+		HSSFCellStyle styleCenter = (HSSFCellStyle) workbook.createCellStyle();
 		styleCenter.setFont(engTextFont);
-		
+
 		styleCenter.setFillForegroundColor(IndexedColors.WHITE.index);
 		styleCenter.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		styleCenter.setAlignment(CellStyle.ALIGN_CENTER);
-		
+
 		styleCenter.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
 		styleCenter.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
 		styleCenter.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
 		styleCenter.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
-		
+
 		CellStyle styleName = workbook.createCellStyle();
 		styleName.setFillForegroundColor(IndexedColors.WHITE.index);
 		styleName.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		styleName.setAlignment(CellStyle.ALIGN_CENTER);
 		styleName.setFont(chiTextFont);
-		
+
 		styleName.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
 		styleName.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
 		styleName.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
 		styleName.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
-		
-		
-		
-		
+
 		CellStyle styleRight = workbook.createCellStyle();
 		styleRight.setFillForegroundColor(IndexedColors.WHITE.index);
 		styleRight.setFillPattern(CellStyle.SOLID_FOREGROUND);
 		styleRight.setAlignment(CellStyle.ALIGN_RIGHT);
 		styleRight.setFont(engTextFont);
-		
+
 		styleRight.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
 		styleRight.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
 		styleRight.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
 		styleRight.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 
-		
-        HSSFCellStyle styleDate = (HSSFCellStyle)workbook.createCellStyle();
-		
+		HSSFCellStyle styleDate = (HSSFCellStyle) workbook.createCellStyle();
+
 		CreationHelper createHelper = workbook.getCreationHelper();
-		styleDate.setDataFormat(
-		    createHelper.createDataFormat().getFormat("yyyy/mm/dd"));
+		styleDate.setDataFormat(createHelper.createDataFormat().getFormat("yyyy/mm/dd"));
 		styleDate.setFont(engTextFont);
 		styleDate.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
 		styleDate.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
 		styleDate.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
 		styleDate.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
-		
-		List<OrderDetailBean> orderDetailBeans = (List<OrderDetailBean>) model.get("listCatee2");
-        
+
+		List<Map<String, Object>> listMenuCateExcel = (List<Map<String, Object>>) model.get("listMenuCateExcel");
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
-		for(OrderDetailBean o : orderDetailBeans) {
+
+		int countINumber = (int) model.get("countI");
+
+		for (int i = 0; i < countINumber; i++) {
+
 			colCount = 0;
 			row = sheet.createRow(rowCount++);
-			
-//			cell = row.createCell(colCount++);
-//			cell.setCellStyle(styleCenter);
-//			cell.setCellValue(m.getpId());
-			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleCenter);
-			cell.setCellValue(rowCount-1);
-			System.out.println("colCount1:"+colCount);
-			
-//			cell = row.createCell(colCount++);
-//			cell.setCellStyle(styleRight);
-//			DecimalFormat  dfNo = new DecimalFormat("###");
-//			cell.setCellValue(o[0].getOrderBean());
-//			System.out.println("colCount2:"+colCount);
-			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleName);
-			cell.setCellValue(o.getQty());
-			
+
+			Map<String, Object> map = listMenuCateExcel.get(i);
+			Date date = (Date) map.get("date" + i);
+			String cate = (String) model.get("csSelOpt");
+			Long qty = (Long) map.get("qty" + i);
+			Long price = (Long) map.get("price" + i);
+
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
-//			DecimalFormat  dfPrice = new DecimalFormat("#,###,###.00");
-			cell.setCellValue(o.getProductPrice());
-			
-//			cell = row.createCell(colCount++);
-//			cell.setCellStyle(styleName);
-//			cell.setCellValue(m.getCate());
-//			
-//			cell = row.createCell(colCount++);
-//			cell.setCellStyle(styleName);
-//			cell.setCellValue(m.getProductStatus());
-			
-//			cell = row.createCell(colCount++);
-//			cell.setCellStyle(styleDate);
-//			cell.setCellValue(m.getBirthday());
+			cell.setCellValue(date + "");
+
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleRight);
+			cell.setCellValue(cate);
+
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleRight);
+			cell.setCellValue(qty + "");
+
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleRight);
+			cell.setCellValue(price + "");
 		}
 		int columnCount = sheet.getRow(0).getLastCellNum();
-		for (int i=0; i < columnCount; i++){
+		for (int i = 0; i < columnCount; i++) {
 			sheet.autoSizeColumn(i);
 		}
 	}
 
 	private void createExcelHeaders(Workbook workbook) {
-		String[] labels = { GlobalService.EXCEL_HEADER_COUNT, GlobalService.EXCEL_HEADER_PRODUCTNO,
-				GlobalService.EXCEL_HEADER_PRODUCTNAME, GlobalService.EXCEL_HEADER_PRICE,
-				GlobalService.EXCEL_HEADER_CATE, GlobalService.EXCEL_HEADER_PRODUCTSTATUS };
+		String[] labels = { "日期", "類別", "數量", "金額" };
 
 		CellStyle titleStyle = workbook.createCellStyle();
 
