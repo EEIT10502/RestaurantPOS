@@ -85,14 +85,10 @@ public class ScheduleDaoImpl implements ScheduleDao{
 
 	}
 	/*-----------------------------------刪除班表資料-----------------------------------*/
-	@SuppressWarnings("unused")
 	@Override
-	public void deleteScheduleByPrimaryKey(int scheduleId) {
+	public void deleteScheduleByPrimaryKey(ScheduleBean schedule) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Schedule WHERE scheduleId=:scheduleId";
-		ScheduleBean scheduleBean = new ScheduleBean();
-		scheduleBean.setScheduleId(scheduleId);
-		session.delete(scheduleBean);	
+		session.delete(schedule);	
 	}
 	
 	@Override

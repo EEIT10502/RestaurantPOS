@@ -21,7 +21,7 @@ public interface ScheduleDao {
 
 	void updateSchedule(ScheduleBean schedule);
 
-	void deleteScheduleByPrimaryKey(int scheduleId);
+	void deleteScheduleByPrimaryKey(ScheduleBean schedule);
 	
 	void deleteAllSchedule();
 		
