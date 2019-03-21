@@ -38,13 +38,13 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">員工名稱</th>
-						<th scope="col">星期一</th>
-						<th scope="col">星期二</th>
-						<th scope="col">星期三</th>
-						<th scope="col">星期四</th>
-						<th scope="col">星期五</th>
-						<th scope="col">星期六</th>
-						<th scope="col">星期日</th>
+						<th scope="col">03/31 日</th>
+						<th scope="col">04/01 一</th>
+						<th scope="col">04/02 二</th>
+						<th scope="col">04/03 三</th>
+						<th scope="col">04/04 四</th>
+						<th scope="col">04/05 五</th>
+						<th scope="col">04/06 六</th>
 						<th scope="col">操作</th>
 					</tr>
 

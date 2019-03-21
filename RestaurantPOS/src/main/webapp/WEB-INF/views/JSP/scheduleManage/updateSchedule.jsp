@@ -5,6 +5,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css"
+	rel="stylesheet" />
 <link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/jquery.simple-color-picker.css" media="screen, projection" />
 <title>修改班別</title>
 <script type="text/javascript">
@@ -56,14 +65,14 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-						<label class="control-label col-lg-2 col-lg-2" for='color'>
-							顏色</label><br>
-							<div class="col-lg-10">
-						<form:input id="color" path="color" name="color" type="text"
-							class='form:input-large' autocomplete = "off"/>
-							</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 						<label class="control-label col-lg-2 col-lg-2" for='color'> -->
+<!-- 							顏色</label><br> -->
+<!-- 							<div class="col-lg-10"> -->
+<%-- 						<form:input id="color" path="color" name="color" type="text" --%>
+<%-- 							class='form:input-large' autocomplete = "off"/> --%>
+<!-- 							</div> -->
+<!-- 				</div> -->
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
@@ -118,6 +127,7 @@
 				<script type="text/javascript">
 				
 				$(document).ready(function() {
+					$.noConflict();
 					$('.example').pickatime({
 						twelvehour : false, // change to 12 hour AM/PM clock from 24 hour
 						donetext : 'OK',
@@ -132,21 +142,8 @@
 					});
 				});
 				
-// 					$(document).ready(function() {
-// 						$("a#add_worker, a#edit").live('click', function(e) {
-// 							e.preventDefault();
-// 							$.fancybox(this, {
-// 								'scrolling' : 'no',
-// 								'titleShow' : false,
-// 								'centerOnScroll' : true,
-// 								'autoScale' : false,
-// 								'enableEscapeButton' : true,
-// 								'type' : 'inline'
-// 							});
-// 						});
-// 					})
-				
 					$(document).ready(function(){
+						$.noConflict();
 						$("input#name").focus();
 						$('input#color').simpleColorPicker({ 
 							onChangeColor: function(color) { $('input#color').val(color); },
@@ -229,7 +226,12 @@
 			</fieldset>
 		</form:form>
 	</section>
-	<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
+<!-- 選時器 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+<!-- 選色器 -->
+<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
 </body>

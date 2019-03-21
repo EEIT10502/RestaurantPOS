@@ -57,7 +57,7 @@ public class ScheduleBean implements Serializable {
 		this.schedule = schedule;
 	}
 
-	@Column(columnDefinition = "NVARCHAR(50) NOT NULL", name = "color")
+	@Column(name = "color")
 	public String getColor() {
 		return color;
 	}

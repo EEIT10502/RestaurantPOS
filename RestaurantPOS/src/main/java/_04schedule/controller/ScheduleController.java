@@ -149,6 +149,7 @@ public class ScheduleController {
 	public String list(Model model) {
 		List<CalendarBean> list = scheduleService.getAllEmpName();
 		model.addAttribute("calendar", list);
+		System.out.println("list"+list);
 		return "/scheduleManage/calendar";
 	}
 	

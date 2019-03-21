@@ -6,7 +6,7 @@
 <html>
 <head>
 <!-- jQuery v1.9.1 -->
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 <!-- pickadate.js v3.5.6 -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css"
@@ -48,14 +48,14 @@
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-lg-2 col-lg-2" for='color'> 
-						顏色</label>
-					<div class="col-lg-10">
-						<form:input id="color" path="color" name="color" type="text"
-							class='form:input-large' autocomplete = "off"/>
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class="col-lg-2 col-lg-2" for='color'>  -->
+<!-- 						顏色</label> -->
+<!-- 					<div class="col-lg-10"> -->
+<%-- 						<form:input id="color" path="color" name="color" type="text" --%>
+<%-- 							value="#FFFFFF" class='form:input-large' autocomplete = "off"/> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
@@ -131,23 +131,24 @@
 				<script type="text/javascript">
 				/*選時器*/
 				$(document).ready(function() {
-// 				    $('.example').pickatime({
-// 				        twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
-// 				        donetext: 'OK',
-// 				        format: "HH:i",
-// 				        autoclose: false,
-// 				        vibrate: true
-// 				    });
-// 				    // For adding seconds (00)
-// 				    $('.example').on('change', function() {
-// 				        let receivedVal = $(this).val();
-// 				        $(this).val(receivedVal + ":00");
-// 						});
-					$('.example').timepicker({ 'timeFormat': 'H:i:s' });
-				    
+					$.noConflict();
+				    $('.example').pickatime({
+				        twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
+				        donetext: 'OK',
+				        format: "HH:i",
+				        autoclose: false,
+				        vibrate: true
+				    });
+				    // For adding seconds (00)
+				    $('.example').on('change', function() {
+				        let receivedVal = $(this).val();
+				        $(this).val(receivedVal + ":00");
+						});
 				});
+				
 				/*選色器*/
 					$(document).ready(function(){
+						$.noConflict();
 						$("input#name").focus();
 						$('input#color').simpleColorPicker({ 
 							onChangeColor: function(color) { $('input#color').val(color); },
@@ -199,14 +200,10 @@
 		</form:form>
 	</section>
 <!-- 選時器 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
 <!-- 選色器 -->
-
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>

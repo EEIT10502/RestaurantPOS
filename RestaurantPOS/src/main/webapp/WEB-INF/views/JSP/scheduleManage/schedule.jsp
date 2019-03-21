@@ -38,7 +38,7 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">名稱</th>
-						<th scope="col">識別色</th>
+<!-- 						<th scope="col">識別色</th> -->
 						<th scope="col">開始時間</th>
 						<th scope="col">結束時間</th>
 						<th scope="col">休息時數</th>
@@ -49,8 +49,8 @@
 						<tr class="">
 							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
 							<td>${schedule.schedule}</td>
-							<td><div width="20" height="20"
-									style="width:20px;height:20px;border:1px solid #eee;background-color:${schedule.color}">&nbsp;</div></td>
+<!-- 							<td><div width="20" height="20" -->
+<%-- 									style="width:20px;height:20px;border:1px solid #eee;background-color:${schedule.color}">&nbsp;</div></td> --%>
 							<td>${schedule.startTime}</td>
 							<td>${schedule.endTime}</td>
 							<td>${schedule.restTime}</td>
