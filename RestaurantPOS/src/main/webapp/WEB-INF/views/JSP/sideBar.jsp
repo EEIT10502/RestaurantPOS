@@ -48,8 +48,9 @@
 		
 		<button class="w3-button w3-block w3-left-align sideBarColHight" onclick="openScheduleList()"><i	class="fa fa-table"></i>&nbsp&nbsp<span>排班管理</span>&nbsp <i class="fa fa-caret-down"></i></button>
 		<div id="demoScheduleList" class="w3-hide w3-white w3-card">
-			<a href="schedule" class="w3-bar-item w3-btn">班別管理</a>
-			<a href="calendar" class="w3-bar-item w3-btn">排班管理</a>
+<!-- 			<a href="schedule" class="w3-bar-item w3-btn">班別管理</a> -->
+			<a href="<c:url value='/schedule'/>" class="w3-bar-item w3-btn">班別管理</a>
+			<a href="<c:url value='/calendar'/>" class="w3-bar-item w3-btn">排班管理</a>
 		</div>
 
 		<!-- 報表系統 -->

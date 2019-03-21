@@ -167,6 +167,12 @@ public interface EmployeeDao {
 	//Tai
 	List<AttendenceBean> getAllAttendence();
 	
+	//以日期查詢員工出勤
+	void stringToDate(String Date1, String Date2);
+	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
+	
+	//匯出檔案
+	EmployeeBean findByPrimaryKey(int key);
 	
 	//==========================================================================test排班_開始
 	List<String> getAllEmployeesName();
