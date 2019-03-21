@@ -56,7 +56,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 		resolvers.add(jspViewResolver());
 
-		resolvers.add(pdfViewResolver(context));
+		
 
 		resolvers.add(excelViewResolver());
 		resolver.setViewResolvers(resolvers);
@@ -113,9 +113,5 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	@Bean
-	public ViewResolver pdfViewResolver(ServletContext context) {
-		return new PdfViewResolver(context);
-	}
 
 }
