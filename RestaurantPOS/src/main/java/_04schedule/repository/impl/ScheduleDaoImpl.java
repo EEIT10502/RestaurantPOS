@@ -35,7 +35,7 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		try {
 			String hql="FROM EmployeeBean WHERE empNo = :empNo";
 			employeeBean = (EmployeeBean) session.createQuery(hql).
-												  setParameter("empNo", empNo).
+												  setParameter("empNo", Integer.parseInt(empNo)).
 												  uniqueResult();
 			
 		} catch (Exception e) {
