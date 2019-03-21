@@ -39,11 +39,13 @@ td.errorMessage[type="redError"] {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
+
+
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
 	<section class="">
-		<fieldset class="w3-container" style="margin-left: 160px">
+		<fieldset class="w3-container" style="margin-left: 260px">
 			<div id="allList" class="">
 				<table class="table table-hover">
 					<thead>
@@ -77,7 +79,7 @@ td.errorMessage[type="redError"] {
 										data-target="#exampleModalCenter${employee.empId}">修改</button></td>
 							</tr>
 						</tbody>
-						<!-- 					Modal 開始 -->
+					<!-- 					Modal 開始 -->
 						<div class="modal fade" id="exampleModalCenter${employee.empId}"
 							tabindex="-1" role="dialog"
 							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -223,6 +225,190 @@ td.errorMessage[type="redError"] {
 							</div>
 						</div>
 						<!-- 						Modal 結束 -->
+
+						<script>
+							var flag = "";
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"empNameEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	if (document
+																			.getElementById("empNameEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("empNameEditError${employee.empId}").innerHTML = "<span style='color:red'><i>員工名稱不可空白";
+
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}A");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}A") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}A",
+																							"");
+																			document
+																					.getElementById("empNameEditError${employee.empId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${product.pId}B") == -1) {
+																			document
+																					.getElementById("empNameEditError${employee.empId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+
+																	}
+																});
+											})
+
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"telEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	var reg = /[^\d.]/g;
+																	if (document
+																			.getElementById("telEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("telEditError${employee.empId}").innerHTML = "<span style='color:red'><i>價格不可空白";
+																		if (flag
+																				.indexOf("${employee.empId}B") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}B");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}B") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}B",
+																							"");
+																			document
+																					.getElementById("telEditError${employee.empId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${employee.empId}B") == -1) {
+																			document
+																					.getElementById("telEditError${employee.empId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+																	}
+																});
+											})
+
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"addrEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	var reg = /[^\d.]/g;
+																	if (document
+																			.getElementById("addrEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("addrEditError${product.pId}").innerHTML = "<span style='color:red'><i>地址不可空白";
+																		if (flag
+																				.indexOf("${employee.empId}B") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}B");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}B") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}B",
+																							"");
+																			document
+																					.getElementById("addrEditError${product.pId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${employee.empId}B") == -1) {
+																			document
+																					.getElementById("addrEditError${product.pId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+																	}
+																});
+											})
+
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"remarkEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	var reg = /[^\d.]/g;
+																	if (document
+																			.getElementById("remarkEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("remarkEditError${employee.empId}").innerHTML = "<span style='color:red'><i>備註不可空白";
+																		if (flag
+																				.indexOf("${employee.empId}B") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}B");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}B") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}B",
+																							"");
+																			document
+																					.getElementById("remarkEditError${employee.empId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${employee.empId}B") == -1) {
+																			document
+																					.getElementById("remarkEditError${employee.empId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+																	}
+																});
+											})
+						</script>
 
 					</c:forEach>
 				</table>
