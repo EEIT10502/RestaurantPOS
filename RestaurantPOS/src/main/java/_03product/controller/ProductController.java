@@ -13,10 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import _00.init.util.GlobalService;
 import _00model.EmployeeBean;
@@ -468,17 +472,15 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productManage/excel/allProductList", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
-	public String queryAllProductExcel(
-			@RequestParam(value = "whichCate", required = false) String cateSelect,
+	public String queryAllProductExcel(@RequestParam(value = "whichCate", required = false) String cateSelect,
 			@RequestParam(value = "whichStatus", required = false) String StatusSelect,
-			@RequestParam(value = "searchBar", required = false) String searchBarString,
-			Model model) {
+			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
 		System.out.println("coming");
 
 		System.out.println("cateSelect:" + cateSelect);
 		System.out.println("StatusSelect:" + StatusSelect);
 		System.out.println("searchBarString:" + searchBarString);
-		
+
 		if (cateSelect.isEmpty() && StatusSelect.isEmpty() && searchBarString.isEmpty()) {
 			List<MenuBean> allProductsList = new ArrayList<>();
 			allProductsList = service.getAllProducts();
@@ -486,10 +488,10 @@ public class ProductController {
 
 			return "productManage/excel";
 		}
-		
+
 		if (!cateSelect.isEmpty()) {
 			service.setCateSelect(cateSelect);
-			
+
 			List<MenuBean> allProductsListGetByCate = new ArrayList<>();
 			allProductsListGetByCate = service.getAllProductsListGetByCate();
 			model.addAttribute("allMenuBean", allProductsListGetByCate);
@@ -515,7 +517,7 @@ public class ProductController {
 
 			return "productManage/excel";
 		}
-		
+
 		List<MenuBean> menuBean = service.getAllProducts();
 		model.addAttribute("allMenuBean", menuBean);
 
@@ -528,7 +530,7 @@ public class ProductController {
 			@RequestParam(value = "whichCate", required = false) String cateSelect,
 			@RequestParam(value = "whichStatus", required = false) String StatusSelect,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
-		
+
 		int currentPageNoInt = Integer.parseInt(currentPageNo.trim());
 
 		if (cateSelect.isEmpty() && StatusSelect.isEmpty() && searchBarString.isEmpty()) {
@@ -540,7 +542,7 @@ public class ProductController {
 
 			return "productManage/excel";
 		}
-		
+
 		if (!cateSelect.isEmpty()) {
 			service.setCurrentPageNo(currentPageNoInt);
 
@@ -577,7 +579,7 @@ public class ProductController {
 
 		List<MenuBean> menuBean = service.getAllProducts();
 		model.addAttribute("allMenuBean", menuBean);
-		
+
 		return "productManage/excel";
 	}
 
@@ -586,35 +588,7 @@ public class ProductController {
 	EmployeeService employeeService;
 
 	@RequestMapping(value = "/productManage/test/scheduleTest.action", method = RequestMethod.GET)
-	public String scheduleTest(
-//			@RequestParam(value = "pIdEdit", required = false) String pIdEdit,
-//			@RequestParam(value = "productNoEdit", required = false) String productNoEdit,
-//			@RequestParam(value = "productNameEdit", required = false) String productNameEdit,
-//			@RequestParam(value = "priceEdit", required = false) String priceEdit,
-//			@RequestParam(value = "cateEdit", required = false) String cateEdit,
-//			@RequestParam(value = "productStatusEdit", required = false) String productStatusEdit,
-//			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo
-	) {
-//		int pIdEditParse = Integer.parseInt(pIdEdit.trim());
-//		int productNoEditParse = Integer.parseInt(productNoEdit.trim());
-//		int priceEditParse = Integer.parseInt(priceEdit.trim());
-//
-//		MenuBean menuBean = new MenuBean(pIdEditParse, productNoEditParse, productNameEdit, priceEditParse, cateEdit,
-//				productStatusEdit);
-//		service.updateMenu(menuBean);
-//
-//		if (currentPageNo == null) {
-//			currentPageNoInit = 1;
-//		} else {
-//			try {
-//				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
-//			} catch (NumberFormatException e) {
-//				currentPageNoInit = 1;
-//			}
-//		}
-//
-//		service.setCurrentPageNo(currentPageNoInit);
-
+	public String scheduleTest() {
 		return "productManage/scheduleTest";
 	}
 
@@ -623,7 +597,7 @@ public class ProductController {
 
 		Date beginDate = new Date();
 		long beginDateJavaUtil = beginDate.getTime();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
 		String beginDateString = dateFormat.format(beginDate);
 
@@ -637,14 +611,6 @@ public class ProductController {
 		return scheduleDateList;
 	}
 
-//	@ModelAttribute("scheduleEmpNameList")
-//	public List<String> getScheduleEmpNameList(Model model) {
-//	
-//		List<String> ScheduleEmpList = new ArrayList<String>();
-//		ScheduleEmpList = employeeService.getAllEmployeesName();
-//		
-//		return ScheduleEmpList;
-//	}
 	@ModelAttribute("scheduleEmpList")
 	public List<EmployeeBean> getScheduleEmpList(Model model) {
 
@@ -665,5 +631,37 @@ public class ProductController {
 		return WorkTypeList;
 	}
 
+	@SuppressWarnings({ "unchecked", "static-access" })
+	@RequestMapping(value = "/productManage/test/scheduleTestJson.action", method = RequestMethod.POST)
+	@ResponseBody
+	public String scheduleTestJson(@RequestBody String param) {
+		JSONObject jo = new JSONObject();
+		Map<String, Object> mapoutter = (Map<String, Object>) jo.parse(param); // string转map
+
+		int countoutter = 1;
+		for (int i = 1; i <= mapoutter.size(); i++) {
+			String countoutterString = String.valueOf(countoutter);
+		
+			if (mapoutter.containsKey(countoutterString)) {			
+				Map<String, Object> mapinner = (Map<String, Object>) mapoutter.get(countoutterString);
+				
+				int countinner = 1;
+				for (int j = 1; j <= mapinner.size(); j++) {
+					String countinnerString = String.valueOf(countinner);
+					
+					Map<String, Object> mapdata = (Map<String, Object>) mapinner.get(countinnerString);
+					
+					String date = (String) mapdata.get("date");
+					String name = (String) mapdata.get("name");
+					String value = (String) mapdata.get("value");
+					System.out.println("date:"+date+",name:"+name+",value:"+value);
+					
+					countinner++;
+				}			
+			}
+			countoutter++;
+		}
+		return "OK";
+	}
 	// ==========================================================================test排班_結束
 }

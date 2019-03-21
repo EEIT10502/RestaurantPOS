@@ -7,8 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
->
+<link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <title>日結清機</title>
 <style type="text/css">
 span.errorMessage[type="redError"] {
@@ -57,6 +56,39 @@ $(document).ready(function(){
             })
 		}
     });
+});
+// $(document).ready(function(){
+// 		var moneyReceivedBtn=$("#moneyReceivedBtn").val();
+// 		if($("#moneyReceivedBtn").val()==""){
+// 			$('#submitClosing').attr('disabled', true);
+// 		}
+// 		if($("#moneyReceivedBtn").val()!=""){
+// 			$('#submitClosing').attr('disabled', false);
+// 		}
+// });
+// ${shortoverAmountTodayString != null}
+
+$(document).ready(function(){
+	<c:set var="shortovercheck" value="${shortoverAmountTodayString}"/>
+	var shortovercheck="${shortovercheck}";
+	var moneyReceivedBtn=$("#moneyReceivedBtn").val();
+	if($("#moneyReceivedBtn").val()==""){
+		$('#submitClosing').attr('disabled', true);
+	}
+	if($("#moneyReceivedBtn").val()!=""){
+		$('#submitClosing').attr('disabled', false);
+	}
+	$("#moneyReceivedBtn").blur(function() {
+		var moneyReceivedBtn=$("#moneyReceivedBtn").val();
+		if($("#moneyReceivedBtn").val()=="" || shortovercheck == null){
+			$('#submitClosing').attr('disabled', true);
+		}
+		if($("#moneyReceivedBtn").val()!="" && shortovercheck != null){
+			$('#submitClosing').attr('disabled', false);
+		}
+		
+    });
+	
 });
 </script>
 <body>
@@ -139,8 +171,14 @@ $(document).ready(function(){
 					<label class='col-sm-2 col-form-label' ></label>
 					<div class='col-sm-10'>
 						<c:if test="${closingCompletedToday == null}">
-							<input id="submitClosing" type='submit' class='btn btn-primary' value="日結確認" />
-							<input id="resetClosing" type='reset' class='btn btn-primary' value="清除" />
+<%-- 							<c:if test="${shortoverAmountTodayString != null}"> --%>
+								<input id="submitClosing" type='submit' class='btn btn-primary' value="日結確認" />
+								<input id="resetClosing" type='reset' class='btn btn-primary' value="清除" />
+<%-- 							</c:if> --%>
+<%-- 							<c:if test="${shortoverAmountTodayString == null}"> --%>
+<!-- 								<input disabled="disabled" id="submitClosing" type='submit' class='btn btn-primary' value="日結確認" /> -->
+<!-- 								<input disabled="disabled" id="resetClosing" type='reset' class='btn btn-primary' value="清除" /> -->
+<%-- 							</c:if> --%>
 						</c:if>
 						<c:if test="${closingCompletedToday != null}">
 							<input disabled="disabled" id="submitClosingCompleted" type='submit' class='btn btn-primary' value="日結確認" />

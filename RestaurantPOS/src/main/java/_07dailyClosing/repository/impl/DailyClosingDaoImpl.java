@@ -74,9 +74,16 @@ public class DailyClosingDaoImpl implements DailyClosingDao {
 		Integer maxIdNumber = getMaxIdNumber();
 		String hql = "SELECT cumulativeTurnover FROM CumulativeTurnoverBean WHERE id = ?0";	
 		Session session = factory.getCurrentSession();
-		Integer getCTPrevious = (Integer) session.createQuery(hql)
-				.setParameter(0, maxIdNumber)
-				.uniqueResult();
+		Integer getCTPrevious;
+		if(maxIdNumber == null) {
+			int zero = 0;
+			getCTPrevious = zero;
+		}else {
+			getCTPrevious = (Integer) session.createQuery(hql)
+					.setParameter(0, maxIdNumber)
+					.uniqueResult();
+		}
+
 		System.out.println("getCTPrevious:" + getCTPrevious);
 		return getCTPrevious;
 	}

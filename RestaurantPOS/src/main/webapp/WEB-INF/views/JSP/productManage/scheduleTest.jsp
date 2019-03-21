@@ -35,6 +35,7 @@ p.errorMessage[type="redError"] {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
+	
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#submitButton").click(function() {		
@@ -55,6 +56,60 @@ $(document).ready(function(){
 		     }
 		  }
 		  console.log(Tbdata);
+		  var jsonString = JSON.stringify(Tbdata);
+		  alert(jsonString);
+		  
+		  $.ajax({
+			    type: "POST",
+			    dataType: "text",
+			    url: '/RestaurantPOS/productManage/test/scheduleTestJson.action',
+			    contentType: 'application/json; charset=UTF-8',
+			    data: jsonString,
+			    success:function(data){
+					alert(data);
+				}
+	 	 });
+    });
+});
+
+<c:set var="dateList" value="${scheduleDateList}"/>
+
+$(document).ready(function(){
+	$("#addEmp").click(function() {		
+		alert("!!");
+		alert($('#empListSelect :selected').val());
+// 		alert("${dateList}");
+		var array = ${scheduleDateList};
+		alert(${dateList}+"");
+		var arrayString =array.toString();
+// 		var arrayString = String(array);
+// 		alert(arrayString);
+// 		var date = Date.parse(array[1]);
+		var date2 =array[1].toString();
+// 		var date2 = new Date(array[1]);
+// 		alert(date2);
+		
+		var empSelected = $('#empListSelect :selected').val();
+	
+		var $tr = $(document.createElement('tr'));
+		$("#tableSchedule tr:last-child").after($tr);
+// 		$tr.appendTo($("#tableSchedule tr:last-child"));
+		var $td = $(document.createElement('td'));
+		$td.text(empSelected);
+		$td.appendTo($tr);
+		
+// 		data = [["a","b","c"],["1","2","3"],["4","5","6"]];
+// 		var $table = $(document.createElement('table'));
+// 		$table.appendTo($("#addPlace"));
+// 		for(var i in data){
+// 			var $tr = $(document.createElement('tr'));
+// 			$tr.appendTo($table);
+// 			for(var j in data[i]){
+// 				var $td = $(document.createElement('td'));
+// 				$td.text(data[i][j]);
+// 				$td.appendTo($tr);
+// 			}
+// 		}
     });
 });
 </script>
@@ -63,6 +118,33 @@ $(document).ready(function(){
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="">
 	<fieldset class="w3-container" style="margin-left: 260px">
+			<div>
+				<label>員工名單：</label>
+				<select name="" id="empListSelect" class="">
+					<c:forEach var='empList' items='${scheduleEmpList}'>
+						<option><c:out value="${empList.empName}" /></option>
+					</c:forEach>
+				</select>
+				<span>
+					<input id="addEmp" type="button" value="加入">
+				</span>
+			</div>
+			<div>
+				<table border="1" id="tableSchedule" >
+					<tr>
+						<th>姓名</th>
+						<c:forEach var='dateList' items='${scheduleDateList}' varStatus="status">
+							<th><c:out value="${dateList}" /></th>
+						</c:forEach>
+					</tr>
+<!-- 					<tr id="addPlace" style="display:none"> -->
+<!-- 					<tr id="addPlace"> -->
+<!-- 					</tr> -->
+				</table>
+			</div>
+			<br><br><br><br><br><br><br><br><br>
+<!-- ==========================================================================			 -->
+			
 			<div id="allList" class="">
 <%-- 			<form class='center' name="" action="" method="post"> --%>
 				<table class="table" border="1">
