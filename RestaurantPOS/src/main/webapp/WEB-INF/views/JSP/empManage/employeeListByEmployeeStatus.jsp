@@ -78,7 +78,7 @@ td.errorMessage[type="redError"] {
 										</button>
 									</div>
 									<form class='center' name="editForm${employee.empId}"
-										action="${pageContext.request.contextPath}/empManage/employeeListByEmployeeStatusEdit.action/${employee.empId}?currentPageNoBtn=${currentPageNo}"
+										action="${pageContext.request.contextPath}/empManage/EmployeeListByEmployeeStatusEdit.action/${employee.empId}?currentPageNoBtnEmployeeStatus=${currentPageNo}&whichStatus=${whichStatus}"
 										method="post" enctype="multipart/form-data">
 										<div class="modal-body">
 											<input type="hidden" name="_method" id='put' value="">
@@ -186,12 +186,8 @@ td.errorMessage[type="redError"] {
 												<label for="empImgEdit${employee.empId}"
 													class="col-sm-2 col-form-label">圖片</label>
 												<div class="col-sm-10">
-													<%-- <c:choose> --%>
-													<%-- 														<c:when test="${employee.img == img }"></c:when> --%>
-
-													<%-- 													</c:choose> --%>
-													<input id="imgEdit${employee.empId}" type="file"
-														class="form-control" name="imgEdit"> <input
+													
+													<input
 														id="empImgEdit${employee.empId}" type="file"
 														class="form-control" name="empImgEdit"> <img
 														width="100px" height="100px"

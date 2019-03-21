@@ -71,7 +71,10 @@
 
 
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
 	<fieldset class="w3-container" style="margin-left: 160px">
 		<form action="categoryReportGet" method="post" id="form1">
@@ -133,5 +136,6 @@
 			</div>
 		</form>
 	</fieldset>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

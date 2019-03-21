@@ -30,7 +30,10 @@
 
 
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 
 	<form id="datatable">
 		<div class="w3-container" style="margin-left: 260px">
@@ -85,6 +88,6 @@
 		<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input
 			type="button" value="下一頁" id="dNPage" name="dNPage">
 	</div>
-
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>
