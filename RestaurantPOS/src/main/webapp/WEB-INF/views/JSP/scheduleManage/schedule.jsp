@@ -29,8 +29,10 @@
 <title>CLASS</title>
 </head>
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	<%-- 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" /> --%>
+	</div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
 			<div id="allList" class="row">
@@ -68,4 +70,7 @@
 				</div>
 			</div>
 		</fieldset>
+		</section>
+			<jsp:include page="../footer.jsp" flush="true" />
 </body>
+</html>

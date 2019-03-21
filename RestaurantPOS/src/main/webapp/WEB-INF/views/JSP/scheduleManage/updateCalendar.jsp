@@ -29,7 +29,10 @@
 
 </head>
 <body>
-<jsp:include page="../sideBar.jsp" flush="true" />
+<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
+	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="calendarBean"
@@ -154,4 +157,5 @@
 		</form:form>
 	</section>
 </body>
+	<jsp:include page="../footer.jsp" flush="true" />
 </html>

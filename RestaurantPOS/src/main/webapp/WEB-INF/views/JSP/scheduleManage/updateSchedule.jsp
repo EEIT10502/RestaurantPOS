@@ -38,7 +38,10 @@
 
 </head>
 <body>
-<jsp:include page="../sideBar.jsp" flush="true" />
+<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
+	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="scheduleBean"
@@ -234,5 +237,6 @@
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
+<%-- 	<jsp:include page="../footer.jsp" flush="true" /> --%>
 </body>
 </html>

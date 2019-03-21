@@ -5,8 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<!-- jQuery v1.9.1 -->
-<!-- <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 <!-- pickadate.js v3.5.6 -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css"
@@ -31,7 +29,10 @@
 
 </head>
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="scheduleBean"
@@ -63,24 +64,6 @@
 					<div class="col-lg-10">
 						<form:input id="startTime" path="startTime" type='text'
  							class="example" autocomplete = "off"/> 
-<!-- 						<select name="startTime" id="startTime" path="startTime"> -->
-<!-- 							<option value="08:00:00">08:00:00</option> -->
-<!-- 							<option value="09:00:00">09:00:00</option> -->
-<!-- 							<option value="10:00:00">10:00:00</option> -->
-<!-- 							<option value="11:00:00">11:00:00</option> -->
-<!-- 							<option value="12:00:00">12:00:00</option> -->
-<!-- 							<option value="13:00:00">13:00:00</option> -->
-<!-- 							<option value="14:00:00">14:00:00</option> -->
-<!-- 							<option value="15:00:00">15:00:00</option> -->
-<!-- 							<option value="16:00:00">16:00:00</option> -->
-<!-- 							<option value="17:00:00">17:00:00</option> -->
-<!-- 							<option value="18:00:00">18:00:00</option> -->
-<!-- 							<option value="19:00:00">19:00:00</option> -->
-<!-- 							<option value="20:00:00">20:00:00</option> -->
-<!-- 							<option value="21:00:00">21:00:00</option> -->
-<!-- 							<option value="22:00:00">22:00:00</option> -->
-<!-- 							<option value="23:00:00">23:00:00</option> -->
-<!-- 						</select> -->
 					</div>
 				</div>
 				<div class="form-group">
@@ -89,24 +72,6 @@
 					<div class="col-lg-10">
 						<form:input id="endTime" path="endTime" type='text'
  							class="example" autocomplete = "off"/> 
-<!-- 						<select name="endTime" id="endTime" path="endTime"> -->
-<!-- 							<option value="08:00:00">08:00:00</option> -->
-<!-- 							<option value="09:00:00">09:00:00</option> -->
-<!-- 							<option value="10:00:00">10:00:00</option> -->
-<!-- 							<option value="11:00:00">11:00:00</option> -->
-<!-- 							<option value="12:00:00">12:00:00</option> -->
-<!-- 							<option value="13:00:00">13:00:00</option> -->
-<!-- 							<option value="14:00:00">14:00:00</option> -->
-<!-- 							<option value="15:00:00">15:00:00</option> -->
-<!-- 							<option value="16:00:00">16:00:00</option> -->
-<!-- 							<option value="17:00:00">17:00:00</option> -->
-<!-- 							<option value="18:00:00">18:00:00</option> -->
-<!-- 							<option value="19:00:00">19:00:00</option> -->
-<!-- 							<option value="20:00:00">20:00:00</option> -->
-<!-- 							<option value="21:00:00">21:00:00</option> -->
-<!-- 							<option value="22:00:00">22:00:00</option> -->
-<!-- 							<option value="23:00:00">23:00:00</option> -->
-<!-- 						</select> -->
 					</div>
 				</div>
 				<div class="form-group">
@@ -119,7 +84,6 @@
 							<option value="1.0">1.0</option>
 							<option value="1.5">1.5</option>
 							<option value="2.0">2.0</option>
-
 						</select>
 					</div>
 				</div>
@@ -207,5 +171,6 @@
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
+<%-- 	<jsp:include page="../footer.jsp" flush="true" /> --%>
 </body>
 </html>
