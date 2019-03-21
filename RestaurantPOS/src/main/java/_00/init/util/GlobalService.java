@@ -14,8 +14,18 @@ public class GlobalService {
 	// productInsert所需資料_結束
 
 	// product查詢所需資料_開始
-	public static final int ITEMS_PER_PAGE = 5;
+	
+	public static final String EXCEL_HEADER_COUNT = "#";
+	public static final String EXCEL_HEADER_PRODUCTNO = "商品編號";
+	public static final String EXCEL_HEADER_PRODUCTNAME = "商品名稱";
+	public static final String EXCEL_HEADER_PRICE = "價格";
+	public static final String EXCEL_HEADER_CATE = "類別";
+	public static final String EXCEL_HEADER_PRODUCTSTATUS = "狀態";
 	// product查詢所需資料_結束
+
+	// product匯出Excel所需資料_開始
+	public static final int ITEMS_PER_PAGE = 5;
+	// product匯出Excel所需資料_結束
 
 	// 下面兩個是給出單機的IP位置和編碼方式
 	public static final String IP = "192.168.1.100";

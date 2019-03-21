@@ -3,146 +3,81 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-<title>DayCheck</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- Bootstrap Core CSS -->
-<link rel="stylesheet"	href="<c:url value="/css/bootstrap.min.css"/>">
-<!-- Custom CSS -->
-<link rel="stylesheet"	href="<c:url value="/css/style.css"/>">
-<!-- Graph CSS -->
-<link rel="stylesheet"	href="<c:url value="/css/font-awesome.css"/>">
-<!-- jQuery -->
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<!-- lined-icons -->
-<link rel="stylesheet"	href="<c:url value="/css/icon-font.min.css"/>">
-<!-- //lined-icons -->
-<script src="<c:url value="/js/amcharts.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/js/serial.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/js/scripts.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/js/jquery.nicescroll.js"/>" type="text/javascript"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="<c:url value="/js/bootstrap.min.js"/>" type="text/javascript"></script>
-<!-- /Bootstrap Core JavaScript -->
-<script src="<c:url value="/js/menu_jquery.js"/>" type="text/javascript"></script>
-<!--pie-chart--->
-<script src="<c:url value="/js/pie-chart.js"/>" type="text/javascript"></script>
-
-
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				$('#demo-pie-1').pieChart(
-						{
-							barColor : '#3bb2d0',
-							trackColor : '#eee',
-							lineCap : 'round',
-							lineWidth : 8,
-							onStep : function(from, to, percent) {
-								$(this.element).find('.pie-value').text(
-										Math.round(percent) + '%');
-							}
-						});
-				var toggle = true;
-				$(".sidebar-icon").click(
-						function() {
-							if (toggle) {
-								$(".page-container").addClass(
-										"sidebar-collapsed").removeClass(
-										"sidebar-collapsed-back");
-								$("#menu span").css({
-									"position" : "absolute"
-								});
-							} else {
-								$(".page-container").removeClass(
-										"sidebar-collapsed").addClass(
-										"sidebar-collapsed-back");
-								setTimeout(function() {
-									$("#menu span").css({
-										"position" : "relative"
-									});
-								}, 400);
-							}
-
-							toggle = !toggle;
-						});
-				
-				
-				$("#checkout").click(function() {		
-			        var moneyReceivedBtn=$("#moneyReceivedBtn").val();
-					var turnoverBtn = $("#turnoverBtn").val();
-					if($("#moneyReceivedBtn").val()==""){
-						alert("請輸入當日實收金額");
-					}else{
-			        $.ajax({     	
-			                type :'POST',
-			                url  :'/RestaurantPOS/close/checkDiffAmount.action',
-			                data : {
-			                	"moneyReceivedInsert" : moneyReceivedBtn,
-			                	"totalSalesAmountToday": turnoverBtn
-			                },
-			                error: function() {
-						      	alert('Ajax request 發生錯誤');
-						    },
-						    success: function(response) {
-						    	var Diff = -response;
-						    	document.getElementById("afterCheck").innerHTML = Diff + "  元";
-						    	document.getElementById("shortoverAmountBtn").value = Diff;
-
-						    	if(Diff != 0){
-						    		if(Diff >= 0){
-						    			document.getElementById("afterCheckString").innerHTML ="本日有溢收金額";
-						    		}
-						    		if(Diff <= 0){
-						    			document.getElementById("afterCheckString").innerHTML ="本日有短收金額";
-						    		}
-						    	}else{
-						    		document.getElementById("afterCheckString").innerHTML ="當日實收金額 與 當日應收金額 '無'差異";
-						    	}
-						    }
-			            })
-					}
-			    });
-				
-
-			});
-	function ShowTime() {
-		var NowDate = new Date();
-		var d = NowDate.getDay();
-		var dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五",
-				"星期六");
-		document.getElementById('showbox').innerHTML = '目前時間：'
-				+ NowDate.toLocaleString() + '（' + dayNames[d] + '）';
-		setTimeout('ShowTime()', 1000);
-	}
-</script>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<title>日結清機</title>
 <style type="text/css">
 span.errorMessage[type="redError"] {
 	color: red;
 }
 </style>
 </head>
-<body onload="ShowTime()">
-	<div class="page-container">
-		<!--/content-inner-->
-		<div class="left-content">
-			<div class="inner-content">
-			
-				<!-- header-starts -->
-				<c:import url="../DashBoard/dashHeader.jsp"/>
-				<!-- //header-ends -->
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#checkout").click(function() {		
+        var moneyReceivedBtn=$("#moneyReceivedBtn").val();
+		var turnoverBtn = $("#turnoverBtn").val();
+		if($("#moneyReceivedBtn").val()==""){
+			alert("請輸入當日實收金額");
+		}else{
+        $.ajax({     	
+                type :'POST',
+                url  :'/RestaurantPOS/close/checkDiffAmount.action',
+                data : {
+                	"moneyReceivedInsert" : moneyReceivedBtn,
+                	"totalSalesAmountToday": turnoverBtn
+                },
+                error: function() {
+			      	alert('Ajax request 發生錯誤');
+			    },
+			    success: function(response) {
+			    	var Diff = -response;
+			    	document.getElementById("afterCheck").innerHTML = Diff + "  元";
+			    	document.getElementById("shortoverAmountBtn").value = Diff;
 
-				<!--content-->
-				<div class="content">
-				<div class="women_main">
-					<!--//內文<div>從這裡開始-->
-					<div class="w_content">
-				<form:form method='POST' modelAttribute="CumulativeTurnoverBean"
+			    	if(Diff != 0){
+			    		if(Diff >= 0){
+			    			document.getElementById("afterCheckString").innerHTML ="本日有溢收金額";
+			    		}
+			    		if(Diff <= 0){
+			    			document.getElementById("afterCheckString").innerHTML ="本日有短收金額";
+			    		}
+			    	}else{
+			    		document.getElementById("afterCheckString").innerHTML ="當日實收金額 與 當日應收金額 '無'差異";
+			    	}
+			    }
+            })
+		}
+    });
+});
+
+
+</script>
+<body>
+	<jsp:include page="../sideBar.jsp" flush="true" />
+	<section class="">
+			<form:form method='POST' modelAttribute="CumulativeTurnoverBean"
 				class='form-horizontal'>
-				<fieldset class="w3-container" style="margin-left: 160px">
+				<fieldset class="w3-container" style="margin-left: 260px">
 					<div class="container">
 						<h1>日結清機</h1>
 					</div>
@@ -235,27 +170,34 @@ span.errorMessage[type="redError"] {
 				</div>
 				</fieldset>
 			</form:form>
-					</div>
-					<!--//內文</div>從這裡結束-->
-					<div class="clearfix"></div>
-					
-					<!-- footer -->
-						<c:import url="../DashBoard/dashFooter.jsp"/>
-					<!-- footer -->
-				</div>
-				<!--content-->
-				</div>
-			</div>
-		</div>
-		<!--//content-inner-->
-		
-				<!--sidebar-->
-					<c:import url="../DashBoard/dashSideBar.jsp"/>
-				<!--sidebar-->
-		<div class="clearfix"></div>
-	</div>
 
 
-
+			<!-- 	========================================================================================= -->
+<%-- 			<form> --%>
+				<!-- 				<div> -->
+				<!-- 					<input type="button" value="回首頁" id="cBack" name="cBack" -->
+				<!-- 						onclick="location.href='../index.jsp'"> -->
+				<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<h3>日結清機</h3> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<label for="amountM">當日應收金額</label> <input type="text" id="amountM" -->
+<!-- 						name="amountM" readonly="readonly"> -->
+<!-- 					<p> -->
+<!-- 						<label for="actualM">實收金額</label> <input type="text" id="actualM " -->
+<!-- 							name="actualM"> -->
+<!-- 					<p> -->
+<!-- 						<label for="differenceM">短/溢收</label> <input type="text" -->
+<!-- 							id="differenceM" name="differenceM"> -->
+<!-- 					<p> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<input type="submit" value="確定" id="cOK" name="cOK"> <input -->
+<!-- 						type="reset" value="重設" id="cReset" name="cReset"> -->
+<!-- 				</div> -->
+<%-- 			</form> --%>
+<!-- 		</fieldset> -->
+	</section>
 </body>
 </html>
