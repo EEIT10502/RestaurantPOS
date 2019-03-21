@@ -59,4 +59,10 @@ public interface ProductDao {
 
 	void updateMenu(MenuBean menuBean);
 
+	List<MenuBean> getAllProductsListGetByCate();
+
+	List<MenuBean> getAllProductsListGetByProductStatus();
+
+	List<MenuBean> getAllProductsListGetBySearch();
+
 }

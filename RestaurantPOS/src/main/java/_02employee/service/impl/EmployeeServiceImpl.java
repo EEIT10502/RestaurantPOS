@@ -38,13 +38,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDao.addEmployee(employee);
 	}
 
-	// 1-1.取得現有職位(MAX)編號
-	@Transactional
-	@Override
-	public Integer getCurrentPositionNumber(String positionInsert) {
-		return employeeDao.getCurrentPositionNumber(positionInsert);
-	}
+//	// 1-1.取得現有職位(MAX)編號
+//	@Transactional
+//	@Override
+//	public Integer getCurrentPositionNumber(String positionInsert) {
+//		return employeeDao.getCurrentPositionNumber(positionInsert);
+//	}
 	
+	// 1-1.取得現有職位(MAX)編號
+		@Transactional
+		@Override
+		public Integer getCurrentPositionNumber() {
+			return employeeDao.getCurrentPositionNumber();
+		}
 	
 
 
@@ -282,6 +288,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 					    return employeeDao.getAllEmployeesName();
 				}
 		//==========================================================================test排班_結束
+
+		//dfd
+		// 14.取得員工圖片
+		@Transactional
+		@Override
+		public Blob getEmployeePicture(Blob img) {
+			return employeeDao.getEmployeePicture(img);
+		}
 	
 
 

@@ -22,6 +22,7 @@
 
 <body>
 <!-- 左方菜單開始 -->
+	<div class="col-4 float-left">
 	<div class="w3-sidebar w3-bar-block sideColor w3-card sideWidth"	>
 		
 		<a href="<c:url value='/toDashBoard'/>" class="w3-button w3-block w3-left-align sideBarColHight"><i class="fa fa-tachometer"></i>&nbsp&nbsp<span>回後台首頁</span></a>
@@ -31,7 +32,7 @@
 		<div id="demoHRList" class="w3-hide w3-white w3-card">
 
 
-            <a href="<c:url value="/empManage/empInsert.action"/>" class="w3-bar-item w3-btn">新增員工資訊</a>
+            <a href="<c:url value="/empManage/empInsert"/>" class="w3-bar-item w3-btn">新增員工資訊</a>
 			<a href="<c:url value="/empManage/allEmployeeList.action"/>" class="w3-bar-item w3-btn">查詢員工資訊</a>
 			<a href="<c:url value="/empManage/attendance"/>" class="w3-bar-item w3-btn">出勤紀錄查詢</a>
 			<!-- 			<a href="#" class="w3-bar-item w3-button">員工班表</a> -->
@@ -64,6 +65,6 @@
 		<a href="<c:url value='/'/>" class="w3-button w3-block w3-left-align sideBarColHight"><i class="fa fa-tachometer"></i>&nbsp&nbsp<span>回系統首頁</span>&nbsp</a>
 	</div>
 <!-- 	左方菜單結束 -->
-
+	</div>
 </body>
 </html>

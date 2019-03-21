@@ -12,7 +12,7 @@ public class ExcelViewResolver implements ViewResolver{
 		
 		View view = null;
 		if (viewName.startsWith("productManage/excel")) {
-			view = new _03product.view.MultipleMembersExcelView();
+			view = new _03product.view.MultipleProductExcelView();
 		} else if (viewName.startsWith("categoryReport/excel"))  {
 			view = new _05financial.view.MultipleCategoryReportExcelView();
 		} 

@@ -25,7 +25,7 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import _05financial.viewresolver.PdfViewResolver;
+
 
 
 @Configuration
@@ -56,8 +56,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 		resolvers.add(jspViewResolver());
 
-		resolvers.add(pdfViewResolver(context));
-
 		resolvers.add(excelViewResolver());
 		resolver.setViewResolvers(resolvers);
 		return resolver;
@@ -78,14 +76,17 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		System.out.println("excelViewResolver");
 		return new _00.init.viewresolver.ExcelViewResolver();
 	}
-
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/fonts/");
 		registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/images/");
-
+		registry.addResourceHandler("/assets/plugins/bootstrap/css/**").addResourceLocations("/WEB-INF/views/assets/plugins/bootstrap/css/");
+		registry.addResourceHandler("/assets/plugins/bootstrap/js/**").addResourceLocations("/WEB-INF/views/assets/plugins/bootstrap/js/");
+		registry.addResourceHandler("/assets/plugins/jquery/**").addResourceLocations("/WEB-INF/views/assets/plugins/jquery/");
+		/// http://localhost:8080/RestaurantPOS/assets/plugins/jquery/jquery.min.js net::ERR_ABORTED 404
 	}
 
 	@Bean
@@ -110,9 +111,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	@Bean
-	public ViewResolver pdfViewResolver(ServletContext context) {
-		return new PdfViewResolver(context);
-	}
+//	@Bean
+//	public ViewResolver pdfViewResolver(ServletContext context) {
+//		return new PdfViewResolver(context);
+//	}
+
 
 }

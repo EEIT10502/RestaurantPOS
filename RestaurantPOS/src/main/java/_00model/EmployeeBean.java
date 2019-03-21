@@ -20,8 +20,8 @@ public class EmployeeBean implements Serializable {
 
 
 
-	public EmployeeBean(Integer empId, Integer empNo, String empName, String gender, String position, String tel,
-			String addr, String remark, String status, Blob img, MultipartFile empImg) {
+	public EmployeeBean(Integer empId, Integer empNo, String empName,  String position,String gender, String tel,
+			String addr,String status, String remark,  Blob img, MultipartFile empImg) {
 		super();
 		this.empId = empId;
 		this.empNo = empNo;

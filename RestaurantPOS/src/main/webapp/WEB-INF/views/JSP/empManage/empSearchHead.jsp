@@ -37,7 +37,7 @@ span.errorMessage[type="redError"] {
 	crossorigin="anonymous"></script>
 <body>
 	<section class="">
-		<fieldset class="w3-container" style="margin-left: 160px">
+		<fieldset class="w3-container" style="margin-left: 260px">
 			<h1>員工查詢/修改</h1>
 
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
