@@ -32,6 +32,7 @@
 
 
 <script>
+
 function ShowTime()
 {
     var NowDate = new Date();
@@ -47,14 +48,9 @@ $(function(){
 		var received = parseInt($('#oReceived').val());
 		var totalAmount = parseInt(${totalAmount});
 		var change = received - totalAmount ;
-		
 		$('#oChange').val(change + "元");
-		
-		}
-		
 	});
 });
-
 </script>
 
 </head>
