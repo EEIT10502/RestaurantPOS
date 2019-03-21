@@ -30,6 +30,7 @@ td.errorMessage[type="redError"] {
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
@@ -78,7 +79,7 @@ td.errorMessage[type="redError"] {
 										</button>
 									</div>
 									<form class='center' name="editForm${employee.empId}"
-										action="${pageContext.request.contextPath}/empManage/employeeListByEmployeePositionEdit.action/${employee.empId}?currentPageNoBtn=${currentPageNo}"
+										action="${pageContext.request.contextPath}/empManage/EmployeeListByEmployeePositionEdit.action/${employee.empId}?currentPageNoBtnEmployeePosition=${currentPageNo}&whichPosition=${whichPosition}"
 										method="post" enctype="multipart/form-data">
 										<div class="modal-body">
 											<input type="hidden" name="_method" id='put' value="">

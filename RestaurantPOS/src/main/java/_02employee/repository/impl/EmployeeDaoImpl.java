@@ -94,6 +94,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 	
 	
+	
+	
+	
+	
 //	//透過員工NO取得單筆詳細資訊
 //	@Override
 //	public EmployeeBean getEmployeesByNo(String empNo) {

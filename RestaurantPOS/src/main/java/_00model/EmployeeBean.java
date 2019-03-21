@@ -166,8 +166,12 @@ public class EmployeeBean implements Serializable {
 		return img;
 	}
 
-	public void setImg(Blob img) {
-		this.img = img;
+//	public void setImg(Blob img) {
+//		this.img = img;
+//	}
+	
+	public Blob setImg(Blob img) {
+		return this.img = img;
 	}
 
 
