@@ -14,7 +14,7 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 </head>
-<title>員工查詢</title>
+<title>���u�d��</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -30,47 +30,44 @@
 
 
 <body>
-	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	</div>
 
-	<form id="datatable">
-		<div class="w3-container" style="margin-left: 260px">
-			<h2>員工出勤查詢</h2>
+	<form action="">
+		<div class="w3-container" style="margin-left: 160px">
+			<h2>���u�X�Ԭd��</h2>
 
-			<!-- 		搜尋列開始 -->
+			<!-- 		�j�M�C�}�l -->
 			<div>
 
-				<h3>選擇欲查詢日期</h3>
+				<h3>��ܱ��d�ߤ��</h3>
 				<input type="date" id="attendanceSDate1" name="attendanceSDate1">~
 				<input type="date" id="attendanceSDate2" name="attendanceSDate2">
 				<p>
 
 					<select id="searchEmpType">
-						<option>員工姓名</option>
-						<option>員工編號</option>
+						<option>���u�m�W</option>
+						<option>���u�s��</option>
 					</select> <input type="text" id="empSearch" name="empSearch"> <input
-						type="submit" value="查詢" id="searchBut" name="searchBut">
+						type="submit" value="�d��" id="searchBut" name="searchBut">
 			</div>
 	</form>
-	<!-- 搜尋列結束 -->
-	<!-- 匯出 -->
+	<!-- �j�M�C���� -->
+	<!-- �ץX -->
 	<div>
-		<a href='attendance.xls' >多筆會員資料查詢(EXCEL格式)</a><br>
+		<input type="button" value="�ץX�ɮ�" id="dExport" name="dExport">
 	</div>
-	<!-- 		匯出與寄信結束 -->
-	<!-- 商品列表開始 -->
+	<!-- 		�ץX�P�H�H���� -->
+	<!-- �ӫ~�C���}�l -->
 	<div>
 		<table border="1">
 			<tr>
-				<th>序號</th>
-				<th>員工編號</th>
-				<th>員工姓名</th>
-				<th>日期</th>
-				<th>狀態</th>
-				<th>時間</th>
-				<th>備註</th>
+				<th>�Ǹ�</th>
+				<th>���u�s��</th>
+				<th>���u�m�W</th>
+				<th>���</th>
+				<th>���A</th>
+				<th>�ɶ�</th>
+				<th>�Ƶ�</th>
 			</tr>
 					<c:forEach var="Attendence" items="${Attendence}" varStatus="status">
 				<tr>
@@ -84,10 +81,10 @@
 				</tr>
 		</c:forEach>
 		</table>
-		<!-- 	商品列表結束 -->
-		<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input
-			type="button" value="下一頁" id="dNPage" name="dNPage">
+		<!-- 	�ӫ~�C������ -->
+		<input type="button" value="�W�@��" id="dBPage" name="dBPage"> <input
+			type="button" value="�U�@��" id="dNPage" name="dNPage">
 	</div>
-	<jsp:include page="../footer.jsp" flush="true" />
+
 </body>
 </html>

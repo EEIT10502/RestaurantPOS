@@ -49,7 +49,7 @@
 		})
 	});
 
-	//轉PDF帶值
+	//轉PDF方法
 	$(function() {
 		$("#csExport").click(
 				function() {
@@ -58,69 +58,84 @@
 					$("#form1").submit();
 				});
 	})
+	//轉查詢方法
+	$(function() {
+		$("#csSelect").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/categoryReportGet");
+					$("#form1").submit();
+				});
+	})
 </script>
 
 
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
+	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
+	<fieldset class="w3-container" style="margin-left: 160px">
+		<form action="categoryReportGet" method="post" id="form1">
+			<!-- 報表版面 -->
+			<div class="w3-container" style="margin-left: 160px">
+				<div>
+					<h2>類別銷售分析</h2>
+				</div>
+				<div>
+					<h3>選擇欲查詢日期</h3>
+					<input type="text" id="csDate1" name="csDate1" value="${csDate1}"
+						readonly>~ <input type="text" id="csDate2" name="csDate2"
+						value="${csDate2}" readonly>
+					<p>
 
-	<form action="categoryReportGet" method="post" id="form1">
-		<!-- 報表版面 -->
-		<div class="w3-container" style="margin-left: 260px">
-			<div>
-				<h2>類別銷售分析</h2>
-			</div>
-			<div>
-				<h3>選擇欲查詢日期</h3>
-				<input type="text" id="csDate1" name="csDate1" value="${csDate1}" readonly
-					>~ <input type="text" id="csDate2"
-					name="csDate2" value="${csDate2}" readonly>
-				<p>
+						<!-- 類別下拉選單 -->
+						<select id="csSelOpt" name="csSelOpt"">
+							<option>--請選擇--</option>
+							<c:forEach var="csSel" items="${listMenuCate}">
+								<c:if test="${csSelOpt == csSel}">
+									<option selected="selected"><c:out value="${csSel}" /></option>
+								</c:if>
+								<c:if test="${csSelOpt!=csSel}">
+									<option><c:out value="${csSel}" /></option>
+								</c:if>
+							</c:forEach>
+						</select> <input type="submit" value="查詢" id="csSelect" name="csSelect">
+				</div>
 
-					<!-- 類別下拉選單 -->
-					<select id="csSelOpt" name="csSelOpt"">
-						<option>--請選擇--</option>
-						<c:forEach var="csSel" items="${listMenuCate}">
-							<c:if test="${csSelOpt == csSel}">
-								<option selected="selected"><c:out value="${csSel}" /></option>
-							</c:if>
-							<c:if test="${csSelOpt!=csSel}">
-								<option><c:out value="${csSel}" /></option>
-							</c:if>
-						</c:forEach>
-					</select> <input type="submit" value="查詢" id="csSel" name="csSel">
-			</div>
-
-			<div>
-				<h5>選擇日期：${csDate1}至${csDate2}</h5>
-				<input type="button" value="匯出報表" id="csExport" name="csExport">
-<%-- 				<a type="button" href="<c:url value='/report/categoryReportGetExcel?csDate1=${csDate1}&csDate2=${csDate2}&csSelOpt=${csSelOpt}'/>"> TO PDF</a> --%>
-				<table border="1">
-					<tr>
-						<th>日期</th>
-						<th>類別名稱</th>
-						<th>數量</th>
-						<th>銷售金額</th>
-					</tr>
-					<c:forEach var="pTable" items="${listCatee}">
-						<c:set var="totalQty" value="${totalQty + pTable[1]}" />
-						<c:set var="totalPrice" value="${totalPrice + pTable[2]}" />
+				<div>
+					<h5>選擇日期：${csDate1}至${csDate2}</h5>
+					<input type="button" value="匯出報表" id="csExport" name="csExport">
+					<%-- 				<a type="button" href="<c:url value='/report/categoryReportGetExcel?csDate1=${csDate1}&csDate2=${csDate2}&csSelOpt=${csSelOpt}'/>"> TO PDF</a> --%>
+					<table class="table table-hover">
 						<tr>
-							<td>${pTable[0]}</td>
-							<td>${csSelOpt}</td>
-							<td>${pTable[1]}</td>
-							<td>${pTable[2]}</td>
+							<th>日期</th>
+							<th>類別名稱</th>
+							<th>數量</th>
+							<th>銷售金額</th>
 						</tr>
-					</c:forEach>
-					<tr>
-						<th>總計</th>
-						<td>${csSelOpt}</td>
-						<td>${totalQty}</td>
-						<td>${totalPrice}</td>
-					</tr>
-				</table>
+						<c:forEach var="pTable" items="${listCatee}">
+							<c:set var="totalQty" value="${totalQty + pTable[1]}" />
+							<c:set var="totalPrice" value="${totalPrice + pTable[2]}" />
+							<tr>
+								<td>${pTable[0]}</td>
+								<td>${csSelOpt}</td>
+								<td>${pTable[1]}</td>
+								<td>${pTable[2]}</td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<th>總計</th>
+							<td>${csSelOpt}</td>
+							<td>${totalQty}</td>
+							<td>${totalPrice}</td>
+						</tr>
+					</table>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</fieldset>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

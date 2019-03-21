@@ -4,8 +4,10 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import _00.init.util.GlobalService;
+import _00model.CalendarBean;
 import _00model.EmployeeBean;
+import _00model.OrderDetailBean;
 import _02employee.service.EmployeeService;
 
 //這是一個提供Manager登入的@Controller
@@ -427,6 +431,12 @@ public class EmployeeController {
 				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
 			}
 		}
+		//更新員工時也會將資料丟到排班表裡
+		Set<CalendarBean> items = new HashSet<CalendarBean>();
+		CalendarBean oib = new CalendarBean();
+		oib.setEmployee(employeeBean);
+		items.add(oib);
+		employeeBean.setCalendarBean(items);
 
 		employeeService.addEmployee(employeeBean);
 		return "redirect:/empManage/allEmployeeList.action";

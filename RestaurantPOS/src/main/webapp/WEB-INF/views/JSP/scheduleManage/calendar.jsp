@@ -1,168 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <html>
 <head>
-<meta charset='utf-8' />
-<link
-	href='${pageContext.request.contextPath }/assets/css/fullcalendar.min.css'
-	rel='stylesheet' />
-<link
-	href='${pageContext.request.contextPath }/assets/css/fullcalendar.print.min.css'
-	rel='stylesheet' media='print' />
-<script
-	src='${pageContext.request.contextPath }/assets/js/lib/moment.min.js'></script>
-<script
-	src='${pageContext.request.contextPath }/assets/js/lib/jquery.min.js'></script>
-<script
-	src='${pageContext.request.contextPath }/assets/js/lib/jquery-ui.min.js'></script>
-<script
-	src='${pageContext.request.contextPath }/assets/js/fullcalendar.min.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
-body {
-	margin-top: 40px;
-	text-align: center;
-	font-size: 14px;
-	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
-}
 
-#wrap {
-	width: 1100px;
-	margin: 0 auto;
-}
-
-#external-events {
-	float: left;
-	width: 150px;
-	padding: 0 10px;
-	border: 1px solid #ccc;
-	background: #eee;
-	text-align: left;
-}
-
-#external-events h4 {
-	font-size: 16px;
-	margin-top: 0;
-	padding-top: 1em;
-}
-
-#external-events .fc-event {
-	margin: 10px 0;
-	cursor: pointer;
-}
-
-#external-events p {
-	margin: 1.5em 0;
-	font-size: 11px;
-	color: #666;
-}
-
-#external-events p input {
-	margin: 0;
-	vertical-align: middle;
-}
-
-#calendar {
-	float: right;
-	width: 900px;
-}
-</style>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+<!--引用jQuery-->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!--引用dataTables.js-->
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<title>CLASS</title>
 </head>
 <body>
-	<div id='wrap'>
-
-		<div id='external-events'>
-			<h4>班表選擇</h4>
-			<div class='fc-event'>早班</div>
-			<div class='fc-event'>中班</div>
-			<div class='fc-event'>晚班</div>
-			<div class='fc-event'>兼A</div>
-			<div class='fc-event'>兼B</div>
-			<p>
-				<input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove
-					after drop</label>
-			</p>
-		</div>
-
-		<div id='calendar'></div>
-
-		<div style='clear: both'></div>
-
+		<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
+	<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
+	<section class="">
+		<fieldset class="w3-container" style="margin-left: 260px">
+			<div id="allList" class="row">
+				<table class="table table-hover">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">員工名稱</th>
+						<th scope="col">03/31 日</th>
+						<th scope="col">04/01 一</th>
+						<th scope="col">04/02 二</th>
+						<th scope="col">04/03 三</th>
+						<th scope="col">04/04 四</th>
+						<th scope="col">04/05 五</th>
+						<th scope="col">04/06 六</th>
+						<th scope="col">操作</th>
+					</tr>
+
+					<c:forEach var='calendar' items='${calendar}' varStatus="status">
+						<tr class="">
+							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
+							<td>${calendar.employee.empName}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day1}</td>
+							<td style="color:${calendar.schedule}">${calendar.day2}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day3}</td>
+							<td style="color:${calendar.schedule}">${calendar.day4}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day5}</td>
+							<td style="color:${calendar.schedule}">${calendar.day6}</td>
+							<td style="color:${calendar.schedule.color}">${calendar.day7}</td>
+							<td><a
+								href="<c:url value='/calendar/update?id=${calendar.calendarId}'/>"
+								title="編輯" class="btn btn-primary" id="edit" type="button">編輯</a></td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+		<jsp:include page="../footer.jsp" flush="true" />
 </body>
-<script>
-	$(document).ready(
-			function() {
-
-				/* initialize the external events
-				-----------------------------------------------------------------*/
-
-				$('#external-events .fc-event').each(function() {
-
-					// store data so the calendar knows to render an event upon drop
-					$(this).data('event', {
-						title : $.trim($(this).text()), // use the element's text as the event title
-						stick : true
-					// maintain when user navigates (see docs on the renderEvent method)
-					});
-
-					// make the event draggable using jQuery UI
-					$(this).draggable({
-						zIndex : 999,
-						revert : true, // will cause the event to go back to its
-						revertDuration : 0
-					//  original position after the drag
-					});
-
-				});
-
-				/* initialize the calendar
-				-----------------------------------------------------------------*/
-
-				$('#calendar').fullCalendar({
-					header : {
-						left : 'prev,next today',
-						center : 'title',
-						right : 'agendaWeek,month',
-					},
-					customButtons: {
-				        promptResource: {
-				          text: '+ room',
-				          click: function() {
-				            var title = prompt('Room name');
-				            if (title) {
-				              $('#calendar').fullCalendar(
-				                'addResource',
-				                { title: title },
-				                true // scroll to the new resource?
-				              );
-				            }
-				          }
-				        }
-				      },
-		            
-					editable : true,
-					droppable : true, // this allows things to be dropped onto the calendar
-					monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-		            monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-		            dayNames: ["日", "一", "二", "三", "四", "五", "六"],
-		            dayNamesShort: ["日", "一", "二", "三", "四", "五", "六"],
-					allDayText: '員工名稱',
-// 					allDaySlot: false,	//allDay?域的文本?容
-					timeFormat:'',
-					sta
-		            drop : function() {
-						// is the "remove after drop" checkbox checked?
-						if ($('#drop-remove').is(':checked')) {
-							// if so, remove the element from the "Draggable Events" list
-							$(this).remove();
-						}
-					}
-					
-				});
-			});
-</script>
-</html>

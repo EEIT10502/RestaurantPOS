@@ -117,8 +117,8 @@ public class FbController {
 	@RequestMapping("/order/confirmPayment")
 	public ModelAndView confirmPayment(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
 		System.out.println("進入結帳控制器");
-		ModelAndView mv = new ModelAndView("redirect:/manage/getLastOne");
-//		ModelAndView mv = new ModelAndView("/outfield/order");
+//		ModelAndView mv = new ModelAndView("redirect:/manage/getLastOne");
+		ModelAndView mv = new ModelAndView("forward:/outfield/order");
 		System.out.println(orderForm);
 		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
 		
@@ -127,7 +127,7 @@ public class FbController {
 		Integer cusFlow = orderForm.getCusFlow();
 		System.out.println("cusFlow:"+cusFlow);
 		Integer totalPrice = orderForm.getTotalAmount();
-		System.out.println("totalPrice:"+totalPrice);
+		System.out.println("totalPrice:"+ totalPrice);
 		Timestamp orderTime = new Timestamp(System.currentTimeMillis()); 
 		String orderNo = SeqUtils.getSeqNo();
 		OrderBean ob = new OrderBean(null,orderNo,cusFlow,orderTime,totalPrice,callNo);

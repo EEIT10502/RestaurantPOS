@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>管理登入</title>
 <!-- Custom Theme files -->
 <link href="<c:url value="/css/loginCSS.css"/>" rel="stylesheet" type="text/css" media="all"/>
 <!-- Custom Theme files -->
