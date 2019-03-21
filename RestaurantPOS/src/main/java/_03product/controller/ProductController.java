@@ -634,10 +634,10 @@ public class ProductController {
 	@SuppressWarnings({ "unchecked", "static-access" })
 	@RequestMapping(value = "/productManage/test/scheduleTestJson.action", method = RequestMethod.POST)
 	@ResponseBody
-	public String scheduleTestJson(@RequestBody String param) {
+	public String scheduleTestJson(@RequestBody String param) {	
 		JSONObject jo = new JSONObject();
 		Map<String, Object> mapoutter = (Map<String, Object>) jo.parse(param); // string转map
-
+		
 		int countoutter = 1;
 		for (int i = 1; i <= mapoutter.size(); i++) {
 			String countoutterString = String.valueOf(countoutter);
@@ -651,6 +651,7 @@ public class ProductController {
 					
 					Map<String, Object> mapdata = (Map<String, Object>) mapinner.get(countinnerString);
 					
+					
 					String date = (String) mapdata.get("date");
 					String name = (String) mapdata.get("name");
 					String value = (String) mapdata.get("value");
@@ -661,6 +662,11 @@ public class ProductController {
 			}
 			countoutter++;
 		}
+		
+		Map<String, Object> maptest = new HashMap<String, Object>();
+		maptest.put("aa", "AA");
+		maptest.put("bb", "BB");
+		System.out.println("maptest:"+maptest);
 		return "OK";
 	}
 	// ==========================================================================test排班_結束

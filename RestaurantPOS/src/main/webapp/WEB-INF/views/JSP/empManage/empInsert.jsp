@@ -15,7 +15,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
-<title>商品新增</title>
+<title>員工新增</title>
 <style type="text/css">
 p.errorMessage[type="redError"] {
 	color: red;
@@ -63,9 +63,9 @@ function autoInsert(){
 			class='form-horizontal' enctype='multipart/form-data'>
 			<fieldset class="w3-container" style="margin-left: 260px">
 				<div class="container">
-					<h1>員工資料填寫</h1>
+					<h1>員工資料填寫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="一鍵輸入" onclick="autoInsert()" class = "btn btn-primary"></h1>
 				</div>
-				<input type="button" value="一鍵輸入" onclick="autoInsert()">
+				
 
 				<div class="form-group">
 					<label for='empName'>姓名</label>
@@ -117,10 +117,10 @@ function autoInsert(){
 					<label for='remark'>備註</label>
 					<form:input id="remark" path="remark" type='text' name="remark" />
 				</div>
-
+<br>
 				<div>
-					<input id="addbtn" type="submit" value="送出" /> <input
-						id="resetbtn" type="reset" value="清除" />
+					<input id="addbtn" type="submit" value="送出" class = "btn btn-primary"/> <input
+						id="resetbtn" type="reset" value="清除"  class = "btn btn-primary"/>
 
 				</div>
 			</fieldset>
