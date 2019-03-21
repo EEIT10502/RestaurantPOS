@@ -3,6 +3,7 @@ package _00model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,7 +55,7 @@ public class CalendarBean implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	@ManyToOne
+	@ManyToOne //(cascade=CascadeType.ALL)不加，會要求update employee表單所有值
 	@JoinColumn(name="empId")
 	public EmployeeBean getEmployee() {
 		return employee;
@@ -128,10 +129,6 @@ public class CalendarBean implements Serializable {
 	public void setDay7(String day7) {
 		this.day7 = day7;
 	}
-
-	
-	
-	
 	
 }
 	
