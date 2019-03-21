@@ -207,7 +207,7 @@ public class EmployeeBean implements Serializable {
 		return builder.toString();
 	}
 	
-	//對應到Calendar
+	//對應到Calendar 
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="empId")
 	public Set<CalendarBean> getCalendarBean() {
