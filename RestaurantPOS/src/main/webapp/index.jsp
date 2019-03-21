@@ -49,11 +49,7 @@ $(document).ready(function(){
       	 <!-- LOGO -->
       <div class="col-md-4 span_4" >
           <div class="r3_counter_box" id="logo">
-              <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
-              <div class="stats">
-                <h5><strong>45%%</strong></h5>
-                <span>New Orders</span>
-              </div>
+             <img alt="Logo" style="width: 100%" src="<c:url value="/images/IndexLogo.jpg"/>">
           </div>
           <!-- 打卡機 -->
           <div class="r3_counter_box" style="display: none;" id="punchTable">
@@ -68,7 +64,7 @@ $(document).ready(function(){
           <div class="col-md-6 col_1_of_2 span_1_of_2">
               <a href="<spring:url value='/outfield/order' />">
               <div class="r3_counter_box">
-                  <i class="pull-left fa fa-shopping-cart icon-rounded"></i>
+                  <i class="pull-left fa fa-shopping-cart icon-rounded user1"></i>
                   <div class="stats">
                     <h5><strong>點餐系統</strong></h5>
                   </div>                 
@@ -80,7 +76,7 @@ $(document).ready(function(){
           		
                 <a href="<spring:url value='/manage/managelogin' />">
                 <div class="r3_counter_box">
-                  <i class="pull-left fa fa-user icon-rounded"></i>
+                  <i class="pull-left fa fa-user icon-rounded user1"></i>
                   <div class="stats">
                    <h5><strong>後台管理</strong></h5>
                   </div>
@@ -97,7 +93,7 @@ $(document).ready(function(){
           <div class="col-md-6 col_1_of_2 span_1_of_2">
               <a href="##" id="showPunch">
               <div class="r3_counter_box">
-                  <i class="pull-left fa fa-clock-o icon-rounded"></i>
+                  <i class="pull-left fa fa-clock-o icon-rounded user1"></i>
                   <div class="stats">
                     <h5><strong >出勤打卡</strong></h5>                 
                   </div>
@@ -106,11 +102,11 @@ $(document).ready(function(){
           </div>
           <!-- 空白格 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
-                  <a href="<c:url value="/manage/queryOne"/>" >
+                  <a href="<c:url value="/manage/toNewOrders"/>" >
               	  <div class="r3_counter_box">
                   <i class="pull-left fa fa-clock-o icon-rounded"></i>
                   <div class="stats">
-                    <h5><strong >測試列印</strong></h5>                 
+                    <h5><strong >測試點餐</strong></h5>                 
                   </div>
 	              </div>
 	              </a>                   
