@@ -25,7 +25,7 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import _05financial.viewresolver.PdfViewResolver;
+
 
 
 @Configuration
@@ -56,7 +56,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 		resolvers.add(jspViewResolver());
 
-		resolvers.add(pdfViewResolver(context));
+//		resolvers.add(pdfViewResolver(context));
 
 		resolvers.add(excelViewResolver());
 		resolver.setViewResolvers(resolvers);
@@ -78,7 +78,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		System.out.println("excelViewResolver");
 		return new _00.init.viewresolver.ExcelViewResolver();
 	}
-
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
@@ -113,9 +113,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-	@Bean
-	public ViewResolver pdfViewResolver(ServletContext context) {
-		return new PdfViewResolver(context);
-	}
+//	@Bean
+//	public ViewResolver pdfViewResolver(ServletContext context) {
+//		return new PdfViewResolver(context);
+//	}
 
 }

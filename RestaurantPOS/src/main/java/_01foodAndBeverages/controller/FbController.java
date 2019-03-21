@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -95,8 +96,7 @@ public class FbController {
 		mv.addObject("orderVos",newOrderVos);
 		mv.addObject("callNo",orderForm.getCallNo());
 		mv.addObject("cusFlow",orderForm.getCusFlow());
-		mv.addObject("totalAmount",newTotalAmount);
-		
+		mv.addObject("totalAmount",newTotalAmount);		
 		mv.setViewName("/outfield/payment");
 	
 		
@@ -190,6 +190,6 @@ public class FbController {
 		
 		return "/outfield/order";
 	}
-
+	
 }
 	
