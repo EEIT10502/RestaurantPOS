@@ -43,11 +43,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	// 1-1.取得現有職位(MAX)編號
+//	@Override
+//	public Integer getCurrentPositionNumber(String positionInsert) {
+//		String hql = "SELECT MAX(empNo) FROM EmployeeBean Where position = ?0";
+//		Session session = factory.getCurrentSession();
+//		Integer CurrentCategoryNumber = (Integer) session.createQuery(hql).setParameter(0, positionInsert)
+//				.uniqueResult();
+//		return CurrentCategoryNumber;
+//	}
+	
 	@Override
-	public Integer getCurrentPositionNumber(String positionInsert) {
-		String hql = "SELECT MAX(empNo) FROM EmployeeBean Where position = ?0";
+	public Integer getCurrentPositionNumber() {
+		String hql = "SELECT MAX(empNo) FROM EmployeeBean";
 		Session session = factory.getCurrentSession();
-		Integer CurrentCategoryNumber = (Integer) session.createQuery(hql).setParameter(0, positionInsert)
+		Integer CurrentCategoryNumber = (Integer) session.createQuery(hql)
 				.uniqueResult();
 		return CurrentCategoryNumber;
 	}
@@ -497,6 +506,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			    return list;
 		}
 //==========================================================================test排班_結束
+
+		// 14.取得員工圖片
+		@Override
+		public Blob getEmployeePicture(Blob img) {
+			String hql = "SELECT img FROM EmployeeBean where empName like :key";
+			Session session = factory.getCurrentSession();
+			Blob testP = (Blob) session.createQuery(hql).setParameter("key", img);
+			return testP;
+		}
 		
 	
 	

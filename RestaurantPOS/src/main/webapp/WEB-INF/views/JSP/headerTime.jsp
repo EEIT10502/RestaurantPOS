@@ -14,20 +14,30 @@
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<body >
-		<div  class="clearfix">
-			<jsp:include page="headerTime.jsp" flush="true" />		
-			<jsp:include page="sideBar.jsp" flush="true" />
-		</div>
-		
-		
-		<div class="col-8">
-		<!-- 內容放這裡開始 -->	
-		
-		<!-- 內容放這裡結束1 -->
-		</div>
-	
-		<jsp:include page="footer.jsp" flush="true"/>
-	
+<script type="text/javascript">
+function ShowTime() {
+	var NowDate = new Date();
+	var d = NowDate.getDay();
+	var dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五",
+			"星期六");
+	document.getElementById('showbox').innerHTML = '目前時間：'
+			+ NowDate.toLocaleString() + '（' + dayNames[d] + '）';
+	setTimeout('ShowTime()', 1000);
+}
+</script>
+<body onload="ShowTime()">
+    	<div class="header-section float-right" >
+			<!-- top_bg  -->
+			<div class="top_bg">
+				<div class="header_top">
+					<div class="top_left">
+						<p id="showbox"></p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<!-- /top_bg -->
+		</div>	
 </body>
 </html>

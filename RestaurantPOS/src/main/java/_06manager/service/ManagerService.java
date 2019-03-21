@@ -26,7 +26,7 @@ public interface ManagerService {
 	public List<OrderDetailBean> queryODetailById(int orderId);
 	/**
 	 * 取得最新的OrderId
-	 * @return
+	 * @return 一個在OrderBean內最大的orderId
 	 */
 	public int getMaxOrderId();
 	
