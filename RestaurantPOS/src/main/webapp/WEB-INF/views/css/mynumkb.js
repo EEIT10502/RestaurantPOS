@@ -59,14 +59,14 @@
                 '</div>',
             ].join("");
             
-            $("body").append(_html);
+            $("#tablelist").append(_html);
             me.setPosition();
         },
         setPosition:function(){
             var me = this;
             var parentNode = me.$eparentNode;
             var $element = me.$element;
-            $("body").css("position","relative");
+            $("#tablelist").css("position","relative");
             var height = $element.outerHeight();
             var width = $element.outerWidth();
             var position = $element.position();
