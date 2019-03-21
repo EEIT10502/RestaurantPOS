@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index</title>
+<title>系統首頁</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <!-- Bootstrap Core CSS -->
@@ -39,7 +39,7 @@ $(document).ready(function(){
 </head>
 <body id="login">
   <div class="login-logo">
-   <!--   <a href="index.html"><img src="<c:url value="/images/logo.png"/>" alt="a"/></a>--> 
+  
   </div>
   <!--內文從這裡開始-->
   <div class="app-cam" >
@@ -136,7 +136,6 @@ $(document).ready(function(){
    <div class="copy_layout login">
       <p>Copyright &copy; 2019.Company name All rights reserved.</p>
    </div>
->>>>>>> branch 'master' of https://github.com/EEIT10502/RestaurantPOS.git
 </body>
 <script>
 		//這裡開始是給計算機用的script
@@ -167,12 +166,9 @@ $(document).ready(function(){
 				alert("不可為空!")
 				return;
 			}
-			//測試是否有拿到值
-            //alert(Str);
-            //alert(Val);
+
             
-            //送出後清空字串
-            //$("#showResBox").attr("text","");
+           //送出後清空字串           
            document.getElementById("showResBox").value="";
 		   
             //使用ajax 無刷新取得資訊
@@ -183,8 +179,7 @@ $(document).ready(function(){
 			
 			//失敗
 			error:function(xhr) {
-			      	alert('Ajax request 發生錯誤');
-			      	alert(xhr);
+			      	alert('打卡失敗，請輸入有效的員工編號');			      
 				},
 			//成功
 			success:function(data){

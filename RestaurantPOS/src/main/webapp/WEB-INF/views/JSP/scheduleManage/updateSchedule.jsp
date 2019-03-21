@@ -5,23 +5,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-
-<style type="text/css">
-fieldset {
-	border: 1px solid rgb(255, 232, 57);
-	width: 200px;
-	margin: auto;
-}
-.hiddenList {
-	display: none;
-}
-
-td.errorMessage[type="redError"] {
-	color: red;
-}
-</style>
-
-
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/jquery.simple-color-picker.css" media="screen, projection" />
 <title>修改班別</title>
 <script type="text/javascript">
   function confirmDelete(scheduleId){
@@ -41,24 +34,28 @@ td.errorMessage[type="redError"] {
 	  return false;
   }
 </script>
-<link rel='stylesheet' href='css/styles.css' type="text/css" />
+<!-- <link rel='stylesheet' href='css/styles.css' type="text/css" /> -->
 
 </head>
 <body>
+<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
+	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="scheduleBean"
 			class='form-horizontal' enctype="multipart/form-data">
 			<input type="hidden" name="_method"  id='putOrDelete'   value="" >
-			<fieldset>
-				<legend>修改排班資料</legend>
+			<fieldset class="w3-container" style="margin-left: 260px">
+				<legend>修改班別資料</legend>
 				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='scheduleId'>
+					<label class="control-label col-lg-2 col-lg-2 hide" for='scheduleId'>
 						ID</label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.scheduleId}" path="scheduleId" type='text'
-							class='form:input-large' readonly="true"/> 
+							class='form:input-large hide' readonly="true"/> 
 					</div>
 				</div>
 				
@@ -67,26 +64,26 @@ td.errorMessage[type="redError"] {
 						班別名稱 </label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.schedule}" path="schedule" type='text'
-							class='form:input-large' />
-							
+							class='form:input-large' autocomplete = "off"/>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-lg-10">
-						<label class="control-label col-lg-2 col-lg-2" for='color'>
-							顏色</label>
-						<form:input id="shcedule${schedule.color}" path="color" name="color" type="text"
-							class='form:input-large' />
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 						<label class="control-label col-lg-2 col-lg-2" for='color'> -->
+<!-- 							顏色</label><br> -->
+<!-- 							<div class="col-lg-10"> -->
+<%-- 						<form:input id="color" path="color" name="color" type="text" --%>
+<%-- 							class='form:input-large' autocomplete = "off"/> --%>
+<!-- 							</div> -->
+<!-- 				</div> -->
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
 						開始時間 </label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.startTime}" path="startTime" type='text'
-							class='form:input-large' />
+							class='example' />
+							
 					</div>
 				</div>
 				<div class="form-group">
@@ -94,25 +91,33 @@ td.errorMessage[type="redError"] {
 						結束時間 </label>
 					<div class="col-lg-10">
 						<form:input id="shcedule${schedule.endTime}" path="endTime" type='text'
-							class='form:input-large' />
+							class='example' />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='restTime'>
 						休息時間 </label>
 					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.restTime}" path="restTime" type='text'
-							class='form:input-large' />
+<%-- 						<form:input id="shcedule${schedule.restTime}" path="restTime" type='text' --%>
+<%-- 							class='form:input-large' /> --%>
+							<select name="restTime" id="shcedule${schedule.restTime}" path="restTime" >
+							<option value="0.0">0.0</option>
+							<option value="0.5">0.5</option>
+							<option value="1.0">1.0</option>
+							<option value="1.5">1.5</option>
+							<option value="2.0">2.0</option>
+
+						</select>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='totalTime'>
-						總時間 </label>
-					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.totalTime}" path="totalTime" type='text'
-							class='form:input-large' />
-					</div>
-				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class="control-label col-lg-2 col-lg-2" for='totalTime'> -->
+<!-- 						總時數 </label> -->
+<!-- 					<div class="col-lg-10"> -->
+<%-- 						<form:input id="shcedule${schedule.totalTime}" path="totalTime" type='text' --%>
+<%-- 							class='form:input-large' /> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
             			<input type="submit" value="送出" name='updateBtn' onclick="return confirmUpdate('${schedule.scheduleId}');"/>
@@ -123,22 +128,25 @@ td.errorMessage[type="redError"] {
            <c:remove var="member" scope="request" />       
          </c:if>
 				<script type="text/javascript">
-					$(document).ready(function() {
-						$("a#add_worker, a#edit").live('click', function(e) {
-							e.preventDefault();
-							$.fancybox(this, {
-								'scrolling' : 'no',
-								'titleShow' : false,
-								'centerOnScroll' : true,
-								'autoScale' : false,
-								'enableEscapeButton' : true,
-								'type' : 'inline'
-							});
-						});
-					})
-				</script>
-				<script type="text/javascript">
+				
+				$(document).ready(function() {
+					$.noConflict();
+					$('.example').pickatime({
+						twelvehour : false, // change to 12 hour AM/PM clock from 24 hour
+						donetext : 'OK',
+						format : "HH:i",
+						autoclose : false,
+						vibrate : true
+					});
+					// For adding seconds (00)
+					$('.example').on('change', function() {
+						let receivedVal = $(this).val();
+						$(this).val(receivedVal + ":00");
+					});
+				});
+				
 					$(document).ready(function(){
+						$.noConflict();
 						$("input#name").focus();
 						$('input#color').simpleColorPicker({ 
 							onChangeColor: function(color) { $('input#color').val(color); },
@@ -221,5 +229,14 @@ td.errorMessage[type="redError"] {
 			</fieldset>
 		</form:form>
 	</section>
+<!-- 選時器 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
+<!-- 選色器 -->
+<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
+<%-- 	<jsp:include page="../footer.jsp" flush="true" /> --%>
 </body>
 </html>

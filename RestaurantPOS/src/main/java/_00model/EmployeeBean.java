@@ -2,12 +2,18 @@ package _00model;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
@@ -20,8 +26,8 @@ public class EmployeeBean implements Serializable {
 
 
 
-	public EmployeeBean(Integer empId, Integer empNo, String empName, String gender, String position, String tel,
-			String addr, String remark, String status, Blob img, MultipartFile empImg) {
+	public EmployeeBean(Integer empId, Integer empNo, String empName,  String position,String gender, String tel,
+			String addr,String status, String remark,  Blob img, MultipartFile empImg) {
 		super();
 		this.empId = empId;
 		this.empNo = empNo;
@@ -49,7 +55,8 @@ public class EmployeeBean implements Serializable {
 	String status;
 	Blob img;
 	private MultipartFile empImg;
-	
+	//Calendar
+	Set<CalendarBean> CalendarBean = new LinkedHashSet<>();
 	
 	
 	private String  	fileName;
@@ -61,8 +68,6 @@ public class EmployeeBean implements Serializable {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-
-	
 
 	@XmlTransient
 	@Transient
@@ -200,6 +205,17 @@ public class EmployeeBean implements Serializable {
 		builder.append(empImg);
 		builder.append("]");
 		return builder.toString();
+	}
+	
+	//對應到Calendar 
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="empId")
+	public Set<CalendarBean> getCalendarBean() {
+		return CalendarBean;
+	}
+
+	public void setCalendarBean(Set<CalendarBean> calendarBean) {
+		CalendarBean = calendarBean;
 	}
 
 	

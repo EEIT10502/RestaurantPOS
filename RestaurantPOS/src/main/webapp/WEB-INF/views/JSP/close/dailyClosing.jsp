@@ -7,10 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
+<link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 <title>日結清機</title>
 <style type="text/css">
 span.errorMessage[type="redError"] {
@@ -19,18 +16,9 @@ span.errorMessage[type="redError"] {
 </style>
 </head>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script
-  src="http://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#checkout").click(function() {		
@@ -47,7 +35,7 @@ $(document).ready(function(){
                 	"totalSalesAmountToday": turnoverBtn
                 },
                 error: function() {
-			      	alert('Ajax request 發生錯誤');
+			      	alert('日結清機發生錯誤!');
 			    },
 			    success: function(response) {
 			    	var Diff = -response;
@@ -69,11 +57,46 @@ $(document).ready(function(){
 		}
     });
 });
+// $(document).ready(function(){
+// 		var moneyReceivedBtn=$("#moneyReceivedBtn").val();
+// 		if($("#moneyReceivedBtn").val()==""){
+// 			$('#submitClosing').attr('disabled', true);
+// 		}
 
+// 		if($("#moneyReceivedBtn").val()!=""){
+// 			$('#submitClosing').attr('disabled', false);
+// 		}
+// });
+// ${shortoverAmountTodayString != null}
 
+$(document).ready(function(){
+	<c:set var="shortovercheck" value="${shortoverAmountTodayString}"/>
+	var shortovercheck="${shortovercheck}";
+	var moneyReceivedBtn=$("#moneyReceivedBtn").val();
+	if($("#moneyReceivedBtn").val()==""){
+		$('#submitClosing').attr('disabled', true);
+	}
+	if($("#moneyReceivedBtn").val()!=""){
+		$('#submitClosing').attr('disabled', false);
+	}
+	$("#moneyReceivedBtn").blur(function() {
+		var moneyReceivedBtn=$("#moneyReceivedBtn").val();
+		if($("#moneyReceivedBtn").val()=="" || shortovercheck == null){
+			$('#submitClosing').attr('disabled', true);
+		}
+		if($("#moneyReceivedBtn").val()!="" && shortovercheck != null){
+			$('#submitClosing').attr('disabled', false);
+		}
+		
+    });
+	
+});
 </script>
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<section class="">
 			<form:form method='POST' modelAttribute="CumulativeTurnoverBean"
 				class='form-horizontal'>
@@ -87,8 +110,7 @@ $(document).ready(function(){
 						</label>
 						<div class="col-sm-10">
 							${todayString}
-							<form:hidden id="dateBtn" path="date" name="iDate" class='form:input-large' /> 
-<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfProductName} --%>
+							<form:hidden id="dateBtn" path="date" name="iDate" class='form:input-large' />
 						</div>
 					</div>
 					<div class="form-group row">
@@ -98,17 +120,13 @@ $(document).ready(function(){
 						<div class="col-sm-10">
 							${totalSalesAmountToday}  元
 							<form:hidden  id="turnoverBtn" path="turnover" class='form:input-large' name="iTurnover" /> 
-<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%> 
 						</div>
-
 					</div>
 					<div class="form-group row">
 						<label class='col-sm-2 col-form-label' for="moneyReceivedBtn">
 							當日實收金額
 						</label>
-						<div class='col-sm-10'>
-							
-<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
+						<div class='col-sm-10'>							
 						 	<c:if test="${closingCompletedToday == null}">
 						 		<form:input id="moneyReceivedBtn" path="moneyReceived" type='text' class='form:input-large' name="iMoneyReceived" placeholder="請輸入當日實收金額" onkeyup="value=value.replace(/[^\d.]/g,'')"/>
 						 		<input type="button" id="checkout" value="check" class="btn btn-info"/>
@@ -126,8 +144,7 @@ $(document).ready(function(){
 						<c:if test="${closingCompletedToday == null}">
 							<div class='col-sm-10'>
 								<form:hidden id="shortoverAmountBtn" path="shortoverAmount" class='form:input-large' name="iShortoverAmount" />
-									<span id="afterCheck">尚未輸入當日實收金額</span>
-	<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
+									<span id="afterCheck">尚未輸入當日實收金額</span>	
 							</div>
 							<label class='col-sm-2 col-form-label' ></label>
 							<div  class='col-sm-10'>
@@ -136,9 +153,6 @@ $(document).ready(function(){
 						</c:if>
 						<c:if test="${closingCompletedToday != null}">
 							<div class='col-sm-10'>
-<%-- 								<form:hidden id="shortoverAmountBtn" path="shortoverAmount" class='form:input-large' name="iShortoverAmount" /> --%>
-<!-- 									<span id="afterCheck">尚未輸入當日實收金額</span> -->
-	<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
 								${shortoverAmountToday}  元
 							</div>
 							<label class='col-sm-2 col-form-label' ></label>
@@ -158,8 +172,14 @@ $(document).ready(function(){
 					<label class='col-sm-2 col-form-label' ></label>
 					<div class='col-sm-10'>
 						<c:if test="${closingCompletedToday == null}">
-							<input id="submitClosing" type='submit' class='btn btn-primary' value="日結確認" />
-							<input id="resetClosing" type='reset' class='btn btn-primary' value="清除" />
+<%-- 							<c:if test="${shortoverAmountTodayString != null}"> --%>
+								<input id="submitClosing" type='submit' class='btn btn-primary' value="日結確認" />
+								<input id="resetClosing" type='reset' class='btn btn-primary' value="清除" />
+<%-- 							</c:if> --%>
+<%-- 							<c:if test="${shortoverAmountTodayString == null}"> --%>
+<!-- 								<input disabled="disabled" id="submitClosing" type='submit' class='btn btn-primary' value="日結確認" /> -->
+<!-- 								<input disabled="disabled" id="resetClosing" type='reset' class='btn btn-primary' value="清除" /> -->
+<%-- 							</c:if> --%>
 						</c:if>
 						<c:if test="${closingCompletedToday != null}">
 							<input disabled="disabled" id="submitClosingCompleted" type='submit' class='btn btn-primary' value="日結確認" />
@@ -170,34 +190,7 @@ $(document).ready(function(){
 				</div>
 				</fieldset>
 			</form:form>
-
-
-			<!-- 	========================================================================================= -->
-<%-- 			<form> --%>
-				<!-- 				<div> -->
-				<!-- 					<input type="button" value="回首頁" id="cBack" name="cBack" -->
-				<!-- 						onclick="location.href='../index.jsp'"> -->
-				<!-- 				</div> -->
-<!-- 				<div> -->
-<!-- 					<h3>日結清機</h3> -->
-<!-- 				</div> -->
-<!-- 				<div> -->
-<!-- 					<label for="amountM">當日應收金額</label> <input type="text" id="amountM" -->
-<!-- 						name="amountM" readonly="readonly"> -->
-<!-- 					<p> -->
-<!-- 						<label for="actualM">實收金額</label> <input type="text" id="actualM " -->
-<!-- 							name="actualM"> -->
-<!-- 					<p> -->
-<!-- 						<label for="differenceM">短/溢收</label> <input type="text" -->
-<!-- 							id="differenceM" name="differenceM"> -->
-<!-- 					<p> -->
-<!-- 				</div> -->
-<!-- 				<div> -->
-<!-- 					<input type="submit" value="確定" id="cOK" name="cOK"> <input -->
-<!-- 						type="reset" value="重設" id="cReset" name="cReset"> -->
-<!-- 				</div> -->
-<%-- 			</form> --%>
-<!-- 		</fieldset> -->
 	</section>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

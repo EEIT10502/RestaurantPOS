@@ -1,5 +1,6 @@
 package _02employee.service;
 
+import java.sql.Blob;
 import java.util.List;
 
 import _00model.AttendenceBean;
@@ -16,8 +17,11 @@ public interface EmployeeService {
 	// 1.註冊：員工資料
 	void addEmployee(EmployeeBean employee);
 
-	//1-1.取得現有職位(MAX)編號
-	Integer getCurrentPositionNumber(String positionInsert);
+//	//1-1.取得現有職位(MAX)編號
+//	Integer getCurrentPositionNumber(String positionInsert);
+	
+	//TEST INSERT EMPNO
+	Integer getCurrentPositionNumber();
 
 	// 1-2.設定就業狀態select(status)
 	void setStatusSelect(String statusSelect);
@@ -118,9 +122,16 @@ public interface EmployeeService {
 //	// 13.取得各員工狀態數量-none
 //	long getTotalEmployeeCountsByEmployeeStatus();
 	
-	//Tai
-	List<AttendenceBean> getAllAttendence();
+	// 14.取得員工照片
+	Blob getEmployeePicture(Blob pFromDB);
 	
+	
+	//Tai 用於出勤表(完成)
+	List<AttendenceBean> getAllAttendence();
+	//Tai 用於出勤表(尚未完成)
+	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
+	
+	EmployeeBean findByPrimaryKey(int key);
 	
 	//==========================================================================test排班_開始
 	List<String> getAllEmployeesName();

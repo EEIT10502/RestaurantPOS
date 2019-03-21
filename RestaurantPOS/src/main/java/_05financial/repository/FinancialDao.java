@@ -30,5 +30,7 @@ public interface FinancialDao {
 	
 	public List<OrderDetailBean> getCateByDate2(String Date1, String Date2, String Cate);
 	
+	public List<OrderBean> getOrderByDateExcel(String Date1, String Date2);
+	
 
 }
