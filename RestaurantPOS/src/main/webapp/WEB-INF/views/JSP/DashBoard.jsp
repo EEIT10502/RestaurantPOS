@@ -24,7 +24,7 @@
 		<div class="col-8">
 		<!-- 內容放這裡開始 -->	
 		
-		<!-- 內容放這裡結束 -->
+		<!-- 內容放這裡結束1 -->
 		</div>
 	
 		<jsp:include page="footer.jsp" flush="true"/>
