@@ -53,6 +53,8 @@
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
+	<fieldset class="w3-container" style="margin-left: 160px">
 	<form action="goalReportGet" method="post" id="form1">
 		<!-- 報表版面 -->
 		<div class="w3-container" style="margin-left: 160px">
@@ -69,7 +71,7 @@
 			<div>
 				<h5>${gMonth1}</h5>
 				<input type="button" value="匯出報表" id="gExport" name="gExport">
-				<table border="1">
+				<table class="table table-hover">
 					<tr>
 						<th>日期</th>
 						<th>目標營業額</th>
@@ -92,5 +94,6 @@
 			</div>
 		</div>
 	</form>
+	</fieldset>
 </body>
 </html>
