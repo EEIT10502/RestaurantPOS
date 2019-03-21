@@ -37,7 +37,12 @@
 <!--Custom JavaScript -->
 <script src="<c:url value="/js/OrderCustom.min.js"/>"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+<style type="text/css">
+*{
+font-family: Microsoft JhengHei ;
+font-weight:bold;
+}
+</style>
 <script>
 	var itemNo = 0;
 	
@@ -224,7 +229,7 @@
 				<nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
 					<!-- Logo -->
 					<div class="navbar-header">
-						<a class="navbar-brand" href="index.html"> <!-- Logo icon -->
+						<a class="navbar-brand" href="<c:url value="/"/>"> <!-- Logo icon -->
 							<!-- Light Logo icon --> <b> <img
 								src="<c:url value="/images/logo-light-icon.png"/>"
 								alt="homepage" class="light-logo" />
@@ -340,7 +345,7 @@
 									<div class="tab-pane active" id="riceList" role="tabpanel">
 										<div class="card-block">
 											<c:forEach var='menu1' items='${menu}'>
-												<input style="width: 100px" type="button"
+												<input style="width: 100px;margin-top: 5px;" type="button"
 													class="btn btn-info pt" value="${menu1.productName}">
 											</c:forEach>
 										</div>
@@ -349,7 +354,7 @@
 									<div class="tab-pane" id="noodleList" role="tabpanel">
 										<div class="card-block">
 											<c:forEach var='noodle' items='${noodle}'>
-												<input style="width: 100px" type="button"
+												<input style="width: 100px;margin-top: 5px;" type="button"
 													class="btn btn-info pt" value="${noodle.productName}">
 											</c:forEach>
 										</div>
@@ -358,7 +363,7 @@
 									<div class="tab-pane" id="soupList" role="tabpanel">
 										<div class="card-block">
 											<c:forEach var='soup' items='${soup}'>
-												<input style="width: 100px" type="button"
+												<input style="width: 100px;margin-top: 5px;" type="button"
 													class="btn btn-info pt" value="${soup.productName}">
 											</c:forEach>
 										</div>
@@ -367,7 +372,7 @@
 									<div class="tab-pane" id="vegetableList" role="tabpanel">
 										<div class="card-block">
 											<c:forEach var='vegetable' items='${vegetable}'>
-												<input style="width: 100px" type="button"
+												<input style="width: 100px;margin-top: 5px;" type="button"
 													class="btn btn-info pt" value="${vegetable.productName}">
 											</c:forEach>
 										</div>
@@ -376,7 +381,7 @@
 									<div class="tab-pane" id="sidedishList" role="tabpanel">
 										<div class="card-block">
 											<c:forEach var='sidedish' items='${sidedish}'>
-												<input style="width: 100px" type="button"
+												<input style="width: 100px;margin-top: 5px;" type="button"
 													class="btn btn-info pt" value="${sidedish.productName}">
 											</c:forEach>
 										</div>
