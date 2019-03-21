@@ -175,38 +175,6 @@ public class EmployeeBean implements Serializable {
 		this.img = img;
 	}
 
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("EmployeeBean [empId=");
-		builder.append(empId);
-		builder.append(", empNo=");
-		builder.append(empNo);
-		builder.append(", empName=");
-		builder.append(empName);
-		builder.append(", gender=");
-		builder.append(gender);
-		builder.append(", position=");
-		builder.append(position);
-		builder.append(", tel=");
-		builder.append(tel);
-		builder.append(", addr=");
-		builder.append(addr);
-		builder.append(", remark=");
-		builder.append(remark);
-		builder.append(", status=");
-		builder.append(status);
-		builder.append(", img=");
-		builder.append(img);
-		builder.append(", fileName=");
-		builder.append(fileName);
-		builder.append(", empImg=");
-		builder.append(empImg);
-		builder.append("]");
-		return builder.toString();
-	}
-	
 	//對應到Calendar 
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="empId")
