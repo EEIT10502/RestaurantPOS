@@ -4,8 +4,10 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import _00.init.util.GlobalService;
+import _00model.CalendarBean;
 import _00model.EmployeeBean;
+import _00model.OrderDetailBean;
 import _02employee.service.EmployeeService;
 
 //這是一個提供Manager登入的@Controller
@@ -135,8 +139,6 @@ public class EmployeeController {
 
 		return "empManage/allEmployeeList";
 	}
-
-	
 
 	// 依職位列出員工頁面
 	@RequestMapping(value = "/empManage/EmployeeListByPosition.action")
@@ -250,12 +252,12 @@ public class EmployeeController {
 
 		return "empManage/employeeListByEmployeeStatus";
 	}
-	
+
 	/*
 	 * 搜尋Bar搜尋
 	 */
 
-	@RequestMapping(value = "/empManage/EmployeeListBySearch.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/empManage/employeeListBySearch.action", method = RequestMethod.GET)
 	public String getEmployeeListBySearch(
 			@RequestParam(value = "currentPageNoBtnSearch", required = false) String currentPageNo,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
@@ -374,6 +376,12 @@ public class EmployeeController {
 			errors.put("errorOfEmpStatus", "請選擇就職狀況");
 		}
 
+		// 錯誤訊息：員工備註(選項)
+//		String remarkInsert = employeeBean.getRemark();
+//		if (remarkInsert == null || employeeNameInsert.length() == 0) {
+//			errors.put("errorOfEmpRemark", "請輸入備註");
+//		}
+
 		// 錯誤訊息：員工照片(上傳)
 //		Blob empPictureInsert = employeeBean.getImg();
 //		if (empPictureInsert == null) {
@@ -385,26 +393,29 @@ public class EmployeeController {
 			return "empManage/empInsert";
 		}
 
-		String position = employeeBean.getPosition();
-		Integer employeeNoInsert = employeeService.getCurrentPositionNumber(position);
-		if (employeeNoInsert == null) {
-			switch (position) {
-			case GlobalService.Employee_CATE_waiter:
-				employeeBean.setEmpNo(101);
-				break;
-			case GlobalService.Employee_CATE_EChef:
-				employeeBean.setEmpNo(201);
-				break;
-			case GlobalService.Employee_CATE_MChef:
-				employeeBean.setEmpNo(301);
-				break;
-			case GlobalService.Employee_CATE_manager:
-				employeeBean.setEmpNo(401);
-				break;
-			}
-		} else {
-			employeeBean.setEmpNo(employeeNoInsert + 1);
-		}
+//		String position = employeeBean.getPosition();
+//		Integer employeeNoInsert = employeeService.getCurrentPositionNumber(position);
+//		if (employeeNoInsert == null) {
+//			switch (position) {
+//			case GlobalService.Employee_CATE_waiter:
+//				employeeBean.setEmpNo(101);
+//				break;
+//			case GlobalService.Employee_CATE_EChef:
+//				employeeBean.setEmpNo(201);
+//				break;
+//			case GlobalService.Employee_CATE_MChef:
+//				employeeBean.setEmpNo(301);
+//				break;
+//			case GlobalService.Employee_CATE_manager:
+//				employeeBean.setEmpNo(401);
+//				break;
+//			}
+//		} else {
+//			employeeBean.setEmpNo(employeeNoInsert + 1);
+//		}
+
+		Integer employeeNoInsert = employeeService.getCurrentPositionNumber();
+		employeeBean.setEmpNo(employeeNoInsert + 1);
 
 		// 上傳照片
 		MultipartFile empImg = employeeBean.getEmpImg();
@@ -421,6 +432,12 @@ public class EmployeeController {
 				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
 			}
 		}
+		//更新員工時也會將資料丟到排班表裡
+		Set<CalendarBean> items = new HashSet<CalendarBean>();
+		CalendarBean oib = new CalendarBean();
+		oib.setEmployee(employeeBean);
+		items.add(oib);
+		employeeBean.setCalendarBean(items);
 
 		employeeService.addEmployee(employeeBean);
 		return "redirect:/empManage/allEmployeeList.action";
@@ -459,7 +476,6 @@ public class EmployeeController {
 	 * 更新員工資料
 	 */
 
-	
 	// 更新員工資料
 	@RequestMapping(value = "/empManage/allEmployeeListEdit.action/{key}", method = RequestMethod.POST)
 	public String updateEmployee(@PathVariable Integer key,
@@ -474,36 +490,51 @@ public class EmployeeController {
 			@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
 			@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
 			@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
-			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,EmployeeBean employeeBean) {
+			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+			EmployeeBean employeeBean) {
 		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
 		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
-	
+
 		// 如果imgEdit是空值，就直接將empimgEdit的值塞入imgEdit中，要轉型。
 //		if(empImgEdit == null) {
 //			empImgEdit =;
 //		}
+
 		
 		// 上傳照片
-				MultipartFile empImg = empImgEdit;
-				if(empImg == null) {
-					
+		MultipartFile empImg = empImgEdit;
+		Blob img = imgEdit;
+		if(empImg != null && img == null) {
+			System.out.println("update empImg != null, img == null");
+			Blob bean = employeeService.getEmployeePicture(img);
+			employeeBean.setImg(bean);
+		}
+		
+		
+//		Blob img = imgEdit;
+//		if(img == null) {
+//			System.out.println("img == null");
+//		}else {
+//			System.out.println("img != null");
+//		}
+//		
 //					 建立Blob物件，交由Hibernate 寫入資料庫
-				}else if (empImg != null && !empImg.isEmpty()) {
-					try {
-						byte[] b = empImg.getBytes();
-						Blob blob = new SerialBlob(b);
-						imgEdit = blob;
-						;
-					} catch (Exception e) {
-						e.printStackTrace();
-						throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
-					}
-				}
-				
-		
-		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse,empNoEditParse,empNameEdit,positionEdit,genderEdit,telEdit,addrEdit,statusEdit,remarkEdit,imgEdit,empImgEdit);
+		if (empImg != null && !empImg.isEmpty()) {
+			try {
+				byte[] b = empImg.getBytes();
+				Blob blob = new SerialBlob(b);
+				imgEdit = blob;
+				;
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+			}
+		}
+
+		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
 		employeeService.updateEmployee(employeeBean1);
-		
+
 		if (currentPageNo == null) {
 			currentPageNoInit = 1;
 		} else {
@@ -515,11 +546,11 @@ public class EmployeeController {
 		}
 
 		employeeService.setCurrentPageNo(currentPageNoInit);
-		
-		return "redirect:/empManager/allEmployeeList.action?currentPageNoBtn=" + currentPageNoInit;
+
+		return "redirect:/empManage/allEmployeeList.action?currentPageNoBtn=" + currentPageNoInit;
 	}
 
-	//更新員工by就業狀態
+	// 更新員工by就業狀態
 	@RequestMapping(value = "/empManage/employeeListByEmployeeStatusEdit.action/{key}", method = RequestMethod.POST)
 	public String updateMenuByProductStatus(@PathVariable Integer key,
 			@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
@@ -534,15 +565,47 @@ public class EmployeeController {
 			@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
 			@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
 			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
-			@RequestParam(value = "whichStatus", required = false) String statusSelect,Model model) {
+			@RequestParam(value = "whichStatus", required = false) String statusSelect, Model model) {
 		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
 		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
+
+		
+		//---------------測試--------------------------------
+		
+//		if(empImg == null) {
+//			System.out.println("Status empImg == null");
+//		}else {
+//			System.out.println("Status empImg != null");
+//		}
+//		
+//		
+//		Blob img = imgEdit;
+//		if(img == null) {
+//			System.out.println("Status img == null");
+//		}else {
+//			System.out.println("Status img != null");
+//		}
+		//-----------------------------------------------
+
+		MultipartFile empImg = empImgEdit;
+		if (empImg != null && !empImg.isEmpty()) {
+			try {
+				byte[] b = empImg.getBytes();
+				Blob blob = new SerialBlob(b);
+				imgEdit = blob;
+				;
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+			}
+		}
 		
 		
 		
-		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse,empNoEditParse,empNameEdit,positionEdit,genderEdit,telEdit,addrEdit,statusEdit,remarkEdit,imgEdit,empImgEdit);
+		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
 		employeeService.updateEmployee(employeeBean);
-		
+
 		if (currentPageNo == null) {
 			currentPageNoInit = 1;
 		} else {
@@ -561,85 +624,135 @@ public class EmployeeController {
 	}
 
 	// 更新員工by職位
-		@RequestMapping(value = "/empManage/employeeListByEmployeePositionEdit.action/{key}", method = RequestMethod.POST)
-		public String updateMenuByEmployeePosition(@PathVariable Integer key,
-				@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
-				@RequestParam(value = "empNoEdit", required = false) String empNoEdit,
-				@RequestParam(value = "empNameEdit", required = false) String empNameEdit,
-				@RequestParam(value = "positionEdit", required = false) String positionEdit,
-				@RequestParam(value = "genderEdit", required = false) String genderEdit,
-				@RequestParam(value = "telEdit", required = false) String telEdit,
-				@RequestParam(value = "addrEdit", required = false) String addrEdit,
-				@RequestParam(value = "statusEdit", required = false) String statusEdit,
-				@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
-				@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
-				@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
-				@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
-				@RequestParam(value = "whichPosition", required = false) String positionSelect,Model model) {
-			int empIdEditParse = Integer.parseInt(empIdEdit.trim());
-			int empNoEditParse = Integer.parseInt(empNoEdit.trim());
-			
-			EmployeeBean employeeBean = new EmployeeBean(empIdEditParse,empNoEditParse,empNameEdit,positionEdit,genderEdit,telEdit,addrEdit,statusEdit,remarkEdit,imgEdit,empImgEdit);
-			employeeService.updateEmployee(employeeBean);
-			
-			if (currentPageNo == null) {
-				currentPageNoInit = 1;
-			} else {
-				try {
-					currentPageNoInit = Integer.parseInt(currentPageNo.trim());
-				} catch (NumberFormatException e) {
-					currentPageNoInit = 1;
-				}
-			}
-			employeeService.setCurrentPageNo(currentPageNoInit);
-
-			model.addAttribute("whichPosition", positionSelect);
-
-			return "redirect:/empManage/EmployeeListByEmployeePosition.action?currentPageNoBtnEmployeePosition="
-					+ currentPageNoInit;
-		}
+	@RequestMapping(value = "/empManage/employeeListByEmployeePositionEdit.action/{key}", method = RequestMethod.POST)
+	public String updateMenuByEmployeePosition(@PathVariable Integer key,
+			@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
+			@RequestParam(value = "empNoEdit", required = false) String empNoEdit,
+			@RequestParam(value = "empNameEdit", required = false) String empNameEdit,
+			@RequestParam(value = "positionEdit", required = false) String positionEdit,
+			@RequestParam(value = "genderEdit", required = false) String genderEdit,
+			@RequestParam(value = "telEdit", required = false) String telEdit,
+			@RequestParam(value = "addrEdit", required = false) String addrEdit,
+			@RequestParam(value = "statusEdit", required = false) String statusEdit,
+			@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
+			@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
+			@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
+			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+			@RequestParam(value = "whichPosition", required = false) String positionSelect, Model model) {
+		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
+		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
 		
+		//---------------測試--------------------------------
+//				MultipartFile empImg = empImgEdit;
+//				if(empImg == null) {
+//					System.out.println("Position empImg == null");
+//				}else {
+//					System.out.println("Position empImg != null");
+//				}
+//				
+//				
+//				Blob img = imgEdit;
+//				if(img == null) {
+//					System.out.println("Position img == null");
+//				}else {
+//					System.out.println("Position img != null");
+//				}
+				
+				//-----------------------------------------------
+				
+				MultipartFile empImg = empImgEdit;
+
+
+				if (empImg != null && !empImg.isEmpty()) {
+					try {
+						byte[] b = empImg.getBytes();
+						Blob blob = new SerialBlob(b);
+						imgEdit = blob;
+						;
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+					}
+				}
+
+		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+		employeeService.updateEmployee(employeeBean);
+
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		employeeService.setCurrentPageNo(currentPageNoInit);
+
+		model.addAttribute("whichPosition", positionSelect);
+
+		return "redirect:/empManage/EmployeeListByEmployeePosition.action?currentPageNoBtnEmployeePosition="
+				+ currentPageNoInit;
+	}
 
 	// 更新員工by searchBar
-				@RequestMapping(value = "/empManage/employeeListByEmployeeSearchEdit.action/{key}", method = RequestMethod.POST)
-				public String updateMenuByEmployeeSearch(@PathVariable Integer key,
-						@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
-						@RequestParam(value = "empNoEdit", required = false) String empNoEdit,
-						@RequestParam(value = "empNameEdit", required = false) String empNameEdit,
-						@RequestParam(value = "positionEdit", required = false) String positionEdit,
-						@RequestParam(value = "genderEdit", required = false) String genderEdit,
-						@RequestParam(value = "telEdit", required = false) String telEdit,
-						@RequestParam(value = "addrEdit", required = false) String addrEdit,
-						@RequestParam(value = "statusEdit", required = false) String statusEdit,
-						@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
-						@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
-						@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
-						@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
-						@RequestParam(value = "searchBar", required = false) String searchBarString,Model model) {
-					int empIdEditParse = Integer.parseInt(empIdEdit.trim());
-					int empNoEditParse = Integer.parseInt(empNoEdit.trim());
-					
-					EmployeeBean employeeBean = new EmployeeBean(empIdEditParse,empNoEditParse,empNameEdit,positionEdit,genderEdit,telEdit,addrEdit,statusEdit,remarkEdit,imgEdit,empImgEdit);
-					employeeService.updateEmployee(employeeBean);
-					
-					if (currentPageNo == null) {
-						currentPageNoInit = 1;
-					} else {
-						try {
-							currentPageNoInit = Integer.parseInt(currentPageNo.trim());
-						} catch (NumberFormatException e) {
-							currentPageNoInit = 1;
-						}
-					}
-					employeeService.setCurrentPageNo(currentPageNoInit);
+	@RequestMapping(value = "/empManage/employeeListByEmployeeSearchEdit.action/{key}", method = RequestMethod.POST)
+	public String updateMenuByEmployeeSearch(@PathVariable Integer key,
+			@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
+			@RequestParam(value = "empNoEdit", required = false) String empNoEdit,
+			@RequestParam(value = "empNameEdit", required = false) String empNameEdit,
+			@RequestParam(value = "positionEdit", required = false) String positionEdit,
+			@RequestParam(value = "genderEdit", required = false) String genderEdit,
+			@RequestParam(value = "telEdit", required = false) String telEdit,
+			@RequestParam(value = "addrEdit", required = false) String addrEdit,
+			@RequestParam(value = "statusEdit", required = false) String statusEdit,
+			@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
+			@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
+			@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
+			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
+		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
+		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
+		
+		//---------------測試--------------------------------
+		MultipartFile empImg = empImgEdit;
 
-					model.addAttribute("searchBar", searchBarString);
 
-					return "redirect:/empManage/EmployeeListBySearch.action?currentPageNoBtnSearch="+ currentPageNoInit;
-				}
-}
+		if (empImg != null && !empImg.isEmpty()) {
+			try {
+				byte[] b = empImg.getBytes();
+				Blob blob = new SerialBlob(b);
+				imgEdit = blob;
+				;
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+			}
+		}
+		
+		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+		employeeService.updateEmployee(employeeBean);
 
-	// 列出所有員工
+		if (currentPageNo == null) {
+			currentPageNoInit = 1;
+		} else {
+			try {
+				currentPageNoInit = Integer.parseInt(currentPageNo.trim());
+			} catch (NumberFormatException e) {
+				currentPageNoInit = 1;
+			}
+		}
+		employeeService.setCurrentPageNo(currentPageNoInit);
+
+		model.addAttribute("searchBar", searchBarString);
+
+		return "redirect:/empManage/employeeListBySearch.action?currentPageNoBtnSearch=" + currentPageNoInit;
+	}
+
+
+// 列出所有員工
 //	@RequestMapping("/empManage/empQuery")
 //	public String list(Model model) {
 //		List<EmployeeBean> list = employeeService.getAllEmployees();
@@ -671,7 +784,7 @@ public class EmployeeController {
 //		return "empManage/empEdit";
 //	}
 //
-//	// 從單筆員工資料 ID版 點入編輯單筆員工資料頁面後，送出更新資料
+	// 從單筆員工資料 ID版 點入編輯單筆員工資料頁面後，送出更新資料
 //	@RequestMapping(value = "/empManage/empEdit", method = RequestMethod.POST)
 //	public String updateEmployee(@RequestParam("empId") Integer empId,
 //			@ModelAttribute("empEdit") EmployeeBean employeeBean, BindingResult result, HttpServletRequest req) {
@@ -695,3 +808,4 @@ public class EmployeeController {
 //
 //		return "redirect:/empManage/empQueryFor1";
 //	}
+}

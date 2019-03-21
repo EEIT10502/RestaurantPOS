@@ -28,7 +28,7 @@ import _06manager.service.ManagerService;
 
 //這是Manager的控制器
 //功能:管理功能的登入、準備需要的資訊後列印
-//
+
 @Controller
 public class ManagerController {
 
@@ -44,11 +44,11 @@ public class ManagerController {
 	//按下日結清機後列印清機單的控制器
 	@RequestMapping("/manage/printDayCheck")
 	public String printDayCheckOut() {
-		//System.out.println("進入日結");
+		
 		
 		//取得當日的yyyy-MM-dd格式字串 
-		String date=SystemUtils2018.getDate();  //系統正式上線用這個
-		//String date ="2019-03-05";  			  //因無當日最新數據，先用假資料測試
+		String date=SystemUtils2018.getDate();  
+		
 		//準備一個有當日數據分析的MAP
 		Map<String, Object> mapData = managerservice.getDayCheckAnalysisDate(date);
 		
@@ -60,10 +60,7 @@ public class ManagerController {
 		TargetTurnoverBean TTBean = managerservice.getMonthTarget();
 		mapData.put("TargetTurnover",TTBean);
 		
-//		System.out.println("date: "+date);
-//		System.out.println("CTBean: "+CTBean.getCumulativeTurnover());
-//		System.out.println("TTBean: "+TTBean.getTargetTurnover());
-//		System.out.println("來客數:"+mapData.get("來客數"));
+
 
 		
 		//呼叫列印方法，列印日結清機單
@@ -88,7 +85,7 @@ public class ManagerController {
 	//流程:員工於點餐畫面按下"結帳"->資料INSERT進入資料庫，控制器交棒給本控制器撈資料
 	@RequestMapping("/manage/getLastOne")
 	public String prepareMessageForPrinter_LastOne(Model model) {
-		System.out.println("進入準備列印資料控制器");
+		
 		orderBean = managerservice.getLastOrderBean();
 		OrderDetailBeanSet = orderBean.getOrderDetailBean();
 		
@@ -100,7 +97,7 @@ public class ManagerController {
 	// 負責列印的控制器
 	@RequestMapping("/printer")
 	public String Printer() {
-		System.out.println("進入列印控制器");
+		
 		// 呼叫靜態列印方法
 		MainPrinter.printBill(orderBean, OrderDetailBeanSet);
 		MainPrinter.printForBK(orderBean, OrderDetailBeanSet);
@@ -108,13 +105,10 @@ public class ManagerController {
 		
 		return "redirect:/outfield/order";
 	}
-
+	
+	//進入管理登入頁面
 	@RequestMapping("/manage/managelogin")
 	public String empLogin(Model model) {
-		System.out.println("管理員登入");
-		
-//		MainActivity pos = new MainActivity();
-//		pos.onClick();
 		
 		return "manage/login";
 	}
@@ -124,9 +118,7 @@ public class ManagerController {
 			@RequestParam(value = "mPwd") String mPwd, // 取得FORM表單的參數
 			HttpSession session) {
 
-		System.out.println("mAccount:" + mAccount);
-		System.out.println("mPwd:" + mPwd);
-		System.out.println("進入檢查");
+
 
 		// 建構一個errorMsgMap的Map 將錯誤訊息放入
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
@@ -149,7 +141,7 @@ public class ManagerController {
 		ManagerBean managerBean = null;
 
 		try {
-			// 調用寫好的方法進行帳密檢測，不為空代表有該主管資料，並放入Session備用
+			// 調用寫好的方法進行帳密檢測，不為空代表有該主管資料
 			managerBean = managerservice.checkIDPassword(mAccount, mPwd);
 
 			if (managerBean != null) {
@@ -165,14 +157,12 @@ public class ManagerController {
 			e.printStackTrace();
 			errorMsgMap.put("LoginError", e.getMessage());
 		}
-		// 回首頁要這樣寫!
-		// return "redirect:/";
-
-		// 預設登入後前往查詢員工頁面
+		
+		// 登入後前往後台首頁
 		return "redirect:/toDashBoard";
-		//return "redirect:/toDashBoard";
+		
 	}
-	
+	//前往後台首頁
 	@RequestMapping("/toDashBoard")
 	public String toDashBoard(Model model) {
 		TargetTurnoverBean TTBean = null;
@@ -182,12 +172,12 @@ public class ManagerController {
 		
 		return "DashBoard";
 	}
+	
 	//跳轉到日結清機
 	@RequestMapping("/close/close")
 	public String toClose() {
-		System.out.println("goto!");
+		
 		
 		return "close/closeBoardTest";
 	}
-
 }

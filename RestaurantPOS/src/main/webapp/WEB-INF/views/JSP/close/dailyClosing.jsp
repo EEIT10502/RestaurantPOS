@@ -105,7 +105,10 @@ $(document).ready(function(){
 });
 </script>
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<section class="">
 			<form:form method='POST' modelAttribute="CumulativeTurnoverBean"
 				class='form-horizontal'>
@@ -119,8 +122,7 @@ $(document).ready(function(){
 						</label>
 						<div class="col-sm-10">
 							${todayString}
-							<form:hidden id="dateBtn" path="date" name="iDate" class='form:input-large' /> 
-<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfProductName} --%>
+							<form:hidden id="dateBtn" path="date" name="iDate" class='form:input-large' />
 						</div>
 					</div>
 					<div class="form-group row">
@@ -130,17 +132,13 @@ $(document).ready(function(){
 						<div class="col-sm-10">
 							${totalSalesAmountToday}  元
 							<form:hidden  id="turnoverBtn" path="turnover" class='form:input-large' name="iTurnover" /> 
-<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%> 
 						</div>
-
 					</div>
 					<div class="form-group row">
 						<label class='col-sm-2 col-form-label' for="moneyReceivedBtn">
 							當日實收金額
 						</label>
-						<div class='col-sm-10'>
-							
-<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
+						<div class='col-sm-10'>							
 						 	<c:if test="${closingCompletedToday == null}">
 						 		<form:input id="moneyReceivedBtn" path="moneyReceived" type='text' class='form:input-large' name="iMoneyReceived" placeholder="請輸入當日實收金額" onkeyup="value=value.replace(/[^\d.]/g,'')"/>
 						 		<input type="button" id="checkout" value="check" class="btn btn-info"/>
@@ -158,8 +156,7 @@ $(document).ready(function(){
 						<c:if test="${closingCompletedToday == null}">
 							<div class='col-sm-10'>
 								<form:hidden id="shortoverAmountBtn" path="shortoverAmount" class='form:input-large' name="iShortoverAmount" />
-									<span id="afterCheck">尚未輸入當日實收金額</span>
-	<%-- 							<p class="errorMessage" type="redError">${modelErrors.errorOfPrice}${modelErrors.typeErrorOfPrice} --%>
+									<span id="afterCheck">尚未輸入當日實收金額</span>	
 							</div>
 							<label class='col-sm-2 col-form-label' ></label>
 							<div  class='col-sm-10'>
@@ -205,34 +202,7 @@ $(document).ready(function(){
 				</div>
 				</fieldset>
 			</form:form>
-
-
-			<!-- 	========================================================================================= -->
-<%-- 			<form> --%>
-				<!-- 				<div> -->
-				<!-- 					<input type="button" value="回首頁" id="cBack" name="cBack" -->
-				<!-- 						onclick="location.href='../index.jsp'"> -->
-				<!-- 				</div> -->
-<!-- 				<div> -->
-<!-- 					<h3>日結清機</h3> -->
-<!-- 				</div> -->
-<!-- 				<div> -->
-<!-- 					<label for="amountM">當日應收金額</label> <input type="text" id="amountM" -->
-<!-- 						name="amountM" readonly="readonly"> -->
-<!-- 					<p> -->
-<!-- 						<label for="actualM">實收金額</label> <input type="text" id="actualM " -->
-<!-- 							name="actualM"> -->
-<!-- 					<p> -->
-<!-- 						<label for="differenceM">短/溢收</label> <input type="text" -->
-<!-- 							id="differenceM" name="differenceM"> -->
-<!-- 					<p> -->
-<!-- 				</div> -->
-<!-- 				<div> -->
-<!-- 					<input type="submit" value="確定" id="cOK" name="cOK"> <input -->
-<!-- 						type="reset" value="重設" id="cReset" name="cReset"> -->
-<!-- 				</div> -->
-<%-- 			</form> --%>
-<!-- 		</fieldset> -->
 	</section>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

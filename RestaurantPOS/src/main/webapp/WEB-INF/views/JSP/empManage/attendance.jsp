@@ -32,8 +32,8 @@
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 
-	<form action="">
-		<div class="w3-container" style="margin-left: 160px">
+	<form id="datatable">
+		<div class="w3-container" style="margin-left: 260px">
 			<h2>員工出勤查詢</h2>
 
 			<!-- 		搜尋列開始 -->
@@ -54,7 +54,7 @@
 	<!-- 搜尋列結束 -->
 	<!-- 匯出 -->
 	<div>
-		<input type="button" value="匯出檔案" id="dExport" name="dExport">
+		<a href='attendance.xls' >多筆會員資料查詢(EXCEL格式)</a><br>
 	</div>
 	<!-- 		匯出與寄信結束 -->
 	<!-- 商品列表開始 -->

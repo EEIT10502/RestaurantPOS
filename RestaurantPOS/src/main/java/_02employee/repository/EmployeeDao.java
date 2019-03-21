@@ -1,6 +1,7 @@
 package _02employee.repository;
 
 
+import java.sql.Blob;
 import java.util.List;
 
 import _00model.AttendenceBean;
@@ -24,11 +25,13 @@ public interface EmployeeDao {
 	//1.註冊：員工資料
 	void addEmployee(EmployeeBean employee);
 	
-	//	1-1.取得現有職位(MAX)編號
-	Integer getCurrentPositionNumber(String positionInsert);
+//	//	1-1.取得現有職位(MAX)編號
+//	Integer getCurrentPositionNumber(String positionInsert);
+	
+	
 	
 //	//TEST
-//	Integer getCurrentPositionNumber();
+	Integer getCurrentPositionNumber();
 	
 	//	1-2.設定就業狀態select(status)
 	void setStatusSelect(String statusSelect);
@@ -158,9 +161,18 @@ public interface EmployeeDao {
 	//13.取得各員工狀態數量
 	long getTotalEmployeeCountsByEmployeeStatus();
 	
+	//14.取得員工照片
+	Blob getEmployeePicture(Blob pFromDB);
+	
 	//Tai
 	List<AttendenceBean> getAllAttendence();
 	
+	//以日期查詢員工出勤
+	void stringToDate(String Date1, String Date2);
+	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
+	
+	//匯出檔案
+	EmployeeBean findByPrimaryKey(int key);
 	
 	//==========================================================================test排班_開始
 	List<String> getAllEmployeesName();

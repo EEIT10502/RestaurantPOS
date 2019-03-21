@@ -74,64 +74,67 @@
 </script>
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
-	<form action="productReportGet" method="post">
-		<!-- 報表版面 -->
-		<div class="w3-container" style="margin-left: 160px">
-			<div>
-				<h2>單品銷售分析</h2>
-			</div>
-			<div>
-				<h3>選擇欲查詢日期</h3>
-				<input type="text" id="pDate1" name="pDate1">- <input
-					type="text" id="pDate2" name="pDate2">
-				<p>
+	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
+	<fieldset class="w3-container" style="margin-left: 160px">
+		<form action="productReportGet" method="post">
+			<!-- 報表版面 -->
+			<div class="w3-container" style="margin-left: 160px">
+				<div>
+					<h2>單品銷售分析</h2>
+				</div>
+				<div>
+					<h3>選擇欲查詢日期</h3>
+					<input type="text" id="pDate1" name="pDate1">- <input
+						type="text" id="pDate2" name="pDate2">
+					<p>
 
-					<!-- 類別下拉選單 -->
-					<select id="pcSelOpt" name="pcSelOpt" onchange="showCodeSubCate()">
-						<option>--請選擇--</option>
-						<c:forEach var="pcSel" items="${listMenuCate}">
-							<option>${pcSel}</option>
-						</c:forEach>
-					</select>
-					<!-- 單品下拉選單 -->
-					<select id="pSelOpt" name="pSelOpt">
-						<option value="">--請選擇--</option>
-					</select> <input type="submit" value="查詢" id="pSel" name="pSel">
-			</div>
+						<!-- 類別下拉選單 -->
+						<select id="pcSelOpt" name="pcSelOpt" onchange="showCodeSubCate()">
+							<option>--請選擇--</option>
+							<c:forEach var="pcSel" items="${listMenuCate}">
+								<option>${pcSel}</option>
+							</c:forEach>
+						</select>
+						<!-- 單品下拉選單 -->
+						<select id="pSelOpt" name="pSelOpt">
+							<option value="">--請選擇--</option>
+						</select> <input type="submit" value="查詢" id="pSel" name="pSel">
+				</div>
 
-			<div>
-				<h5>選擇日期：${pDate1}至${pDate2}</h5>
-				<input type="button" value="匯出報表" id="pExport" name="pExport">
+				<div>
+					<h5>選擇日期：${pDate1}至${pDate2}</h5>
+					<input type="button" value="匯出報表" id="pExport" name="pExport">
 
-				<table border="1">
-					<tr>
-						<th>日期</th>
-						<th>類別名稱</th>
-						<th>單品名稱</th>
-						<th>數量</th>
-						<th>銷售金額</th>
-					</tr>
-					<c:forEach var="pTable" items="${listProuct}">
-						<c:set var="totalQty" value="${totalQty + pTable[1]}" />
-						<c:set var="totalPrice" value="${totalPrice + pTable[2]}" />
+					<table class="table table-hover">
 						<tr>
-							<td>${pTable[0]}</td>
+							<th>日期</th>
+							<th>類別名稱</th>
+							<th>單品名稱</th>
+							<th>數量</th>
+							<th>銷售金額</th>
+						</tr>
+						<c:forEach var="pTable" items="${listProuct}">
+							<c:set var="totalQty" value="${totalQty + pTable[1]}" />
+							<c:set var="totalPrice" value="${totalPrice + pTable[2]}" />
+							<tr>
+								<td>${pTable[0]}</td>
+								<td>${pcSelOpt}</td>
+								<td>${pSelOpt}</td>
+								<td>${pTable[1]}</td>
+								<td>${pTable[2]}</td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<th>總計</th>
 							<td>${pcSelOpt}</td>
 							<td>${pSelOpt}</td>
-							<td>${pTable[1]}</td>
-							<td>${pTable[2]}</td>
+							<td>${totalQty}</td>
+							<td>${totalPrice}</td>
 						</tr>
-					</c:forEach>
-					<tr>
-						<th>總計</th>
-						<td>${pcSelOpt}</td>
-						<td>${pSelOpt}</td>
-						<td>${totalQty}</td>
-						<td>${totalPrice}</td>
-					</tr>
-				</table>
+					</table>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</fieldset>
 </body>
 </html>

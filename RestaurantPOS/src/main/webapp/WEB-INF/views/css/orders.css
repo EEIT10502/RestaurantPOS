@@ -1,0 +1,21 @@
+input[type=text]{
+    width: 200px;
+    height: 40px;
+    font-size: 30px;
+    color: #9b9999;
+       border-radius: 5px;
+       padding: 3px 3px;
+       margin-bottom: 10px;
+}
+
+#countTotal{
+    display: inline;
+    font-size: 30px;
+}
+.inLine{
+    display: inline;
+}
+
+.countWidth{
+    width: 150px;
+}

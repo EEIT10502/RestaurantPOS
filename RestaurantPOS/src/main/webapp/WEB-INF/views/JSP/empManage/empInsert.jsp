@@ -41,21 +41,29 @@ p.errorMessage[type="redError"] {
 	color: red;
 }
 </style>
-
+<script type="text/javascript">
+function autoInsert(){
+    document.getElementById("empName").value='柳彥如';
+    document.getElementById("tel").value='0932277888';
+    document.getElementById("addr").value='台北市內湖區';
+    document.getElementById("gender").value='女性';
+    document.getElementById("position").value='服務生';
+    document.getElementById("status").value='在職';
+    document.getElementById("remark").value='無';
+}
+</script>
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<section class="">
 
 		<form:form method='POST' modelAttribute="employeeBean"
 			class='form-horizontal' enctype='multipart/form-data'>
-			<fieldset class="w3-container" style="margin-left: 160px">
+			<fieldset class="w3-container" style="margin-left: 260px">
 				<div class="container">
 					<h1>員工資料填寫</h1>
 				</div>
-				<!-- 				<div class="form-group"> -->
-				<!-- 					<label for='empNo'>員工編號</label> -->
-				<%-- 					<form:input id="empNo" path="empNo" type='text' name="empNo" /> --%>
-				<!-- 				</div> -->
+				<input type="button" value="一鍵輸入" onclick="autoInsert()">
+
 				<div class="form-group">
 					<label for='empName'>姓名</label>
 					<form:input id="empName" path="empName" type='text' name="empName" />

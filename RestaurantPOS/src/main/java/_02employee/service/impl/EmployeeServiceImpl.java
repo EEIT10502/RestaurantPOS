@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import _00model.AttendenceBean;
+import _00model.CumulativeTurnoverBean;
 import _00model.EmployeeBean;
 import _00model.MenuBean;
 import _02employee.repository.EmployeeDao;
@@ -38,13 +39,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDao.addEmployee(employee);
 	}
 
-	// 1-1.取得現有職位(MAX)編號
-	@Transactional
-	@Override
-	public Integer getCurrentPositionNumber(String positionInsert) {
-		return employeeDao.getCurrentPositionNumber(positionInsert);
-	}
+//	// 1-1.取得現有職位(MAX)編號
+//	@Transactional
+//	@Override
+//	public Integer getCurrentPositionNumber(String positionInsert) {
+//		return employeeDao.getCurrentPositionNumber(positionInsert);
+//	}
 	
+	// 1-1.取得現有職位(MAX)編號
+		@Transactional
+		@Override
+		public Integer getCurrentPositionNumber() {
+			return employeeDao.getCurrentPositionNumber();
+		}
 	
 
 
@@ -275,6 +282,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return employeeDao.getAllAttendence();
 		}
 
+		@Override
+		public List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2) {
+			return employeeDao.getAttendenceListByDate(Date1, Date2);
+		}
+
+		@Override
+		public EmployeeBean findByPrimaryKey(int key) {
+			return employeeDao.findByPrimaryKey(key);
+		}
+
 		//==========================================================================test排班_開始
 		@Transactional
 				public List<String> getAllEmployeesName() {
@@ -282,6 +299,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 					    return employeeDao.getAllEmployeesName();
 				}
 		//==========================================================================test排班_結束
+
+		//dfd
+		// 14.取得員工圖片
+		@Transactional
+		@Override
+		public Blob getEmployeePicture(Blob img) {
+			return employeeDao.getEmployeePicture(img);
+		}
 	
 
 
