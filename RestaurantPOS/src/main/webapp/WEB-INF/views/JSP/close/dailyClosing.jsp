@@ -62,6 +62,7 @@ $(document).ready(function(){
 // 		if($("#moneyReceivedBtn").val()==""){
 // 			$('#submitClosing').attr('disabled', true);
 // 		}
+
 // 		if($("#moneyReceivedBtn").val()!=""){
 // 			$('#submitClosing').attr('disabled', false);
 // 		}
