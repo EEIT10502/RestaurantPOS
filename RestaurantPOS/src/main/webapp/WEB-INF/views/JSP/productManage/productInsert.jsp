@@ -39,7 +39,10 @@ p.errorMessage[type="redError"] {
 
 
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>	
 	<section class="">
 
 		<form:form method='POST' modelAttribute="MenuBean"
@@ -172,5 +175,6 @@ p.errorMessage[type="redError"] {
 			</fieldset>
 		</form:form>
 	</section>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

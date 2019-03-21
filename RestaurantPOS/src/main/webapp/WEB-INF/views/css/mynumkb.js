@@ -75,8 +75,8 @@
             var ulHeight = $keyboard.outerHeight();
             var left = position.left;
             $keyboard.css({
-                top:position.top+height+30+"px",
-                left:left+width+30+"px"
+                top:200+"px",
+                left:500+"px"
             });
         },
         _eClick:function(e){
