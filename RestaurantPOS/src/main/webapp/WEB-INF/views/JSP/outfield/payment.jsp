@@ -29,7 +29,12 @@
 <!--Custom JavaScript -->
 <script src="<c:url value="/js/OrderCustom.min.js"/>"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+<style type="text/css">
+*{
+font-family: Microsoft JhengHei ;
+font-weight:bold;
+}
+</style>
 
 <script>
 
@@ -189,16 +194,17 @@ $(function(){
                                             <!--底下結帳部分-->
                                             <div class="row">
                                                 <div class="col-md-3 col-8 align-self-center"></div>
-                                                <div class="col-md-3 col-8 align-self-center">
-                                                        <input type="reset" value="取消訂單" id="pBack" name="pBack"
-                                                        	   onclick="location.href='/RestaurantPOS/outfield/cancelOrder'"
-                                                               class="btn btn-danger btn-lg">&nbsp;                                                           
-                                                </div>
-                                                <div class="col-md-3 col-8 align-self-center">
-                                                        <input type="submit" value="結帳" id="oNext" name="oNext" 
-                                                        class="btn btn-success btn-lg">
-                                                </div>
                                                 <div class="col-md-3 col-8 align-self-center"></div>
+                                                <div class="col-md-3 col-8 align-self-center"></div>
+                                                <div class="col-md-3 col-8 align-self-center">
+                                                	<div class="row">
+                                                		<input type="submit" value="結帳" id="oNext" name="oNext" 
+                                                        class="btn btn-success btn-lg">&nbsp;
+                                                        <input type="reset" value="取消" id="pBack" name="pBack"
+                                                   	    onclick="location.href='/RestaurantPOS/outfield/cancelOrder'"
+                                                        class="btn btn-danger btn-lg">    
+                                                    </div>
+                                                </div>
                                             </div>
                                     </div>
                                 </div>
