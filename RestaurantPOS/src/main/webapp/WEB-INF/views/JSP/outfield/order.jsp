@@ -350,7 +350,7 @@ font-weight:bold;
 											</c:forEach>
 										</div>
 									</div>
-									<!--second tab-->
+									<!--second tabb-->
 									<div class="tab-pane" id="noodleList" role="tabpanel">
 										<div class="card-block">
 											<c:forEach var='noodle' items='${noodle}'>
