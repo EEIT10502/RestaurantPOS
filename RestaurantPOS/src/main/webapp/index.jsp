@@ -117,6 +117,7 @@ $(document).ready(function(){
           	  <!-- 空白格 -->
               <div class="col-md-6 col_1_of_2 span_1_of_2">
                   <div class="r3_counter_box">
+                  
                   </div>
               </div>
                <!-- 空白格 -->
