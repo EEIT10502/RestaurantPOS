@@ -125,11 +125,11 @@ $(function(){
                         <!--佔位符-->
                     </div>
                     <div class="col-md-3 col-8 align-self-center">                                      
-                        <input type="text" value="${cusFlow}" id="oPeople" name="oPeople">&nbsp;&nbsp;<i class="fas fa-user fa-2x"></i>
+                        <input type="text" value="${cusFlow}" id="oPeople" readonly name="oPeople">&nbsp;&nbsp;<i class="fas fa-user fa-2x" ></i>
                    		<input type="hidden" id="cusFlow" name="cusFlow" value="${cusFlow}">
                     </div>
                     <div class="col-md-3 col-8 align-self-center">                    
-                        <input type="text" value="${callNo}" id="oCall" name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x"></i>
+                        <input type="text" value="${callNo}" id="oCall"  readonly name="oCall">&nbsp;&nbsp;<i class="fas fa-desktop fa-2x" ></i>
                    		<input type="hidden" id="callNo" name="callNo" value="${callNo}">
                     </div>
                     <div class="col-md-3 col-8 align-self-center">                         
