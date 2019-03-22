@@ -42,7 +42,6 @@
 	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
-	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="scheduleBean"
 			class='form-horizontal' enctype="multipart/form-data">
@@ -127,6 +126,8 @@
 				<c:if test="${not empty requestScope.modify}">   
            <c:remove var="member" scope="request" />       
          </c:if>
+         </fieldset>
+		</form:form>
 				<script type="text/javascript">
 				
 				$(document).ready(function() {
@@ -226,9 +227,7 @@
 						});
 					});
 				</script>
-			</fieldset>
-		</form:form>
-	</section>
+			
 <!-- 選時器 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
