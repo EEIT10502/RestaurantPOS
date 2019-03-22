@@ -29,6 +29,8 @@ td.errorMessage[type="redError"] {
 </head>
 
 <body>
+
+	<jsp:include page="../footer.jsp" flush="true" />
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
 	<section class="">
@@ -64,7 +66,8 @@ td.errorMessage[type="redError"] {
 									data-target="#exampleModalCenter${employee.empId}">修改</button>
 							</td>
 						</tr>
-						<!-- 					Modal 開始 -->
+
+
 						<div class="modal fade" id="exampleModalCenter${employee.empId}"
 							tabindex="-1" role="dialog"
 							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -128,8 +131,6 @@ td.errorMessage[type="redError"] {
 																<option><c:out value="${genders}" /></option>
 															</c:if>
 														</c:forEach>
-
-
 													</select>
 												</div>
 											</div>
@@ -186,13 +187,12 @@ td.errorMessage[type="redError"] {
 												<label for="empImgEdit${employee.empId}"
 													class="col-sm-2 col-form-label">圖片</label>
 												<div class="col-sm-10">
-													
-													<input
-														id="empImgEdit${employee.empId}" type="file"
+
+													<input id="empImgEdit${employee.empId}" type="file"
 														class="form-control" name="empImgEdit"> <img
 														width="100px" height="100px"
 														src="<c:url value='/getPicture/${employee.empId}'/>">
-<%-- 													<span id="empImgEditError${employee.empId}"></span> --%>
+													<span id="empImgEditError${employee.empId}"></span>
 												</div>
 											</div>
 										</div>
@@ -207,17 +207,12 @@ td.errorMessage[type="redError"] {
 
 							</div>
 						</div>
-						<!-- 						Modal 結束 -->
+						<!-- 												Modal 結束 -->
 						<script>
 							var flag = "";
-							document
-									.addEventListener(
-											"DOMContentLoaded",
+							document.addEventListener("DOMContentLoaded",
 											function() {
-												document
-														.getElementById(
-																"empNameEdit${employee.empId}")
-														.addEventListener(
+								document.getElementById("empNameEdit${employee.empId}").addEventListener(
 																"blur",
 																function() {
 																	if (document

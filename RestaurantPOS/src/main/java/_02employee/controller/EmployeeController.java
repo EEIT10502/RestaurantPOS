@@ -333,7 +333,7 @@ public class EmployeeController {
 	// 註冊員工資料2
 	@RequestMapping(value = "/empManage/empInsert", method = RequestMethod.POST)
 	public String processAddNewEmpForm(@ModelAttribute("employeeBean") EmployeeBean employeeBean, Model model,
-			BindingResult result, HttpServletRequest req) {
+			BindingResult result, HttpServletRequest req) throws SQLException {
 
 		// 錯誤訊息
 		Map<String, String> errors = new HashMap<>();
@@ -383,7 +383,7 @@ public class EmployeeController {
 
 		// 錯誤訊息：員工照片(上傳)
 //		Blob empPictureInsert = employeeBean.getImg();
-//		if (empPictureInsert == null) {
+//		if (empPictureInsert == null || empPictureInsert.length() == 0 ) {
 //			errors.put("errorOfEmpPicture", "請上傳照片");
 //		}
 
@@ -466,6 +466,10 @@ public class EmployeeController {
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
 	}
+	
+	//==================================================以上不要動=====================================================================================//
+	
+
 
 	/*
 	 * 註冊員工資料結束

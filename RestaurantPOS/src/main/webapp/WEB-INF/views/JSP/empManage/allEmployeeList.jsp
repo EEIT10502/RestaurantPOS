@@ -106,18 +106,17 @@ td.errorMessage[type="redError"] {
 											<input type="hidden" name="empIdEdit"
 												value="${employee.empId}"> <input type="hidden"
 												name="empNoEdit" value="${employee.empNo}">
-
-											<!-- 									------員工圖像 -->
-											<!-- 											<div class="col-sm-2 col-form-label"> -->
-											<!-- 												<div class="col-sm-12"> -->
-											<!-- 												<div class="d-flex justify-content-between bg-secondary mb-2"> -->
+											<!-- ------員工圖像 -->
+											<!-- <div class="col-sm-2 col-form-label"> -->
+											<!-- <div class="col-sm-12"> -->
+											<!-- <div class="d-flex justify-content-between bg-secondary mb-2"> -->
 											<div>
 												<img width="220px" height="245px"
 													src="<c:url value='/getPicture/${employee.empId}'/>">
 												<img width="220px" height="245px" id="blah" />
-												<!-- 												</div> -->
+												<!-- </div> -->
 											</div>
-											<!-- 									------員工圖像 -->
+											<!-- ------員工圖像 -->
 											<div class="form-group row">
 												<label for="empNameEdit${employee.empId}"
 													class="col-sm-2 col-form-label">姓名</label>
@@ -161,8 +160,6 @@ td.errorMessage[type="redError"] {
 																<option><c:out value="${genders}" /></option>
 															</c:if>
 														</c:forEach>
-
-
 													</select>
 												</div>
 											</div>
@@ -225,20 +222,20 @@ td.errorMessage[type="redError"] {
 												</div>
 											</div>
 
-											<!-- 											TEST TEST TEST 保存原版 -->
-											<!-- 											<div class="form-group row"> -->
-											<%-- 												<label for="empImgEdit${employee.empId}" --%>
-											<!-- 													class="col-sm-2 col-form-label">圖片</label> -->
-											<!-- 												<div class="col-sm-10"> -->
+											<!-- TEST TEST TEST 保存原版 -->
+											<!-- <div class="form-group row"> -->
+											<%-- <label for="empImgEdit${employee.empId}" --%>
+											<!-- class="col-sm-2 col-form-label">圖片</label> -->
+											<!-- <div class="col-sm-10"> -->
 
-											<%-- 													<input id="empImgEdit${employee.empId}" type="file" --%>
-											<!-- 														class="form-control" name="empImgEdit"> <img -->
-											<!-- 														width="100px" height="100px" -->
-											<%-- 														src="<c:url value='/getPicture/${employee.empId}'/>"> --%>
-											<%-- 													<span id="empImgEditError${employee.empId}"></span> --%>
-											<!-- 												</div> -->
-											<!-- 											</div> -->
-											<!-- 											TEST TEST TEST 保存原版-->
+											<%-- <input id="empImgEdit${employee.empId}" type="file" --%>
+											<!-- class="form-control" name="empImgEdit"> <img -->
+											<!-- width="100px" height="100px" -->
+											<%-- src="<c:url value='/getPicture/${employee.empId}'/>"> --%>
+											<%-- <span id="empImgEditError${employee.empId}"></span> --%>
+											<!-- </div> -->
+											<!-- </div> -->
+											<!-- TEST TEST TEST 保存原版-->
 
 
 										</div>
