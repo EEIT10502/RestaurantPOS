@@ -71,34 +71,40 @@
 
 
 <body>
-	<jsp:include page="../sideBar.jsp" flush="true" />
-	<jsp:include page="../scheduleManage/statusSearchHead.jsp" flush="true" />
+	<div class="clearfix">
+		<jsp:include page="../headerTime.jsp" flush="true" />
+		<jsp:include page="../sideBar.jsp" flush="true" />
+		<jsp:include page="../scheduleManage/statusSearchHead.jsp"
+			flush="true" />
+	</div>
 	<fieldset class="w3-container" style="margin-left: 160px">
 		<form action="categoryReportGet" method="post" id="form1">
 			<!-- 報表版面 -->
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<h2>出勤查詢</h2>
-				</div>
-				<div>
-					<h3>選擇欲查詢日期</h3>
-					<input type="text" id="csDate1" name="csDate1" value="${csDate1}"
-						readonly>~ <input type="text" id="csDate2" name="csDate2"
-						value="${csDate2}" readonly>
-					<p>
+					<div>
+						<h2>出勤查詢</h2>
+					</div>
+					<div>
+						<h3>選擇欲查詢日期</h3>
+						<input type="text" id="csDate1" name="csDate1" value="${csDate1}"
+							readonly>~ <input type="text" id="csDate2" name="csDate2"
+							value="${csDate2}" readonly>
+						<p>
+					</div>
 
-						<!-- 類別下拉選單 -->
-						<select id="csSelOpt" name="csSelOpt"">
-							<option>--請選擇--</option>
-							<c:forEach var="csSel" items="${listMenuCate}">
-								<c:if test="${csSelOpt == csSel}">
-									<option selected="selected"><c:out value="${csSel}" /></option>
-								</c:if>
-								<c:if test="${csSelOpt!=csSel}">
-									<option><c:out value="${csSel}" /></option>
-								</c:if>
-							</c:forEach>
-						</select> <input type="submit" value="查詢" id="csSelect" name="csSelect">
+					<!-- 類別下拉選單 -->
+					<select id="csSelOpt" name="csSelOpt">
+						<option>--請選擇--</option>
+						<c:forEach var="csSel" items="${listMenuCate}">
+							<c:if test="${csSelOpt == csSel}">
+								<option selected="selected"><c:out value="${csSel}" /></option>
+							</c:if>
+							<c:if test="${csSelOpt!=csSel}">
+								<option><c:out value="${csSel}" /></option>
+							</c:if>
+						</c:forEach>
+					</select> <input type="submit" value="查詢" id="csSelect" name="csSelect">
 				</div>
 
 				<div>
@@ -130,7 +136,45 @@
 					</table>
 				</div>
 			</div>
+
 		</form>
 	</fieldset>
+	<!-- 搜尋列結束 -->
+	<!-- 匯出 -->
+	<div>
+		<a href='attendance.xls'>多筆會員資料查詢(EXCEL格式)</a><br>
+	</div>
+	<!-- 		匯出與寄信結束 -->
+	<!-- 商品列表開始 -->
+	<div>
+		<table border="1">
+			<tr>
+				<th>序號</th>
+				<th>員工編號</th>
+				<th>員工姓名</th>
+				<th>日期</th>
+				<th>狀態</th>
+				<th>時間</th>
+				<th>備註</th>
+			</tr>
+			<c:forEach var="Attendence" items="${Attendence}" varStatus="status">
+				<tr>
+					<td>${Attendence.attendenceId}</td>
+					<td>${Attendence.empNo}</td>
+					<td>${Attendence.empName}</td>
+					<td>${Attendence.date}</td>
+					<td>${Attendence.checkStatus}</td>
+					<td>${Attendence.clockTime}</td>
+					<td></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<!-- 	商品列表結束 -->
+		<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input
+			type="button" value="下一頁" id="dNPage" name="dNPage">
+	</div>
+	<jsp:include page="../footer.jsp" flush="true" />
+	>>>>>>> branch 'master' of
+	https://github.com/EEIT10502/RestaurantPOS.git
 </body>
 </html>

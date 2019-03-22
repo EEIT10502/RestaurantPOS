@@ -27,6 +27,8 @@ td.errorMessage[type="redError"] {
 </style>
 
 </head>
+<!-- <script -->
+<!-- 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -42,7 +44,11 @@ td.errorMessage[type="redError"] {
 
 
 <body>
+	<jsp:include page="../footer.jsp" flush="true" />
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
@@ -79,7 +85,7 @@ td.errorMessage[type="redError"] {
 										data-target="#exampleModalCenter${employee.empId}">修改</button></td>
 							</tr>
 						</tbody>
-					<!-- 					Modal 開始 -->
+						<!-- 					Modal 開始 -->
 						<div class="modal fade" id="exampleModalCenter${employee.empId}"
 							tabindex="-1" role="dialog"
 							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -100,6 +106,18 @@ td.errorMessage[type="redError"] {
 											<input type="hidden" name="empIdEdit"
 												value="${employee.empId}"> <input type="hidden"
 												name="empNoEdit" value="${employee.empNo}">
+
+											<!-- 									------員工圖像 -->
+											<!-- 											<div class="col-sm-2 col-form-label"> -->
+											<!-- 												<div class="col-sm-12"> -->
+											<!-- 												<div class="d-flex justify-content-between bg-secondary mb-2"> -->
+											<div>
+												<img width="220px" height="245px"
+													src="<c:url value='/getPicture/${employee.empId}'/>">
+												<img width="220px" height="245px" id="blah" />
+												<!-- 												</div> -->
+											</div>
+											<!-- 									------員工圖像 -->
 											<div class="form-group row">
 												<label for="empNameEdit${employee.empId}"
 													class="col-sm-2 col-form-label">姓名</label>
@@ -201,17 +219,28 @@ td.errorMessage[type="redError"] {
 												<label for="empImgEdit${employee.empId}"
 													class="col-sm-2 col-form-label">圖片</label>
 												<div class="col-sm-10">
-													<c:choose>
-														<c:when test="${employee.img == img }"></c:when>
 
-													</c:choose>
 													<input id="empImgEdit${employee.empId}" type="file"
-														class="form-control" name="empImgEdit"> <img
-														width="100px" height="100px"
-														src="<c:url value='/getPicture/${employee.empId}'/>">
-													<span id="empImgEditError${employee.empId}"></span>
+														class="form-control" name="empImgEdit">
 												</div>
 											</div>
+
+											<!-- 											TEST TEST TEST 保存原版 -->
+											<!-- 											<div class="form-group row"> -->
+											<%-- 												<label for="empImgEdit${employee.empId}" --%>
+											<!-- 													class="col-sm-2 col-form-label">圖片</label> -->
+											<!-- 												<div class="col-sm-10"> -->
+
+											<%-- 													<input id="empImgEdit${employee.empId}" type="file" --%>
+											<!-- 														class="form-control" name="empImgEdit"> <img -->
+											<!-- 														width="100px" height="100px" -->
+											<%-- 														src="<c:url value='/getPicture/${employee.empId}'/>"> --%>
+											<%-- 													<span id="empImgEditError${employee.empId}"></span> --%>
+											<!-- 												</div> -->
+											<!-- 											</div> -->
+											<!-- 											TEST TEST TEST 保存原版-->
+
+
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary"
@@ -226,6 +255,25 @@ td.errorMessage[type="redError"] {
 						</div>
 						<!-- 						Modal 結束 -->
 
+						<script>
+							// 本方法為預覽顯示圖片
+							function readURL(input) {
+
+								if (input.files && input.files[0]) {
+									var reader = new FileReader();
+									reader.onload = function(e) {
+										$('#blah').attr('src', e.target.result);
+									}
+
+									reader.readAsDataURL(input.files[0]);
+								}
+							}
+
+							$("#empImgEdit${employee.empId}").change(
+									function() {
+										readURL(this);
+									});
+						</script>
 						<script>
 							var flag = "";
 							document
@@ -409,6 +457,24 @@ td.errorMessage[type="redError"] {
 																});
 											})
 						</script>
+						<script>
+							function readURL(input) {
+
+								if (input.files && input.files[0]) {
+									var reader = new FileReader();
+
+									reader.onload = function(e) {
+										$('#blah').attr('src', e.target.result);
+									}
+
+									reader.readAsDataURL(input.files[0]);
+								}
+							}
+
+							$("#imgInp").change(function() {
+								readURL(this);
+							});
+						</script>
 
 					</c:forEach>
 				</table>
@@ -463,6 +529,6 @@ td.errorMessage[type="redError"] {
 
 		</fieldset>
 	</section>
-	<section></section>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

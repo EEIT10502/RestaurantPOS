@@ -80,7 +80,7 @@ td.errorMessage[type="redError"] {
 										</button>
 									</div>
 									<form class='center' name="editForm${employee.empId}"
-										action="${pageContext.request.contextPath}/empManage/employeeListByEmployeeSearchEdit.action/${employee.empId}?currentPageNoBtn=${currentPageNo}"
+										action="${pageContext.request.contextPath}/empManage/EmployeeListByEmployeeSearchEdit.action/${employee.empId}?currentPageNoBtnSearch=${currentPageNo}&searchBar=${searchBarString}"
 										method="post" enctype="multipart/form-data">
 										<div class="modal-body">
 											<input type="hidden" name="_method" id='put' value="">

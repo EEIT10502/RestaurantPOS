@@ -292,14 +292,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return employeeDao.findByPrimaryKey(key);
 		}
 
-		//==========================================================================test排班_開始
-		@Transactional
-				public List<String> getAllEmployeesName() {
-					  
-					    return employeeDao.getAllEmployeesName();
-				}
-		//==========================================================================test排班_結束
-
 		//dfd
 		// 14.取得員工圖片
 		@Transactional
@@ -307,6 +299,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		public Blob getEmployeePicture(Blob img) {
 			return employeeDao.getEmployeePicture(img);
 		}
+
+
 	
 
 

@@ -59,14 +59,14 @@
                 '</div>',
             ].join("");
             
-            $("#tablelist").append(_html);
+            $("body").append(_html);
             me.setPosition();
         },
         setPosition:function(){
             var me = this;
             var parentNode = me.$eparentNode;
             var $element = me.$element;
-            $("#tablelist").css("position","relative");
+            $("body").css("position","relative");
             var height = $element.outerHeight();
             var width = $element.outerWidth();
             var position = $element.position();
@@ -75,8 +75,8 @@
             var ulHeight = $keyboard.outerHeight();
             var left = position.left;
             $keyboard.css({
-                top:position.top+height+30+"px",
-                left:left+width+30+"px"
+                top:200+"px",
+                left:500+"px"
             });
         },
         _eClick:function(e){

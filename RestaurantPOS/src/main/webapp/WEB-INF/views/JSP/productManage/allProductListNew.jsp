@@ -52,7 +52,10 @@ td.errorMessage[type="redError"] {
 <!-- 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" -->
 <!-- 	crossorigin="anonymous"></script> -->
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
@@ -272,10 +275,6 @@ td.errorMessage[type="redError"] {
 		</fieldset>
 	</section>
 	
-<!-- 	排班測試_開始 -->
-	<section style="margin-left: 260px">
-		<a class="page-link" href="<c:url value='test/scheduleTest.action' />" >排班</a>
-	</section>
-<!-- 	排班測試_結束 -->
+<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>
