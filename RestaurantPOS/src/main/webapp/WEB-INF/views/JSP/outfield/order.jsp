@@ -121,8 +121,8 @@ font-weight:bold;
 				
 					$('#oL1').after(row);
 					var subTotal1 = parseInt($("#opSubtotal" + itemNo).html());					
-					total= total1 + subTotal1; //總金額加總					
-					$("#oTotal").attr("value",total);
+					total= total1 + subTotal1; //總金額加總	
+					$("#oTotal").val(total);
 					$('#hidoTotal').attr("value",total);
 					itemNo++;
 				
@@ -135,17 +135,15 @@ font-weight:bold;
 			var people = $('#oPeople').val();
 			var call = $('#oCall').val();
 			var total = $('#oTotal').val();
-			if (!people) {
-				alert('「請輸入用餐人數！！」');
-				return;
-			}
-			if(!call){
-				alert('「請輸入叫號機號碼！！」');
+			var pattern = new RegExp("^[1-9]|1[0-2]$");
+			var pattern1 = new RegExp("^([1-9]|((1|2)[0-9])|30|31)$");
+			if(!call.match(pattern)){
+				alert('「叫號機號碼錯誤！！」');
 				return;
 			}
 			
-			if(call<1 || call >10){
-				alert('「叫號機號碼錯誤！！」');
+			if(!people.match(pattern1)){
+				alert('「用餐人數錯誤！！」');
 				return;
 			}
 			
@@ -153,7 +151,7 @@ font-weight:bold;
 				alert('「請輸入餐點！！」')
 				return;
 			}
-			
+	
 	
 			
 			$('#dataForm').submit();

@@ -50,7 +50,23 @@ $(function(){
 		var change = received - totalAmount ;
 		$('#oChange').val(change + "元");
 	});
+	
+	$('#oNext').click(function() {
+		var received = parseInt($('#oReceived').val());
+		var totalAmount = parseInt(${totalAmount});
+		var change = received - totalAmount ;
+		if(change<0){
+			alert("「收現金額不足」");
+			return;
+		}else{
+			$('#form1').submit();
+		}
+		
+		
+	});
 });
+
+	
 </script>
 
 </head>
@@ -195,7 +211,7 @@ $(function(){
                                                                class="btn btn-danger btn-lg">&nbsp;                                                           
                                                 </div>
                                                 <div class="col-md-3 col-8 align-self-center">
-                                                        <input type="submit" value="結帳" id="oNext" name="oNext" 
+                                                        <input type="button" value="結帳" id="oNext" name="oNext" 
                                                         class="btn btn-success btn-lg">
                                                 </div>
                                                 <div class="col-md-3 col-8 align-self-center"></div>
