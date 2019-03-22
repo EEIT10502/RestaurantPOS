@@ -135,7 +135,7 @@ $(document).ready(function(){
    </div>
 </body>
 <script>
-		//這裡開始是給計算機用的script
+		//  這裡開始是給計算機用的script
 		
 		//連接字串功能
         function getNum(num){
