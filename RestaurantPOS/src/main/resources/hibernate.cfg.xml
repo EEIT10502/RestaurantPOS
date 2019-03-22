@@ -37,6 +37,6 @@
 		<mapping class="_00model.SalaryBean"></mapping>
 		<mapping class="_00model.ScheduleBean"></mapping>
 		<mapping class="_00model.TargetTurnoverBean"></mapping>
-
+		<mapping class="_00model.CalendarBean"></mapping>
 	</session-factory>
 </hibernate-configuration>

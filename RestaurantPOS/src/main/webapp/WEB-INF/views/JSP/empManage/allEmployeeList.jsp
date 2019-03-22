@@ -43,13 +43,12 @@ td.errorMessage[type="redError"] {
 	crossorigin="anonymous"></script>
 
 
-<body>
-	<jsp:include page="../footer.jsp" flush="true" />
+<body>	
 	<div  class="clearfix">
 	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
-	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
+	<div><jsp:include page="../empManage/empSearchHead.jsp" flush="true" /></div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
 			<div id="allList" class="">

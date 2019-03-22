@@ -29,7 +29,10 @@ td.errorMessage[type="redError"] {
 </head>
 
 <body>
+	
+	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	
 	
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
 	<section class="">
