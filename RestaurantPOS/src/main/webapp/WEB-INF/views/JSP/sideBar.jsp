@@ -13,7 +13,7 @@
 <link rel='stylesheet' href="<c:url value="/css/DashBoard.css"/>">
 <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 </head>
-<title>左側下拉式超連結選單</title>
+<title>後台Sidebar</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -48,8 +48,9 @@
 		
 		<button class="w3-button w3-block w3-left-align sideBarColHight" onclick="openScheduleList()"><i	class="fa fa-table"></i>&nbsp&nbsp<span>排班管理</span>&nbsp <i class="fa fa-caret-down"></i></button>
 		<div id="demoScheduleList" class="w3-hide w3-white w3-card">
-			<a href="schedule" class="w3-bar-item w3-btn">班別管理</a>
-			<a href="calendar" class="w3-bar-item w3-btn">排班管理</a>
+<!-- 			<a href="schedule" class="w3-bar-item w3-btn">班別管理</a> -->
+			<a href="<c:url value='/schedule'/>" class="w3-bar-item w3-btn">班別管理</a>
+			<a href="<c:url value='/calendar'/>" class="w3-bar-item w3-btn">排班管理</a>
 		</div>
 
 		<!-- 報表系統 -->

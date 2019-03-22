@@ -52,7 +52,6 @@ public class DailyClosingDaoImpl implements DailyClosingDao {
 					.setParameter("endDate", endDate)
 					.uniqueResult();
 			Integer todayTurnover = (int) todayTurnoverTypeLong;
-			System.out.println("todayTurnoverDao:" + todayTurnover);
 			return todayTurnover;
 		} catch (java.lang.NullPointerException e) {
 			System.out.println("本日截至目前沒有賺到錢錢~QQ");
@@ -65,7 +64,7 @@ public class DailyClosingDaoImpl implements DailyClosingDao {
 		String hql = "SELECT MAX(id) FROM CumulativeTurnoverBean";	
 		Session session = factory.getCurrentSession();
 		Integer maxIdNumber = (Integer) session.createQuery(hql).uniqueResult();
-		System.out.println("maxIdNumber:" + maxIdNumber);
+		
 		return maxIdNumber;
 	}
 	
@@ -74,10 +73,16 @@ public class DailyClosingDaoImpl implements DailyClosingDao {
 		Integer maxIdNumber = getMaxIdNumber();
 		String hql = "SELECT cumulativeTurnover FROM CumulativeTurnoverBean WHERE id = ?0";	
 		Session session = factory.getCurrentSession();
-		Integer getCTPrevious = (Integer) session.createQuery(hql)
-				.setParameter(0, maxIdNumber)
-				.uniqueResult();
-		System.out.println("getCTPrevious:" + getCTPrevious);
+		Integer getCTPrevious;
+		if(maxIdNumber == null) {
+			int zero = 0;
+			getCTPrevious = zero;
+		}else {
+			getCTPrevious = (Integer) session.createQuery(hql)
+					.setParameter(0, maxIdNumber)
+					.uniqueResult();
+		}
+
 		return getCTPrevious;
 	}
 	
@@ -105,7 +110,7 @@ public class DailyClosingDaoImpl implements DailyClosingDao {
 		CumulativeTurnoverBean cumulativeTurnoverBean = (CumulativeTurnoverBean) session.createQuery(hql)
 				.setParameter(0, id)
 				.uniqueResult();
-		System.out.println("cumulativeTurnoverBean All:" + cumulativeTurnoverBean);
+
 		return cumulativeTurnoverBean;
 	}
 

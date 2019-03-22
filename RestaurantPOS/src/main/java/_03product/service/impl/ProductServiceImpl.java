@@ -115,7 +115,6 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	@Override
 	public void setSearchBarString(String searchBarString) {
-		System.out.println("Service searchBarString:" + searchBarString);
 		productdao.setSearchBarString(searchBarString);
 	}
 
@@ -131,16 +130,9 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getTotalPagesBySearch();
 	}
 
-//	public static void  main (String[] args) {
-//		ProductService service = new ProductServiceImpl();
-//		List<MenuBean> a = service.getProductsListGetBySearch();
-//		System.out.println("a:"+a);
-//	}
-
 	@Transactional
 	@Override
 	public void setCateSelect(String cateSelect) {
-		System.out.println("Service cateSelect:" + cateSelect);
 		productdao.setCateSelect(cateSelect);
 	}
 
@@ -159,7 +151,6 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	@Override
 	public void setStatusSelect(String statusSelect) {
-		System.out.println("Service statusSelect:" + statusSelect);
 		productdao.setStatusSelect(statusSelect);
 	}
 

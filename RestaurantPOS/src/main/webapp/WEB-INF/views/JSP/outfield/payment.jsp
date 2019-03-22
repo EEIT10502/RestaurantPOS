@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib  uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib  uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +29,15 @@
 <!--Custom JavaScript -->
 <script src="<c:url value="/js/OrderCustom.min.js"/>"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+<style type="text/css">
+*{
+font-family: Microsoft JhengHei ;
+font-weight:bold;
+}
+</style>
 
 <script>
+
 function ShowTime()
 {
     var NowDate = new Date();
@@ -47,14 +53,9 @@ $(function(){
 		var received = parseInt($('#oReceived').val());
 		var totalAmount = parseInt(${totalAmount});
 		var change = received - totalAmount ;
-		
 		$('#oChange').val(change + "元");
-		
-		}
-		
 	});
 });
-
 </script>
 
 </head>
@@ -72,7 +73,7 @@ $(function(){
             <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">              
                 <!-- Logo -->                
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="<c:url value="/"/>"> <!-- Logo icon -->
                         <!-- Logo icon -->                        
                         <!-- Light Logo icon -->
                         <b>
@@ -193,16 +194,17 @@ $(function(){
                                             <!--底下結帳部分-->
                                             <div class="row">
                                                 <div class="col-md-3 col-8 align-self-center"></div>
-                                                <div class="col-md-3 col-8 align-self-center">
-                                                        <input type="reset" value="取消訂單" id="pBack" name="pBack"
-                                                        	   onclick="location.href='/RestaurantPOS/outfield/cancelOrder'"
-                                                               class="btn btn-danger btn-lg">&nbsp;                                                           
-                                                </div>
-                                                <div class="col-md-3 col-8 align-self-center">
-                                                        <input type="submit" value="結帳" id="oNext" name="oNext" 
-                                                        class="btn btn-success btn-lg">
-                                                </div>
                                                 <div class="col-md-3 col-8 align-self-center"></div>
+                                                <div class="col-md-3 col-8 align-self-center"></div>
+                                                <div class="col-md-3 col-8 align-self-center">
+                                                	<div class="row">
+                                                		<input type="submit" value="結帳" id="oNext" name="oNext" 
+                                                        class="btn btn-success btn-lg">&nbsp;
+                                                        <input type="reset" value="取消" id="pBack" name="pBack"
+                                                   	    onclick="location.href='/RestaurantPOS/outfield/cancelOrder'"
+                                                        class="btn btn-danger btn-lg">    
+                                                    </div>
+                                                </div>
                                             </div>
                                     </div>
                                 </div>

@@ -2,6 +2,7 @@ package _00model;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.text.ParseException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,14 +21,14 @@ public class ScheduleBean implements Serializable {
 	String color;
 	Time startTime;
 	Time endTime;
-	Time restTime;
-	Integer totalTime;
+	Double restTime;
+	Double totalTime;
 
 	public ScheduleBean() {
 	}
 
-	public ScheduleBean(Integer scheduleId, String schedule, String color, Time startTime, Time endTime, Time restTime,
-			Integer totalTime) {
+	public ScheduleBean(Integer scheduleId, String schedule, String color, Time startTime, Time endTime, Double restTime,
+			Double totalTime) {
 		this.scheduleId = scheduleId;
 		this.schedule = schedule;
 		this.color = color;
@@ -56,7 +57,7 @@ public class ScheduleBean implements Serializable {
 		this.schedule = schedule;
 	}
 
-	@Column(columnDefinition = "NVARCHAR(50) NOT NULL", name = "color")
+	@Column(name = "color")
 	public String getColor() {
 		return color;
 	}
@@ -65,7 +66,7 @@ public class ScheduleBean implements Serializable {
 		this.color = color;
 	}
 
-	@Column(columnDefinition = "TIME NOT NULL", name = "startTime")
+	@Column(name = "startTime")
 	public Time getStartTime() {
 		return startTime;
 	}
@@ -74,7 +75,7 @@ public class ScheduleBean implements Serializable {
 		this.startTime = startTime;
 	}
 
-	@Column(columnDefinition = "TIME NOT NULL", name = "endTime")
+	@Column(name = "endTime")
 	public Time getEndTime() {
 		return endTime;
 	}
@@ -83,21 +84,32 @@ public class ScheduleBean implements Serializable {
 		this.endTime = endTime;
 	}
 
-	@Column(columnDefinition = "TIME NOT NULL", name = "restTime")
-	public Time getRestTime() {
+	@Column(name = "restTime")
+	public Double getRestTime() {
 		return restTime;
 	}
 
-	public void setRestTime(Time restTime) {
+	public void setRestTime(Double restTime) {
 		this.restTime = restTime;
 	}
 
-	@Column(columnDefinition = "Integer NOT NULL", name = "totalTime")
-	public Integer getTotalTime() {
+	@Column(name = "totalTime")
+	public Double getTotalTime()throws ParseException {
+//		SimpleDateFormat simpleFormat = new SimpleDateFormat("HH:mm");
+//		String endTime=simpleFormat.format(getEndTime());
+//		String startTime=simpleFormat.format(getStartTime());
+//		long end=simpleFormat.parse(endTime).getTime();
+//		long start=simpleFormat.parse(startTime).getTime();
+//		long diff=(end-start);
+//		double days=diff/(1000*60*60*24);
+//		double hours=(diff-days*(1000*60*60*24)/(1000*60*60));
+//		double dayhours=hours-getRestTime();
+//		
+//		return dayhours;
 		return totalTime;
 	}
 
-	public void setTotalTime(int totalTime) {
+	public void setTotalTime(Double totalTime)throws ParseException {
 		this.totalTime = totalTime;
 	}
 

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import _00model.AttendenceBean;
+import _00model.CumulativeTurnoverBean;
 import _00model.EmployeeBean;
 import _00model.MenuBean;
 import _02employee.repository.EmployeeDao;
@@ -281,13 +282,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return employeeDao.getAllAttendence();
 		}
 
-		//==========================================================================test排班_開始
-		@Transactional
-				public List<String> getAllEmployeesName() {
-					  
-					    return employeeDao.getAllEmployeesName();
-				}
-		//==========================================================================test排班_結束
+		@Override
+		public List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2) {
+			return employeeDao.getAttendenceListByDate(Date1, Date2);
+		}
+
+		@Override
+		public EmployeeBean findByPrimaryKey(int key) {
+			return employeeDao.findByPrimaryKey(key);
+		}
 
 		//dfd
 		// 14.取得員工圖片
@@ -296,6 +299,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		public Blob getEmployeePicture(Blob img) {
 			return employeeDao.getEmployeePicture(img);
 		}
+
+
 	
 
 
