@@ -196,7 +196,6 @@ public class ProductDaoImpl implements ProductDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getProductsListGetBySearch() {
-		System.out.println("DAO searchBarString:" + searchBarString);
 		String hql = "From MenuBean where productName like :key Order By productNo";
 //		String hql = "From MenuBean where productName like '%"+searchBarString+"%' Order By productNo";
 		int startItemNo = (currentPageNo - 1) * itemsPerPage;
@@ -245,7 +244,6 @@ public class ProductDaoImpl implements ProductDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getProductsListGetByCate() {
-		System.out.println("DAO cateSelect:"+cateSelect);
 		String hql = "From MenuBean where cate = ?0 Order By productNo";
 //		String hql = "From MenuBean where productName like '%"+searchBarString+"%' Order By productNo";
 		int startItemNo = (currentPageNo - 1) * itemsPerPage;
@@ -297,7 +295,6 @@ public class ProductDaoImpl implements ProductDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getProductsListGetByProductStatus() {
-		System.out.println("DAO statusSelect:"+statusSelect);
 		String hql = "From MenuBean where productStatus = ?0 Order By productNo";
 //		String hql = "From MenuBean where productName like '%"+searchBarString+"%' Order By productNo";
 		int startItemNo = (currentPageNo - 1) * itemsPerPage;

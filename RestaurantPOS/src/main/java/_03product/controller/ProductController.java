@@ -1,8 +1,6 @@
 package _03product.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,19 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
 import _00.init.util.GlobalService;
-import _00model.EmployeeBean;
 import _00model.MenuBean;
-import _02employee.service.EmployeeService;
 import _03product.service.ProductService;
 
 @Controller
@@ -475,11 +466,6 @@ public class ProductController {
 	public String queryAllProductExcel(@RequestParam(value = "whichCate", required = false) String cateSelect,
 			@RequestParam(value = "whichStatus", required = false) String StatusSelect,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
-		System.out.println("coming");
-
-		System.out.println("cateSelect:" + cateSelect);
-		System.out.println("StatusSelect:" + StatusSelect);
-		System.out.println("searchBarString:" + searchBarString);
 
 		if (cateSelect.isEmpty() && StatusSelect.isEmpty() && searchBarString.isEmpty()) {
 			List<MenuBean> allProductsList = new ArrayList<>();
