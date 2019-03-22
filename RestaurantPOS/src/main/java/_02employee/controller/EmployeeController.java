@@ -143,7 +143,7 @@ public class EmployeeController {
 	// 依職位列出員工頁面
 	@RequestMapping(value = "/empManage/EmployeeListByPosition.action")
 	public String getEmployeeListByPosition(
-			@RequestParam(value = "currentPageNoBtnPosition", required = false) String currentPageNo,
+			@RequestParam(value = "currentPageNoBtnEmployeePosition", required = false) String currentPageNo,
 			@RequestParam(value = "whichPosition", required = false) String positionSelect, Model model) {
 
 		if (currentPageNo == null) {
@@ -233,8 +233,7 @@ public class EmployeeController {
 				employeeListGetByEmployeeStatus = employeeService.getEmployeesListGetByEmployeesStatus();
 				model.addAttribute("employeeListGetByEmployeeStatus", employeeListGetByEmployeeStatus);
 				model.addAttribute("currentPageNo", currentPageNoInit);
-				model.addAttribute("currentBeginOfEmployeeNo",
-						(currentPageNoInit - 1) * GlobalService.Employees_PER_PAGE);
+				model.addAttribute("currentBeginOfEmployeeNo",(currentPageNoInit - 1) * GlobalService.Employees_PER_PAGE);
 				model.addAttribute("totalPages", employeeService.getTotalPagesByEmployeesStatus());
 
 				return "empManage/employeeListByEmployeeStatus";
@@ -257,7 +256,7 @@ public class EmployeeController {
 	 * 搜尋Bar搜尋
 	 */
 
-	@RequestMapping(value = "/empManage/employeeListBySearch.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/empManage/EmployeeListBySearch.action", method = RequestMethod.GET)
 	public String getEmployeeListBySearch(
 			@RequestParam(value = "currentPageNoBtnSearch", required = false) String currentPageNo,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
@@ -495,30 +494,12 @@ public class EmployeeController {
 		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
 		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
 
-		// 如果imgEdit是空值，就直接將empimgEdit的值塞入imgEdit中，要轉型。
-//		if(empImgEdit == null) {
-//			empImgEdit =;
-//		}
-
 		
 		// 上傳照片
 		MultipartFile empImg = empImgEdit;
-		Blob img = imgEdit;
-		if(empImg != null && img == null) {
-			System.out.println("update empImg != null, img == null");
-			Blob bean = employeeService.getEmployeePicture(img);
-			employeeBean.setImg(bean);
-		}
+
 		
-		
-//		Blob img = imgEdit;
-//		if(img == null) {
-//			System.out.println("img == null");
-//		}else {
-//			System.out.println("img != null");
-//		}
-//		
-//					 建立Blob物件，交由Hibernate 寫入資料庫
+//		 建立Blob物件，交由Hibernate 寫入資料庫
 		if (empImg != null && !empImg.isEmpty()) {
 			try {
 				byte[] b = empImg.getBytes();
@@ -529,6 +510,8 @@ public class EmployeeController {
 				e.printStackTrace();
 				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
 			}
+		}else {
+			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
 
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
@@ -551,8 +534,8 @@ public class EmployeeController {
 	}
 
 	// 更新員工by就業狀態
-	@RequestMapping(value = "/empManage/employeeListByEmployeeStatusEdit.action/{key}", method = RequestMethod.POST)
-	public String updateMenuByProductStatus(@PathVariable Integer key,
+	@RequestMapping(value = "/empManage/EmployeeListByEmployeeStatusEdit.action/{key}", method = RequestMethod.POST)
+	public String updateEmployeeByEmployeeStatus(@PathVariable Integer key,
 			@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
 			@RequestParam(value = "empNoEdit", required = false) String empNoEdit,
 			@RequestParam(value = "empNameEdit", required = false) String empNameEdit,
@@ -564,28 +547,11 @@ public class EmployeeController {
 			@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
 			@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
 			@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
-			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+			@RequestParam(value = "currentPageNoBtnEmployeeStatus", required = false) String currentPageNo,
 			@RequestParam(value = "whichStatus", required = false) String statusSelect, Model model) {
 		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
 		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
-
 		
-		//---------------測試--------------------------------
-		
-//		if(empImg == null) {
-//			System.out.println("Status empImg == null");
-//		}else {
-//			System.out.println("Status empImg != null");
-//		}
-//		
-//		
-//		Blob img = imgEdit;
-//		if(img == null) {
-//			System.out.println("Status img == null");
-//		}else {
-//			System.out.println("Status img != null");
-//		}
-		//-----------------------------------------------
 
 		MultipartFile empImg = empImgEdit;
 		if (empImg != null && !empImg.isEmpty()) {
@@ -598,13 +564,14 @@ public class EmployeeController {
 				e.printStackTrace();
 				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
 			}
+		}else {
+			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
 		
 		
-		
-		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
+		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
 				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
-		employeeService.updateEmployee(employeeBean);
+		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
 			currentPageNoInit = 1;
@@ -619,12 +586,12 @@ public class EmployeeController {
 
 		model.addAttribute("whichStatus", statusSelect);
 
-		return "redirect:/empManage/EmployeeListByEmployeeStatus.action?currentPageNoBtnEmployeeStatus="
-				+ currentPageNoInit;
+		return "redirect:/empManage/EmployeeListByEmployeeStatus.action?currentPageNoBtnEmployeeStatus="+ currentPageNoInit;
+																		
 	}
 
 	// 更新員工by職位
-	@RequestMapping(value = "/empManage/employeeListByEmployeePositionEdit.action/{key}", method = RequestMethod.POST)
+	@RequestMapping(value = "/empManage/EmployeeListByEmployeePositionEdit.action/{key}", method = RequestMethod.POST)
 	public String updateMenuByEmployeePosition(@PathVariable Integer key,
 			@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
 			@RequestParam(value = "empNoEdit", required = false) String empNoEdit,
@@ -637,29 +604,11 @@ public class EmployeeController {
 			@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
 			@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
 			@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
-			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+			@RequestParam(value = "currentPageNoBtnEmployeePosition", required = false) String currentPageNo,
 			@RequestParam(value = "whichPosition", required = false) String positionSelect, Model model) {
 		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
 		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
 		
-		//---------------測試--------------------------------
-//				MultipartFile empImg = empImgEdit;
-//				if(empImg == null) {
-//					System.out.println("Position empImg == null");
-//				}else {
-//					System.out.println("Position empImg != null");
-//				}
-//				
-//				
-//				Blob img = imgEdit;
-//				if(img == null) {
-//					System.out.println("Position img == null");
-//				}else {
-//					System.out.println("Position img != null");
-//				}
-				
-				//-----------------------------------------------
-				
 				MultipartFile empImg = empImgEdit;
 
 
@@ -673,6 +622,8 @@ public class EmployeeController {
 						e.printStackTrace();
 						throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
 					}
+				}else {
+					imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 				}
 
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
@@ -692,12 +643,11 @@ public class EmployeeController {
 
 		model.addAttribute("whichPosition", positionSelect);
 
-		return "redirect:/empManage/EmployeeListByEmployeePosition.action?currentPageNoBtnEmployeePosition="
-				+ currentPageNoInit;
+		return "redirect:/empManage/EmployeeListByPosition.action?currentPageNoBtnEmployeePosition="+ currentPageNoInit;
 	}
 
 	// 更新員工by searchBar
-	@RequestMapping(value = "/empManage/employeeListByEmployeeSearchEdit.action/{key}", method = RequestMethod.POST)
+	@RequestMapping(value = "/empManage/EmployeeListByEmployeeSearchEdit.action/{key}", method = RequestMethod.POST)
 	public String updateMenuByEmployeeSearch(@PathVariable Integer key,
 			@RequestParam(value = "empIdEdit", required = false) String empIdEdit,
 			@RequestParam(value = "empNoEdit", required = false) String empNoEdit,
@@ -710,7 +660,7 @@ public class EmployeeController {
 			@RequestParam(value = "remarkEdit", required = false) String remarkEdit,
 			@RequestParam(value = "imgEdit", required = false) Blob imgEdit,
 			@RequestParam(value = "empImgEdit", required = false) MultipartFile empImgEdit,
-			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+			@RequestParam(value = "currentPageNoBtnSearch", required = false) String currentPageNo,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
 		int empIdEditParse = Integer.parseInt(empIdEdit.trim());
 		int empNoEditParse = Integer.parseInt(empNoEdit.trim());
@@ -729,6 +679,8 @@ public class EmployeeController {
 				e.printStackTrace();
 				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
 			}
+		}else {
+			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
 		
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
@@ -748,7 +700,7 @@ public class EmployeeController {
 
 		model.addAttribute("searchBar", searchBarString);
 
-		return "redirect:/empManage/employeeListBySearch.action?currentPageNoBtnSearch=" + currentPageNoInit;
+		return "redirect:/empManage/EmployeeListBySearch.action?currentPageNoBtnSearch=" + currentPageNoInit;
 	}
 
 

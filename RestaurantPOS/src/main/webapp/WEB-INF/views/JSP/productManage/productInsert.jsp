@@ -36,10 +36,19 @@ p.errorMessage[type="redError"] {
 	crossorigin="anonymous">
 	
 </script>
-
-
+<script type="text/javascript">
+	function autoInsert() {
+		document.getElementById("productNameBtn").value='宮保雞丁飯';
+		document.getElementById("priceBtn").value='100';
+		document.getElementById("cateBtn").value='飯類';
+		document.getElementById("productStatusBtn").value='販售';
+	}	
+</script>
 <body>
+	<div  class="clearfix">
+	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>	
 	<section class="">
 
 		<form:form method='POST' modelAttribute="MenuBean"
@@ -52,6 +61,7 @@ p.errorMessage[type="redError"] {
 					</h1>
 				</div>
 				<div>
+				<input type="button" value="一鍵輸入" onclick="autoInsert()">
 					<p class="errorMessage" type="redError">${insertComplete}
 				</div>
 				<div class="form-group">
@@ -112,65 +122,9 @@ p.errorMessage[type="redError"] {
 							value="<spring:message code='spring.productInsert.form.reset.label' />" />
 					</div>
 				</div>
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> -->
-<!--   Launch demo modal -->
-<!-- </button> -->
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
-<!--   <div class="modal-dialog modal-dialog-centered" role="document"> -->
-<!--     <div class="modal-content"> -->
-<!--       <div class="modal-header"> -->
-<!--         <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-<!--         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-<!--           <span aria-hidden="true">&times;</span> -->
-<!--         </button> -->
-<!--       </div> -->
-<!--       <div class="modal-body"> -->
-<!--         ... -->
-<!--       </div> -->
-<!--       <div class="modal-footer"> -->
-<!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-				<!-- 	========================================================================== -->
-				<!-- 				<div class="w3-container" style="margin-left: 160px"> -->
-				<!-- 					<div> -->
-				<!-- 						<label for="gIdInsert">商品編號</label> <input type="text" -->
-				<!-- 							id="gIdInsert" name="gIdInsert"> -->
-				<!-- 						<p> -->
-				<!-- 							<label for="gNInsert">商品名稱</label> <input type="text" -->
-				<!-- 								id="gNInsert" name="gNInsert"> -->
-				<!-- 						<p> -->
-				<!-- 							<label for="gPInsert">商品價格</label> <input type="text" -->
-				<!-- 								id="gPInsert" name="gPInsert"> -->
-				<!-- 						<p> -->
-
-				<!-- 							<label for="cateInsert">商品類別</label> <select id="cateInsert"> -->
-				<!-- 								<option>飯類</option> -->
-				<!-- 								<option>麵類</option> -->
-				<!-- 								<option>飲料</option> -->
-				<!-- 								<option>甜點</option> -->
-				<!-- 							</select> -->
-				<!-- 						<p> -->
-				<!-- 							<label for="gPicInsert">商品圖片</label> <input type="file" -->
-				<!-- 								id="gPicInsert" name="gPicInsert"> -->
-				<!-- 						<p> -->
-				<!-- 							<input type="submit" value="新增" id="inGoods" name="inGoods"> -->
-				<!-- 							<input type="reset" value="清除" id="resetGoods" name="resetGoods"> -->
-				<!-- 						<p> -->
-				<!-- 					</div> -->
-
-
-
-				<!-- 				</div> -->
 			</fieldset>
 		</form:form>
 	</section>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

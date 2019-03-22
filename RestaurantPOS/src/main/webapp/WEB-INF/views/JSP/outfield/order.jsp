@@ -284,7 +284,7 @@ font-weight:bold;
 								<div class="card-block">
 									<div class="row">
 										<div class="col-lg-12">
-											<h4 class="card-title">Orders</h4>
+											<h4 class="card-title">餐點明細</h4>
 											<div class="table-responsive">
 												<table class="table" id="tablelist">
 
