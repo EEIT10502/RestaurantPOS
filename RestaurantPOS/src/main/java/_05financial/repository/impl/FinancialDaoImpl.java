@@ -32,7 +32,7 @@ public class FinancialDaoImpl implements FinancialDao {
 
 	// String to Date
 	@Override
-	public void stringToDate(String Date1, String Date2) {
+	public void stringToDate(String Date1, String Date2) {		
 		String tDate1 = Date1 + " 00:00:00";
 		String tDate2 = Date2 + " 23:59:59";
 		SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
