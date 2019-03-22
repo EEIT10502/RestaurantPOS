@@ -42,10 +42,10 @@ public class DataBaseInitializer {
 		//建立OrderDetailBean資料
 		new OrderDetailTableInit(factory).initOrderDetail();
 		
-		//建立Schedule資料
+		//建立Schedule資料(完成)
 		new ScheduleTableInit(factory).initSchedule();
 		
-		//建立Calendar資料
+		//建立Calendar資料(完成)
 		new CalendarTableInit(factory).initCalendar();
 		
 		//建立Attendence資料
