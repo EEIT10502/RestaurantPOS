@@ -44,25 +44,44 @@
 			$("#dDate2").datepicker("option", "minDate", minValue);
 		})
 	});
+
+	//轉檔方法
+	$(function() {
+		$("#dExport").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/DailyReportGetExcel");
+					$("#form1").submit();
+				});
+	})
+	//轉查詢方法
+	$(function() {
+		$("#dSelect").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/dailyReportGet");
+					$("#form1").submit();
+				});
+	})
 </script>
 
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
-	<fieldset class="w3-container" style="margin-left: 160px">
+	<fieldset class="w3-container" style="margin-left: 260px">
 		<!-- 報表版面 -->
-		<form action="dailyReportGet" method="post">
+		<form action="dailyReportGet" method="post" id="form1">
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
 					<h2>日報表</h2>
 				</div>
 				<div>
 					<h3>選擇欲查詢日期</h3>
-					<input type="text" id="dDate1" name="dDate1">- <input
-						type="text" id="dDate2" name="dDate2">
+					<input type="text" id="dDate1" name="dDate1" value="${dDate1}" readonly>- <input
+						type="text" id="dDate2" name="dDate2" value="${dDate2}" readonly>
 					<p>
 
-						<input type="submit" value="查詢" id="dSel" name="dSel">
+						<input type="submit" value="查詢" id="dSelect" name="dSelect">
 				</div>
 
 				<div>

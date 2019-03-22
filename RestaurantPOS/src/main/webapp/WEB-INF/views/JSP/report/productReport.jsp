@@ -71,12 +71,31 @@
 			}
 		});
 	}
+	//轉檔方法
+	$(function() {
+		$("#pExport").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/productReportGetExcel");
+					$("#form1").submit();
+				});
+	})
+	//轉查詢方法
+	$(
+			function() {
+				$("#pSelect").click(
+						function() {
+							$("#form1").attr("action",
+									"/RestaurantPOS/report/productReportGet");
+							$("#form1").submit();
+						});
+			})
 </script>
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
 	<fieldset class="w3-container" style="margin-left: 160px">
-		<form action="productReportGet" method="post">
+		<form action="productReportGet" method="post" id="form1">
 			<!-- 報表版面 -->
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
@@ -84,21 +103,33 @@
 				</div>
 				<div>
 					<h3>選擇欲查詢日期</h3>
-					<input type="text" id="pDate1" name="pDate1">- <input
-						type="text" id="pDate2" name="pDate2">
+					<input type="text" id="pDate1" name="pDate1" value="${pDate1}"
+						readonly>- <input type="text" id="pDate2" name="pDate2"
+						value="${pDate2}" readonly>
 					<p>
 
 						<!-- 類別下拉選單 -->
 						<select id="pcSelOpt" name="pcSelOpt" onchange="showCodeSubCate()">
 							<option>--請選擇--</option>
 							<c:forEach var="pcSel" items="${listMenuCate}">
-								<option>${pcSel}</option>
+								<c:if test="${pcSelOpt == pcSel}">
+									<option selected="selected"><c:out value="${pcSel}" /></option>
+								</c:if>
+								<c:if test="${pcSelOpt!=pcSel}">
+									<option><c:out value="${pcSel}" /></option>
+								</c:if>
 							</c:forEach>
 						</select>
 						<!-- 單品下拉選單 -->
 						<select id="pSelOpt" name="pSelOpt">
 							<option value="">--請選擇--</option>
-						</select> <input type="submit" value="查詢" id="pSel" name="pSel">
+							<c:if test="${pSelOpt == pSelOpt}">
+								<option selected="selected"><c:out value="${pSelOpt}" /></option>
+								<c:forEach var="pSel" items="${listMenuProduct}">
+									<option><c:out value="${pSel.productName}" /></option>
+								</c:forEach>
+							</c:if>
+						</select> <input type="submit" value="查詢" id="pSelect" name="pSelect">
 				</div>
 
 				<div>

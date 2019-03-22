@@ -49,7 +49,7 @@
 		})
 	});
 
-	//轉PDF方法
+	//轉檔方法
 	$(function() {
 		$("#csExport").click(
 				function() {
