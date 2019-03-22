@@ -27,29 +27,6 @@ td.errorMessage[type="redError"] {
 </style>
 
 </head>
-<!-- <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
-<!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
-<!-- 	crossorigin="anonymous"></script> -->
-<!-- <script -->
-<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" -->
-<!-- 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" -->
-<!-- 	crossorigin="anonymous"></script> -->
-<!-- <script -->
-<!-- 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" -->
-<!-- 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" -->
-<!-- 	crossorigin="anonymous"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
-<!-- 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
-<!-- 	crossorigin="anonymous"></script> -->
-<!-- <script -->
-<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" -->
-<!-- 	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" -->
-<!-- 	crossorigin="anonymous"></script> -->
-<!-- <script -->
-<!-- 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" -->
-<!-- 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" -->
-<!-- 	crossorigin="anonymous"></script> -->
 <body>
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
@@ -93,7 +70,6 @@ td.errorMessage[type="redError"] {
 									</div>
 									<form class='center' name="editForm${product.pId}" action="${pageContext.request.contextPath}/productManage/ProductListByProductStatusEdit.action/${product.pId}?currentPageNoBtnProductStatus=${currentPageNo}&whichStatus=${whichStatus}" method="post">
 										<div class="modal-body">
-<!-- 											<input type="hidden" name="_method" id='put' value=""> -->
 											<input type="hidden" name="pIdEdit" value="${product.pId}" >
 											<input type="hidden" name="productNoEdit" value="${product.productNo}" >
 											<div class="form-group row">
@@ -268,55 +244,6 @@ td.errorMessage[type="redError"] {
 			</div>
 		</fieldset>
 	</section>
-
-
-	<!-- ================================================================= -->
-	<!-- 	<form action="" method='POST'> -->
-	<!-- 		<div class="w3-container" style="margin-left: 160px"> -->
-	<!-- 			<h2>商品查詢/修改</h2> -->
-	<!-- 			<div> -->
-	<!-- 				<label for="searchType"></label> <select id="searchType"> -->
-	<!-- 					<option>商品名稱</option> -->
-	<!-- 					<option>商品編號</option> -->
-	<!-- 					<option>類別</option> -->
-	<!-- 				</select> <label for=""></label> <select id=""> -->
-	<!-- 					<option>已上架</option> -->
-	<!-- 					<option>未上架</option> -->
-	<!-- 				</select> <input type="text" id="goodsSearch" name="goodsSearch"> <input -->
-	<!-- 					type="submit" value="查詢" id="dSel" name="dSel"> -->
-	<!-- 			</div> -->
-	<!-- 			<div> -->
-	<!-- 				<input type="button" value="匯出檔案" id="dExport" name="dExport"> -->
-	<!-- 			</div> -->
-	<!-- 			<table border="1"> -->
-	<!-- 				<tr> -->
-	<!-- 					<th>序號</th> -->
-	<!-- 					<th>商品編號</th> -->
-	<!-- 					<th>商品名稱</th> -->
-	<!-- 					<th>類別</th> -->
-	<!-- 					<th>價格</th> -->
-	<!-- 					<th>狀態</th> -->
-
-	<!-- 				</tr> -->
-	<%-- 						<c:forEach var="gTable" items="">
-<%-- 				<tr> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 					<td></td> --%>
-	<%-- 				</tr> --%>
-	<%-- 		</c:forEach> --%>
-	--%>
-	<!-- 			</table> -->
-
-	<!-- 			<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input -->
-	<!-- 				type="button" value="下一頁" id="dNPage" name="dNPage"> -->
-	<!-- 		</div> -->
-	<!-- 	</form> -->
-	<!-- 	</div> -->
-	<!-- 	</form> -->
-
 
 </body>
 </html>
