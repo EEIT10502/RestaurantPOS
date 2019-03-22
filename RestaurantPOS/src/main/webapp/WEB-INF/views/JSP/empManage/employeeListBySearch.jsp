@@ -93,7 +93,7 @@ td.errorMessage[type="redError"] {
 												<div class="col-sm-10">
 													<input id="empNameEdit${employee.empId}" type="text"
 														class="form-control" name="empNameEdit"
-														value="${employee.empName}" /> <span
+														value="${employee.empName}" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"/> <span
 														id="empNameEditError${employee.empId}"></span>
 												</div>
 											</div>

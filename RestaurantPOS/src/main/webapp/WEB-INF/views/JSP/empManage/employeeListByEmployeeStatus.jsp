@@ -75,7 +75,7 @@ td.errorMessage[type="redError"] {
 											<div class="form-group row">
 												<label for="empNameEdit${employee.empId}" class="col-sm-2 col-form-label">姓名</label>
 												<div class="col-sm-10">
-													<input id="empNameEdit${employee.empId}" type="text" class="form-control" name="empNameEdit" value="${employee.empName}" /> <span id="empNameEditError${employee.empId}"></span>
+													<input id="empNameEdit${employee.empId}" type="text" class="form-control" name="empNameEdit" value="${employee.empName}" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"/> <span id="empNameEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">

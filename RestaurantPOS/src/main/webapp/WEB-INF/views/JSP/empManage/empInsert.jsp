@@ -57,12 +57,12 @@
 
 				<div class="form-group">
 					<label for='empName'>姓名</label>
-					<form:input id="empName" path="empName" type='text' name="empName" />
+					<form:input id="empName" path="empName" type='text' name="empName" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" />
 					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeName}
 				</div>
 				<div>
 					<label for='tel'>電話</label>
-					<form:input id="tel" path="tel" type='text' name="tel" />
+					<form:input id="tel" path="tel" type='text' name="tel" onkeyup="value=value.replace(/[^\d.]/g,'')"/>
 					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeTel}
 				</div>
 				<div>
