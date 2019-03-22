@@ -54,7 +54,7 @@
 		$("#csExport").click(
 				function() {
 					$("#form1").attr("action",
-							"/RestaurantPOS/report/categoryReportGetExcel");
+							"/RestaurantPOS/report/empManage/attendanceGetExcel");
 					$("#form1").submit();
 				});
 	})
@@ -63,7 +63,7 @@
 		$("#csSelect").click(
 				function() {
 					$("#form1").attr("action",
-							"/RestaurantPOS/report/categoryReportGet");
+							"/RestaurantPOS/empManage/attendanceGet");
 					$("#form1").submit();
 				});
 	})
@@ -78,7 +78,7 @@
 			flush="true" />
 	</div>
 	<fieldset class="w3-container" style="margin-left: 160px">
-		<form action="categoryReportGet" method="post" id="form1">
+		<form action="attendanceGet" method="post" id="form1">
 			<!-- 報表版面 -->
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
@@ -109,8 +109,7 @@
 
 				<div>
 					<h5>選擇日期：${csDate1}至${csDate2}</h5>
-					<input type="button" value="匯出報表" id="csExport" name="csExport">
-					<%-- 				<a type="button" href="<c:url value='/report/categoryReportGetExcel?csDate1=${csDate1}&csDate2=${csDate2}&csSelOpt=${csSelOpt}'/>"> TO PDF</a> --%>
+					<%-- 				<a type="button" href="<c:url value='/empManage/attendanceGetExcel?csDate1=${csDate1}&csDate2=${csDate2}&csSelOpt=${csSelOpt}'/>"> TO PDF</a> --%>
 					<table class="table table-hover">
 						<tr>
 							<th>序號</th>
@@ -135,46 +134,10 @@
 						</c:forEach>
 					</table>
 				</div>
+				<a href='attendence.xls' type="button" value="匯出報表" id="csExport" name="csExport">匯出EXCEL報表</a>
 			</div>
-
 		</form>
 	</fieldset>
-	<!-- 搜尋列結束 -->
-	<!-- 匯出 -->
-	<div>
-		<a href='attendance.xls'>多筆會員資料查詢(EXCEL格式)</a><br>
-	</div>
-	<!-- 		匯出與寄信結束 -->
-	<!-- 商品列表開始 -->
-	<div>
-		<table border="1">
-			<tr>
-				<th>序號</th>
-				<th>員工編號</th>
-				<th>員工姓名</th>
-				<th>日期</th>
-				<th>狀態</th>
-				<th>時間</th>
-				<th>備註</th>
-			</tr>
-			<c:forEach var="Attendence" items="${Attendence}" varStatus="status">
-				<tr>
-					<td>${Attendence.attendenceId}</td>
-					<td>${Attendence.empNo}</td>
-					<td>${Attendence.empName}</td>
-					<td>${Attendence.date}</td>
-					<td>${Attendence.checkStatus}</td>
-					<td>${Attendence.clockTime}</td>
-					<td></td>
-				</tr>
-			</c:forEach>
-		</table>
-		<!-- 	商品列表結束 -->
-		<input type="button" value="上一頁" id="dBPage" name="dBPage"> <input
-			type="button" value="下一頁" id="dNPage" name="dNPage">
-	</div>
 	<jsp:include page="../footer.jsp" flush="true" />
-	>>>>>>> branch 'master' of
-	https://github.com/EEIT10502/RestaurantPOS.git
 </body>
 </html>

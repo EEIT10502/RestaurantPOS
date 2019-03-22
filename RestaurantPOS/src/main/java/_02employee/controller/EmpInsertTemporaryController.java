@@ -7,11 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import _00model.AttendenceBean;
-import _00model.CumulativeTurnoverBean;
-import _00model.OrderBean;
 import _02employee.service.EmployeeService;
 
 //此檔案係為了開發方便(在首頁直接出現連結，連到員工管理相關頁面)，故之後確定員工管理入口後再修改
@@ -49,16 +46,6 @@ public class EmpInsertTemporaryController {
 		return "empManage/attendance";
 	}
 
-	// 顯示多筆Member資料，然後導向顯示畫面
-	@RequestMapping(value = "/empManage/attendance", method = RequestMethod.GET, 
-			produces = "application/vnd.ms-excel")
-	public String queryAllAttendenceExcel(Model model) {
-		List<AttendenceBean> list = employeeService.getAllAttendence();
-		model.addAttribute("Attendence", list);
-		System.out.println("list=" + list);
-		return "empManage/attendance";
-	}
-
 	// 以日期查詢員工
 //	@RequestMapping("/empManage/attendance")
 //	public String listByDate(Model model, @RequestParam("dDate1") String dDate1,
@@ -76,5 +63,16 @@ public class EmpInsertTemporaryController {
 
 //		return "empManage/attendance";
 //	}
+	
+	// URL為 /members, 搭配 GET方法可以傳回所有紀錄。
+	// 加入produces屬性可以說明產生之資料的格式: produces = "application/vnd.ms-excel"
+	// 查詢所有Member紀錄，本方法可以產生 Excel格式的回應
+	@RequestMapping(value = "/empManage/attendance", method = RequestMethod.GET, 
+			produces = "application/vnd.ms-excel")
+	public String queryAllAttendenceExcel(Model model) {
+		List<AttendenceBean> allAttendence = employeeService.findAllAttendence();
+		model.addAttribute("allAttendence", allAttendence);
+		return "empManage/attendance";
+	}
 
 }

@@ -126,10 +126,13 @@ public interface EmployeeService {
 	Blob getEmployeePicture(Blob pFromDB);
 	
 	
-	//Tai 用於出勤表(完成)
+	//泰豪 取得Attendence資料(完成)
 	List<AttendenceBean> getAllAttendence();
-	//Tai 用於出勤表(尚未完成)
+	//泰豪 用於出勤表(尚未完成)
 	List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2);
+	//泰豪 2.匯出Attendence資料(尚未完成)
+	List<AttendenceBean> findAllAttendence();
+	
 	
 	EmployeeBean findByPrimaryKey(int key);
 	

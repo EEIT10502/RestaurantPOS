@@ -3,12 +3,14 @@ package _00.init.util;
 import org.hibernate.SessionFactory;
 
 import _00.init.tableInit.AttendenceTableInit;
+import _00.init.tableInit.CalendarTableInit;
 import _00.init.tableInit.CumulativeTurnoverTableInit;
 import _00.init.tableInit.EmployeeTableInit;
 import _00.init.tableInit.ManagerTableInit;
 import _00.init.tableInit.MenuTableInit;
 import _00.init.tableInit.OrderDetailTableInit;
 import _00.init.tableInit.OrderTableInit;
+import _00.init.tableInit.ScheduleTableInit;
 import _00.init.tableInit.TargetTurnoverTableInit;
 
 public class DataBaseInitializer {
@@ -41,10 +43,10 @@ public class DataBaseInitializer {
 		new OrderDetailTableInit(factory).initOrderDetail();
 		
 		//建立Schedule資料
-		//
+		new ScheduleTableInit(factory).initSchedule();
 		
-		//建立Salary資料
-		//
+		//建立Calendar資料
+		new CalendarTableInit(factory).initCalendar();
 		
 		//建立Attendence資料
 		new AttendenceTableInit(factory).initAttendence();

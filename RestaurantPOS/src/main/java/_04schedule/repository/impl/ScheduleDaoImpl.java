@@ -66,25 +66,21 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return list;
 	}
 
-	/*-----------------------------------修改班表資料-----------------------------------*/
-	
+	//修改班表資料
 	@Override
 	public void updateSchedule(ScheduleBean schedule) {
-//		String hql = "UPDATE ScheduleBean SET schedule s =:schedule WHERE scheduleId d=:scheduleId";
 		Session session = factory.getCurrentSession();
-//		System.out.println(schedule.getScheduleId());	//ID
-//		System.out.println(schedule.getSchedule());		//班別
 		session.update(schedule);
 	}
 
-	/*-----------------------------------新增班表資料-----------------------------------*/
+	//新增班表資料
 	@Override
 	public void saveSchedule(ScheduleBean schedule) {
 		Session session = factory.getCurrentSession();
 		session.save(schedule);
 
 	}
-	/*-----------------------------------刪除班表資料-----------------------------------*/
+	//刪除班表資料
 	@Override
 	public void deleteScheduleByPrimaryKey(ScheduleBean schedule) {
 		Session session = factory.getCurrentSession();
@@ -142,14 +138,14 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		System.out.println(calendarId);
 		return sb;
 	}
-	
+	//更新Calendar資料
 	@Override
 	public void updateCalendar(CalendarBean calendar) {
 		Session session = factory.getCurrentSession();
 		session.update(calendar);
 		
 	}
-	
+	//測試
 	@Override
 	public CalendarBean testGet(int id) {
 		Session session = factory.getCurrentSession();
