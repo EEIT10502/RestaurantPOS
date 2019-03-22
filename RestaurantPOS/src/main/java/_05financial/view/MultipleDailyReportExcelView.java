@@ -19,10 +19,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
-import _00.init.util.GlobalService;
-import _00model.OrderDetailBean;
+import _00model.CumulativeTurnoverBean;
 
-public class MultipleCategoryReportExcelView extends AbstractXlsView {
+public class MultipleDailyReportExcelView extends AbstractXlsView {
 
 	Sheet sheet;
 	String sheetName = "sheet 1";
@@ -113,7 +112,9 @@ public class MultipleCategoryReportExcelView extends AbstractXlsView {
 		styleDate.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
 		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
 
-		List<Map<String, Object>> listCateExcel = (List<Map<String, Object>>) model.get("listCateExcel");
+		List<Map<String, Object>> listDailyOrderExcel = (List<Map<String, Object>>) model.get("listDailyOrderExcel");
+		List<CumulativeTurnoverBean> listDailyCumu= (List<CumulativeTurnoverBean>) model.get("listDailyCumu");
+		
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
@@ -125,11 +126,12 @@ public class MultipleCategoryReportExcelView extends AbstractXlsView {
 			colCount = 0;
 			row = sheet.createRow(rowCount++);
 
-			Map<String, Object> map = listCateExcel.get(i);
+			Map<String, Object> map = listDailyOrderExcel.get(i);
 			Date date = (Date) map.get("date" + i);
-			String cate = (String) model.get("csSelOpt");
-			Long qty = (Long) map.get("qty" + i);
+			Long totalList = (Long) map.get("totalList" + i);
+			Long cusFlow = (Long) map.get("cusFlow" + i);
 			Long price = (Long) map.get("price" + i);
+			Long shortOver = (Long) map.get("shortOver" + i);
 
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
@@ -137,16 +139,25 @@ public class MultipleCategoryReportExcelView extends AbstractXlsView {
 
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
-			cell.setCellValue(cate);
+			cell.setCellValue(totalList + "");
 
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
-			cell.setCellValue(qty + "");
+			cell.setCellValue(cusFlow + "");
 
 			cell = row.createCell(colCount++);
 			cell.setCellStyle(styleRight);
 			cell.setCellValue(price + "");
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleRight);
+			cell.setCellValue(listDailyCumu.get(i).getShortoverAmount());
+			
+			cell = row.createCell(colCount++);
+			cell.setCellStyle(styleRight);
+			cell.setCellValue(listDailyCumu.get(i).getMoneyReceived());
 		}
+			
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i = 0; i < columnCount; i++) {
 			sheet.autoSizeColumn(i);
@@ -154,7 +165,7 @@ public class MultipleCategoryReportExcelView extends AbstractXlsView {
 	}
 
 	private void createExcelHeaders(Workbook workbook) {
-		String[] labels = { "日期", "類別", "數量", "金額" };
+		String[] labels = { "日期", "總單數", "來客數", "銷售金額", "短溢收", "實收金額" };
 
 		CellStyle titleStyle = workbook.createCellStyle();
 

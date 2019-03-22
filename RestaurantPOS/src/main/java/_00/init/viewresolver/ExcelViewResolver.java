@@ -15,7 +15,13 @@ public class ExcelViewResolver implements ViewResolver{
 			view = new _03product.view.MultipleProductExcelView();
 		} else if (viewName.startsWith("categoryReport/excel"))  {
 			view = new _05financial.view.MultipleCategoryReportExcelView();
-		} 
+		} else if(viewName.startsWith("dailyReport/excel")) {
+			view = new _05financial.view.MultipleDailyReportExcelView();
+		} else if(viewName.startsWith("productReport/excel")) {
+			view = new _05financial.view.MultipleProductReportExcelView();
+		} else if(viewName.startsWith("goalReport/excel")) {
+			view = new _05financial.view.MultipleGoalReportExcelView();
+		}
 		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
 		return view;
       }

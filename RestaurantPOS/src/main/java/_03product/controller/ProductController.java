@@ -1,8 +1,6 @@
 package _03product.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,21 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
 import _00.init.util.GlobalService;
-import _00model.EmployeeBean;
 import _00model.MenuBean;
-import _02employee.service.EmployeeService;
 import _03product.service.ProductService;
-
+ 
 @Controller
 public class ProductController {
 	@Autowired
@@ -475,11 +466,6 @@ public class ProductController {
 	public String queryAllProductExcel(@RequestParam(value = "whichCate", required = false) String cateSelect,
 			@RequestParam(value = "whichStatus", required = false) String StatusSelect,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
-		System.out.println("coming");
-
-		System.out.println("cateSelect:" + cateSelect);
-		System.out.println("StatusSelect:" + StatusSelect);
-		System.out.println("searchBarString:" + searchBarString);
 
 		if (cateSelect.isEmpty() && StatusSelect.isEmpty() && searchBarString.isEmpty()) {
 			List<MenuBean> allProductsList = new ArrayList<>();
@@ -583,85 +569,5 @@ public class ProductController {
 		return "productManage/excel";
 	}
 
-	// ==========================================================================test排班_開始
-	@Autowired
-	EmployeeService employeeService;
-
-	@RequestMapping(value = "/productManage/test/scheduleTest.action", method = RequestMethod.GET)
-	public String scheduleTest() {
-		return "productManage/scheduleTest";
-	}
-
-	@ModelAttribute("scheduleDateList")
-	public List<String> getScheduleDateList(Model model) {
-
-		Date beginDate = new Date();
-		long beginDateJavaUtil = beginDate.getTime();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
-		String beginDateString = dateFormat.format(beginDate);
-
-		long nextDate = beginDateJavaUtil + 24 * 60 * 60 * 1000;
-		String nextDateString = dateFormat.format(nextDate);
-
-		List<String> scheduleDateList = new ArrayList<String>();
-		scheduleDateList.add(beginDateString);
-		scheduleDateList.add(nextDateString);
-
-		return scheduleDateList;
-	}
-
-	@ModelAttribute("scheduleEmpList")
-	public List<EmployeeBean> getScheduleEmpList(Model model) {
-
-		List<EmployeeBean> ScheduleEmpList = new ArrayList<EmployeeBean>();
-		ScheduleEmpList = employeeService.getAllEmployees();
-
-		return ScheduleEmpList;
-	}
-
-	@ModelAttribute("workTypeList")
-	public List<String> getworkTypeList(Model model) {
-
-		List<String> WorkTypeList = new ArrayList<String>();
-		WorkTypeList.add("早班");
-		WorkTypeList.add("午班");
-		WorkTypeList.add("晚班");
-
-		return WorkTypeList;
-	}
-
-	@SuppressWarnings({ "unchecked", "static-access" })
-	@RequestMapping(value = "/productManage/test/scheduleTestJson.action", method = RequestMethod.POST)
-	@ResponseBody
-	public String scheduleTestJson(@RequestBody String param) {
-		JSONObject jo = new JSONObject();
-		Map<String, Object> mapoutter = (Map<String, Object>) jo.parse(param); // string转map
-
-		int countoutter = 1;
-		for (int i = 1; i <= mapoutter.size(); i++) {
-			String countoutterString = String.valueOf(countoutter);
-		
-			if (mapoutter.containsKey(countoutterString)) {			
-				Map<String, Object> mapinner = (Map<String, Object>) mapoutter.get(countoutterString);
-				
-				int countinner = 1;
-				for (int j = 1; j <= mapinner.size(); j++) {
-					String countinnerString = String.valueOf(countinner);
-					
-					Map<String, Object> mapdata = (Map<String, Object>) mapinner.get(countinnerString);
-					
-					String date = (String) mapdata.get("date");
-					String name = (String) mapdata.get("name");
-					String value = (String) mapdata.get("value");
-					System.out.println("date:"+date+",name:"+name+",value:"+value);
-					
-					countinner++;
-				}			
-			}
-			countoutter++;
-		}
-		return "OK";
-	}
-	// ==========================================================================test排班_結束
+	
 }

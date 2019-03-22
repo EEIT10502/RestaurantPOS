@@ -49,7 +49,7 @@ $(document).ready(function(){
       	 <!-- LOGO -->
       <div class="col-md-4 span_4" >
           <div class="r3_counter_box" id="logo">
-             <img alt="Logo" style="width: 100%" src="<c:url value="/images/IndexLogo.jpg"/>">
+             <img alt="Logo" style="width: 87%" src="<c:url value="/images/IndexLogo.jpg"/>">
           </div>
           <!-- 打卡機 -->
           <div class="r3_counter_box" style="display: none;" id="punchTable">
@@ -102,14 +102,10 @@ $(document).ready(function(){
           </div>
           <!-- 空白格 -->
           <div class="col-md-6 col_1_of_2 span_1_of_2">
-                  <a href="<c:url value="/manage/toNewOrders"/>" >
-              	  <div class="r3_counter_box">
-                  <i class="pull-left fa fa-clock-o icon-rounded"></i>
-                  <div class="stats">
-                    <h5><strong >測試點餐</strong></h5>                 
+                  <div class="r3_counter_box">
+                  
                   </div>
-	              </div>
-	              </a>                   
+                  
           </div>
             <div class="clearfix"> </div>
           </div>
@@ -117,11 +113,13 @@ $(document).ready(function(){
           	  <!-- 空白格 -->
               <div class="col-md-6 col_1_of_2 span_1_of_2">
                   <div class="r3_counter_box">
+                  
                   </div>
               </div>
                <!-- 空白格 -->
               <div class="col-md-6 col_1_of_2 span_1_of_2">
                   <div class="r3_counter_box">  
+                  
                   </div>
               </div>
               <div class="clearfix"> </div>
