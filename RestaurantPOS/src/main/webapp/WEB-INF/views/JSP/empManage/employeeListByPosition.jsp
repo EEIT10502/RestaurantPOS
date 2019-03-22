@@ -31,7 +31,9 @@ td.errorMessage[type="redError"] {
 <body>
 	
 	
+	<div class="clearfix">	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+    </div>
 	
 	
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />

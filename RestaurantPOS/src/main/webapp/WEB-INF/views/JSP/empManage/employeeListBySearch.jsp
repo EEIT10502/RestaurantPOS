@@ -30,7 +30,9 @@ td.errorMessage[type="redError"] {
 
 
 <body>
+	<div class="clearfix">	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+    </div>
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">

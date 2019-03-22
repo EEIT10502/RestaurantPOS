@@ -30,13 +30,10 @@ td.errorMessage[type="redError"] {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 
-<body>
-	<jsp:include page="../footer.jsp" flush="true" />
-	<div class="clearfix">
-		<jsp:include page="../headerTime.jsp" flush="true" />
-		<jsp:include page="../sideBar.jsp" flush="true" />
-
-	</div>
+<body>	
+	<div class="clearfix">		
+	<jsp:include page="../sideBar.jsp" flush="true" />
+    </div>
 	<div><jsp:include page="../empManage/empSearchHead.jsp" flush="true" /></div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
