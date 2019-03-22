@@ -20,7 +20,7 @@ public class DataBaseInitializer {
 		//建立Menu資料
 		new MenuTableInit(factory).initMenu();
 		
-		//建立Manger資料 ，之後密碼會改暗碼
+		//建立Manger資料 
 		new ManagerTableInit(factory).initManager();
 		
 		//建立Employee資料
