@@ -188,14 +188,14 @@ public class FinancialController {
 		model.addAttribute("listMenuCate", listMenuCate);
 		// 單品報表單品下拉選單
 		List<MenuBean> listMenuProduct = service.getMenuProductByCate(pcSelOpt);
-		for(MenuBean Product:listMenuProduct) {
+		for (MenuBean Product : listMenuProduct) {
 			System.out.println(Product.getProductName());
-			if(Product.getProductName().equals(pSelOpt)) {
+			if (Product.getProductName().equals(pSelOpt)) {
 				listMenuProduct.remove(Product);
 				break;
 			}
 		}
-		
+
 		model.addAttribute("listMenuProduct", listMenuProduct);
 
 		return "report/productReport";
@@ -253,6 +253,20 @@ public class FinancialController {
 		model.addAttribute("listgoalturn", listgoalturn);
 
 		return "report/goalReport";
+	}
+
+	// 營運目標報表Excel
+	@RequestMapping(value = "/report/goalReportGetExcel", method = RequestMethod.POST, produces = "application/vnd.ms-excel")
+	public String goalReportGetExcel(Model model, @RequestParam("gMonth1") String gMonth1) {
+		model.addAttribute("gMonth1", gMonth1);
+		// CumulativeTurnoverBean的欄位資料
+		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
+		model.addAttribute("listgoalCum", listgoalCum);
+		// TargetTurnoverBean的欄位資料
+		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
+		model.addAttribute("listgoalturn", listgoalturn);
+
+		return "goalReport/excel";
 	}
 	// 營運目標PDF
 //	@RequestMapping(value = "/report/goalReportGetPDF", method = RequestMethod.GET)

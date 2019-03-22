@@ -19,6 +19,8 @@ public class ExcelViewResolver implements ViewResolver{
 			view = new _05financial.view.MultipleDailyReportExcelView();
 		} else if(viewName.startsWith("productReport/excel")) {
 			view = new _05financial.view.MultipleProductReportExcelView();
+		} else if(viewName.startsWith("goalReport/excel")) {
+			view = new _05financial.view.MultipleGoalReportExcelView();
 		}
 		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
 		return view;
