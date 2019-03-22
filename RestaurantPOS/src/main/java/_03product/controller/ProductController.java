@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import _00.init.util.GlobalService;
 import _00model.MenuBean;
 import _03product.service.ProductService;
-
+ 
 @Controller
 public class ProductController {
 	@Autowired
