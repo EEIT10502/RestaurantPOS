@@ -40,6 +40,7 @@ public class CalendarTableInit {
 				EmployeeBean cb=(EmployeeBean)session.createQuery(hql)
 						.setParameter("empName", token[0].trim())
 						.getSingleResult();
+				
 				calendar.setEmployee(cb);
 				
 				String day1 = token[1];
