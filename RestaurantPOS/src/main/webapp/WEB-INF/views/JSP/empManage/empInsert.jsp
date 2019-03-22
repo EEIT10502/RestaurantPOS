@@ -29,7 +29,7 @@
  } 
 </style>
 <script type="text/javascript">
- 	function autoInsert() { -->
+ 	function autoInsert() { 
  		document.getElementById("empName").value = '柳彥如'; 
  		document.getElementById("tel").value = '0932277888';
  		document.getElementById("addr").value = '台北市內湖區'; 
@@ -115,6 +115,7 @@
 		</form:form>
 	</section>
 	<jsp:include page="../footer.jsp" flush="true" />
+	
 	
 
 </body>

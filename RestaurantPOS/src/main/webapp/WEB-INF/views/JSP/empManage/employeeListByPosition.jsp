@@ -149,10 +149,10 @@ td.errorMessage[type="redError"] {
 												<label for="addrEdit${employee.empId}"
 													class="col-sm-2 col-form-label">地址</label>
 												<div class="col-sm-10">
-													<input id="addrEdit${product.pId}" type="text"
+													<input id="addrEdit${employee.empId}" type="text"
 														class="form-control" name="addrEdit"
 														value="${employee.addr}"> <span
-														id="addrEditError${product.pId}"></span>
+														id="addrEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -227,7 +227,7 @@ td.errorMessage[type="redError"] {
 											flag = flag.replace("${employee.empId}A","");
 											document.getElementById("empNameEditError${employee.empId}").innerHTML = "";
 										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${product.pId}B") == -1) {
+										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
 											document.getElementById("empNameEditError${employee.empId}").innerHTML = "";
 											document.getElementById("submit${employee.empId}").disabled=false;
 										}
@@ -240,7 +240,7 @@ td.errorMessage[type="redError"] {
 								document.getElementById("telEdit${employee.empId}").addEventListener("blur", function () {
 									var reg = /[^\d.]/g;
 									if (document.getElementById("telEdit${employee.empId}").value == "") {
-										document.getElementById("telEditError${employee.empId}").innerHTML = "<span style='color:red'><i>價格不可空白";
+										document.getElementById("telEditError${employee.empId}").innerHTML = "<span style='color:red'><i>電話不可空白";
 										if (flag.indexOf("${employee.empId}B") == -1) {
 											flag = flag.concat("${employee.empId}B");
 										}
@@ -258,49 +258,51 @@ td.errorMessage[type="redError"] {
 								});
 							})	
 							
-							document.addEventListener("DOMContentLoaded", function() {
-								document.getElementById("addrEdit${employee.empId}").addEventListener("blur", function () {
-									var reg = /[^\d.]/g;
-									if (document.getElementById("addrEdit${employee.empId}").value == "") {
-										document.getElementById("addrEditError${product.pId}").innerHTML = "<span style='color:red'><i>地址不可空白";
-										if (flag.indexOf("${employee.empId}B") == -1) {
-											flag = flag.concat("${employee.empId}B");
-										}
-										document.getElementById("submit${employee.empId}").disabled=true;
-									} else{
-										if (flag.indexOf("${employee.empId}B") != -1) {
-											flag = flag.replace("${employee.empId}B","");
-											document.getElementById("addrEditError${product.pId}").innerHTML = "";
-										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
-											document.getElementById("addrEditError${product.pId}").innerHTML = "";
-											document.getElementById("submit${employee.empId}").disabled=false;
-										}
-									}
-								});
-							})	
 							
-							document.addEventListener("DOMContentLoaded", function() {
-								document.getElementById("remarkEdit${employee.empId}").addEventListener("blur", function () {
-									var reg = /[^\d.]/g;
-									if (document.getElementById("remarkEdit${employee.empId}").value == "") {
-										document.getElementById("remarkEditError${employee.empId}").innerHTML = "<span style='color:red'><i>備註不可空白";
-										if (flag.indexOf("${employee.empId}B") == -1) {
-											flag = flag.concat("${employee.empId}B");
-										}
-										document.getElementById("submit${employee.empId}").disabled=true;
-									} else{
-										if (flag.indexOf("${employee.empId}B") != -1) {
-											flag = flag.replace("${employee.empId}B","");
-											document.getElementById("remarkEditError${employee.empId}").innerHTML = "";
-										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
-											document.getElementById("remarkEditError${employee.empId}").innerHTML = "";
-											document.getElementById("submit${employee.empId}").disabled=false;
-										}
-									}
-								});
-							})	
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"addrEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	var reg = /[^\d.]/g;
+																	if (document
+																			.getElementById("addrEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("addrEditError${employee.empId}").innerHTML = "<span style='color:red'><i>地址不可空白";
+																		if (flag
+																				.indexOf("${employee.empId}B") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}B");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}B") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}B",
+																							"");
+																			document
+																					.getElementById("addrEditError${employee.empId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${employee.empId}B") == -1) {
+																			document
+																					.getElementById("addrEditError${employee.empId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+																	}
+																});
+											})
 							
 
 						</script>
