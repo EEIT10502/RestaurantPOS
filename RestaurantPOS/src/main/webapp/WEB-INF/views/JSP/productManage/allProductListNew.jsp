@@ -275,11 +275,6 @@ td.errorMessage[type="redError"] {
 		</fieldset>
 	</section>
 	
-<!-- 	排班測試_開始 -->
-	<section style="margin-left: 260px">
-		<a class="page-link" href="<c:url value='test/scheduleTest.action' />" >排班</a>
-	</section>
-<!-- 	排班測試_結束 -->
 <jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>
