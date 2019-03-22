@@ -32,6 +32,8 @@
 		<div  class="clearfix">
 	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	<br>
+	<jsp:include page="../scheduleManage/statusSearchHead.jsp" flush="true" />
 	</div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
