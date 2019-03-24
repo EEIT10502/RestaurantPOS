@@ -34,7 +34,7 @@
 	  return false;
   }
 </script>
-<!-- <link rel='stylesheet' href='css/styles.css' type="text/css" /> -->
+<link rel='stylesheet' href='css/styles.css' type="text/css" />
 
 </head>
 <body>
@@ -42,6 +42,7 @@
 	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
+	<section class="container">
 		<!--       三個地方要完全一樣 -->
 		<form:form method='POST' modelAttribute="scheduleBean"
 			class='form-horizontal' enctype="multipart/form-data">
@@ -50,10 +51,10 @@
 				<legend>修改班別資料</legend>
 				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 hide" for='scheduleId'>
-						ID</label>
+<!-- 					<label class="control-label col-lg-2 col-lg-2 hide" for='scheduleId'> -->
+<!-- 						ID</label> -->
 					<div class="col-lg-10">
-						<form:input id="shcedule${schedule.scheduleId}" path="scheduleId" type='text'
+						<form:input id="shcedule${schedule.scheduleId}" path="scheduleId" type='hidden'
 							class='form:input-large hide' readonly="true"/> 
 					</div>
 				</div>
@@ -128,6 +129,7 @@
          </c:if>
          </fieldset>
 		</form:form>
+		</section>
 				<script type="text/javascript">
 				
 				$(document).ready(function() {
