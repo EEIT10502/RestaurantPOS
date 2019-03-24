@@ -29,7 +29,7 @@
 <title>CLASS</title>
 </head>
 <body>
-		<div  class="clearfix">
+	<div  class="clearfix">
 	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<br>

@@ -30,7 +30,7 @@
 	</div>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="scheduleBean"
+		<form:form method='POST' modelAttribute="scheduleBean" id="form1" onclick="return false"
 			class='form-horizontal'>
 			<fieldset class="w3-container" style="margin-left: 260px">
 				<legend>新增資料</legend>
@@ -156,9 +156,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.date.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/picker.time.js"></script>
 <!-- 選色器 -->
-<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
-<script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
+
 
 </body>
 </html>

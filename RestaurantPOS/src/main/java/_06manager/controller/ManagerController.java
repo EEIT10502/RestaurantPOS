@@ -165,12 +165,16 @@ public class ManagerController {
 	//前往後台首頁
 	@RequestMapping("/toDashBoard")
 	public String toDashBoard(Model model) {
-		TargetTurnoverBean TTBean = null;
-		TTBean = managerservice.getMonthTarget();
+//      給圖表用，有時間再實作
+//		TargetTurnoverBean TTBean = null;
+//		TTBean = managerservice.getMonthTarget();
+//		model.addAttribute("TTBean",TTBean);
+		List<CumulativeTurnoverBean> CTBList = managerservice.getOneMonthCumulativeTurnoverBean();
 		
-		model.addAttribute("TTBean",TTBean);
+
+		model.addAttribute("ctbList", CTBList);
 		
-		return "DashBoard";
+		return "/DashBoard";
 	}
 	
 	//跳轉到日結清機
