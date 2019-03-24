@@ -117,11 +117,11 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return sb;
 	}
 
-	//查詢所有員工
+	//查詢所有員工	//給條件 employee表status='在職'的
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CalendarBean> getAllEmpName() {
-		String hql = "FROM CalendarBean";
+		String hql = "FROM CalendarBean c WHERE c.employee.status='在職' ";
 		Session session = null;
 		List<CalendarBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
