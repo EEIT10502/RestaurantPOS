@@ -30,11 +30,11 @@
 </style>
 <script type="text/javascript">
  	function autoInsert() { 
- 		document.getElementById("empName").value = '柳彥如'; 
- 		document.getElementById("tel").value = '0932277888';
- 		document.getElementById("addr").value = '台北市內湖區'; 
+ 		document.getElementById("empName").value = '王小明'; 
+ 		document.getElementById("tel").value = '0932277000';
+ 		document.getElementById("addr").value = '台北市中山區156巷'; 
  		document.getElementById("gender").value = '女性'; 
- 		document.getElementById("position").value = '服務生'; 
+ 		document.getElementById("position").value = '廚師'; 
  		document.getElementById("status").value = '在職'; 
  		document.getElementById("remark").value = '無'; 
  	} 
@@ -50,27 +50,30 @@
 			<fieldset class="w3-container" style="margin-left: 260px">
 				<div class="container">
 					<h1>
-						員工資料填寫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="一鍵輸入" onclick="autoInsert()" class="btn btn-primary">
+						員工資料填寫&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="一鍵輸入" onclick="autoInsert()" class="btn btn-primary" >
 					</h1>
 				</div>
+				<div>
+
+</div>
 
 
-				<div class="form-group">
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='empName'>姓名</label>
 					<form:input id="empName" path="empName" type='text' name="empName" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" />
 					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeName}
 				</div>
-				<div>
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='tel'>電話</label>
 					<form:input id="tel" path="tel" type='text' name="tel" onkeyup="value=value.replace(/[^\d.]/g,'')"/>
 					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeTel}
 				</div>
-				<div>
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='Tel'>地址</label>
 					<form:input id="addr" path="addr" type='text' name="addr" />
 					<p class="errorMessage" type="redError">${modelErrors.errorOfEmployeeAddr}
 				</div>
-				<div>
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='Tel'>性別</label>
 					<form:select id="gender" path="gender" name="gender">
 						<form:option value="-1" label="請選擇" />
@@ -78,7 +81,7 @@
 					</form:select>
 					<p class="errorMessage" type="redError">${modelErrors.errorOfGender}
 				</div>
-				<div>
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='position'>職位</label>
 					<form:select id="position" path="position" name="position">
 						<form:option value="-1" label="請選擇" />
@@ -87,7 +90,7 @@
 					<p class="errorMessage" type="redError">${modelErrors.errorOfPosition}
 				</div>
 
-				<div>
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='status'>狀態</label>
 					<form:select id="status" path="status" name="status">
 						<form:option value="-1" label="請選擇" />
@@ -95,14 +98,14 @@
 					</form:select>
 					<p class="errorMessage" type="redError">${modelErrors.errorOfEmpStatus}
 				</div>
-				<div>
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='empImg'>圖片</label>
 					<form:input id="empImg" path="empImg" type='file' name="empImg" />
 					<p class="errorMessage" id="errorOfEmpPicture" type="redError">${modelErrors.errorOfEmpPicture}
 					
 				</div>
 
-				<div>
+				<div class="control-label col-lg-2 col-lg-2">
 					<label for='remark'>備註</label>
 					<form:input id="remark" path="remark" type='text' name="remark" />
 				</div>
