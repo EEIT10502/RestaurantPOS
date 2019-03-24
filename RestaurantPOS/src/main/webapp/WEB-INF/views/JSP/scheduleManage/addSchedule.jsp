@@ -35,7 +35,7 @@
 	</div>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="scheduleBean"
+		<form:form id="addSch" method='POST' modelAttribute="scheduleBean"
 			class='form-horizontal'>
 			<fieldset class="w3-container" style="margin-left: 260px">
 				<legend>新增資料</legend>
@@ -89,10 +89,11 @@
 				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<input id="btnAdd" type="submit" class='btn btn-primry' value="送出" />
+						<input type="button" id="btnAdd" name="btnAdd" class='btn btn-primary' value="送出" />
 					</div>
 				</div>
 				<script type="text/javascript">
+				
 				/*選時器*/
 				$(document).ready(function() {
 					$.noConflict();
@@ -100,6 +101,7 @@
 				        twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
 				        donetext: 'OK',
 				        format: "HH:i",
+				        clear:false,
 				        autoclose: false,
 				        vibrate: true
 				    });
@@ -108,57 +110,79 @@
 				        let receivedVal = $(this).val();
 				        $(this).val(receivedVal + ":00");
 						});
+				    
+				    $('#btnAdd').click(function() {
+				    	var schedule = $('#schedule').val();
+						var startTime = $('#startTime').val();
+						var endTime = $('#endTime').val();
+						if (!schedule) {
+							alert('「請輸入班別名稱」');
+							return;
+						}
+						if (!startTime) {
+							alert('「請輸入開始時間」');
+							return;
+						}
+						if(!endTime){
+							alert('「請輸入結束時間」');
+							return;
+						}
+						$('#addSch').submit();
+					});
+				    
+				    
 				});
 				
 				/*選色器*/
-					$(document).ready(function(){
-						$.noConflict();
-						$("input#name").focus();
-						$('input#color').simpleColorPicker({ 
-							onChangeColor: function(color) { $('input#color').val(color); },
-							showEffect: 'fade', 
-							hideEffect: 'slide',
-							enableEscapeButton: true,
-							colors: [
-								'#660000', '#783f04', '#7f6000', '#274e13', '#0c343d', '#073763', '#20124d', '#4C1130'
-								, '#990000', '#b45f06', '#bf9000', '#38761d', '#134f5c', '#0b5394', '#351c75', '#741b47'
-								,'#ff0000', '#ff9900', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#9900ff', '#ff00ff'
-								, '#cc0000', '#e69138', '#f1c232', '#6aa84f', '#45818e', '#3d85c6', '#674ea7', '#a64d79'
-								,'#e06666', '#f6b26b', '#ffd966', '#93c47d', '#76a5af', '#6fa8dc', '#8e7cc3', '#c27ba0']
-						});
-						$("form#work_form #message").hide();
-						$("form#work_form #name").focus();
-						$("form#work_form input[name='submit']").bind('click', function(e){
-							e.preventDefault();
-							$.ajax({
-								url: 'https://shift.ekko.com.tw/group/ajax_edit_worker.html',
-								type: 'POST',
-								dataType : 'json',
-								data: { 
-										id: 14175,
-										name: $("input[name='name']").val(), 
-										color: $("input[name='color']").val(),
-										rate: $("input[name='rate']").val(), 
-										ci_csrf_token: $("input[name='ci_csrf_token']").val() 
-								},
-								success: function(data){
-									if (data.status == 'error'){
-										$("div#message").html(data.msg).show();
-									}
-									if (data.status == 'success'){
-										location.replace('https://shift.ekko.com.tw/group/worker.html');
-										$.fancybox.close();
+// 					$(document).ready(function(){
+// 						$.noConflict();
+// 						$("input#name").focus();
+// 						$('input#color').simpleColorPicker({ 
+// 							onChangeColor: function(color) { $('input#color').val(color); },
+// 							showEffect: 'fade', 
+// 							hideEffect: 'slide',
+// 							enableEscapeButton: true,
+// 							colors: [
+// 								'#660000', '#783f04', '#7f6000', '#274e13', '#0c343d', '#073763', '#20124d', '#4C1130'
+// 								, '#990000', '#b45f06', '#bf9000', '#38761d', '#134f5c', '#0b5394', '#351c75', '#741b47'
+// 								,'#ff0000', '#ff9900', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#9900ff', '#ff00ff'
+// 								, '#cc0000', '#e69138', '#f1c232', '#6aa84f', '#45818e', '#3d85c6', '#674ea7', '#a64d79'
+// 								,'#e06666', '#f6b26b', '#ffd966', '#93c47d', '#76a5af', '#6fa8dc', '#8e7cc3', '#c27ba0']
+// 						});
+// 						$("form#work_form #message").hide();
+// 						$("form#work_form #name").focus();
+// 						$("form#work_form input[name='submit']").bind('click', function(e){
+// 							e.preventDefault();
+// 							$.ajax({
+// 								url: 'https://shift.ekko.com.tw/group/ajax_edit_worker.html',
+// 								type: 'POST',
+// 								dataType : 'json',
+// 								data: { 
+// 										id: 14175,
+// 										name: $("input[name='name']").val(), 
+// 										color: $("input[name='color']").val(),
+// 										rate: $("input[name='rate']").val(), 
+// 										ci_csrf_token: $("input[name='ci_csrf_token']").val() 
+// 								},
+// 								success: function(data){
+// 									if (data.status == 'error'){
+// 										$("div#message").html(data.msg).show();
+// 									}
+// 									if (data.status == 'success'){
+// 										location.replace('https://shift.ekko.com.tw/group/worker.html');
+// 										$.fancybox.close();
 										
-									}
-								}
-							});
-							return false;
-						});
-						$("input[name='cancel']").bind('click', function(e){
-							e.preventDefault();	
-							$.fancybox.close();
-						});
-					});
+// 									}
+// 								}
+// 							});
+// 							return false;
+// 						});
+// 						$("input[name='cancel']").bind('click', function(e){
+// 							e.preventDefault();	
+// 							$.fancybox.close();
+// 						});
+// 					});
+				
 				</script>
 			</fieldset>
 		</form:form>

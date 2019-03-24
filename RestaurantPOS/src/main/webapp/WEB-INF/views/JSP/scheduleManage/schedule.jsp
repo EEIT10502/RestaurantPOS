@@ -66,7 +66,7 @@
 				</table>
 				<div class="last span-2">
 					<a href="schedule/add" class="btn btn-primary"
-						id="add_worker" style="">新增班表</a>
+						id="add_worker">新增班表</a>
 				</div>
 			</div>
 		</fieldset>

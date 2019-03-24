@@ -22,7 +22,7 @@ public class ExcelViewResolver implements ViewResolver{
 		} else if(viewName.startsWith("goalReport/excel")) {
 			view = new _05financial.view.MultipleGoalReportExcelView();
 		}
-		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
+//		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
 		return view;
       }
 	

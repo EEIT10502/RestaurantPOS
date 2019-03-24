@@ -83,6 +83,7 @@ public class ScheduleController {
 	@RequestMapping(value = "/schedule/add", method = RequestMethod.GET)
 	public String inputSchedule(Model model) {
 		model.addAttribute("scheduleBean", new ScheduleBean());
+		System.out.println("--準備新增Schedule資料--");
 		return "scheduleManage/addSchedule";
 	}
 
@@ -91,6 +92,7 @@ public class ScheduleController {
 	@RequestMapping(value = "/schedule/add", method = RequestMethod.POST)
 	public String saveSchedule(ScheduleBean schedule) {
 		scheduleService.saveSchedule(schedule);
+		System.out.println("--新增Schedule資料成功--");
 		return "redirect:/schedule";
 	}
 
@@ -113,8 +115,8 @@ public class ScheduleController {
 		return "scheduleManage/updateSchedule";
 	}
 
-	// 刪除單筆Schedule資料 //找不到此方法!!
-	@RequestMapping(value = "/schedule/update", method = RequestMethod.DELETE)
+	// 刪除單筆Schedule資料
+	@RequestMapping(value = "/schedule/delete", method = RequestMethod.DELETE)
 	public String deleteSchedule(@ModelAttribute("scheduleBean") ScheduleBean scheduleBean,
 			HttpServletRequest request) {
 		System.out.println("--準備刪除單筆Schedule資料--");
@@ -129,7 +131,7 @@ public class ScheduleController {
 				HttpServletRequest request) {
 			System.out.println("--準備修改單筆Schedule資料--");
 			scheduleService.updateSchedule(scheduleBean);
-			System.out.println("--返回原始畫面--");
+			System.out.println("--修改單筆Schedule資料成功--");
 			return "redirect:/schedule";
 		}
 	
