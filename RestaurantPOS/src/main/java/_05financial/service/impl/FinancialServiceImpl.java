@@ -67,20 +67,4 @@ public class FinancialServiceImpl implements FinancialService {
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1) {
 		return dao.getTargetTurnoverBeanByDate(Date1);
 	}
-
-//	@Transactional
-//	@Override
-//	public List<OrderDetailBean> getCateByDate2(String Date1, String Date2, String Cate) {
-//		// TODO Auto-generated method stub
-//		return dao.getCateByDate2(Date1, Date2, Cate);
-//	}
-//
-//	@Override
-//	public List<OrderBean> getOrderByDateExcel(String Date1, String Date2) {
-//		// TODO Auto-generated method stub
-//		return dao.getOrderByDateExcel(Date1, Date2);
-//	}
-	
-	
-
 }

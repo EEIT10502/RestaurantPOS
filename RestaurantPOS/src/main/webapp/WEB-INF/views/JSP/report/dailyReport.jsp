@@ -56,32 +56,34 @@
 	})
 	//轉查詢方法
 	$(function() {
-		$("#dSelect").click(
-				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/dailyReportGet");
-					$("#form1").submit();
-				});
+		$("#dSelect").click(function() {
+			if($("#dDate1").val !=""){
+				
+				alert("請選擇日期");}
+// 			$("#form1").attr("action", "/RestaurantPOS/report/dailyReportGet");
+// 			$("#form1").submit();
+		});
 	})
 </script>
 
 <body>
-	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
-	<jsp:include page="../sideBar.jsp" flush="true" />
+	<div class="clearfix">
+		<jsp:include page="../headerTime.jsp" flush="true" />
+		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
-	<fieldset class="w3-container" style="margin-left: 260px">
+	<fieldset class="w3-container" style="margin-left: 160px">
 		<!-- 報表版面 -->
 		<form action="dailyReportGet" method="post" id="form1">
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<h2>日報表</h2>
+					<h3>日報表</h3>
 				</div>
 				<div>
-					<h3>選擇欲查詢日期</h3>
-					<input type="text" id="dDate1" name="dDate1" value="${dDate1}" readonly>- <input
-						type="text" id="dDate2" name="dDate2" value="${dDate2}" readonly>
+					<h5>選擇欲查詢日期</h5>
+					<input type="text" id="dDate1" name="dDate1" "
+						readonly> - <input type="text" id="dDate2" name="dDate2"
+						 readonly>
 					<p>
 
 						<input type="submit" value="查詢" id="dSelect" name="dSelect">
