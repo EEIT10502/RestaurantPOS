@@ -51,14 +51,31 @@ public class MainPrinter {
 		posPrinter.printText("小計");
 		posPrinter.printTextNewLine("----------------------------------------------");
 		for (OrderDetailBean foods : OrderDetailBeanSet) {
+			int qty = foods.getQty();			
+			int countPrice = foods.getProductPrice();
+			int originalPrice = countPrice/qty;
+			String subtotal;
+			
+			
 			posPrinter.printTextNewLine(foods.getProductName());
 			posPrinter.printLocation(26, 1);
-			posPrinter.printText(foods.getProductPrice().toString());
+			
+			if(foods.getQty()>1) {				
+				posPrinter.printText(Integer.toString(originalPrice));
+			}else {
+			    posPrinter.printText(foods.getProductPrice().toString());
+			}			
 			posPrinter.printLocation(103, 1);
 			posPrinter.printWordSpace(3);
 			posPrinter.printText(foods.getQty().toString());
 			posPrinter.printWordSpace(7);
-			String subtotal = Integer.toString((foods.getQty()*foods.getProductPrice()));
+			
+			if(foods.getQty()>1) {
+				 subtotal = Integer.toString((foods.getQty()*originalPrice));
+			}else {
+				 subtotal = Integer.toString((foods.getQty()*foods.getProductPrice()));
+			}
+			
 			posPrinter.printText(subtotal);
 		}
 		posPrinter.printTextNewLine("----------------------------------------------");
@@ -174,17 +191,19 @@ public class MainPrinter {
 	            printContent += "時  間:"+SystemUtils2018.getTimeForPrinter()+"\n\n";
 	            printContent += PrinterCmdUtils.bothDouble();
 	           
-	            printContent += "現金收入: "+CTBean.getMoneyReceived()+"\n";
-	            printContent += "現金短溢: "+CTBean.getShortoverAmount()+"\n";
-	            printContent += "銷售金額: "+CTBean.getTurnover()+"\n";
-	            printContent += "日累積營業額: "+CTBean.getCumulativeTurnover()+"\n";
-	            printContent += "月目標營業額: "+TTBean.getTargetTurnover()+"\n";
+	            printContent += "現金收入: "+CTBean.getMoneyReceived()+" 元\n";
+	            printContent += "現金短溢: "+CTBean.getShortoverAmount()+" 元\n";
+	            printContent += "銷售金額: "+CTBean.getTurnover()+" 元\n";
+	            printContent += "日累積營業額: "+CTBean.getCumulativeTurnover()+" 元\n";
+	            printContent += "月目標營業額: "+TTBean.getTargetTurnover()+" 元\n";
 	            printContent += "月目標達成率: "+SystemUtils2018.getAchievingRate(CTBean.getCumulativeTurnover(), TTBean.getTargetTurnover())+"\n";
 	            printContent +="\n\n\n\n\n\n";
 	            printContent +="數據分析: \n";
 	            printContent +="今日來客數: "+mapData.get("來客數")+" 人\n";
 	            printContent +="客平均消費: "+mapData.get("客平均消費")+" 元\n";
 	            printContent +="平均翻桌率: "+mapData.get("翻桌率")+" 次\n";
+	            printContent +="\n\n";
+	            printContent +="簽  名:\n";
 	            printContent += PrinterCmdUtils.ZoomCancel();
 	           
 	            // 切纸命令

@@ -6,27 +6,22 @@
 <html>
 <head>
 <!-- pickadate.js v3.5.6 -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css"
-	rel="stylesheet" />
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css"
-	rel="stylesheet" />
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css"
-	rel="stylesheet" />
-	
+<link	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/compressed/themes/classic.css"	rel="stylesheet" />
+<link	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.date.css"	rel="stylesheet" />
+<link	href="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.5.6/themes/classic.time.css"	rel="stylesheet" />
 <link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/screen.css" media="screen, projection" />
 <link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/print.css" media="print" />
 <link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/plugin/tabs.css" media="screen, projection" />
 <link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/style.css" />
 <link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/jquery.fancybox-1.3.4.css" media="screen, projection" />
-	
 <link type="text/css" rel="stylesheet" href="https://shift.ekko.com.tw/asset/css/jquery.simple-color-picker.css" media="screen, projection" />        
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <title>新增班別</title>
 <link rel='stylesheet' href='css/styles.css' type="text/css" />
+<script type="text/javascript">
 
+
+</script>
 </head>
 <body>
 	<div  class="clearfix">
@@ -41,11 +36,9 @@
 				<legend>新增資料</legend>
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='schedule'>
-						班別名稱 </label>
+					<label class="control-label col-lg-2 col-lg-2" for='schedule'>班別名稱 </label>
 					<div class="col-lg-10">
-						<form:input id="schedule" path="schedule" type='text'
-							class='form:input-large' autocomplete = "off"/>
+						<form:input id="schedule" path="schedule" type='text' class='form:input-large' autocomplete = "off"/>
 					</div>
 				</div>
 
@@ -59,24 +52,19 @@
 <!-- 				</div> -->
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='startTime'>
-						開始時間 </label>
+					<label class="control-label col-lg-2 col-lg-2" for='startTime'>開始時間 </label>
 					<div class="col-lg-10">
-						<form:input id="startTime" path="startTime" type='text'
- 							class="example" autocomplete = "off"/> 
+						<form:input id="startTime" path="startTime" type='text'	class="example" autocomplete = "off"/> 
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='endTime'>
-						結束時間 </label>
+					<label class="control-label col-lg-2 col-lg-2" for='endTime'>結束時間 </label>
 					<div class="col-lg-10">
-						<form:input id="endTime" path="endTime" type='text'
- 							class="example" autocomplete = "off"/> 
+						<form:input id="endTime" path="endTime" type='text'	class="example" autocomplete = "off"/> 
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for='restTime'>
-						休息時間 </label>
+					<label class="control-label col-lg-2 col-lg-2" for='restTime'>休息時間 </label>
 					<div class="col-lg-10">
 						<select name="restTime" id="restTime" path="restTime">
 							<option value="0.0">0.0</option>
@@ -195,6 +183,6 @@
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="https://shift.ekko.com.tw/asset/js/jquery.simple-color-picker.js"></script>
-<%-- 	<jsp:include page="../footer.jsp" flush="true" /> --%>
+
 </body>
 </html>

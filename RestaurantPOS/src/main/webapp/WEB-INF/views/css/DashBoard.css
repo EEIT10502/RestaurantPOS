@@ -36,3 +36,35 @@ background: #68B0EA;
 	margin-top: 10px;
 	margin-right: 20px;
 }
+#rowOne{
+  margin-left: 300px;
+  background: url('/RestaurantPOS/images/DashBoardLogo.jpg')no-repeat;
+  background-size:cover;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  -ms-background-size:cover;
+  min-height:700px;
+  filter:Alpha(opacity=20);
+}
+.overlay {
+   display:block;
+   width:240px;
+   height:240px;
+   text-align:center;
+   vertical-align: middle;
+   position: absolute;
+   top: 20px;  /* chartArea top  */
+   left: 0px; /* chartArea left */
+   font-size: 60px;
+   margin-top: 110px;
+   margin-left:80px;
+   
+   }
+#curve_chart{
+	width: 800px; 
+	height: 400px;
+	margin-top: 20px;
+}
+
+

@@ -90,6 +90,12 @@ public class ManagerServiceImpl implements ManagerService{
 		
 		return dao.getCumulativeTurnoverByDate(date);
 	}
+	@Transactional
+	@Override
+	public List<CumulativeTurnoverBean> getOneMonthCumulativeTurnoverBean() {
+	
+		return dao.getOneMonthCumulativeTurnoverBean();
+	}
 	
 	
 	
