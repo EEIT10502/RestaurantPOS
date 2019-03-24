@@ -117,7 +117,7 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return sb;
 	}
 
-	//查詢所有員工	//給條件 employee表status='在職'的
+	//查詢所有在職員工(完成)
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CalendarBean> getAllEmpName() {
