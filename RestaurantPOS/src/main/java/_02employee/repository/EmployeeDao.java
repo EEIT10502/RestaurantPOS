@@ -164,8 +164,11 @@ public interface EmployeeDao {
 	//14.取得員工照片
 	Blob getEmployeePicture(Blob pFromDB);
 	
-	//Tai
+	//泰豪 1.取得Attendence資料
 	List<AttendenceBean> getAllAttendence();
+	
+	//泰豪 2.匯出Attendence資料
+	List<AttendenceBean> findAllAttendence();
 	
 	//以日期查詢員工出勤
 	void stringToDate(String Date1, String Date2);

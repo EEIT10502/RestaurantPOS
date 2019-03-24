@@ -30,7 +30,9 @@ td.errorMessage[type="redError"] {
 
 
 <body>
+	<div class="clearfix">	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+    </div>
 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
@@ -93,7 +95,7 @@ td.errorMessage[type="redError"] {
 												<div class="col-sm-10">
 													<input id="empNameEdit${employee.empId}" type="text"
 														class="form-control" name="empNameEdit"
-														value="${employee.empName}" /> <span
+														value="${employee.empName}" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"/> <span
 														id="empNameEditError${employee.empId}"></span>
 												</div>
 											</div>
@@ -150,10 +152,10 @@ td.errorMessage[type="redError"] {
 												<label for="addrEdit${employee.empId}"
 													class="col-sm-2 col-form-label">地址</label>
 												<div class="col-sm-10">
-													<input id="addrEdit${product.pId}" type="text"
+													<input id="addrEdit${employee.empId}" type="text"
 														class="form-control" name="addrEdit"
 														value="${employee.addr}"> <span
-														id="addrEditError${product.pId}"></span>
+														id="addrEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -228,7 +230,7 @@ td.errorMessage[type="redError"] {
 											flag = flag.replace("${employee.empId}A","");
 											document.getElementById("empNameEditError${employee.empId}").innerHTML = "";
 										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${product.pId}B") == -1) {
+										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
 											document.getElementById("empNameEditError${employee.empId}").innerHTML = "";
 											document.getElementById("submit${employee.empId}").disabled=false;
 										}
@@ -263,7 +265,7 @@ td.errorMessage[type="redError"] {
 								document.getElementById("addrEdit${employee.empId}").addEventListener("blur", function () {
 									var reg = /[^\d.]/g;
 									if (document.getElementById("addrEdit${employee.empId}").value == "") {
-										document.getElementById("addrEditError${product.pId}").innerHTML = "<span style='color:red'><i>地址不可空白";
+										document.getElementById("addrEditError${employee.empId}").innerHTML = "<span style='color:red'><i>地址不可空白";
 										if (flag.indexOf("${employee.empId}B") == -1) {
 											flag = flag.concat("${employee.empId}B");
 										}
@@ -271,10 +273,10 @@ td.errorMessage[type="redError"] {
 									} else{
 										if (flag.indexOf("${employee.empId}B") != -1) {
 											flag = flag.replace("${employee.empId}B","");
-											document.getElementById("addrEditError${product.pId}").innerHTML = "";
+											document.getElementById("addrEditError${employee.empId}").innerHTML = "";
 										}
 										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
-											document.getElementById("addrEditError${product.pId}").innerHTML = "";
+											document.getElementById("addrEditError${employee.empId}").innerHTML = "";
 											document.getElementById("submit${employee.empId}").disabled=false;
 										}
 									}
@@ -314,43 +316,43 @@ td.errorMessage[type="redError"] {
 					<ul class="pagination">
 						<c:if test="${currentPageNo <= 1}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=1&searchBar=${searchBarString}' />"
+								href="<c:url value='EmployeeListBySearch.action.action?currentPageNoBtnSearch=1&searchBar=${searchBarString}' />"
 								tabindex="-1" aria-disabled="true">First Page</a></li>
 						</c:if>
 						<c:if test="${currentPageNo > 1}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=1&searchBar=${searchBarString}' />"
+								href="<c:url value='EmployeeListBySearch.action?currentPageNoBtnSearch=1&searchBar=${searchBarString}' />"
 								tabindex="-1" aria-disabled="true">First Page</a></li>
 						</c:if>
 						<c:if test="${currentPageNo <= 1}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo-1}&searchBar=${searchBarString}' />"
+								href="<c:url value='EmployeeListBySearch.action?currentPageNoBtnSearch=${currentPageNo-1}&searchBar=${searchBarString}' />"
 								tabindex="-1" aria-disabled="true">Previous</a></li>
 						</c:if>
 						<c:if test="${currentPageNo > 1}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo-1}&searchBar=${searchBarString}' />"
+								href="<c:url value='EmployeeListBySearch.action?currentPageNoBtnSearch=${currentPageNo-1}&searchBar=${searchBarString}' />"
 								tabindex="-1" aria-disabled="true">Previous</a></li>
 						</c:if>
 
 						<c:if test="${currentPageNo != totalPages}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo+1}&searchBar=${searchBarString}' />">Next</a>
+								href="<c:url value='EmployeeListBySearch.action?currentPageNoBtnSearch=${currentPageNo+1}&searchBar=${searchBarString}' />">Next</a>
 							</li>
 						</c:if>
 						<c:if test="${currentPageNo == totalPages}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${currentPageNo+1}&searchBar=${searchBarString}' />">Next</a>
+								href="<c:url value='EmployeeListBySearch.action?currentPageNoBtnSearch=${currentPageNo+1}&searchBar=${searchBarString}' />">Next</a>
 							</li>
 						</c:if>
 						<c:if test="${currentPageNo == totalPages}">
 							<li class="page-item disabled"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${totalPages}&searchBar=${searchBarString}' />"
+								href="<c:url value='EmployeeListBySearch.action?currentPageNoBtnSearch=${totalPages}&searchBar=${searchBarString}' />"
 								tabindex="-1" aria-disabled="true">Last Page</a></li>
 						</c:if>
 						<c:if test="${currentPageNo != totalPages}">
 							<li class="page-item"><a class="page-link"
-								href="<c:url value='productListBySearch.action?currentPageNoBtnSearch=${totalPages}&searchBar=${searchBarString}' />"
+								href="<c:url value='EmployeeListBySearch.action?currentPageNoBtnSearch=${totalPages}&searchBar=${searchBarString}' />"
 								tabindex="-1" aria-disabled="true">Last Page</a></li>
 						</c:if>
 						<li class="page-item">第${currentPageNo}頁 /共${totalPages}頁</li>

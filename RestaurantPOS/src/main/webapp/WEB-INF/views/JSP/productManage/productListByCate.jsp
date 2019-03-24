@@ -28,7 +28,9 @@ td.errorMessage[type="redError"] {
 
 </head>
 <body>
+	<div  class="clearfix">	
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">

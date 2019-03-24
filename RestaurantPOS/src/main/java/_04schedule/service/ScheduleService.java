@@ -21,9 +21,11 @@ public interface ScheduleService {
 
 	void updateSchedule(ScheduleBean schedule);
 
-	void deleteScheduleByPrimaryKey(int scheduleId);
+	void deleteScheduleByPrimaryKey(ScheduleBean schedule);
 
 	List<ScheduleBean> findAllSchedule();
+	
+	void deleteAllSchedule();
 
 	// 查詢所有員工
 	List<CalendarBean> getAllEmpName();

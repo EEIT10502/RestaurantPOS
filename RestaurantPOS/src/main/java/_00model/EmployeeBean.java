@@ -180,7 +180,7 @@ public class EmployeeBean implements Serializable {
 	}
 
 	//對應到Calendar 
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="empId")
 	public Set<CalendarBean> getCalendarBean() {
 		return CalendarBean;

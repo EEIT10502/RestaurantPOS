@@ -23,7 +23,7 @@ public class CalendarBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	Integer calendarId;
-	Date date;
+//	Date date;
 	EmployeeBean employee;
 	ScheduleBean schedule;
 	String day1;
@@ -48,13 +48,13 @@ public class CalendarBean implements Serializable {
 		this.calendarId = calendarId;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
+//	public Date getDate() {
+//		return date;
+//	}
+//
+//	public void setDate(Date date) {
+//		this.date = date;
+//	}
 	@ManyToOne //(cascade=CascadeType.ALL)不加，會要求update employee表單所有值
 	@JoinColumn(name="empId")
 	public EmployeeBean getEmployee() {

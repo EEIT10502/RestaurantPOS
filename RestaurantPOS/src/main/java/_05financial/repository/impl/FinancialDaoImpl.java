@@ -30,7 +30,7 @@ public class FinancialDaoImpl implements FinancialDao {
 	public SessionFactory getFactory() {
 		return factory;
 	}
-	
+
 	// dailyReport
 	@SuppressWarnings("unchecked")
 	@Override
