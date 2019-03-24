@@ -39,15 +39,6 @@
 			changeMonth : true
 		});
 	});
-	//轉PDF帶值
-	$(function() {
-		$("#gExport").click(
-				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/goalReportGetPDF");
-					$("#form1").submit();
-				});
-	})
 	//轉檔方法
 	$(function() {
 		$("#gExport").click(

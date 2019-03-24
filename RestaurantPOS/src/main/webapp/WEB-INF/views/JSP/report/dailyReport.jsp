@@ -33,7 +33,12 @@
 		$("#dDate2").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
-		});
+		}).bind("change", function() {
+			var maxValue = $(this).val();
+			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+			maxValue.setDate(maxValue.getDate());
+			$("#dDate1").datepicker("option", "maxDate", maxValue)
+			});
 		$("#dDate1").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
@@ -57,11 +62,13 @@
 	//轉查詢方法
 	$(function() {
 		$("#dSelect").click(function() {
-			if($("#dDate1").val !=""){
-				
-				alert("請選擇日期");}
-// 			$("#form1").attr("action", "/RestaurantPOS/report/dailyReportGet");
-// 			$("#form1").submit();
+			
+			if($("#dDate2").val < $("#dDate1").val){
+				alert("日期選擇錯誤");
+				}
+			
+			$("#form1").attr("action", "/RestaurantPOS/report/dailyReportGet");
+			$("#form1").submit();
 		});
 	})
 </script>
@@ -81,8 +88,8 @@
 				</div>
 				<div>
 					<h5>選擇欲查詢日期</h5>
-					<input type="text" id="dDate1" name="dDate1" "
-						readonly> - <input type="text" id="dDate2" name="dDate2"
+					<input type="text" id="dDate1" name="dDate1" value="${dDate1}"
+						readonly> - <input type="text" id="dDate2" name="dDate2" value="${dDate2}"
 						 readonly>
 					<p>
 

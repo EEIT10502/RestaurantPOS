@@ -65,11 +65,17 @@ public class FinancialController {
 		model.addAttribute("dDate2", dDate2);
 		// 欄位資料:日期,單數,人數,金額
 		List<OrderBean[]> listDailyOrder = service.getOrderByDate(dDate1, dDate2);
-		model.addAttribute("listDailyOrder", listDailyOrder);
 		// TurnoverBean裡的欄位資料
 		List<CumulativeTurnoverBean> listDailyCumu = service.getCumulativeTurnoverByDate(dDate1, dDate2);
-		model.addAttribute("listDailyCumu", listDailyCumu);
 
+		if (listDailyOrder != null && listDailyCumu != null) {
+			model.addAttribute("listDailyOrder", listDailyOrder);
+			model.addAttribute("listDailyCumu", listDailyCumu);
+		}else {
+//			return "report/dailyReport";
+			System.out.println("nothing here");
+		}
+		
 		return "report/dailyReport";
 	}
 

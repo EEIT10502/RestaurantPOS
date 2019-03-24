@@ -36,7 +36,12 @@
 		$("#pDate2").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
-		});
+		}).bind("change", function() {
+			var maxValue = $(this).val();
+			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+			maxValue.setDate(maxValue.getDate());
+			$("#pDate1").datepicker("option", "maxDate", maxValue)
+			});
 		$("#pDate1").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
