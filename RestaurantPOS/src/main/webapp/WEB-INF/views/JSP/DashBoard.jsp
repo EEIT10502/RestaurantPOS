@@ -59,8 +59,15 @@
 	  
       function drawChart() {
 				
+		var pieColor ='#00BBFF';
+		var per = ((cumulativeTurnover/target*100).toFixed())+"%";
+		$('#cnt').text(per);
 		var Remaining = target-cumulativeTurnover;
-		var per = ((cumulativeTurnover/target*100).toFixed())+"%";		
+		if(Remaining<0){
+			pieColor = '#FF3333';
+			cumulativeTurnover = 100;
+			Remaining = 0;
+		}
         var data = google.visualization.arrayToDataTable([
           ['Pac Man', 'Percentage'],
           ['', cumulativeTurnover],
@@ -81,15 +88,15 @@
           pieStartAngle: 360,
           tooltip: { trigger: 'none' },
           slices: {
-            0: { color: '#00BBFF' },
+        	0: { color: pieColor},
             1: { color: 'transparent' }
           }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('pacman'));
         chart.draw(data, options);
-		$('#cnt').text(per);
-      }
+		
+      }      
 	</script>
 	
 

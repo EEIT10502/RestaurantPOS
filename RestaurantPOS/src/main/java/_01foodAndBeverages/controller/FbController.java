@@ -117,8 +117,8 @@ public class FbController {
 	@RequestMapping("/order/confirmPayment")
 	public ModelAndView confirmPayment(@ModelAttribute("orderForm") OrderForm orderForm) throws Exception {
 		System.out.println("進入結帳控制器");
-//		ModelAndView mv = new ModelAndView("redirect:/manage/getLastOne");
-		ModelAndView mv = new ModelAndView("forward:/outfield/order");
+		ModelAndView mv = new ModelAndView("redirect:/manage/getLastOne");
+//		ModelAndView mv = new ModelAndView("forward:/outfield/order");
 		System.out.println(orderForm);
 		List<OrderVo> orderVos1 = orderForm.getOrderVos1();
 		
