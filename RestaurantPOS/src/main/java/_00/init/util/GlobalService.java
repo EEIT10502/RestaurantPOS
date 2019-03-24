@@ -34,7 +34,7 @@ public class GlobalService {
 	
 	// employee
 	// 職位
-	public static final String Employee_No = "000";
+	public static final String Employee_No = "1000";
 	public static final String Employee_CATE_waiter = "服務生";
 	public static final String Employee_CATE_EChef = "廚師";
 	public static final String Employee_CATE_MChef = "主廚";
