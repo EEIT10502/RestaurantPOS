@@ -55,7 +55,6 @@ td.errorMessage[type="redError"] {
 					<c:forEach var='employee' items='${employeeListGetByPage}'>
 						<tbody>
 							<tr>
-								<%-- <td><a href="<spring:url value='empQueryFor1?empId=${employee.empId}'/>">${employee.empId}</a></td> --%>
 								<td>${employee.empId}</td>
 								<td>${employee.empNo}</td>
 								<td>${employee.empName}</td>
@@ -163,22 +162,6 @@ td.errorMessage[type="redError"] {
 												</div>
 											</div>
 
-											<!-- TEST TEST TEST 保存原版 -->
-											<!-- <div class="form-group row"> -->
-											<%-- <label for="empImgEdit${employee.empId}" --%>
-											<!-- class="col-sm-2 col-form-label">圖片</label> -->
-											<!-- <div class="col-sm-10"> -->
-
-											<%-- <input id="empImgEdit${employee.empId}" type="file" --%>
-											<!-- class="form-control" name="empImgEdit"> <img -->
-											<!-- width="100px" height="100px" -->
-											<%-- src="<c:url value='/getPicture/${employee.empId}'/>"> --%>
-											<%-- <span id="empImgEditError${employee.empId}"></span> --%>
-											<!-- </div> -->
-											<!-- </div> -->
-											<!-- TEST TEST TEST 保存原版-->
-											
-
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
@@ -192,24 +175,6 @@ td.errorMessage[type="redError"] {
 						<!-- 						Modal 結束 -->
 
 						<script>
-							// 本方法為預覽顯示圖片
-// 							function readURL(input) {
-
-// 								if (input.files && input.files[0]) {
-// 									var reader = new FileReader();
-// 									reader.onload = function(e) {
-// 										$('#blah').attr('src', e.target.result);
-// 									}
-
-// 									reader.readAsDataURL(input.files[0]);
-// 								}
-// 							}
-
-// 							$("#empImgEdit${employee.empId}").change(
-// 									function() {
-// 										readURL(this);
-// 									});
-							
 							document.getElementById("empImgEdit${employee.empId}").onchange = function () {
 							    var reader = new FileReader();
 
@@ -358,24 +323,6 @@ td.errorMessage[type="redError"] {
 																});
 											})
 						</script>
-<!-- 						<script> -->
-<!-- // 							function readURL(input) { -->
-
-<!-- // 								if (input.files && input.files[0]) { -->
-<!-- // 									var reader = new FileReader(); -->
-
-<!-- // 									reader.onload = function(e) { -->
-<!-- // 										$('#blah').attr('src', e.target.result); -->
-<!-- // 									} -->
-
-<!-- // 									reader.readAsDataURL(input.files[0]); -->
-<!-- // 								} -->
-<!-- // 							} -->
-
-<!-- // 							$("#imgInp").change(function() { -->
-<!-- // 								readURL(this); -->
-<!-- // 							}); -->
-<!-- 						</script> -->
 
 					</c:forEach>
 				</table>

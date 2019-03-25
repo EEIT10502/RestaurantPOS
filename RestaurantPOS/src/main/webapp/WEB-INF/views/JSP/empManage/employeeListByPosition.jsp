@@ -192,23 +192,6 @@ td.errorMessage[type="redError"] {
 						<!-- 						Modal 結束 -->
 
 						<script>
-							// 本方法為預覽顯示圖片
-// 							function readURL(input) {
-
-// 								if (input.files && input.files[0]) {
-// 									var reader = new FileReader();
-// 									reader.onload = function(e) {
-// 										$('#blah').attr('src', e.target.result);
-// 									}
-
-// 									reader.readAsDataURL(input.files[0]);
-// 								}
-// 							}
-
-// 							$("#empImgEdit${employee.empId}").change(
-// 									function() {
-// 										readURL(this);
-// 									});
 							
 							document.getElementById("empImgEdit${employee.empId}").onchange = function () {
 							    var reader = new FileReader();
@@ -358,24 +341,7 @@ td.errorMessage[type="redError"] {
 																});
 											})
 						</script>
-<!-- 						<script> -->
-<!-- // 							function readURL(input) { -->
 
-<!-- // 								if (input.files && input.files[0]) { -->
-<!-- // 									var reader = new FileReader(); -->
-
-<!-- // 									reader.onload = function(e) { -->
-<!-- // 										$('#blah').attr('src', e.target.result); -->
-<!-- // 									} -->
-
-<!-- // 									reader.readAsDataURL(input.files[0]); -->
-<!-- // 								} -->
-<!-- // 							} -->
-
-<!-- // 							$("#imgInp").change(function() { -->
-<!-- // 								readURL(this); -->
-<!-- // 							}); -->
-<!-- 						</script> -->
 					</c:forEach>
 					<tr>
 						<td colspan="6" class="errorMessage" type="redError">${noEmployeeString}</td>

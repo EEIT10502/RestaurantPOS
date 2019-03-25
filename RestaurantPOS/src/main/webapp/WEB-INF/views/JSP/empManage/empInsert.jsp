@@ -54,9 +54,7 @@
 					</h1>
 				</div>
 				<div>
-
 </div>
-
 
 				<div class="control-label col-lg-2 col-lg-2">
 					<label for='empName'>姓名</label>
