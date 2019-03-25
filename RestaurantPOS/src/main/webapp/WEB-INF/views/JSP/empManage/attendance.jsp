@@ -15,7 +15,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
-<title>類別銷售分析</title>
+<title>出勤查詢</title>
 </head>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -30,89 +30,82 @@
 <script>
 	// 結束日大於起始日判斷
 	jQuery(document).ready(function($) {
-		$("#csDate2").datepicker({
+		$("#aDate2").datepicker({
 			maxDate : new Date,
-			dateFormat : "yy-mm-dd",
-			changeYear : true,
-			changeMonth : true
+			dateFormat : "yy-mm-dd"
+		}).bind("change", function() {
+			var maxValue = $(this).val();
+			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+			maxValue.setDate(maxValue.getDate());
+			$("#aDate1").datepicker("option", "maxDate", maxValue);
 		});
-		$("#csDate1").datepicker({
+		$("#aDate1").datepicker({
 			maxDate : new Date,
-			dateFormat : "yy-mm-dd",
-			changeYear : true,
-			changeMonth : true
+			dateFormat : "yy-mm-dd"
 		}).bind("change", function() {
 			var minValue = $(this).val();
 			minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
 			minValue.setDate(minValue.getDate());
-			$("#csDate2").datepicker("option", "minDate", minValue);
+			$("#aDate2").datepicker("option", "minDate", minValue);
 		})
 	});
 
-	//轉PDF方法
+	//轉檔方法
 	$(function() {
-		$("#csExport").click(
+		$("#dExport").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/empManage/attendanceGetExcel");
-					$("#form1").submit();
+					if ($("#aDate1").val() != "" && $("#aDate2").val() != "") {
+						$("#form1").attr("action",
+								"/RestaurantPOS/report/DailyReportGetExcel");
+						$("#form1").submit();
+					} else {
+						alert("請選擇日期");
+					}
 				});
 	})
 	//轉查詢方法
 	$(function() {
-		$("#csSelect").click(
+		$("#dSelect").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/empManage/attendanceGet");
-					$("#form1").submit();
+					if ($("#aDate1").val() != "" && $("#aDate2").val() != "") {
+						$("#form1").submit();
+					} else {
+						alert("請輸入日期");
+					}
 				});
 	})
 </script>
-
 
 <body>
 	<div class="clearfix">
 		<jsp:include page="../headerTime.jsp" flush="true" />
 		<jsp:include page="../sideBar.jsp" flush="true" />
-		<jsp:include page="../scheduleManage/statusSearchHead.jsp"
-			flush="true" />
 	</div>
+	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
 	<fieldset class="w3-container" style="margin-left: 160px">
-		<form action="attendanceGet" method="post" id="form1">
-			<!-- 報表版面 -->
+		<!-- 報表版面 -->
+		<form action="${pageContext.request.contextPath}/empManage/attendance/update" method="POST" id="form1">
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<div>
-						<h2>出勤查詢</h2>
-					</div>
-					<div>
-						<h3>選擇欲查詢日期</h3>
-						<input type="text" id="csDate1" name="csDate1" value="${csDate1}"
-							readonly>~ <input type="text" id="csDate2" name="csDate2"
-							value="${csDate2}" readonly>
-						<p>
-					</div>
+					<h3>出勤表</h3>
+				</div>
+				<div>
+					<h5>選擇欲查詢日期</h5>
+					<input type="text" id="aDate1" name="aDate1" value="${aDate1}"
+						readonly> - <input type="text" id="aDate2" name="aDate2"
+						value="${aDate2}" readonly>
+					<p>
 
-					<!-- 類別下拉選單 -->
-					<select id="csSelOpt" name="csSelOpt">
-						<option>--請選擇--</option>
-						<c:forEach var="csSel" items="${listMenuCate}">
-							<c:if test="${csSelOpt == csSel}">
-								<option selected="selected"><c:out value="${csSel}" /></option>
-							</c:if>
-							<c:if test="${csSelOpt!=csSel}">
-								<option><c:out value="${csSel}" /></option>
-							</c:if>
-						</c:forEach>
-					</select> <input type="submit" value="查詢" id="csSelect" name="csSelect">
+						<input type="button" value="查詢" id="dSelect" name="dSelect">
 				</div>
 
 				<div>
-					<h5>選擇日期：${csDate1}至${csDate2}</h5>
-					<%-- 				<a type="button" href="<c:url value='/empManage/attendanceGetExcel?csDate1=${csDate1}&csDate2=${csDate2}&csSelOpt=${csSelOpt}'/>"> TO PDF</a> --%>
+					<h5>選擇日期：${aDate1}至${aDate2}</h5>
+					<!-- 顯示查詢年月日 -->
+					<input type="button" value="匯出報表" id="dExport" name="dExport">
+
 					<table class="table table-hover">
 						<tr>
-							<th>序號</th>
 							<th>員工編號</th>
 							<th>員工姓名</th>
 							<th>日期</th>
@@ -120,21 +113,33 @@
 							<th>時間</th>
 							<th>備註</th>
 						</tr>
-						<c:forEach var="Attendence" items="${Attendence}"
-							varStatus="status">
+						<c:forEach var="dTableO" items="${listDailyAtt}"
+							varStatus="loop">
+<%-- 							<c:set var="totalList" value="${totalList + dTableO[1]}" /> --%>
+<%-- 							<c:set var="totalCusFlow" value="${totalCusFlow + dTableO[2]}" /> --%>
+<%-- 							<c:set var="totalMoney" value="${totalMoney + dTableO[3]}" /> --%>
+<%-- 							<c:set var="totalShort" --%>
+<%-- 								value="${totalShort + listDailyCumu[loop.count-1].shortoverAmount}" /> --%>
+<%-- 							<c:set var="totalReceived" --%>
+<%-- 								value="${totalReceived + listDailyCumu[loop.count-1].moneyReceived}" /> --%>
 							<tr>
-								<td>${Attendence.attendenceId}</td>
-								<td>${Attendence.empNo}</td>
-								<td>${Attendence.empName}</td>
-								<td>${Attendence.date}</td>
-								<td>${Attendence.checkStatus}</td>
-								<td>${Attendence.clockTime}</td>
-								<td></td>
+								<td>${dTableO.attendenceId}</td>
+								<td>${dTableO.empName}</td>
+								<td>${dTableO.date}</td>
+								<td>${dTableO.checkStatus}</td>
+								<td>${dTableO.clockTime}</td>
 							</tr>
 						</c:forEach>
+						<tr>
+<!-- 							<th>總計</th> -->
+<%-- 							<td>${totalList}</td> --%>
+<%-- 							<td>${totalCusFlow}</td> --%>
+<%-- 							<td>${totalMoney}</td> --%>
+<%-- 							<td>${totalShort}</td> --%>
+<%-- 							<td>${totalReceived}</td> --%>
+						</tr>
 					</table>
 				</div>
-				<a href='attendence.xls' type="button" value="匯出報表" id="csExport" name="csExport">匯出EXCEL報表</a>
 			</div>
 		</form>
 	</fieldset>

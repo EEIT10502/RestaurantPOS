@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import _00model.AttendenceBean;
 import _00model.CalendarBean;
 import _00model.EmployeeBean;
-import _00model.OrderBean;
 import _00model.ScheduleBean;
 import _04schedule.repository.ScheduleDao;
 import _04schedule.service.ScheduleService;
@@ -27,7 +26,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 	@Transactional
 	@Override
-	public List<AttendenceBean[]> getAttByDate(String Date1, String Date2) {
+	public List<AttendenceBean> getAttByDate(String Date1, String Date2) {
 		return scheduleDao.getAttByDate(Date1, Date2);
 	}
 	

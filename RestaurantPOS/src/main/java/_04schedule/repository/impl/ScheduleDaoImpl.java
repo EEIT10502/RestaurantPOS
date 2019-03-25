@@ -1,5 +1,6 @@
 package _04schedule.repository.impl;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,10 +21,10 @@ import _04schedule.repository.ScheduleDao;
 @Repository
 public class ScheduleDaoImpl implements ScheduleDao{
 	//打卡查勤用
-	java.util.Date uDate1 = null;
-	java.util.Date uDate2 = null;
-	java.sql.Date beginDate = null;
-	java.sql.Date endDate = null;
+//	java.util.Date uDate1 = null;
+//	java.util.Date uDate2 = null;
+//	java.sql.Date beginDate = null;
+//	java.sql.Date endDate = null;
 	
 	
 	
@@ -63,36 +64,31 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		session.save(attendenceBean);
 	}
 /*------------------------------------------------------------------------------------------------------------*/
-	// String to Date
-		@Override
-		public void stringToDate(String Date1, String Date2) {		
-			String tDate1 = Date1 + " 00:00:00";
-			String tDate2 = Date2 + " 23:59:59";
-			SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			// to util.Date
-			try {
-				uDate1 = fDate.parse(tDate1);
-				uDate2 = fDate.parse(tDate2);
-				beginDate = new java.sql.Date(uDate1.getTime());
-				endDate = new java.sql.Date(uDate2.getTime());
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AttendenceBean[]> getAttByDate(String Date1, String Date2) {
+	public List<AttendenceBean> getAttByDate(String Date1, String Date2) {
 		// to sql.Date
-		stringToDate(Date1, Date2);
-		// hql
-		String hql = "FROM AttendenceBean o WHERE o.orderTime>=:beginDate and o.orderTime<=:endDate GROUP BY cast(o.orderTime as date)";
-		Session session = factory.getCurrentSession();
-		List<AttendenceBean[]> listDailyAtt = session.createQuery(hql).setParameter("beginDate", beginDate)
-				.setParameter("endDate", endDate).getResultList();
-
-		return listDailyAtt;
-	}
+				String tDate1 = Date1 + " 00:00:00";
+				String tDate2 = Date2 + " 23:59:59";
+				SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				java.util.Date uDate1 = null;
+				java.util.Date uDate2 = null;
+				try {
+					uDate1 = fDate.parse(tDate1);
+					uDate2 = fDate.parse(tDate2);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				// hql
+				Date beginDate = new java.sql.Date(uDate1.getTime());
+				Date endDate = new java.sql.Date(uDate2.getTime());
+				String hql = "FROM AttendenceBean o WHERE o.date>=:beginDate and o.date<=:endDate";
+				Session session = factory.getCurrentSession();
+				List<AttendenceBean> listDailyAtt = session.createQuery(hql).setParameter("beginDate", beginDate)
+						.setParameter("endDate", endDate).getResultList();
+				return listDailyAtt;
+			}
 	
 	/*------------------------------------------------------------------------------------------------------------*/
 	

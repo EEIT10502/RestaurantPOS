@@ -42,13 +42,13 @@ public class EmpInsertTemporaryController {
 	}
 
 	// 給泰豪的出勤查詢控制器
-	@RequestMapping("/empManage/attendance")
-	public String listAttendancePage(Model model) {
-		List<AttendenceBean> list = employeeService.getAllAttendence();
-		model.addAttribute("Attendence", list);
-		System.out.println("list=" + list);
-		return "empManage/attendance";
-	}
+//	@RequestMapping("/empManage/attendance")
+//	public String listAttendancePage(Model model) {
+//		List<AttendenceBean> list = employeeService.getAllAttendence();
+//		model.addAttribute("Attendence", list);
+//		System.out.println("list=" + list);
+//		return "empManage/attendance";
+//	}
 
 //	@RequestMapping("/empManage/attendance")
 //	public String dailyReportGet(Model model, @RequestParam("dDate1") String dDate1,

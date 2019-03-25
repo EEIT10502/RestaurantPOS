@@ -16,9 +16,8 @@ public interface ScheduleDao {
 	//查詢所有Attendance資料
 	public void addAttendence(AttendenceBean attendenceBean);
 	
-	public void stringToDate(String Date1, String Date2);
-	
-	public List<AttendenceBean[]> getAttByDate(String Date1, String Date2);
+	//daily
+	public List<AttendenceBean> getAttByDate(String Date1, String Date2);
 	
 	
 	

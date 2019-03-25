@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,25 +72,29 @@ public class ScheduleController {
 		return Msg;
 
 	}
-	
-//	@RequestMapping("/empManage/attendance")
-//	public String dailyReportGet(Model model, @RequestParam("atDate1") String atDate1,
-//			@RequestParam("atDate2") String atDate2) {
-//		model.addAttribute("atDate1", atDate1);
-//		model.addAttribute("atDate2", atDate2);
-//		// 欄位資料:日期,單數,人數,金額
-//		List<AttendenceBean[]> listDailyOrder = scheduleService.getAttByDate(atDate1, atDate2);
-//		model.addAttribute("listDailyOrder", listDailyOrder);
-//
-//		return "empManage/attendance";
-//	}
+	//日期查詢報表
+	@RequestMapping(value = "/empManage/attendance/update", method = RequestMethod.POST)
+	public String dailyReport(Model model,  @RequestParam(value="aDate1") String aDate1,
+			@RequestParam(value="aDate2") String aDate2) {
+		
+		model.addAttribute("aDate1", aDate1);
+		model.addAttribute("aDate2", aDate2);
+		try {
+			// 欄位資料:日期,單數,人數,金額
+			List<AttendenceBean> listDailyAtt = scheduleService.getAttByDate(aDate1, aDate2);
+			model.addAttribute("listDailyAtt", listDailyAtt);
+		} catch (NullPointerException e) {
+			return "empManage/attendance";
+		}
+		return "empManage/attendance";
+	}
 	
 	
 	@RequestMapping("/schedule")
 	public String listSchedule(Model model) {
 		List<ScheduleBean> list = scheduleService.findAllSchedule();
 		model.addAttribute("schedule", list);
-		return "/scheduleManage/schedule";
+		return "scheduleManage/schedule";
 	}
 
 	// 送回新增Schedule資料的空白表單
