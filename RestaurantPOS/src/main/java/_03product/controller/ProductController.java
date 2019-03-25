@@ -353,6 +353,8 @@ public class ProductController {
 	public String getProductListBySearch(
 			@RequestParam(value = "currentPageNoBtnSearch", required = false) String currentPageNo,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
+		searchBarString = searchBarString.trim();
+		
 		model.addAttribute("searchBarString", searchBarString);
 
 		if (searchBarString.isEmpty()) {
@@ -417,6 +419,7 @@ public class ProductController {
 			@RequestParam(value = "productStatusEdit", required = false) String productStatusEdit,
 			@RequestParam(value = "currentPageNoBtnSearch", required = false) String currentPageNo,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
+		searchBarString = searchBarString.trim();
 		int pIdEditParse = Integer.parseInt(pIdEdit.trim());
 		int productNoEditParse = Integer.parseInt(productNoEdit.trim());
 		int priceEditParse = Integer.parseInt(priceEdit.trim());
