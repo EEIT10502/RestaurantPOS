@@ -38,10 +38,8 @@ public class OrderTableInit {
         			
         			
         			String orderNo = token[0];
-        			Integer cusFlow = Integer.valueOf(token[1]);
-        			
-        			Timestamp orderTime = Timestamp.valueOf(token[2]);
-        			
+        			Integer cusFlow = Integer.valueOf(token[1]);        			
+        			Timestamp orderTime = Timestamp.valueOf(token[2]);        			
         			Integer totalPrice =Integer.valueOf(token[3]);
         			String callNo=token[4];
         			

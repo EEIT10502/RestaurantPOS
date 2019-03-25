@@ -33,6 +33,10 @@
 
         var options = {
           title: '日營業額',
+          titleTextStyle:{
+         	 fontSize: 20,
+         	 bold: true
+         		         },
           curveType: 'function',
           legend: { position: 'bottom' }
         };
@@ -77,7 +81,7 @@
 
         var options = {
          titleTextStyle:{
-        	 fontSize: 16,
+        	 fontSize: 20,
         	 bold: true
         		},
           title: '目標達成率',
@@ -122,9 +126,9 @@
 			</div>
 			</div>
 			<div class="row ">
-				<div class="col-md-12" id="curve_chart">
-				</div>
+				<div class="col-md-12" id="curve_chart" style="width: 40%"></div>				
 			</div>
+			<div style="height: 100px;"></div>
 		   </div>
 		  </div>
 		 </div>
