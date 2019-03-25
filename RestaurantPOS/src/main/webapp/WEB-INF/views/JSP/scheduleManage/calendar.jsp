@@ -56,13 +56,13 @@
 						<tr class="">
 							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
 							<td>${calendar.employee.empName}</td>
-							<td style="color:${calendar.schedule.color}">${calendar.day1}</td>
-							<td style="color:${calendar.schedule}">${calendar.day2}</td>
-							<td style="color:${calendar.schedule.color}">${calendar.day3}</td>
-							<td style="color:${calendar.schedule}">${calendar.day4}</td>
-							<td style="color:${calendar.schedule.color}">${calendar.day5}</td>
-							<td style="color:${calendar.schedule}">${calendar.day6}</td>
-							<td style="color:${calendar.schedule.color}">${calendar.day7}</td>
+							<td style="color:red">${calendar.day1}</td>
+							<td>${calendar.day2}</td>
+							<td>${calendar.day3}</td>
+							<td>${calendar.day4}</td>
+							<td>${calendar.day5}</td>
+							<td>${calendar.day6}</td>
+							<td style="color:red">${calendar.day7}</td>
 							<td><a
 								href="<c:url value='/calendar/update?id=${calendar.calendarId}'/>"
 								title="編輯" class="btn btn-primary" id="edit" type="button">編輯</a></td>

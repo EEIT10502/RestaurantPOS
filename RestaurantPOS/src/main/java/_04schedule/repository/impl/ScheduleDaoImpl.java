@@ -162,10 +162,10 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CalendarBean> getAllEmpName() {
-		String hql = "FROM CalendarBean c WHERE c.employee.status='在職' ";
 		Session session = null;
 		List<CalendarBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
+		String hql = "FROM CalendarBean as c WHERE c.employee.status like '在職' ";
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
