@@ -31,7 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 import _00.init.util.GlobalService;
 import _00model.CalendarBean;
 import _00model.EmployeeBean;
-import _00model.OrderDetailBean;
 import _02employee.service.EmployeeService;
 
 //這是一個提供Manager登入的@Controller
@@ -469,10 +468,12 @@ public class EmployeeController {
 			}
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
+			Set<CalendarBean> CB = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 		}
-
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
+		
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
@@ -523,9 +524,10 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
@@ -580,9 +582,10 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean);
 
 		if (currentPageNo == null) {
@@ -637,9 +640,11 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
+		 
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean);
 
 		if (currentPageNo == null) {

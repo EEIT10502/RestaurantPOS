@@ -1,5 +1,8 @@
 package _04schedule.repository.impl;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +20,14 @@ import _04schedule.repository.ScheduleDao;
 
 @Repository
 public class ScheduleDaoImpl implements ScheduleDao{
-
+	//打卡查勤用
+//	java.util.Date uDate1 = null;
+//	java.util.Date uDate2 = null;
+//	java.sql.Date beginDate = null;
+//	java.sql.Date endDate = null;
+	
+	
+	
 	@Autowired
 	SessionFactory factory;
 	
@@ -53,7 +63,34 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		Session session = factory.getCurrentSession();
 		session.save(attendenceBean);
 	}
-
+/*------------------------------------------------------------------------------------------------------------*/
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AttendenceBean> getAttByDate(String Date1, String Date2) {
+		// to sql.Date
+				String tDate1 = Date1 + " 00:00:00";
+				String tDate2 = Date2 + " 23:59:59";
+				SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				java.util.Date uDate1 = null;
+				java.util.Date uDate2 = null;
+				try {
+					uDate1 = fDate.parse(tDate1);
+					uDate2 = fDate.parse(tDate2);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				// hql
+				Date beginDate = new java.sql.Date(uDate1.getTime());
+				Date endDate = new java.sql.Date(uDate2.getTime());
+				String hql = "FROM AttendenceBean o WHERE o.date>=:beginDate and o.date<=:endDate";
+				Session session = factory.getCurrentSession();
+				List<AttendenceBean> listDailyAtt = session.createQuery(hql).setParameter("beginDate", beginDate)
+						.setParameter("endDate", endDate).getResultList();
+				return listDailyAtt;
+			}
+	
+	/*------------------------------------------------------------------------------------------------------------*/
 	
 	@Override
 	@SuppressWarnings("unchecked")
@@ -121,10 +158,10 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CalendarBean> getAllEmpName() {
-		String hql = "FROM CalendarBean c WHERE c.employee.status='在職' ";
 		Session session = null;
 		List<CalendarBean> list = new ArrayList<>();
 		session = factory.getCurrentSession();
+		String hql = "FROM CalendarBean as c WHERE c.employee.status like '在職' ";
 		list = session.createQuery(hql).getResultList();
 		return list;
 	}
