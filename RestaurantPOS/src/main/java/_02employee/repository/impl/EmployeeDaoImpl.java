@@ -186,19 +186,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 
 		
-
-		
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public List<EmployeeBean> getEmployeesByPosition(String position) {
-//		List<EmployeeBean> list = null;
-//		String hql = "FROM EmployeeBean e WHERE e.position = :position";
-//		Session session = factory.getCurrentSession();
-//		list = session.createQuery(hql).setParameter("position", position).list();
-//		return list;
-//	}
-
-
 	/*
 	 * 以下為搜尋，包含： 1.列出所有員工資料(完成) 2.empId-以員工ID搜尋(完成) 3.empNo-以員工編號搜尋 4.status-以就業狀態顯示
 	 * 5.position-以員工職位搜尋 5-1.列出所有職位 5-1-1.列出服務生 5-1-2.列出廚師 5-1-3.列出主廚 5-1-4.列出經理
