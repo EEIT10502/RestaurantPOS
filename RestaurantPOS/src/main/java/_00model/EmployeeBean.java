@@ -27,7 +27,7 @@ public class EmployeeBean implements Serializable {
 
 
 	public EmployeeBean(Integer empId, Integer empNo, String empName,  String position,String gender, String tel,
-			String addr,String status, String remark,  Blob img, MultipartFile empImg) {
+			String addr,String status, String remark,  Blob img, MultipartFile empImg, Set<CalendarBean> CalendarBean) {
 		super();
 		this.empId = empId;
 		this.empNo = empNo;
@@ -40,7 +40,11 @@ public class EmployeeBean implements Serializable {
 		this.status = status;
 		this.img = img;
 		this.empImg = empImg;
+		this.CalendarBean = CalendarBean;
+		
 	}
+
+	
 
 	private static final long serialVersionUID = 1L;
 
