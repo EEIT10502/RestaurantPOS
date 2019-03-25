@@ -72,6 +72,19 @@ public class ScheduleController {
 
 	}
 	
+//	@RequestMapping("/empManage/attendance")
+//	public String dailyReportGet(Model model, @RequestParam("atDate1") String atDate1,
+//			@RequestParam("atDate2") String atDate2) {
+//		model.addAttribute("atDate1", atDate1);
+//		model.addAttribute("atDate2", atDate2);
+//		// 欄位資料:日期,單數,人數,金額
+//		List<AttendenceBean[]> listDailyOrder = scheduleService.getAttByDate(atDate1, atDate2);
+//		model.addAttribute("listDailyOrder", listDailyOrder);
+//
+//		return "empManage/attendance";
+//	}
+	
+	
 	@RequestMapping("/schedule")
 	public String listSchedule(Model model) {
 		List<ScheduleBean> list = scheduleService.findAllSchedule();

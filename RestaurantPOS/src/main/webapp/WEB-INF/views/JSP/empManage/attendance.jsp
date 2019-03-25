@@ -63,7 +63,7 @@
 		$("#csSelect").click(
 				function() {
 					$("#form1").attr("action",
-							"/RestaurantPOS/empManage/attendanceGet");
+							"/RestaurantPOS/empManage/attendance");
 					$("#form1").submit();
 				});
 	})
@@ -78,7 +78,7 @@
 			flush="true" />
 	</div>
 	<fieldset class="w3-container" style="margin-left: 160px">
-		<form action="attendanceGet" method="post" id="form1">
+		<form action="attendance" method="post" id="form1">
 			<!-- 報表版面 -->
 			<div class="w3-container" style="margin-left: 160px">
 				<div>

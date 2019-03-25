@@ -33,7 +33,7 @@
 	<jsp:include page="../headerTime.jsp" flush="true" />	
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	<br>
-	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" />
+<%-- 	<jsp:include page="../empManage/empSearchHead.jsp" flush="true" /> --%>
 	</div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">

@@ -4,6 +4,8 @@ import java.util.List;
 import _00model.AttendenceBean;
 import _00model.CalendarBean;
 import _00model.EmployeeBean;
+import _00model.OrderBean;
+
 import org.springframework.stereotype.Component;
 import _00model.ScheduleBean;
 
@@ -12,6 +14,8 @@ public interface ScheduleService {
 	public EmployeeBean checkByEmpNo(String empNo);
 
 	public void addAttendence(AttendenceBean attendenceBean);
+	//未完成
+	public List<AttendenceBean[]> getAttByDate(String Date1, String Date2);
 
 	ScheduleBean findByPrimaryKey(int scheduleId);
 

@@ -7,9 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import _00model.AttendenceBean;
+import _00model.CumulativeTurnoverBean;
+import _00model.OrderBean;
 import _02employee.service.EmployeeService;
+import _04schedule.service.ScheduleService;
 
 //此檔案係為了開發方便(在首頁直接出現連結，連到員工管理相關頁面)，故之後確定員工管理入口後再修改
 
@@ -46,6 +50,18 @@ public class EmpInsertTemporaryController {
 		return "empManage/attendance";
 	}
 
+//	@RequestMapping("/empManage/attendance")
+//	public String dailyReportGet(Model model, @RequestParam("dDate1") String dDate1,
+//			@RequestParam("dDate2") String dDate2) {
+//		model.addAttribute("dDate1", dDate1);
+//		model.addAttribute("dDate2", dDate2);
+//		// 欄位資料:日期,單數,人數,金額
+//		List<AttendenceBean[]> listDailyOrder = ScheduleService.getAttByDate(dDate1, dDate2);
+//		model.addAttribute("listDailyOrder", listDailyOrder);
+//
+//		return "empManage/attendance";
+//	}
+	
 	// 以日期查詢員工
 //	@RequestMapping("/empManage/attendance")
 //	public String listByDate(Model model, @RequestParam("dDate1") String dDate1,

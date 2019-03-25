@@ -10,8 +10,20 @@ import _00model.ScheduleBean;
 public interface ScheduleDao {
 
 	public EmployeeBean checkByEmpNo(String empNo);
+	
+	
+	
 	//查詢所有Attendance資料
 	public void addAttendence(AttendenceBean attendenceBean);
+	
+	public void stringToDate(String Date1, String Date2);
+	
+	public List<AttendenceBean[]> getAttByDate(String Date1, String Date2);
+	
+	
+	
+	
+	
 	//查詢所有Schedule資料
 	ScheduleBean findByPrimaryKey(int scheduleId);
 
