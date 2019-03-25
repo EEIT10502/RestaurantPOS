@@ -26,8 +26,4 @@ public interface FinancialService {
 
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1);
 
-//	public List<OrderDetailBean> getCateByDate2(String Date1, String Date2, String Cate);
-//	
-//	public List<OrderBean> getOrderByDateExcel(String Date1, String Date2);
-
 }

@@ -36,7 +36,12 @@
 		$("#pDate2").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
-		});
+		}).bind("change", function() {
+			var maxValue = $(this).val();
+			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+			maxValue.setDate(maxValue.getDate());
+			$("#pDate1").datepicker("option", "maxDate", maxValue);
+			});
 		$("#pDate1").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
@@ -102,12 +107,12 @@
 			<!-- 報表版面 -->
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<h2>單品銷售分析</h2>
+					<h3>單品銷售分析</h3>
 				</div>
 				<div>
-					<h3>選擇欲查詢日期</h3>
+					<h5>選擇欲查詢日期</h5>
 					<input type="text" id="pDate1" name="pDate1" value="${pDate1}"
-						readonly>- <input type="text" id="pDate2" name="pDate2"
+						readonly> - <input type="text" id="pDate2" name="pDate2"
 						value="${pDate2}" readonly>
 					<p>
 
