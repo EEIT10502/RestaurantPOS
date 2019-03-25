@@ -40,7 +40,7 @@
 			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
 			maxValue.setDate(maxValue.getDate());
 			$("#csDate1").datepicker("option", "maxDate", maxValue);
-			});
+		});
 		$("#csDate1").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd",
@@ -56,29 +56,43 @@
 
 	//轉檔方法
 	$(function() {
-		$("#csExport").click(
-				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/categoryReportGetExcel");
-					$("#form1").submit();
-				});
+		$("#csExport")
+				.click(
+						function() {
+							if ($("#csDate1").val() != ""
+									&& $("#csDate2").val() != ""
+									&& $("#csSelOpt").val() != "--請選擇--") {
+								$("#form1")
+										.attr("action",
+												"/RestaurantPOS/report/categoryReportGetExcel");
+								$("#form1").submit();
+							} else {
+								alert("請選擇日期及類別");
+							}
+						});
 	})
 	//轉查詢方法
 	$(function() {
 		$("#csSelect").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/categoryReportGet");
-					$("#form1").submit();
+					if ($("#csDate1").val() != "" && $("#csDate2").val() != ""
+							&& $("#csSelOpt").val() != "--請選擇--") {
+						$("#form1").attr("action",
+								"/RestaurantPOS/report/categoryReportGet");
+						$("#form1").submit();
+					} else {
+						alert("請選擇日期及類別");
+					}
+
 				});
 	})
 </script>
 
 
 <body>
-	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
-	<jsp:include page="../sideBar.jsp" flush="true" />
+	<div class="clearfix">
+		<jsp:include page="../headerTime.jsp" flush="true" />
+		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
 	<fieldset class="w3-container" style="margin-left: 160px">
@@ -106,7 +120,7 @@
 									<option><c:out value="${csSel}" /></option>
 								</c:if>
 							</c:forEach>
-						</select> <input type="submit" value="查詢" id="csSelect" name="csSelect">
+						</select> <input type="button" value="查詢" id="csSelect" name="csSelect">
 				</div>
 
 				<div>

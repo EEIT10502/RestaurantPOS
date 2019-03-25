@@ -19,9 +19,6 @@
 </head>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" -->
-<!-- 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" -->
-<!-- 	crossorigin="anonymous"></script> -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -41,7 +38,7 @@
 			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
 			maxValue.setDate(maxValue.getDate());
 			$("#pDate1").datepicker("option", "maxDate", maxValue);
-			});
+		});
 		$("#pDate1").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
@@ -80,27 +77,40 @@
 	$(function() {
 		$("#pExport").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/productReportGetExcel");
-					$("#form1").submit();
+					if ($("#pDate1").val() != "" && $("#pDate2").val() != ""
+							&& $("#pcSelOpt").val() != "--請選擇--") {
+						$("#form1").attr("action",
+								"/RestaurantPOS/report/productReportGetExcel");
+						$("#form1").submit();
+					} else {
+						alert("請選擇日期及類別");
+					}
 				});
 	})
 	//轉查詢方法
 	$(
 			function() {
-				$("#pSelect").click(
-						function() {
-							$("#form1").attr("action",
-									"/RestaurantPOS/report/productReportGet");
-							$("#form1").submit();
-						});
+				$("#pSelect")
+						.click(
+								function() {
+									if ($("#pDate1").val() != ""
+											&& $("#pDate2").val() != ""
+											&& $("#pcSelOpt").val() != "--請選擇--") {
+										$("#form1")
+												.attr("action",
+														"/RestaurantPOS/report/productReportGet");
+										$("#form1").submit();
+									} else {
+										alert("請選擇日期及類別");
+									}
+								});
 			})
 </script>
 <body>
-	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
-	<jsp:include page="../sideBar.jsp" flush="true" />
-	</div>	
+	<div class="clearfix">
+		<jsp:include page="../headerTime.jsp" flush="true" />
+		<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
 	<fieldset class="w3-container" style="margin-left: 160px">
 		<form action="productReportGet" method="post" id="form1">
@@ -137,7 +147,7 @@
 									<option><c:out value="${pSel.productName}" /></option>
 								</c:forEach>
 							</c:if>
-						</select> <input type="submit" value="查詢" id="pSelect" name="pSelect">
+						</select> <input type="button" value="查詢" id="pSelect" name="pSelect">
 				</div>
 
 				<div>

@@ -145,7 +145,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		@Override
 		public List<AttendenceBean> findAllAttendence() {
 			Session session = factory.getCurrentSession();
-			String hql = "FROM Attendence";
+			String hql = "FROM AttendenceBean";
 			List<AttendenceBean> list = session.createQuery(hql)
 									.getResultList();
 			return list;
