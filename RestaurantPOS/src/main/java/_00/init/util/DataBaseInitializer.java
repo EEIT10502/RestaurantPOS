@@ -37,7 +37,7 @@ public class DataBaseInitializer {
 		
 		
 		//建立Order資料
-		//new OrderTableInit(factory).initOrder();
+//		new OrderTableInit(factory).initOrder();
 		
 		//建立OrderDetailBean資料
 		//new OrderDetailTableInit(factory).initOrderDetail();
