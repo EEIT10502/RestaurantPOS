@@ -2,7 +2,6 @@ package _00model;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.text.ParseException;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,24 +17,23 @@ public class ScheduleBean implements Serializable {
 
 	Integer scheduleId;
 	String schedule;
-	String color;
+//	String color;
 	Time startTime;
 	Time endTime;
-	Double restTime;
-	Double totalTime;
+	Float restTime;
+//	Float totalTime;
 
 	public ScheduleBean() {
 	}
 
-	public ScheduleBean(Integer scheduleId, String schedule, String color, Time startTime, Time endTime, Double restTime,
-			Double totalTime) {
+	public ScheduleBean(Integer scheduleId, String schedule, Time startTime, Time endTime, Float restTime) {
 		this.scheduleId = scheduleId;
 		this.schedule = schedule;
-		this.color = color;
+//		this.color = color;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.restTime = restTime;
-		this.totalTime = totalTime;
+//		this.totalTime = totalTime;
 	}
 
 	@Id
@@ -57,14 +55,14 @@ public class ScheduleBean implements Serializable {
 		this.schedule = schedule;
 	}
 
-	@Column(name = "color")
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
+//	@Column(name = "color")
+//	public String getColor() {
+//		return color;
+//	}
+//
+//	public void setColor(String color) {
+//		this.color = color;
+//	}
 
 	@Column(name = "startTime")
 	public Time getStartTime() {
@@ -85,32 +83,32 @@ public class ScheduleBean implements Serializable {
 	}
 
 	@Column(name = "restTime")
-	public Double getRestTime() {
+	public Float getRestTime() {
 		return restTime;
 	}
 
-	public void setRestTime(Double restTime) {
+	public void setRestTime(Float restTime) {
 		this.restTime = restTime;
 	}
 
-	@Column(name = "totalTime")
-	public Double getTotalTime()throws ParseException {
-//		SimpleDateFormat simpleFormat = new SimpleDateFormat("HH:mm");
-//		String endTime=simpleFormat.format(getEndTime());
-//		String startTime=simpleFormat.format(getStartTime());
-//		long end=simpleFormat.parse(endTime).getTime();
-//		long start=simpleFormat.parse(startTime).getTime();
-//		long diff=(end-start);
-//		double days=diff/(1000*60*60*24);
-//		double hours=(diff-days*(1000*60*60*24)/(1000*60*60));
-//		double dayhours=hours-getRestTime();
-//		
-//		return dayhours;
-		return totalTime;
-	}
-
-	public void setTotalTime(Double totalTime)throws ParseException {
-		this.totalTime = totalTime;
-	}
+//	@Column(name = "totalTime")
+//	public Float getTotalTime()throws ParseException {
+////		SimpleDateFormat simpleFormat = new SimpleDateFormat("HH:mm");
+////		String endTime=simpleFormat.format(getEndTime());
+////		String startTime=simpleFormat.format(getStartTime());
+////		long end=simpleFormat.parse(endTime).getTime();
+////		long start=simpleFormat.parse(startTime).getTime();
+////		long diff=(end-start);
+////		double days=diff/(1000*60*60*24);
+////		double hours=(diff-days*(1000*60*60*24)/(1000*60*60));
+////		double dayhours=hours-getRestTime();
+////		
+////		return dayhours;
+//		return totalTime;
+//	}
+//
+//	public void setTotalTime(Float totalTime)throws ParseException {
+//		this.totalTime = totalTime;
+//	}
 
 }

@@ -55,8 +55,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Transactional
 	@Override
-	public void deleteScheduleByPrimaryKey(int scheduleId) {
-		scheduleDao.deleteScheduleByPrimaryKey(scheduleId);
+	public void deleteScheduleByPrimaryKey(ScheduleBean schedule) {
+		scheduleDao.deleteScheduleByPrimaryKey(schedule);
+	}
+	
+	@Transactional
+	@Override
+	public void deleteAllSchedule() {
+		scheduleDao.deleteAllSchedule();		
 	}
 
 	@Transactional
@@ -95,6 +101,5 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public CalendarBean testGet(int id) {
 		return scheduleDao.testGet(id);
 	}
-
 
 }

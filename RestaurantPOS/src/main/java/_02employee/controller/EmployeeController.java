@@ -319,6 +319,158 @@ public class EmployeeController {
 	 * 設定搜尋頁面結束
 	 */
 
+//	/*
+//	 * 員工資料編修：1.註冊 2.更新
+//	 */
+//	// 註冊員工資料1
+//	@RequestMapping(value = "/empManage/empInsert", method = RequestMethod.GET)
+//	public String getAddNewEmpForm(Model model) {
+//		EmployeeBean employeeBean = new EmployeeBean();
+//		model.addAttribute("employeeBean", employeeBean);
+//		return "/empManage/empInsert";
+//	}
+//
+//	// 註冊員工資料2
+//	@RequestMapping(value = "/empManage/empInsert", method = RequestMethod.POST)
+//	public String processAddNewEmpForm(@ModelAttribute("employeeBean") EmployeeBean employeeBean, Model model,
+//			BindingResult result, HttpServletRequest req) throws SQLException {
+//
+//		// 錯誤訊息
+//		Map<String, String> errors = new HashMap<>();
+//		model.addAttribute("modelErrors", errors);
+//
+//		// 錯誤訊息：員工姓名
+//		String employeeNameInsert = employeeBean.getEmpName();
+//		if (employeeNameInsert == null || employeeNameInsert.length() == 0) {
+//			errors.put("errorOfEmployeeName", "請輸入員工姓名");
+//		}
+//
+//		// 錯誤訊息：員工電話
+//		String employeeTelInsert = employeeBean.getTel();
+//		if (employeeTelInsert == null || employeeTelInsert.length() == 0) {
+//			errors.put("errorOfEmployeeTel", "請輸入員工電話");
+//		}
+//
+//		// 錯誤訊息：員工地址
+//		String employeeAddrInsert = employeeBean.getAddr();
+//		if (employeeAddrInsert == null || employeeAddrInsert.length() == 0) {
+//			errors.put("errorOfEmployeeAddr", "請輸入員工地址");
+//		}
+//
+//		// 錯誤訊息：員工職位(選項)
+//		String positionInsert = employeeBean.getPosition();
+//		if (positionInsert == null || positionInsert.equals("-1")) {
+//			errors.put("errorOfPosition", "請選擇職位");
+//		}
+//
+//		// 錯誤訊息：員工性別(選項)
+//		String genderInsert = employeeBean.getGender();
+//		if (genderInsert == null || genderInsert.equals("-1")) {
+//			errors.put("errorOfGender", "請選擇性別");
+//		}
+//
+//		// 錯誤訊息：員工狀態(選項)
+//		String empStatusInsert = employeeBean.getStatus();
+//		if (empStatusInsert == null || empStatusInsert.equals("-1")) {
+//			errors.put("errorOfEmpStatus", "請選擇就職狀況");
+//		}
+//
+//		// 錯誤訊息：員工備註(選項)
+////		String remarkInsert = employeeBean.getRemark();
+////		if (remarkInsert == null || employeeNameInsert.length() == 0) {
+////			errors.put("errorOfEmpRemark", "請輸入備註");
+////		}
+//
+//		// 錯誤訊息：員工照片(上傳)
+////		Blob empPictureInsert = employeeBean.getImg();
+////		if (empPictureInsert == null || empPictureInsert.length() == 0 ) {
+////			errors.put("errorOfEmpPicture", "請上傳照片");
+////		}
+//
+//		// 若有錯誤訊息則顯示在頁面上
+//		if (errors != null && !errors.isEmpty()) {
+//			return "empManage/empInsert";
+//		}
+//
+////		String position = employeeBean.getPosition();
+////		Integer employeeNoInsert = employeeService.getCurrentPositionNumber(position);
+////		if (employeeNoInsert == null) {
+////			switch (position) {
+////			case GlobalService.Employee_CATE_waiter:
+////				employeeBean.setEmpNo(101);
+////				break;
+////			case GlobalService.Employee_CATE_EChef:
+////				employeeBean.setEmpNo(201);
+////				break;
+////			case GlobalService.Employee_CATE_MChef:
+////				employeeBean.setEmpNo(301);
+////				break;
+////			case GlobalService.Employee_CATE_manager:
+////				employeeBean.setEmpNo(401);
+////				break;
+////			}
+////		} else {
+////			employeeBean.setEmpNo(employeeNoInsert + 1);
+////		}
+//
+//		Integer employeeNoInsert = employeeService.getCurrentPositionNumber();
+//		employeeBean.setEmpNo(employeeNoInsert + 1);
+//
+//		// 上傳照片
+//		MultipartFile empImg = employeeBean.getEmpImg();
+//
+////			 建立Blob物件，交由Hibernate 寫入資料庫
+//		if (empImg != null && !empImg.isEmpty()) {
+//			try {
+//				byte[] b = empImg.getBytes();
+//				Blob blob = new SerialBlob(b);
+//				employeeBean.setImg(blob);
+//				;
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+//			}
+//		}
+//		//更新員工時也會將資料丟到排班表裡
+//		Set<CalendarBean> items = new HashSet<CalendarBean>();
+//		CalendarBean oib = new CalendarBean();
+//		oib.setEmployee(employeeBean);
+//		items.add(oib);
+//		employeeBean.setCalendarBean(items);
+//
+//		employeeService.addEmployee(employeeBean);
+//		return "redirect:/empManage/allEmployeeList.action";
+//	}
+//
+//	// 取得圖片、檔案
+//	@RequestMapping(value = "/getPicture/{empId}", method = RequestMethod.GET)
+//	public ResponseEntity<byte[]> getPicture(HttpServletResponse res, @PathVariable Integer empId) {
+//		byte[] media = null;
+//		HttpHeaders headers = new HttpHeaders();
+//		int len = 0;
+//		EmployeeBean employeeBean = employeeService.getEmployeesById(empId);
+//		if (employeeBean != null) {
+//			Blob blob = employeeBean.getImg();
+//			if (blob != null) {
+//				try {
+//					len = (int) blob.length();
+//					media = blob.getBytes(1, len);
+//
+//				} catch (SQLException e) {
+//					throw new RuntimeException("EmployeeController的getPicture()發生SQLException:" + e.getMessage());
+//				}
+//			}
+//
+//			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+//		}
+//		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+//		return responseEntity;
+//	}
+	
+	//==================================================以上不要動=====================================================================================//
+	
+	
+	//==================================================以下為測試=====================================================================================//
 	/*
 	 * 員工資料編修：1.註冊 2.更新
 	 */
@@ -333,7 +485,7 @@ public class EmployeeController {
 	// 註冊員工資料2
 	@RequestMapping(value = "/empManage/empInsert", method = RequestMethod.POST)
 	public String processAddNewEmpForm(@ModelAttribute("employeeBean") EmployeeBean employeeBean, Model model,
-			BindingResult result, HttpServletRequest req) {
+			BindingResult result, HttpServletRequest req)  {
 
 		// 錯誤訊息
 		Map<String, String> errors = new HashMap<>();
@@ -380,13 +532,29 @@ public class EmployeeController {
 //		if (remarkInsert == null || employeeNameInsert.length() == 0) {
 //			errors.put("errorOfEmpRemark", "請輸入備註");
 //		}
+		
+		// 上傳照片
+				MultipartFile empImg = employeeBean.getEmpImg();
 
-		// 錯誤訊息：員工照片(上傳)
-//		Blob empPictureInsert = employeeBean.getImg();
-//		if (empPictureInsert == null) {
-//			errors.put("errorOfEmpPicture", "請上傳照片");
-//		}
+//					 建立Blob物件，交由Hibernate 寫入資料庫
+				if (empImg != null && !empImg.isEmpty()) {
+					try {
+						byte[] b = empImg.getBytes();
+						Blob blob = new SerialBlob(b);
+						employeeBean.setImg(blob);
+						;
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
+					}
+				}
 
+//		 錯誤訊息：員工照片(上傳)
+		Blob empPictureInsert = employeeBean.getImg();
+		if (empPictureInsert == null) {
+			errors.put("errorOfEmpPicture", "請上傳照片");
+		}
+		
 		// 若有錯誤訊息則顯示在頁面上
 		if (errors != null && !errors.isEmpty()) {
 			return "empManage/empInsert";
@@ -412,25 +580,13 @@ public class EmployeeController {
 //		} else {
 //			employeeBean.setEmpNo(employeeNoInsert + 1);
 //		}
+		
+		
 
 		Integer employeeNoInsert = employeeService.getCurrentPositionNumber();
 		employeeBean.setEmpNo(employeeNoInsert + 1);
 
-		// 上傳照片
-		MultipartFile empImg = employeeBean.getEmpImg();
-
-//			 建立Blob物件，交由Hibernate 寫入資料庫
-		if (empImg != null && !empImg.isEmpty()) {
-			try {
-				byte[] b = empImg.getBytes();
-				Blob blob = new SerialBlob(b);
-				employeeBean.setImg(blob);
-				;
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("檔案上傳發生異常:" + e.getMessage());
-			}
-		}
+		
 		//更新員工時也會將資料丟到排班表裡
 		Set<CalendarBean> items = new HashSet<CalendarBean>();
 		CalendarBean oib = new CalendarBean();
@@ -447,10 +603,13 @@ public class EmployeeController {
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse res, @PathVariable Integer empId) {
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
+//		String filename = "";
 		int len = 0;
 		EmployeeBean employeeBean = employeeService.getEmployeesById(empId);
 		if (employeeBean != null) {
 			Blob blob = employeeBean.getImg();
+//			filename = employeeBean.getFileName();
+//			System.out.println("filename = " +filename);
 			if (blob != null) {
 				try {
 					len = (int) blob.length();
@@ -466,6 +625,8 @@ public class EmployeeController {
 		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 		return responseEntity;
 	}
+	
+				//=============================以上為測試檔案名稱=============================================
 
 	/*
 	 * 註冊員工資料結束

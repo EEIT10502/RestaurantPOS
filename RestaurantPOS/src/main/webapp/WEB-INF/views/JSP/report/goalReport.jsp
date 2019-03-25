@@ -48,55 +48,73 @@
 					$("#form1").submit();
 				});
 	})
+	//轉檔方法
+	$(function() {
+		$("#gExport").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/goalReportGetExcel");
+					$("#form1").submit();
+				});
+	})
+	//轉查詢方法
+	$(function() {
+		$("#gSelect").click(
+				function() {
+					$("#form1").attr("action",
+							"/RestaurantPOS/report/goalReportGet");
+					$("#form1").submit();
+				});
+	})
 </script>
 
 
 <body>
-	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
-	<jsp:include page="../sideBar.jsp" flush="true" />
+	<div class="clearfix">
+		<jsp:include page="../headerTime.jsp" flush="true" />
+		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
 	<fieldset class="w3-container" style="margin-left: 160px">
-	<form action="goalReportGet" method="post" id="form1">
-		<!-- 報表版面 -->
-		<div class="w3-container" style="margin-left: 160px">
-			<div>
-				<h2>營運目標查詢</h2>
-			</div>
-			<div>
-				<h3>選擇欲查詢日期</h3>
-				<input type="text" id="gMonth1" name="gMonth1" readonly>
-				<p>
+		<form action="goalReportGet" method="post" id="form1">
+			<!-- 報表版面 -->
+			<div class="w3-container" style="margin-left: 160px">
+				<div>
+					<h2>營運目標查詢</h2>
+				</div>
+				<div>
+					<h3>選擇欲查詢日期</h3>
+					<input type="text" id="gMonth1" name="gMonth1" readonly value="${gMonth1}">
+					<p>
 
-					<input type="submit" value="查詢" id="gSel" name="gSel">
-			</div>
-			<div>
-				<h5>${gMonth1}</h5>
-				<input type="button" value="匯出報表" id="gExport" name="gExport">
-				<table class="table table-hover">
-					<tr>
-						<th>日期</th>
-						<th>目標營業額</th>
-						<th>累計營業額</th>
-						<th>差額</th>
-						<th>達成率</th>
-					</tr>
-					<c:forEach var="gTable" items="${listgoalCum}" varStatus="loop">
+						<input type="submit" value="查詢" id="gSel" name="gSelect">
+				</div>
+				<div>
+					<h5>${gMonth1}</h5>
+					<input type="button" value="匯出報表" id="gExport" name="gExport">
+					<table class="table table-hover">
 						<tr>
-							<td>${gTable.date}</td>
-							<td>${listgoalturn[loop.count-1].targetTurnover}</td>
-							<td>${gTable.cumulativeTurnover}</td>
-							<td>${listgoalturn[loop.count-1].targetTurnover - gTable.cumulativeTurnover}</td>
-							<td><fmt:formatNumber type="number"
-									value="${gTable.cumulativeTurnover / listgoalturn[loop.count-1].targetTurnover * 100}"
-									maxFractionDigits="2" />%</td>
+							<th>日期</th>
+							<th>目標營業額</th>
+							<th>累計營業額</th>
+							<th>差額</th>
+							<th>達成率</th>
 						</tr>
-					</c:forEach>
-				</table>
+						<c:forEach var="gTable" items="${listgoalCum}" varStatus="loop">
+							<tr>
+								<td>${gTable.date}</td>
+								<td>${listgoalturn[loop.count-1].targetTurnover}</td>
+								<td>${gTable.cumulativeTurnover}</td>
+								<td>${listgoalturn[loop.count-1].targetTurnover - gTable.cumulativeTurnover}</td>
+								<td><fmt:formatNumber type="number"
+										value="${gTable.cumulativeTurnover / listgoalturn[loop.count-1].targetTurnover * 100}"
+										maxFractionDigits="2" />%</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
 	</fieldset>
 	<jsp:include page="../footer.jsp" flush="true" />
 </body>

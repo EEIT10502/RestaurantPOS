@@ -67,4 +67,6 @@ public interface ManagerService {
 	 */
 	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date);
 	
+	
+	public List<CumulativeTurnoverBean> getOneMonthCumulativeTurnoverBean();
 }

@@ -129,7 +129,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 //			// TODO Auto-generated method stub
 //			return null;
 //		}
-
+		//泰豪 1.取得Attendence資料
 		@SuppressWarnings("unchecked")
 		@Override
 		public List<AttendenceBean> getAllAttendence() {
@@ -139,8 +139,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		    session = factory.getCurrentSession();
 		    list = session.createQuery(hql).getResultList();
 		    return list;
-			
 		}
+		//泰豪 2.匯出Attendence資料
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<AttendenceBean> findAllAttendence() {
+			Session session = factory.getCurrentSession();
+			String hql = "FROM Attendence";
+			List<AttendenceBean> list = session.createQuery(hql)
+									.getResultList();
+			return list;
+		}
+		
 		@Override
 		public void stringToDate(String Date1, String Date2) {
 			String tDate1 = Date1 + " 00:00:00";
@@ -507,9 +517,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			Blob testP = (Blob) session.createQuery(hql).setParameter("key", img);
 			return testP;
 		}
-		
-	
-	
+
 	}
 	
 	

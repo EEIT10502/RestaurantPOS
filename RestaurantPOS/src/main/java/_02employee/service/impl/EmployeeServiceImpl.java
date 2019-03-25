@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 import _00model.AttendenceBean;
 import _00model.CumulativeTurnoverBean;
 import _00model.EmployeeBean;
@@ -275,7 +277,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 //		// TODO Auto-generated method stub
 //		return 0;
 //	}
-	
+		//泰豪
 		@Transactional
 		@Override
 		public List<AttendenceBean> getAllAttendence() {
@@ -286,7 +288,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		public List<AttendenceBean> getAttendenceListByDate(String Date1, String Date2) {
 			return employeeDao.getAttendenceListByDate(Date1, Date2);
 		}
+		@Transactional
+		@Override
+		public List<AttendenceBean> findAllAttendence() {
+			return employeeDao.findAllAttendence();
+		}
 
+		
 		@Override
 		public EmployeeBean findByPrimaryKey(int key) {
 			return employeeDao.findByPrimaryKey(key);
@@ -299,6 +307,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		public Blob getEmployeePicture(Blob img) {
 			return employeeDao.getEmployeePicture(img);
 		}
+
 
 
 	

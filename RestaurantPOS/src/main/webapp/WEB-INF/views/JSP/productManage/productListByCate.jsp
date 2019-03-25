@@ -28,7 +28,9 @@ td.errorMessage[type="redError"] {
 
 </head>
 <body>
+	<div  class="clearfix">				
 	<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
@@ -131,7 +133,7 @@ td.errorMessage[type="redError"] {
 							</div>
 						</div>
 						<!-- Modal 結束-->
-						<script>
+						<script>						
 							var flag="";
 							document.addEventListener("DOMContentLoaded", function() {
 								document.getElementById("productNameEdit${product.pId}").addEventListener("blur", function () {

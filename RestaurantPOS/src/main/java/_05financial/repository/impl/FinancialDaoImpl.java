@@ -32,7 +32,7 @@ public class FinancialDaoImpl implements FinancialDao {
 
 	// String to Date
 	@Override
-	public void stringToDate(String Date1, String Date2) {
+	public void stringToDate(String Date1, String Date2) {		
 		String tDate1 = Date1 + " 00:00:00";
 		String tDate2 = Date2 + " 23:59:59";
 		SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -160,32 +160,32 @@ public class FinancialDaoImpl implements FinancialDao {
 		return listgoalturn;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<OrderDetailBean> getCateByDate2(String Date1, String Date2, String Cate) {
-		// to sql.Date
-		stringToDate(Date1, Date2);
-		// hql
-		String hql = "SELECT cast(d.orderBean.orderTime as date), sum(qty), sum(productPrice) FROM OrderDetailBean d WHERE d.orderBean.orderTime>=:beginDate and d.orderBean.orderTime<=:endDate and category=:Cate GROUP BY cast(d.orderBean.orderTime as date)";
-		Session session = factory.getCurrentSession();
-		List<OrderDetailBean> listCate = session.createQuery(hql).setParameter("beginDate", beginDate)
-				.setParameter("endDate", endDate).setParameter("Cate", Cate).getResultList();
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<OrderDetailBean> getCateByDate2(String Date1, String Date2, String Cate) {
+//		// to sql.Date
+//		stringToDate(Date1, Date2);
+//		// hql
+//		String hql = "SELECT cast(d.orderBean.orderTime as date), sum(qty), sum(productPrice) FROM OrderDetailBean d WHERE d.orderBean.orderTime>=:beginDate and d.orderBean.orderTime<=:endDate and category=:Cate GROUP BY cast(d.orderBean.orderTime as date)";
+//		Session session = factory.getCurrentSession();
+//		List<OrderDetailBean> listCate = session.createQuery(hql).setParameter("beginDate", beginDate)
+//				.setParameter("endDate", endDate).setParameter("Cate", Cate).getResultList();
+//
+//		return listCate;
+//	}
 
-		return listCate;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<OrderBean> getOrderByDateExcel(String Date1, String Date2) {
-		// to sql.Date
-		stringToDate(Date1, Date2);
-		// hql
-		String hql = "select orderTime, cusFlow, totalPrice FROM OrderBean  WHERE orderTime>=:beginDate and orderTime<=:endDate";
-		Session session = factory.getCurrentSession();
-		List<OrderBean> listDailyOrderExcel = session.createQuery(hql).setParameter("beginDate", beginDate)
-				.setParameter("endDate", endDate).getResultList();
-
-		return listDailyOrderExcel;
-	}
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<OrderBean> getOrderByDateExcel(String Date1, String Date2) {
+//		// to sql.Date
+//		stringToDate(Date1, Date2);
+//		// hql
+//		String hql = "select orderTime, cusFlow, totalPrice FROM OrderBean  WHERE orderTime>=:beginDate and orderTime<=:endDate";
+//		Session session = factory.getCurrentSession();
+//		List<OrderBean> listDailyOrderExcel = session.createQuery(hql).setParameter("beginDate", beginDate)
+//				.setParameter("endDate", endDate).getResultList();
+//
+//		return listDailyOrderExcel;
+//	}
 
 }
