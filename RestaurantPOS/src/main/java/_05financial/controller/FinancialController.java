@@ -109,9 +109,11 @@ public class FinancialController {
 			// 計算回圈次數
 			model.addAttribute("countI", i);
 		}
+
 		model.addAttribute("listDailyOrderExcel", listDailyOrderExcel);
 
 		return "dailyReport/excel";
+
 	}
 
 	// 類別報表

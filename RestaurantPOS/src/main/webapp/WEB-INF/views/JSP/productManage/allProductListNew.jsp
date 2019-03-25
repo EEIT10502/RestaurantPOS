@@ -31,7 +31,7 @@ td.errorMessage[type="redError"] {
 
 <body>
 	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
+	<div style="display: none;"><jsp:include page="../headerTime.jsp" flush="true" /></div>	
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />

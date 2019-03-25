@@ -114,40 +114,43 @@ public class MultipleProductReportExcelView extends AbstractXlsView {
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
+		try {
+			int countINumber = (int) model.get("countI");
 
-		int countINumber = (int) model.get("countI");
-		
-		for (int i = 0; i < countINumber; i++) {
+			for (int i = 0; i < countINumber; i++) {
 
-			colCount = 0;
-			row = sheet.createRow(rowCount++);
+				colCount = 0;
+				row = sheet.createRow(rowCount++);
 
-			Map<String, Object> map = listProductExcel.get(i);
-			Date date = (Date) map.get("date" + i);
-			String cate = (String) model.get("pcSelOpt");
-			String product = (String) model.get("pSelOpt");
-			Long qty = (Long) map.get("qty" + i);
-			Long price = (Long) map.get("price" + i);
+				Map<String, Object> map = listProductExcel.get(i);
+				Date date = (Date) map.get("date" + i);
+				String cate = (String) model.get("pcSelOpt");
+				String product = (String) model.get("pSelOpt");
+				Long qty = (Long) map.get("qty" + i);
+				Long price = (Long) map.get("price" + i);
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(date + "");
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(date + "");
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(cate);
-			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(product);
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(cate);
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(qty + "");
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(product);
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(price + "");
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(qty + "");
+
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(price + "");
+			}
+		} catch (NullPointerException e) {
+			return;
 		}
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i = 0; i < columnCount; i++) {

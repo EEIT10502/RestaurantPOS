@@ -23,6 +23,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	}
 
+	
+	@Transactional
+	@Override
+	public List<AttendenceBean> getAttByDate(String Date1, String Date2) {
+		return scheduleDao.getAttByDate(Date1, Date2);
+	}
+	
+	
 	@Transactional
 	@Override
 	public List<ScheduleBean> findAllSchedule() {

@@ -29,7 +29,7 @@ public class DataBaseInitializer {
 		new EmployeeTableInit(factory).InitEmployee();
 		
 		//建立CumulativeTurnover資料
-//		new CumulativeTurnoverTableInit(factory).initCumulativeTurnover();
+		//new CumulativeTurnoverTableInit(factory).initCumulativeTurnover();
 		
 		
 		//建立TargetTurnover資料
@@ -40,7 +40,7 @@ public class DataBaseInitializer {
 //		new OrderTableInit(factory).initOrder();
 		
 		//建立OrderDetailBean資料
-//		new OrderDetailTableInit(factory).initOrderDetail();
+		//new OrderDetailTableInit(factory).initOrderDetail();
 		
 		//建立Schedule資料(完成)
 		new ScheduleTableInit(factory).initSchedule();

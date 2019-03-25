@@ -31,8 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import _00.init.util.GlobalService;
 import _00model.CalendarBean;
 import _00model.EmployeeBean;
-import _00model.MenuBean;
-import _00model.OrderDetailBean;
+//github.com/EEIT10502/RestaurantPOS.git
 import _02employee.service.EmployeeService;
 
 //這是一個提供Manager登入的@Controller
@@ -471,6 +470,7 @@ public class EmployeeController {
 			}
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
+			Set<CalendarBean> CB = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 		}
 		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 

@@ -27,6 +27,7 @@ td.errorMessage[type="redError"] {
 	
 	
 	<div class="clearfix">	
+	<div style="display:none;"><jsp:include page="../headerTime.jsp" flush="true" /></div>
 	<jsp:include page="../sideBar.jsp" flush="true" />
     </div>
 	
