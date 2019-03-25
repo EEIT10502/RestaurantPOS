@@ -470,9 +470,10 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
-
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
+		
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
@@ -523,9 +524,10 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
@@ -580,9 +582,10 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean);
 
 		if (currentPageNo == null) {
@@ -637,9 +640,11 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
+		
+		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
 		employeeService.updateEmployee(employeeBean);
 
 		if (currentPageNo == null) {
