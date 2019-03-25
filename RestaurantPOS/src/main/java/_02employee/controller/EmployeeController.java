@@ -31,7 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 import _00.init.util.GlobalService;
 import _00model.CalendarBean;
 import _00model.EmployeeBean;
-import _00model.OrderDetailBean;
 import _02employee.service.EmployeeService;
 
 //這是一個提供Manager登入的@Controller
@@ -677,7 +676,7 @@ public class EmployeeController {
 		}
 		
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,CalendarBean);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit);
 		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
