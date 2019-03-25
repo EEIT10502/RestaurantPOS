@@ -54,27 +54,26 @@
 	$(function() {
 		$("#dExport").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/DailyReportGetExcel");
-					$("#form1").submit();
+					if ($("#dDate1").val() != "" && $("#dDate2").val() != "") {
+						$("#form1").attr("action",
+								"/RestaurantPOS/report/DailyReportGetExcel");
+						$("#form1").submit();
+					} else {
+						alert("請選擇日期");
+					}
 				});
 	})
 	//轉查詢方法
 	$(function() {
 		$("#dSelect").click(
 				function() {
-					var a = $("#dDate1").val();
-					// textbox.text.length>0
-					if ($("#dDate1").text().length != 0
-							&& $("#dDate2").text().length != 0) {
-						// 				$("#form1").attr("action", "/RestaurantPOS/report/dailyReportGet");
-						alert(a);
-						// 	 			$("#form1").submit();
+					if ($("#dDate1").val() != "" && $("#dDate2").val() != "") {
+						$("#form1").attr("action",
+								"/RestaurantPOS/report/dailyReportGet");
+						$("#form1").submit();
 					} else {
-						alert("null");
+						alert("請輸入日期");
 					}
-
-					// 			
 				});
 	})
 </script>
@@ -94,8 +93,9 @@
 				</div>
 				<div>
 					<h5>選擇欲查詢日期</h5>
-					<input type="text" id="dDate1" name="dDate1"> - <input
-						type="text" id="dDate2" name="dDate2">
+					<input type="text" id="dDate1" name="dDate1" value="${dDate1}"
+						readonly> - <input type="text" id="dDate2" name="dDate2"
+						value="${dDate2}" readonly>
 					<p>
 
 						<input type="button" value="查詢" id="dSelect" name="dSelect">

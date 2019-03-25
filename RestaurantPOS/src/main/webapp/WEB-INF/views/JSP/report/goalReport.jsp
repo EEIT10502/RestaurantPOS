@@ -43,18 +43,26 @@
 	$(function() {
 		$("#gExport").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/goalReportGetExcel");
-					$("#form1").submit();
+					if ($("#gMonth1").val() != "") {
+						$("#form1").attr("action",
+								"/RestaurantPOS/report/goalReportGetExcel");
+						$("#form1").submit();
+					} else {
+						alert("請選擇日期");
+					}
 				});
 	})
 	//轉查詢方法
 	$(function() {
 		$("#gSelect").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/goalReportGet");
-					$("#form1").submit();
+					if ($("#gMonth1").val() != "") {
+						$("#form1").attr("action",
+								"/RestaurantPOS/report/goalReportGet");
+						$("#form1").submit();
+					} else {
+						alert("請選擇日期");
+					}
 				});
 	})
 </script>
@@ -75,10 +83,11 @@
 				</div>
 				<div>
 					<h5>選擇欲查詢日期</h5>
-					<input type="text" id="gMonth1" name="gMonth1" readonly value="${gMonth1}">
+					<input type="text" id="gMonth1" name="gMonth1" readonly
+						value="${gMonth1}">
 					<p>
 
-						<input type="submit" value="查詢" id="gSel" name="gSelect">
+						<input type="button" value="查詢" id="gSelect" name="gSelect">
 				</div>
 				<div>
 					<h5>${gMonth1}</h5>
