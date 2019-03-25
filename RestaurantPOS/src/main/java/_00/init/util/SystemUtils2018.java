@@ -15,6 +15,7 @@ import java.sql.Clob;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -152,12 +153,35 @@ public class SystemUtils2018 {
 		rate = Integer.toString((int) (achievingRate*100))+"%";
 		return rate;
 	}
+	
+	public static String[] getMonthStartDateAndEndDate() {
+	 	SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd");
+		 
+        Date nowDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        //取得今日
+        calendar.setTime(nowDate);
+        Date Date1 = calendar.getTime();
+        String stringTodayDate = sdf.format(Date1);
+
+        //往前推一个月
+        calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)-1);
+        Date Date2 = calendar.getTime();
+        String stringBeforeOneMonth = sdf.format(Date2);
+
+
+        String[] dateArr = {stringBeforeOneMonth,stringTodayDate};
+        
+		
+		return dateArr;
+	}
+	
+	
+	
+	
 	//測試你的方法
 	public static void main(String[] args) {
-		
-
-		
-		
+	
 	}
 
 }

@@ -121,8 +121,8 @@ font-weight:bold;
 				
 					$('#oL1').after(row);
 					var subTotal1 = parseInt($("#opSubtotal" + itemNo).html());					
-					total= total1 + subTotal1; //總金額加總					
-					$("#oTotal").attr("value",total);
+					total= total1 + subTotal1; //總金額加總	
+					$("#oTotal").val(total);
 					$('#hidoTotal').attr("value",total);
 					itemNo++;
 				
@@ -135,17 +135,15 @@ font-weight:bold;
 			var people = $('#oPeople').val();
 			var call = $('#oCall').val();
 			var total = $('#oTotal').val();
-			if (!people) {
-				alert('「請輸入用餐人數！！」');
-				return;
-			}
-			if(!call){
-				alert('「請輸入叫號機號碼！！」');
+			var pattern = new RegExp("^([1-9]|10)$");
+			var pattern1 = new RegExp("^([1-9]|((1|2)[0-9])|30|31)$");
+			if(!call.match(pattern)){
+				alert('「叫號機號碼錯誤！！」');
 				return;
 			}
 			
-			if(call<1 || call >10){
-				alert('「叫號機號碼錯誤！！」');
+			if(!people.match(pattern1)){
+				alert('「用餐人數錯誤！！」');
 				return;
 			}
 			
@@ -153,63 +151,62 @@ font-weight:bold;
 				alert('「請輸入餐點！！」')
 				return;
 			}
-			
-	
+
 			
 			$('#dataForm').submit();
 		});
+
 	});
-	
-	function deltable(){		
-		$("#oTotal").attr("value",0);
+
+	function deltable() {
+		$("#oTotal").attr("value", 0);
 		$("#tablelist  tr:not(:first):not(:last)").empty("");
 	}
-	
-	function delItem(obj,itemNo) {
+
+	function delItem(obj, itemNo) {
 		var y = parseInt($("#oTotal").val());
-		var totalAmount=0;
-		var subtotal= parseInt($("#opSubtotal"+ itemNo).html());
+		var totalAmount = 0;
+		var subtotal = parseInt($("#opSubtotal" + itemNo).html());
 		totalAmount = y - subtotal;
 		$("#oTotal").val(totalAmount);
 		$(obj).closest('tr').remove();
-		
+
 	}
-	
-	function modifyQty(itemNo, price){
-		var qty = parseInt($("#opQty"+ itemNo).val());//修改單品數量，小計連動。
-		var subTotal =parseInt($('#opSubtotal' + itemNo).html());
-		var subTotal1 = qty*price;
+
+	function modifyQty(itemNo, price) {
+		var qty = parseInt($("#opQty" + itemNo).val());//修改單品數量，小計連動。
+		var subTotal = parseInt($('#opSubtotal' + itemNo).html());
+		var subTotal1 = qty * price;
 		$('#opSubtotal' + itemNo).html(subTotal1);
 		$('#hidSubtotal' + itemNo).val(subTotal1);
-		
-		if((subTotal-subTotal1)<0){
-		var y = parseInt($("#oTotal").val()); //修改單品數量，總金額連動。
-		var totalAmount=0;
-		totalAmount = y + (qty-1)*price;
-		$("#oTotal").val(totalAmount);
-		$('#hidoTotal').attr("value",totalAmount);
-		}
-		
-		else{
-			qty1 = (subTotal-subTotal1)/price;        
-			var y = parseInt($("#oTotal").val());
-			totalAmount = y-(qty1*price);
+
+		if ((subTotal - subTotal1) < 0) {
+			var y = parseInt($("#oTotal").val()); //修改單品數量，總金額連動。
+			var totalAmount = 0;
+			totalAmount = y + (qty - 1) * price;
 			$("#oTotal").val(totalAmount);
-			$('#hidoTotal').attr("value",totalAmount);	
-			}	
+			$('#hidoTotal').attr("value", totalAmount);
 		}
-    
-    
-     function ShowTime()
-     {
-         var NowDate = new Date();
-         var d = NowDate.getDay();
-         var dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-         document.getElementById('showbox').innerHTML = '目前時間：' + NowDate.toLocaleString() + '（' + dayNames[d] + '）';
-         setTimeout('ShowTime()', 1000);
-     }
-    
-    </script>
+
+		else {
+			qty1 = (subTotal - subTotal1) / price;
+			var y = parseInt($("#oTotal").val());
+			totalAmount = y - (qty1 * price);
+			$("#oTotal").val(totalAmount);
+			$('#hidoTotal').attr("value", totalAmount);
+		}
+	}
+
+	function ShowTime() {
+		var NowDate = new Date();
+		var d = NowDate.getDay();
+		var dayNames = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五",
+				"星期六");
+		document.getElementById('showbox').innerHTML = '目前時間：'
+				+ NowDate.toLocaleString() + '（' + dayNames[d] + '）';
+		setTimeout('ShowTime()', 1000);
+	}
+</script>
 
 
 </head>
@@ -270,7 +267,8 @@ font-weight:bold;
 						</div>
 						<div class="col-md-3 col-8 align-self-center">
 							<input type="reset" value="全部清除" id="oReset" name="oReset"
-								onclick="deltable()" class="btn btn-danger">&nbsp; <input
+								onclick="deltable()" class="btn btn-danger">&nbsp; 
+								<input
 								type="button" value="下一步" id="oNext" name="oNext"
 								class="btn btn-success">
 						</div>

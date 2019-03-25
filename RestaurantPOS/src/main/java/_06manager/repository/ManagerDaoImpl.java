@@ -177,6 +177,19 @@ public class ManagerDaoImpl implements ManagerDao{
 		
 		return CTBean;
 	}
+
+
+	@Override
+	public List<CumulativeTurnoverBean> getOneMonthCumulativeTurnoverBean() {
+		
+		List<CumulativeTurnoverBean> CTBList = null;
+		String[] dateArr = SystemUtils2018.getMonthStartDateAndEndDate();
+		
+		String hql="FROM CumulativeTurnoverBean where date BETWEEN '"+dateArr[0]+"' AND '"+dateArr[1]+"'";
+		Session session = factory.getCurrentSession();
+		CTBList = session.createQuery(hql).getResultList();
+		return CTBList;
+	}
 	
 	
 	

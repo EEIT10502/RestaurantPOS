@@ -37,4 +37,7 @@ public interface ManagerDao {
 	
 	//依照傳入的日期字串從CumulativeTurnover中得到一筆資料
 	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date);
+	
+	//取得從今日往前推一個月內的所有CumulativeTurnoverBean
+	public List<CumulativeTurnoverBean> getOneMonthCumulativeTurnoverBean();
 }

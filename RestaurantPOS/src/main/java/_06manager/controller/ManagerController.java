@@ -56,7 +56,7 @@ public class ManagerController {
 		CumulativeTurnoverBean CTBean = managerservice.getCumulativeTurnoverByDate(date);
 		mapData.put("CumulativeTurnover", CTBean);
 		
-		//準備一個目標營業額，放入MAP
+		//準備一個當月份的目TargetTurnoverBean，放入MAP
 		TargetTurnoverBean TTBean = managerservice.getMonthTarget();
 		mapData.put("TargetTurnover",TTBean);
 		
@@ -165,12 +165,15 @@ public class ManagerController {
 	//前往後台首頁
 	@RequestMapping("/toDashBoard")
 	public String toDashBoard(Model model) {
-		TargetTurnoverBean TTBean = null;
-		TTBean = managerservice.getMonthTarget();
-		
+//      給圖表用
+		TargetTurnoverBean TTBean = managerservice.getMonthTarget();		
 		model.addAttribute("TTBean",TTBean);
 		
-		return "DashBoard";
+		
+		List<CumulativeTurnoverBean> CTBList = managerservice.getOneMonthCumulativeTurnoverBean();		
+		model.addAttribute("ctbList", CTBList);
+		
+		return "/DashBoard";
 	}
 	
 	//跳轉到日結清機

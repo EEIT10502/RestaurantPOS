@@ -1,5 +1,6 @@
 package _05financial.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,12 +64,16 @@ public class FinancialController {
 			@RequestParam("dDate2") String dDate2) {
 		model.addAttribute("dDate1", dDate1);
 		model.addAttribute("dDate2", dDate2);
-		// 欄位資料:日期,單數,人數,金額
-		List<OrderBean[]> listDailyOrder = service.getOrderByDate(dDate1, dDate2);
-		model.addAttribute("listDailyOrder", listDailyOrder);
-		// TurnoverBean裡的欄位資料
-		List<CumulativeTurnoverBean> listDailyCumu = service.getCumulativeTurnoverByDate(dDate1, dDate2);
-		model.addAttribute("listDailyCumu", listDailyCumu);
+		try {
+			// 欄位資料:日期,單數,人數,金額
+			List<OrderBean[]> listDailyOrder = service.getOrderByDate(dDate1, dDate2);
+			model.addAttribute("listDailyOrder", listDailyOrder);
+			// TurnoverBean裡的欄位資料
+			List<CumulativeTurnoverBean> listDailyCumu = service.getCumulativeTurnoverByDate(dDate1, dDate2);
+			model.addAttribute("listDailyCumu", listDailyCumu);
+		} catch (NullPointerException e) {
+			return "report/dailyReport";
+		}
 
 		return "report/dailyReport";
 	}
@@ -117,12 +122,16 @@ public class FinancialController {
 		model.addAttribute("csDate1", csDate1);
 		model.addAttribute("csDate2", csDate2);
 		model.addAttribute("csSelOpt", csSelOpt);
-		// 欄位資料:日期,數量,金額
-		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
-		model.addAttribute("listCatee", listCatee);
-		// 類別報表下拉選單
-		List<MenuBean> listMenuCate = service.getMenuCate();
-		model.addAttribute("listMenuCate", listMenuCate);
+		try {
+			// 欄位資料:日期,數量,金額
+			List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
+			model.addAttribute("listCatee", listCatee);
+			// 類別報表下拉選單
+			List<MenuBean> listMenuCate = service.getMenuCate();
+			model.addAttribute("listMenuCate", listMenuCate);
+		} catch (NullPointerException e) {
+			return "report/categoryReport";
+		}
 
 		return "report/categoryReport";
 	}
@@ -180,24 +189,26 @@ public class FinancialController {
 		model.addAttribute("pDate2", pDate2);
 		model.addAttribute("pcSelOpt", pcSelOpt);
 		model.addAttribute("pSelOpt", pSelOpt);
-		// 欄位資料:日期,數量,金額
-		List<OrderBean[]> listProuct = service.getProductByDate(pDate1, pDate2, pSelOpt);
-		model.addAttribute("listProuct", listProuct);
-		// 單品報表類別下拉選單
-		List<MenuBean> listMenuCate = service.getMenuCate();
-		model.addAttribute("listMenuCate", listMenuCate);
-		// 單品報表單品下拉選單
-		List<MenuBean> listMenuProduct = service.getMenuProductByCate(pcSelOpt);
-		for (MenuBean Product : listMenuProduct) {
-			System.out.println(Product.getProductName());
-			if (Product.getProductName().equals(pSelOpt)) {
-				listMenuProduct.remove(Product);
-				break;
+		try {
+			// 欄位資料:日期,數量,金額
+			List<OrderBean[]> listProuct = service.getProductByDate(pDate1, pDate2, pSelOpt);
+			model.addAttribute("listProuct", listProuct);
+			// 單品報表類別下拉選單
+			List<MenuBean> listMenuCate = service.getMenuCate();
+			model.addAttribute("listMenuCate", listMenuCate);
+			// 單品報表單品下拉選單
+			List<MenuBean> listMenuProduct = service.getMenuProductByCate(pcSelOpt);
+			for (MenuBean Product : listMenuProduct) {
+				System.out.println(Product.getProductName());
+				if (Product.getProductName().equals(pSelOpt)) {
+					listMenuProduct.remove(Product);
+					break;
+				}
 			}
+			model.addAttribute("listMenuProduct", listMenuProduct);
+		} catch (NullPointerException e) {
+			return "report/productReport";
 		}
-
-		model.addAttribute("listMenuProduct", listMenuProduct);
-
 		return "report/productReport";
 	}
 
@@ -245,12 +256,16 @@ public class FinancialController {
 	@RequestMapping("/report/goalReportGet")
 	public String goalReportGet(Model model, @RequestParam("gMonth1") String gMonth1) {
 		model.addAttribute("gMonth1", gMonth1);
-		// CumulativeTurnoverBean的欄位資料
-		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
-		model.addAttribute("listgoalCum", listgoalCum);
-		// TargetTurnoverBean的欄位資料
-		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
-		model.addAttribute("listgoalturn", listgoalturn);
+		try {
+			// CumulativeTurnoverBean的欄位資料
+			List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
+			model.addAttribute("listgoalCum", listgoalCum);
+			// TargetTurnoverBean的欄位資料
+			List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
+			model.addAttribute("listgoalturn", listgoalturn);
+		} catch (NullPointerException e) {
+			return "report/goalReport";
+		}
 
 		return "report/goalReport";
 	}
@@ -268,60 +283,4 @@ public class FinancialController {
 
 		return "goalReport/excel";
 	}
-	// 營運目標PDF
-//	@RequestMapping(value = "/report/goalReportGetPDF", method = RequestMethod.GET)
-//	public ModelAndView goalReportGetPDF(Model model, @RequestParam("gMonth1") String gMonth1) {
-//		// CumulativeTurnoverBean的欄位資料
-//		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
-//		model.addAttribute("listgoalCum", listgoalCum);
-//		// TargetTurnoverBean的欄位資料
-//		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
-//		model.addAttribute("listgoalturn", listgoalturn);
-//		//兩個list合併成一個list
-//		List<Object> listGoalReportPdf = new ArrayList<Object>();
-//		for(int i=0; i<listgoalCum.size(); i++) {
-//			listGoalReportPdf.add(listgoalCum.get(i));
-//		}
-//		for(int i=0; i<listgoalturn.size(); i++) {
-//			listGoalReportPdf.add(listgoalturn.get(i));
-//		}
-//		
-//		
-////		listGoalReportPdf.add(listgoalCum);
-////		listGoalReportPdf.add(listgoalturn);
-//		
-//		return new ModelAndView("report/goalReport");
-//	}
-
-//	@RequestMapping(value = "/report/goalReportGetPDF", method = RequestMethod.POST, produces = "application/pdf")
-//	public String goalReportGetPDF(Model model, @RequestParam("gMonth1") String gMonth1) {
-//		model.addAttribute("gMonth1", gMonth1);
-//		
-//		System.out.println(gMonth1);
-//		// CumulativeTurnoverBean的欄位資料
-//		List<CumulativeTurnoverBean> listgoalCum = service.getCumulativeTurnoverByDate2(gMonth1);
-//		model.addAttribute("listgoalCum", listgoalCum);
-//		// TargetTurnoverBean的欄位資料
-//		List<TargetTurnoverBean> listgoalturn = service.getTargetTurnoverBeanByDate(gMonth1);
-//		model.addAttribute("listgoalturn", listgoalturn);
-//		return "report/goalReport";
-//	}
-//	// 類別報表PDF
-//	@RequestMapping(value = "/report/categoryReportGetPDF", method = RequestMethod.GET, produces = "application/pdf")
-//	public String goalReportGetPDF(Model model, @RequestParam("csDate1") String csDate1,
-//			@RequestParam("csDate2") String csDate2, @RequestParam("csSelOpt") String csSelOpt) {
-//		model.addAttribute("csDate1", csDate1);
-//		model.addAttribute("csDate2", csDate2);
-//		model.addAttribute("csSelOpt", csSelOpt);
-//		System.out.println(csDate1 + " PDF TEST!!!");
-//
-//		// OrderBean裡的欄位資料
-//		List<OrderDetailBean[]> listCatee = service.getCateByDate(csDate1, csDate2, csSelOpt);
-//		model.addAttribute("listCatee", listCatee);
-//		// 類別報表下拉選單
-//		List<MenuBean> listMenuCate = service.getMenuCate();
-//		model.addAttribute("listMenuCate", listMenuCate);
-//		return "report/categoryReport";
-//	}
-
 }

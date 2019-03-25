@@ -9,9 +9,7 @@ import _00model.OrderDetailBean;
 import _00model.TargetTurnoverBean;
 
 public interface FinancialDao {
-
-	public void stringToDate(String Date1, String Date2);
-
+	
 	// daily
 	public List<OrderBean[]> getOrderByDate(String Date1, String Date2);
 
@@ -31,9 +29,5 @@ public interface FinancialDao {
 	public List<CumulativeTurnoverBean> getCumulativeTurnoverByDate2(String Date1);
 
 	public List<TargetTurnoverBean> getTargetTurnoverBeanByDate(String Date1);
-
-//	public List<OrderDetailBean> getCateByDate2(String Date1, String Date2, String Cate);
-//	
-//	public List<OrderBean> getOrderByDateExcel(String Date1, String Date2);
 
 }

@@ -33,6 +33,11 @@
 		$("#dDate2").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd"
+		}).bind("change", function() {
+			var maxValue = $(this).val();
+			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+			maxValue.setDate(maxValue.getDate());
+			$("#dDate1").datepicker("option", "maxDate", maxValue);
 		});
 		$("#dDate1").datepicker({
 			maxDate : new Date,
@@ -58,33 +63,42 @@
 	$(function() {
 		$("#dSelect").click(
 				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/dailyReportGet");
-					$("#form1").submit();
+					var a = $("#dDate1").val();
+					// textbox.text.length>0
+					if ($("#dDate1").text().length != 0
+							&& $("#dDate2").text().length != 0) {
+						// 				$("#form1").attr("action", "/RestaurantPOS/report/dailyReportGet");
+						alert(a);
+						// 	 			$("#form1").submit();
+					} else {
+						alert("null");
+					}
+
+					// 			
 				});
 	})
 </script>
 
 <body>
-	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
-	<jsp:include page="../sideBar.jsp" flush="true" />
+	<div class="clearfix">
+		<jsp:include page="../headerTime.jsp" flush="true" />
+		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
-	<fieldset class="w3-container" style="margin-left: 260px">
+	<fieldset class="w3-container" style="margin-left: 160px">
 		<!-- 報表版面 -->
 		<form action="dailyReportGet" method="post" id="form1">
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<h2>日報表</h2>
+					<h3>日報表</h3>
 				</div>
 				<div>
-					<h3>選擇欲查詢日期</h3>
-					<input type="text" id="dDate1" name="dDate1" value="${dDate1}" readonly>- <input
-						type="text" id="dDate2" name="dDate2" value="${dDate2}" readonly>
+					<h5>選擇欲查詢日期</h5>
+					<input type="text" id="dDate1" name="dDate1"> - <input
+						type="text" id="dDate2" name="dDate2">
 					<p>
 
-						<input type="submit" value="查詢" id="dSelect" name="dSelect">
+						<input type="button" value="查詢" id="dSelect" name="dSelect">
 				</div>
 
 				<div>
