@@ -35,7 +35,7 @@ public class FbDaoImpl implements FbDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MenuBean> getProductByCategory(String cate) {
-		String hql= "FROM MenuBean b WHERE b.cate = :cate";
+		String hql= "FROM MenuBean b WHERE b.cate = :cate and productStatus='販售'";
 		Session session = factory.getCurrentSession();
 		List<MenuBean> list = session.createQuery(hql).setParameter("cate", cate).getResultList();
 		return list;
