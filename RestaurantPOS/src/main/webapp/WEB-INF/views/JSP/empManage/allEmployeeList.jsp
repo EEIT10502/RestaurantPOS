@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<title>sideBar</title>
+<title>員工資訊查詢</title>
 <style type="text/css">
 td.errorMessage[type="redError"] {
 	color: red;
@@ -22,18 +22,18 @@ td.errorMessage[type="redError"] {
 </style>
 
 </head>
-<!-- <script -->
-<!-- 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 
-<body>	
-	<div class="clearfix">		
-	<jsp:include page="../sideBar.jsp" flush="true" />
-    </div>
+<body>
+	<div class="clearfix">
+		<jsp:include page="../sideBar.jsp" flush="true" />
+	</div>
 	<div><jsp:include page="../empManage/empSearchHead.jsp" flush="true" /></div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
@@ -55,7 +55,6 @@ td.errorMessage[type="redError"] {
 					<c:forEach var='employee' items='${employeeListGetByPage}'>
 						<tbody>
 							<tr>
-								<%-- <td><a href="<spring:url value='empQueryFor1?empId=${employee.empId}'/>">${employee.empId}</a></td> --%>
 								<td>${employee.empId}</td>
 								<td>${employee.empNo}</td>
 								<td>${employee.empName}</td>
@@ -68,7 +67,7 @@ td.errorMessage[type="redError"] {
 								<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter${employee.empId}">修改</button></td>
 							</tr>
 						</tbody>
-						<!-- 					Modal 開始 -->
+						<!-- 				Modal 開始 -->
 						<div class="modal fade" id="exampleModalCenter${employee.empId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
@@ -81,15 +80,11 @@ td.errorMessage[type="redError"] {
 									<form class='center' name="editForm${employee.empId}" action="${pageContext.request.contextPath}/empManage/allEmployeeListEdit.action/${employee.empId}?currentPageNoBtn=${currentPageNo}" method="post" enctype="multipart/form-data">
 										<div class="modal-body">
 											<input type="hidden" name="_method" id='put' value=""> <input type="hidden" name="empIdEdit" value="${employee.empId}"> <input type="hidden" name="empNoEdit" value="${employee.empNo}">
-											<!-- ------員工圖像 -->
-											<!-- <div class="col-sm-2 col-form-label"> -->
-											<!-- <div class="col-sm-12"> -->
-											<!-- <div class="d-flex justify-content-between bg-secondary mb-2"> -->
-											<div>
-												<img width="220px" height="245px" src="<c:url value='/getPicture/${employee.empId}'/>"> <img width="220px" height="245px" id="blah" />
-												<!-- </div> -->
+										
+											<div class="row justify-content-center" style="margin-bottom: 15px">
+												<img width="220px" height="245px" id="blah${employee.empId}" src="<c:url value='/getPicture/${employee.empId}'/>" >
+												<br>
 											</div>
-											<!-- ------員工圖像 -->
 											<div class="form-group row">
 												<label for="empNameEdit${employee.empId}" class="col-sm-2 col-form-label">姓名</label>
 												<div class="col-sm-10">
@@ -129,8 +124,7 @@ td.errorMessage[type="redError"] {
 											<div class="form-group row">
 												<label for="telEdit${employee.empId}" class="col-sm-2 col-form-label">電話</label>
 												<div class="col-sm-10">
-													<input id="telEdit${employee.empId}" type="text" class="form-control" name="telEdit" value="${employee.tel}" onkeyup="value=value.replace(/[^\d.]/g,'')" />
-													 <span id="telEditError${employee.empId}"></span>
+													<input id="telEdit${employee.empId}" type="text" class="form-control" name="telEdit" value="${employee.tel}" onkeyup="value=value.replace(/[^\d.]/g,'')" /> <span id="telEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -168,22 +162,6 @@ td.errorMessage[type="redError"] {
 												</div>
 											</div>
 
-											<!-- TEST TEST TEST 保存原版 -->
-											<!-- <div class="form-group row"> -->
-											<%-- <label for="empImgEdit${employee.empId}" --%>
-											<!-- class="col-sm-2 col-form-label">圖片</label> -->
-											<!-- <div class="col-sm-10"> -->
-
-											<%-- <input id="empImgEdit${employee.empId}" type="file" --%>
-											<!-- class="form-control" name="empImgEdit"> <img -->
-											<!-- width="100px" height="100px" -->
-											<%-- src="<c:url value='/getPicture/${employee.empId}'/>"> --%>
-											<%-- <span id="empImgEditError${employee.empId}"></span> --%>
-											<!-- </div> -->
-											<!-- </div> -->
-											<!-- TEST TEST TEST 保存原版-->
-
-
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
@@ -197,23 +175,15 @@ td.errorMessage[type="redError"] {
 						<!-- 						Modal 結束 -->
 
 						<script>
-							// 本方法為預覽顯示圖片
-							function readURL(input) {
+							document.getElementById("empImgEdit${employee.empId}").onchange = function () {
+							    var reader = new FileReader();
 
-								if (input.files && input.files[0]) {
-									var reader = new FileReader();
-									reader.onload = function(e) {
-										$('#blah').attr('src', e.target.result);
-									}
+							    reader.onload = function (e) {
+							        document.getElementById("blah${employee.empId}").src = e.target.result;
+							    };
 
-									reader.readAsDataURL(input.files[0]);
-								}
-							}
-
-							$("#empImgEdit${employee.empId}").change(
-									function() {
-										readURL(this);
-									});
+							    reader.readAsDataURL(this.files[0]);
+							};
 						</script>
 						<script>
 							var flag = "";
@@ -352,24 +322,6 @@ td.errorMessage[type="redError"] {
 																	}
 																});
 											})
-						</script>
-						<script>
-							function readURL(input) {
-
-								if (input.files && input.files[0]) {
-									var reader = new FileReader();
-
-									reader.onload = function(e) {
-										$('#blah').attr('src', e.target.result);
-									}
-
-									reader.readAsDataURL(input.files[0]);
-								}
-							}
-
-							$("#imgInp").change(function() {
-								readURL(this);
-							});
 						</script>
 
 					</c:forEach>

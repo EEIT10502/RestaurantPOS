@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<title>sideBar</title>
+<title>員工查詢</title>
 <style type="text/css">
 td.errorMessage[type="redError"] {
 	color: red;
@@ -72,12 +72,17 @@ td.errorMessage[type="redError"] {
 										</button>
 									</div>
 									<form class='center' name="editForm${employee.empId}" action="${pageContext.request.contextPath}/empManage/EmployeeListByEmployeeStatusEdit.action/${employee.empId}?currentPageNoBtnEmployeeStatus=${currentPageNo}&whichStatus=${whichStatus}" method="post" enctype="multipart/form-data">
-										<div class="modal-body">
+											<div class="modal-body">
 											<input type="hidden" name="_method" id='put' value=""> <input type="hidden" name="empIdEdit" value="${employee.empId}"> <input type="hidden" name="empNoEdit" value="${employee.empNo}">
+										
+											<div class="row justify-content-center" style="margin-bottom: 15px">
+												<img width="220px" height="245px" id="blah" src="<c:url value='/getPicture/${employee.empId}'/>" >
+												<br>
+											</div>
 											<div class="form-group row">
 												<label for="empNameEdit${employee.empId}" class="col-sm-2 col-form-label">姓名</label>
 												<div class="col-sm-10">
-													<input id="empNameEdit${employee.empId}" type="text" class="form-control" name="empNameEdit" value="${employee.empName}" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"/> <span id="empNameEditError${employee.empId}"></span>
+													<input id="empNameEdit${employee.empId}" type="text" class="form-control" name="empNameEdit" value="${employee.empName}" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" /> <span id="empNameEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -140,16 +145,17 @@ td.errorMessage[type="redError"] {
 											<div class="form-group row">
 												<label for="remarkEdit${employee.empId}" class="col-sm-2 col-form-label">備註</label>
 												<div class="col-sm-10">
-													<input id="remarkEdit${employee.empId}" type="text" class="form-control" name="remarkEdit" value="${employee.remark}" /> <span id="remarkEditError${employee.empId}"></span>
+													<input id="remarkEdit${employee.empId}" type="text" class="form-control" name="remarkEdit" value="${employee.remark}" />
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="empImgEdit${employee.empId}" class="col-sm-2 col-form-label">圖片</label>
 												<div class="col-sm-10">
 
-													<input id="empImgEdit${employee.empId}" type="file" class="form-control" name="empImgEdit"> <img width="100px" height="100px" src="<c:url value='/getPicture/${employee.empId}'/>"> <span id="empImgEditError${employee.empId}"></span>
+													<input id="empImgEdit${employee.empId}" type="file" class="form-control" name="empImgEdit">
 												</div>
 											</div>
+
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
@@ -160,7 +166,20 @@ td.errorMessage[type="redError"] {
 
 							</div>
 						</div>
-						<!-- 												Modal 結束 -->
+						<!-- 						Modal 結束 -->
+
+						<script>
+						
+							document.getElementById("empImgEdit${employee.empId}").onchange = function () {
+							    var reader = new FileReader();
+
+							    reader.onload = function (e) {
+							        document.getElementById("blah").src = e.target.result;
+							    };
+
+							    reader.readAsDataURL(this.files[0]);
+							};
+						</script>
 						<script>
 							var flag = "";
 							document

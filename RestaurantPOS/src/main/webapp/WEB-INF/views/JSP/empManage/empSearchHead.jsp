@@ -65,10 +65,10 @@ span.errorMessage[type="redError"] {
 							aria-haspopup="true" aria-expanded="false"> 依員工狀態檢視 </a>
 							<div class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<c:forEach var='employeeStatus' items='${empStatusList}'>
+								<c:forEach var='status' items='${empStatusList}'>
 									<a class="dropdown-item"
-										href="<c:url value='EmployeeListByEmployeeStatus.action?whichStatus=${employeeStatus}' />"><c:out
-											value="${employeeStatus}" /></a>
+										href="<c:url value='EmployeeListByEmployeeStatus.action?whichStatus=${status}' />"><c:out
+											value="${status}" /></a>
 								</c:forEach>
 							</div></li>
 					</ul>

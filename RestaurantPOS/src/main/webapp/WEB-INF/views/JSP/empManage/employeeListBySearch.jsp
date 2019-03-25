@@ -69,46 +69,36 @@ td.errorMessage[type="redError"] {
 						</tr>
 					
 					<!-- 					Modal 開始 -->
-						<div class="modal fade" id="exampleModalCenter${employee.empId}"
-							tabindex="-1" role="dialog"
-							aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal fade" id="exampleModalCenter${employee.empId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="exampleModalLongTitle">員工資料修改</h5>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<form class='center' name="editForm${employee.empId}"
-										action="${pageContext.request.contextPath}/empManage/EmployeeListByEmployeeSearchEdit.action/${employee.empId}?currentPageNoBtnSearch=${currentPageNo}&searchBar=${searchBarString}"
-										method="post" enctype="multipart/form-data">
+									<form class='center' name="editForm${employee.empId}" action="${pageContext.request.contextPath}/empManage/EmployeeListByEmployeeSearchEdit.action/${employee.empId}?currentPageNoBtnSearch=${currentPageNo}&searchBar=${searchBarString}" method="post" enctype="multipart/form-data">
 										<div class="modal-body">
-											<input type="hidden" name="_method" id='put' value="">
-											<input type="hidden" name="empIdEdit"
-												value="${employee.empId}"> <input type="hidden"
-												name="empNoEdit" value="${employee.empNo}">
+											<input type="hidden" name="_method" id='put' value=""> <input type="hidden" name="empIdEdit" value="${employee.empId}"> <input type="hidden" name="empNoEdit" value="${employee.empNo}">
+										
+											<div class="row justify-content-center" style="margin-bottom: 15px">
+												<img width="220px" height="245px" id="blah" src="<c:url value='/getPicture/${employee.empId}'/>" >
+												<br>
+											</div>
 											<div class="form-group row">
-												<label for="empNameEdit${employee.empId}"
-													class="col-sm-2 col-form-label">姓名</label>
+												<label for="empNameEdit${employee.empId}" class="col-sm-2 col-form-label">姓名</label>
 												<div class="col-sm-10">
-													<input id="empNameEdit${employee.empId}" type="text"
-														class="form-control" name="empNameEdit"
-														value="${employee.empName}" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"/> <span
-														id="empNameEditError${employee.empId}"></span>
+													<input id="empNameEdit${employee.empId}" type="text" class="form-control" name="empNameEdit" value="${employee.empName}" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" /> <span id="empNameEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="positionEdit${employee.empId}"
-													class="col-sm-2 col-form-label">職位</label>
+												<label for="positionEdit${employee.empId}" class="col-sm-2 col-form-label">職位</label>
 												<div class="col-sm-10">
-													<select name="positionEdit"
-														id="positionEdit${employee.empId}" class="form-control">
+													<select name="positionEdit" id="positionEdit${employee.empId}" class="form-control">
 														<c:forEach var='positions' items='${empPositionList}'>
 															<c:if test="${employee.position == positions}">
-																<option selected="selected"><c:out
-																		value="${positions}" /></option>
+																<option selected="selected"><c:out value="${positions}" /></option>
 															</c:if>
 															<c:if test="${employee.position != positions}">
 																<option><c:out value="${positions}" /></option>
@@ -118,56 +108,39 @@ td.errorMessage[type="redError"] {
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="genderEdit${employee.empId}"
-													class="col-sm-2 col-form-label">性別</label>
+												<label for="genderEdit${employee.empId}" class="col-sm-2 col-form-label">性別</label>
 												<div class="col-sm-10">
-													<select name="genderEdit" id="genderEdit${employee.empId}"
-														class="form-control">
+													<select name="genderEdit" id="genderEdit${employee.empId}" class="form-control">
 														<c:forEach var='genders' items='${empGender}'>
 															<c:if test="${employee.gender == genders}">
-																<option selected="selected"><c:out
-																		value="${genders}" /></option>
+																<option selected="selected"><c:out value="${genders}" /></option>
 															</c:if>
 															<c:if test="${employee.gender != genders}">
 																<option><c:out value="${genders}" /></option>
 															</c:if>
 														</c:forEach>
-
-
 													</select>
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="telEdit${employee.empId}"
-													class="col-sm-2 col-form-label">電話</label>
+												<label for="telEdit${employee.empId}" class="col-sm-2 col-form-label">電話</label>
 												<div class="col-sm-10">
-													<input id="telEdit${employee.empId}" type="text"
-														class="form-control" name="telEdit"
-														value="${employee.tel}"
-														onkeyup="value=value.replace(/[^\d.]/g,'')" /> <span
-														id="telEditError${employee.empId}"></span>
+													<input id="telEdit${employee.empId}" type="text" class="form-control" name="telEdit" value="${employee.tel}" onkeyup="value=value.replace(/[^\d.]/g,'')" /> <span id="telEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="addrEdit${employee.empId}"
-													class="col-sm-2 col-form-label">地址</label>
+												<label for="addrEdit${employee.empId}" class="col-sm-2 col-form-label">地址</label>
 												<div class="col-sm-10">
-													<input id="addrEdit${employee.empId}" type="text"
-														class="form-control" name="addrEdit"
-														value="${employee.addr}"> <span
-														id="addrEditError${employee.empId}"></span>
+													<input id="addrEdit${employee.empId}" type="text" class="form-control" name="addrEdit" value="${employee.addr}"> <span id="addrEditError${employee.empId}"></span>
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="statusEdit${employee.empId}"
-													class="col-sm-2 col-form-label">狀態</label>
+												<label for="statusEdit${employee.empId}" class="col-sm-2 col-form-label">狀態</label>
 												<div class="col-sm-10">
-													<select name="statusEdit" id="statusEdit${employee.empId}"
-														class="form-control">
+													<select name="statusEdit" id="statusEdit${employee.empId}" class="form-control">
 														<c:forEach var='statuss' items='${empStatusList}'>
 															<c:if test="${employee.status == statuss}">
-																<option selected="selected"><c:out
-																		value="${statuss}" /></option>
+																<option selected="selected"><c:out value="${statuss}" /></option>
 															</c:if>
 															<c:if test="${employee.status != statuss}">
 																<option><c:out value="${statuss}" /></option>
@@ -177,36 +150,23 @@ td.errorMessage[type="redError"] {
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="remarkEdit${employee.empId}"
-													class="col-sm-2 col-form-label">備註</label>
+												<label for="remarkEdit${employee.empId}" class="col-sm-2 col-form-label">備註</label>
 												<div class="col-sm-10">
-													<input id="remarkEdit${employee.empId}" type="text"
-														class="form-control" name="remarkEdit"
-														value="${employee.remark}" /> <span
-														id="remarkEditError${employee.empId}"></span>
+													<input id="remarkEdit${employee.empId}" type="text" class="form-control" name="remarkEdit" value="${employee.remark}" />
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="empImgEdit${employee.empId}"
-													class="col-sm-2 col-form-label">圖片</label>
+												<label for="empImgEdit${employee.empId}" class="col-sm-2 col-form-label">圖片</label>
 												<div class="col-sm-10">
-													<c:choose>
-														<c:when test="${employee.img == img }"></c:when>
 
-													</c:choose>
-													<input id="empImgEdit${employee.empId}" type="file"
-														class="form-control" name="empImgEdit"> <img
-														width="100px" height="100px"
-														src="<c:url value='/getPicture/${employee.empId}'/>">
-													<span id="empImgEditError${employee.empId}"></span>
+													<input id="empImgEdit${employee.empId}" type="file" class="form-control" name="empImgEdit">
 												</div>
 											</div>
+
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">關閉</button>
-											<button type="submit" id="submit${employee.empId}"
-												class="btn btn-primary">儲存更新</button>
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+											<button type="submit" id="submit${employee.empId}" class="btn btn-primary">儲存更新</button>
 										</div>
 									</form>
 								</div>
@@ -214,98 +174,156 @@ td.errorMessage[type="redError"] {
 							</div>
 						</div>
 						<!-- 						Modal 結束 -->
-												<script>
-							var flag="";
-							document.addEventListener("DOMContentLoaded", function() {
-								document.getElementById("empNameEdit${employee.empId}").addEventListener("blur", function () {
-									if (document.getElementById("empNameEdit${employee.empId}").value == "") {
-										document.getElementById("empNameEditError${employee.empId}").innerHTML = "<span style='color:red'><i>員工名稱不可空白";
-																
-										if (flag.indexOf("${employee.empId}A") == -1) {
-											flag = flag.concat("${employee.empId}A");
-										}													
-										document.getElementById("submit${employee.empId}").disabled=true;
-									} else{
-										if (flag.indexOf("${employee.empId}A") != -1) {
-											flag = flag.replace("${employee.empId}A","");
-											document.getElementById("empNameEditError${employee.empId}").innerHTML = "";
-										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
-											document.getElementById("empNameEditError${employee.empId}").innerHTML = "";
-											document.getElementById("submit${employee.empId}").disabled=false;
-										}
-										
-									}
-								});
-							})
 
-						document.addEventListener("DOMContentLoaded", function() {
-								document.getElementById("telEdit${employee.empId}").addEventListener("blur", function () {
-									var reg = /[^\d.]/g;
-									if (document.getElementById("telEdit${employee.empId}").value == "") {
-										document.getElementById("telEditError${employee.empId}").innerHTML = "<span style='color:red'><i>價格不可空白";
-										if (flag.indexOf("${employee.empId}B") == -1) {
-											flag = flag.concat("${employee.empId}B");
-										}
-										document.getElementById("submit${employee.empId}").disabled=true;
-									} else{
-										if (flag.indexOf("${employee.empId}B") != -1) {
-											flag = flag.replace("${employee.empId}B","");
-											document.getElementById("telEditError${employee.empId}").innerHTML = "";
-										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
-											document.getElementById("telEditError${employee.empId}").innerHTML = "";
-											document.getElementById("submit${employee.empId}").disabled=false;
-										}
-									}
-								});
-							})	
-							
-							document.addEventListener("DOMContentLoaded", function() {
-								document.getElementById("addrEdit${employee.empId}").addEventListener("blur", function () {
-									var reg = /[^\d.]/g;
-									if (document.getElementById("addrEdit${employee.empId}").value == "") {
-										document.getElementById("addrEditError${employee.empId}").innerHTML = "<span style='color:red'><i>地址不可空白";
-										if (flag.indexOf("${employee.empId}B") == -1) {
-											flag = flag.concat("${employee.empId}B");
-										}
-										document.getElementById("submit${employee.empId}").disabled=true;
-									} else{
-										if (flag.indexOf("${employee.empId}B") != -1) {
-											flag = flag.replace("${employee.empId}B","");
-											document.getElementById("addrEditError${employee.empId}").innerHTML = "";
-										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
-											document.getElementById("addrEditError${employee.empId}").innerHTML = "";
-											document.getElementById("submit${employee.empId}").disabled=false;
-										}
-									}
-								});
-							})	
-							
-							document.addEventListener("DOMContentLoaded", function() {
-								document.getElementById("remarkEdit${employee.empId}").addEventListener("blur", function () {
-									var reg = /[^\d.]/g;
-									if (document.getElementById("remarkEdit${employee.empId}").value == "") {
-										document.getElementById("remarkEditError${employee.empId}").innerHTML = "<span style='color:red'><i>備註不可空白";
-										if (flag.indexOf("${employee.empId}B") == -1) {
-											flag = flag.concat("${employee.empId}B");
-										}
-										document.getElementById("submit${employee.empId}").disabled=true;
-									} else{
-										if (flag.indexOf("${employee.empId}B") != -1) {
-											flag = flag.replace("${employee.empId}B","");
-											document.getElementById("remarkEditError${employee.empId}").innerHTML = "";
-										}
-										if (flag.indexOf("${employee.empId}A") == -1 && flag.indexOf("${employee.empId}B") == -1) {
-											document.getElementById("remarkEditError${employee.empId}").innerHTML = "";
-											document.getElementById("submit${employee.empId}").disabled=false;
-										}
-									}
-								});
-							})	
-							
+						<script>
 
+							document.getElementById("empImgEdit${employee.empId}").onchange = function () {
+							    var reader = new FileReader();
+
+							    reader.onload = function (e) {
+							        document.getElementById("blah").src = e.target.result;
+							    };
+
+							    reader.readAsDataURL(this.files[0]);
+							};
+						</script>
+						<script>
+							var flag = "";
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"empNameEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	if (document
+																			.getElementById("empNameEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("empNameEditError${employee.empId}").innerHTML = "<span style='color:red'><i>員工名稱不可空白";
+
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}A");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}A") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}A",
+																							"");
+																			document
+																					.getElementById("empNameEditError${employee.empId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${employee.empId}B") == -1) {
+																			document
+																					.getElementById("empNameEditError${employee.empId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+
+																	}
+																});
+											})
+
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"telEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	var reg = /[^\d.]/g;
+																	if (document
+																			.getElementById("telEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("telEditError${employee.empId}").innerHTML = "<span style='color:red'><i>電話不可空白";
+																		if (flag
+																				.indexOf("${employee.empId}B") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}B");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}B") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}B",
+																							"");
+																			document
+																					.getElementById("telEditError${employee.empId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${employee.empId}B") == -1) {
+																			document
+																					.getElementById("telEditError${employee.empId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+																	}
+																});
+											})
+
+							document
+									.addEventListener(
+											"DOMContentLoaded",
+											function() {
+												document
+														.getElementById(
+																"addrEdit${employee.empId}")
+														.addEventListener(
+																"blur",
+																function() {
+																	var reg = /[^\d.]/g;
+																	if (document
+																			.getElementById("addrEdit${employee.empId}").value == "") {
+																		document
+																				.getElementById("addrEditError${employee.empId}").innerHTML = "<span style='color:red'><i>地址不可空白";
+																		if (flag
+																				.indexOf("${employee.empId}B") == -1) {
+																			flag = flag
+																					.concat("${employee.empId}B");
+																		}
+																		document
+																				.getElementById("submit${employee.empId}").disabled = true;
+																	} else {
+																		if (flag
+																				.indexOf("${employee.empId}B") != -1) {
+																			flag = flag
+																					.replace(
+																							"${employee.empId}B",
+																							"");
+																			document
+																					.getElementById("addrEditError${employee.empId}").innerHTML = "";
+																		}
+																		if (flag
+																				.indexOf("${employee.empId}A") == -1
+																				&& flag
+																						.indexOf("${employee.empId}B") == -1) {
+																			document
+																					.getElementById("addrEditError${employee.empId}").innerHTML = "";
+																			document
+																					.getElementById("submit${employee.empId}").disabled = false;
+																		}
+																	}
+																});
+											})
 						</script>
 					</c:forEach>
 					<tr>
@@ -361,9 +379,6 @@ td.errorMessage[type="redError"] {
 			</div>
 		</fieldset>
 	</section>
-
-
-
 
 </body>
 </html>
