@@ -67,8 +67,14 @@ public interface ManagerService {
 	 */
 	public CumulativeTurnoverBean getCumulativeTurnoverByDate(String date);
 	
-	
+	/**
+	 * 此方法傳回一個30天份的CumulativeTurnoverBean的List
+	 * @return List<CumulativeTurnoverBean> 
+	 */
 	public List<CumulativeTurnoverBean> getOneMonthCumulativeTurnoverBean();
-	
+	/**
+	 * 儲存一個TargetTurnoverBean
+	 * @param 無回傳值
+	 */
 	public void saveTTB(TargetTurnoverBean TTB);
 }
