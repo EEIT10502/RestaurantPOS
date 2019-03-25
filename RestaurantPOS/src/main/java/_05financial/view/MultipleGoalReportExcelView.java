@@ -1,6 +1,5 @@
 package _05financial.view;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -120,35 +119,37 @@ public class MultipleGoalReportExcelView extends AbstractXlsView {
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
+		try {
+			for (int i = 0; i < listgoalCum.size(); i++) {
+				colCount = 0;
+				row = sheet.createRow(rowCount++);
 
-//		for(CumulativeTurnoverBean c:listgoalCum) {
-		for (int i = 0; i < listgoalCum.size(); i++) {
-			colCount = 0;
-			row = sheet.createRow(rowCount++);
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(listgoalCum.get(i).getDate() + "");
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(listgoalCum.get(i).getDate() + "");
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(listgoalturn.get(i).getTargetTurnover());
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(listgoalturn.get(i).getTargetTurnover());
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(listgoalCum.get(i).getCumulativeTurnover());
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(listgoalCum.get(i).getCumulativeTurnover());
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(
+						(listgoalturn.get(i).getTargetTurnover()) - (listgoalCum.get(i).getCumulativeTurnover()));
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue((listgoalturn.get(i).getTargetTurnover()) - (listgoalCum.get(i).getCumulativeTurnover()));
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue((float) (listgoalCum.get(i).getCumulativeTurnover())
+						/ (float) (listgoalturn.get(i).getTargetTurnover()) * 100);
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue((float) (listgoalCum.get(i).getCumulativeTurnover())
-					/ (float) (listgoalturn.get(i).getTargetTurnover()) * 100);
-
+			}
+		} catch (NullPointerException e) {
+			return;
 		}
-
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i = 0; i < columnCount; i++) {
 			sheet.autoSizeColumn(i);

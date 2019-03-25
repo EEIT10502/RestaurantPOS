@@ -113,51 +113,53 @@ public class MultipleDailyReportExcelView extends AbstractXlsView {
 		styleDate.setAlignment(CellStyle.ALIGN_CENTER);
 
 		List<Map<String, Object>> listDailyOrderExcel = (List<Map<String, Object>>) model.get("listDailyOrderExcel");
-		List<CumulativeTurnoverBean> listDailyCumu= (List<CumulativeTurnoverBean>) model.get("listDailyCumu");
-		
+		List<CumulativeTurnoverBean> listDailyCumu = (List<CumulativeTurnoverBean>) model.get("listDailyCumu");
+
 		Set<String> set = model.keySet();
 		Row row = null;
 		Cell cell = null;
+		try {
+			int countINumber = (int) model.get("countI");
 
-		int countINumber = (int) model.get("countI");
+			for (int i = 0; i < countINumber; i++) {
 
-		for (int i = 0; i < countINumber; i++) {
+				colCount = 0;
+				row = sheet.createRow(rowCount++);
 
-			colCount = 0;
-			row = sheet.createRow(rowCount++);
+				Map<String, Object> map = listDailyOrderExcel.get(i);
+				Date date = (Date) map.get("date" + i);
+				Long totalList = (Long) map.get("totalList" + i);
+				Long cusFlow = (Long) map.get("cusFlow" + i);
+				Long price = (Long) map.get("price" + i);
+				Long shortOver = (Long) map.get("shortOver" + i);
 
-			Map<String, Object> map = listDailyOrderExcel.get(i);
-			Date date = (Date) map.get("date" + i);
-			Long totalList = (Long) map.get("totalList" + i);
-			Long cusFlow = (Long) map.get("cusFlow" + i);
-			Long price = (Long) map.get("price" + i);
-			Long shortOver = (Long) map.get("shortOver" + i);
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(date + "");
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(date + "");
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(totalList + "");
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(totalList + "");
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(cusFlow + "");
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(cusFlow + "");
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(price + "");
 
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(price + "");
-			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(listDailyCumu.get(i).getShortoverAmount());
-			
-			cell = row.createCell(colCount++);
-			cell.setCellStyle(styleRight);
-			cell.setCellValue(listDailyCumu.get(i).getMoneyReceived());
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(listDailyCumu.get(i).getShortoverAmount());
+
+				cell = row.createCell(colCount++);
+				cell.setCellStyle(styleRight);
+				cell.setCellValue(listDailyCumu.get(i).getMoneyReceived());
+			}
+		} catch (NullPointerException e) {
+			return;
 		}
-			
 		int columnCount = sheet.getRow(0).getLastCellNum();
 		for (int i = 0; i < columnCount; i++) {
 			sheet.autoSizeColumn(i);
