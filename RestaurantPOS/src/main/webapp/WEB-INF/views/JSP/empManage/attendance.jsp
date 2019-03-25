@@ -63,7 +63,7 @@
 					}
 				});
 	})
-	//轉查詢方法
+	//轉查詢方法 
 	$(function() {
 		$("#dSelect").click(
 				function() {
