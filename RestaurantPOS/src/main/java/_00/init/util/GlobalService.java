@@ -46,8 +46,23 @@ public class GlobalService {
 	//性別
 	public static final String Employee_Gender_Male = "男性";
 	public static final String Employee_Gender_Female = "女性";
+	
 
 	// Employee查詢所需資料_開始
 	public static final int Employees_PER_PAGE = 5;
 	// Employee查詢所需資料_結束
+	
+	// Excel employee_開始
+	public static final String EMPLOYEE_EXCEL_HEADER_COUNT = "#";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_NO = "員工編號";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_NAME = "員工姓名";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_POSITION = "職位";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_GENDER = "性別";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_TEL = "電話";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_ADDR = "地址";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_STATUS = "狀態";
+	public static final String EMPLOYEE_EXCEL_HEADER_EMPLOYEE_REMARK= "備註";
+	// Excel employee_結束
+	
+	
 }
