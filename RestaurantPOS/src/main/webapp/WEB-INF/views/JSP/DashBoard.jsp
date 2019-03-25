@@ -25,7 +25,8 @@
           var Sdata = [['Year', '營業額(元)']];
 
     	<c:forEach var="CTB"  varStatus="loop" items="${ctbList}">
-    	 Sdata.push(['${CTB.date}',${CTB.turnover}]);		
+    	 var subDate = '${CTB.date}'.substr(5);    	 
+    	 Sdata.push([subDate,${CTB.turnover}]);		
 		</c:forEach>	
 		
         var data = google.visualization.arrayToDataTable(Sdata);
