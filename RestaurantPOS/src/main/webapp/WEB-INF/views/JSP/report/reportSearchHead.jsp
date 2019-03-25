@@ -52,11 +52,11 @@ span.errorMessage[type="redError"] {
 		<fieldset class="w3-container" style="margin-left: 260px">
 			<h1>報表查詢</h1>
 
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
 <!-- 			<nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
 				
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav">
+<!-- 				<div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
+<!-- 					<ul class="navbar-nav"> -->
 <!-- 						<li class="nav-item"><a class="nav-link" -->
 <%-- 							href="<c:url value='allProductList.action?' />">所有商品</a></li> --%>
 
@@ -67,29 +67,29 @@ span.errorMessage[type="redError"] {
 <!-- 							class="nav-link dropdown-toggle" href="#" -->
 <!-- 							id="navbarDropdownMenuLink" data-toggle="dropdown" -->
 <!-- 							aria-haspopup="true" aria-expanded="false"> 依商品種類檢視 </a> -->
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<c:forEach var='cates' items='${cateList}'>
-									<a class="dropdown-item"
-										href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out
-											value="${cates}" /></a>
-								</c:forEach>
-							</div></li>
+<!-- 							<div class="dropdown-menu" -->
+<!-- 								aria-labelledby="navbarDropdownMenuLink"> -->
+<%-- 								<c:forEach var='cates' items='${cateList}'> --%>
+<!-- 									<a class="dropdown-item" -->
+<%-- 										href="<c:url value='ProductListByCate.action?whichCate=${cates}' />"><c:out --%>
+<%-- 											value="${cates}" /></a> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</div></li> -->
 <!-- 						<li class="nav-item dropdown"><a -->
 <!-- 							class="nav-link dropdown-toggle" href="#" -->
 <!-- 							id="navbarDropdownMenuLink" data-toggle="dropdown" -->
 <!-- 							aria-haspopup="true" aria-expanded="false"> 依商品狀態檢視 </a> -->
-							<div class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<c:forEach var='productStatus' items='${productStatusList}'>
-									<a class="dropdown-item"
-										href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out
-											value="${productStatus}" /></a>
-								</c:forEach>
-							</div></li>
-					</ul>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<form class="form-inline" action="productListBySearch.action">
+<!-- 							<div class="dropdown-menu" -->
+<!-- 								aria-labelledby="navbarDropdownMenuLink"> -->
+<%-- 								<c:forEach var='productStatus' items='${productStatusList}'> --%>
+<!-- 									<a class="dropdown-item" -->
+<%-- 										href="<c:url value='ProductListByProductStatus.action?whichStatus=${productStatus}' />"><c:out --%>
+<%-- 											value="${productStatus}" /></a> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</div></li> -->
+<!-- 					</ul> -->
+<!-- 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<%-- 					<form class="form-inline" action="productListBySearch.action"> --%>
 <%-- 						<c:if test="${searchBarString == null}"> --%>
 <!-- 							<input class="form-control mr-sm-2" type="search" id="searchBar" name="searchBar" -->
 <!-- 								placeholder="請依商品名稱搜尋"  aria-label="Search"> -->
@@ -100,10 +100,10 @@ span.errorMessage[type="redError"] {
 <%-- 						</c:if> --%>
 <!-- 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
 <%-- 						<span class="errorMessage" type="redError">${noSearchBarString}</span> --%>
-					</form>
-				</div>
+<%-- 					</form> --%>
+<!-- 				</div> -->
 
-			</nav>
+<!-- 			</nav> -->
 
 			
 

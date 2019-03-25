@@ -35,7 +35,12 @@
 			dateFormat : "yy-mm-dd",
 			changeYear : true,
 			changeMonth : true
-		});
+		}).bind("change", function() {
+			var maxValue = $(this).val();
+			maxValue = $.datepicker.parseDate("yy-mm-dd", maxValue);
+			maxValue.setDate(maxValue.getDate());
+			$("#csDate1").datepicker("option", "maxDate", maxValue);
+			});
 		$("#csDate1").datepicker({
 			maxDate : new Date,
 			dateFormat : "yy-mm-dd",
@@ -81,17 +86,17 @@
 			<!-- 報表版面 -->
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<h2>類別銷售分析</h2>
+					<h3>類別銷售分析</h3>
 				</div>
 				<div>
-					<h3>選擇欲查詢日期</h3>
+					<h5>選擇欲查詢日期</h5>
 					<input type="text" id="csDate1" name="csDate1" value="${csDate1}"
-						readonly>~ <input type="text" id="csDate2" name="csDate2"
+						readonly> - <input type="text" id="csDate2" name="csDate2"
 						value="${csDate2}" readonly>
 					<p>
 
 						<!-- 類別下拉選單 -->
-						<select id="csSelOpt" name="csSelOpt"">
+						<select id="csSelOpt" name="csSelOpt">
 							<option>--請選擇--</option>
 							<c:forEach var="csSel" items="${listMenuCate}">
 								<c:if test="${csSelOpt == csSel}">

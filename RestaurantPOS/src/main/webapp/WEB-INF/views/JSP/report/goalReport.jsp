@@ -39,15 +39,6 @@
 			changeMonth : true
 		});
 	});
-	//轉PDF帶值
-	$(function() {
-		$("#gExport").click(
-				function() {
-					$("#form1").attr("action",
-							"/RestaurantPOS/report/goalReportGetPDF");
-					$("#form1").submit();
-				});
-	})
 	//轉檔方法
 	$(function() {
 		$("#gExport").click(
@@ -80,10 +71,10 @@
 			<!-- 報表版面 -->
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<h2>營運目標查詢</h2>
+					<h3>營運目標查詢</h3>
 				</div>
 				<div>
-					<h3>選擇欲查詢日期</h3>
+					<h5>選擇欲查詢日期</h5>
 					<input type="text" id="gMonth1" name="gMonth1" readonly value="${gMonth1}">
 					<p>
 
