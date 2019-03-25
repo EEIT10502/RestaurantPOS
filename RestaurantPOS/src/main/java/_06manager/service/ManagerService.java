@@ -69,4 +69,6 @@ public interface ManagerService {
 	
 	
 	public List<CumulativeTurnoverBean> getOneMonthCumulativeTurnoverBean();
+	
+	public void saveTTB(TargetTurnoverBean TTB);
 }
