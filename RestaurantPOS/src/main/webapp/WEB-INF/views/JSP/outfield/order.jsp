@@ -135,7 +135,7 @@ font-weight:bold;
 			var people = $('#oPeople').val();
 			var call = $('#oCall').val();
 			var total = $('#oTotal').val();
-			var pattern = new RegExp("^[1-9]|1[0-2]$");
+			var pattern = new RegExp("^([1-9]|10)$");
 			var pattern1 = new RegExp("^([1-9]|((1|2)[0-9])|30|31)$");
 			if(!call.match(pattern)){
 				alert('「叫號機號碼錯誤！！」');
