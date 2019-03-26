@@ -1,5 +1,6 @@
 package _05financial.view;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -143,8 +144,10 @@ public class MultipleGoalReportExcelView extends AbstractXlsView {
 
 				cell = row.createCell(colCount++);
 				cell.setCellStyle(styleRight);
-				cell.setCellValue((float) (listgoalCum.get(i).getCumulativeTurnover())
-						/ (float) (listgoalturn.get(i).getTargetTurnover()) * 100);
+				NumberFormat nf = NumberFormat.getInstance();
+				nf.setMaximumFractionDigits(2);
+				cell.setCellValue(nf.format((float) (listgoalCum.get(i).getCumulativeTurnover())
+						/ (float) (listgoalturn.get(i).getTargetTurnover()) * 100));
 
 			}
 		} catch (NullPointerException e) {

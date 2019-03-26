@@ -51,7 +51,5 @@ public class GlobalService {
 	// Employee查詢所需資料_開始
 	public static final int Employees_PER_PAGE = 5;
 	// Employee查詢所需資料_結束
-	
-	
-	
+
 }

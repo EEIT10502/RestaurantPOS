@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import _00.init.util.GlobalService;
 import _00model.CumulativeTurnoverBean;
 import _00model.MenuBean;
 import _00model.OrderBean;
@@ -24,6 +25,9 @@ import _05financial.service.FinancialService;
 public class FinancialController {
 	@Autowired
 	FinancialService service;
+	
+	int currentPageNo = 1;
+	int currentPageNoInit;
 
 //  
 //	@RequestMapping("/report/categoryReport")  <-這句話的/report 可以寫在上面的類別名稱上方 如:@RequestMapping("/report) 效果和現在寫的相同

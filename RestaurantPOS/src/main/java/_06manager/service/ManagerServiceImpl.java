@@ -96,6 +96,13 @@ public class ManagerServiceImpl implements ManagerService{
 	
 		return dao.getOneMonthCumulativeTurnoverBean();
 	}
+	@Transactional
+	@Override
+	public void saveTTB(TargetTurnoverBean TTB) {
+		
+		 dao.saveTTB(TTB);
+		
+	}
 	
 	
 	

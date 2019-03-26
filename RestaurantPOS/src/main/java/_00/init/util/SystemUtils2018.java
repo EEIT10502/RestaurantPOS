@@ -181,7 +181,17 @@ public class SystemUtils2018 {
 	
 	//測試你的方法
 	public static void main(String[] args) {
-	
+		    Date date=new Date();
+	        int n=25;
+	        Calendar calendar=Calendar.getInstance();
+	        calendar.setTime(date);
+	        calendar.add(Calendar.DAY_OF_MONTH,-n);
+	        date =calendar.getTime();
+	        System.out.println(date);
+	        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	        String dateFormat=sdf.format(date);
+	        System.out.println(dateFormat);
+
 	}
 
 }
