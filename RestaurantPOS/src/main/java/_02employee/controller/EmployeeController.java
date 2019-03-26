@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import _00.init.util.GlobalService;
 import _00model.CalendarBean;
 import _00model.EmployeeBean;
+//github.com/EEIT10502/RestaurantPOS.git
 import _02employee.service.EmployeeService;
 
 //這是一個提供Manager登入的@Controller
@@ -46,6 +47,8 @@ public class EmployeeController {
 	/*
 	 * 以下設定select選項 1.職位 2.就職狀況 3.性別
 	 */
+
+	
 
 	// 設定Select：職位
 	@ModelAttribute("empPositionList")
@@ -213,8 +216,7 @@ public class EmployeeController {
 				employeeListGetByEmployeeStatus = employeeService.getEmployeesListGetByEmployeesStatus();
 				model.addAttribute("employeeListGetByEmployeeStatus", employeeListGetByEmployeeStatus);
 				model.addAttribute("currentPageNo", currentPageNoInit);
-				model.addAttribute("currentBeginOfEmployeeNo",
-						(currentPageNoInit - 1) * GlobalService.Employees_PER_PAGE);
+				model.addAttribute("currentBeginOfEmployeeNo",(currentPageNoInit - 1) * GlobalService.Employees_PER_PAGE);
 				model.addAttribute("totalPages", employeeService.getTotalPagesByEmployeesStatus());
 
 				return "empManage/employeeListByEmployeeStatus";
@@ -241,7 +243,7 @@ public class EmployeeController {
 	public String getEmployeeListBySearch(
 			@RequestParam(value = "currentPageNoBtnSearch", required = false) String currentPageNo,
 			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
-		
+
 		String searchBarTrim = searchBarString.trim();
 		model.addAttribute("searchBarString", searchBarTrim);
 
@@ -385,7 +387,7 @@ public class EmployeeController {
 			return "empManage/empInsert";
 		}
 
-		//自動編輯員工編號
+		// 自動編輯員工編號
 		Integer employeeNoInsert = employeeService.getCurrentPositionNumber();
 		employeeBean.setEmpNo(employeeNoInsert + 1);
 
@@ -471,9 +473,9 @@ public class EmployeeController {
 			Set<CalendarBean> CB = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 		}
 		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
-		
+
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit, calendarEdit);
 		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
@@ -527,7 +529,7 @@ public class EmployeeController {
 		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean1 = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit, calendarEdit);
 		employeeService.updateEmployee(employeeBean1);
 
 		if (currentPageNo == null) {
@@ -585,7 +587,7 @@ public class EmployeeController {
 		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit, calendarEdit);
 		employeeService.updateEmployee(employeeBean);
 
 		if (currentPageNo == null) {
@@ -640,11 +642,11 @@ public class EmployeeController {
 		} else {
 			imgEdit = employeeService.getEmployeesById(empIdEditParse).getImg();
 		}
-		 
+
 		Set<CalendarBean> calendarEdit = employeeService.getEmployeesById(empIdEditParse).getCalendarBean();
 
 		EmployeeBean employeeBean = new EmployeeBean(empIdEditParse, empNoEditParse, empNameEdit, positionEdit,
-				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit,calendarEdit);
+				genderEdit, telEdit, addrEdit, statusEdit, remarkEdit, imgEdit, empImgEdit, calendarEdit);
 		employeeService.updateEmployee(employeeBean);
 
 		if (currentPageNo == null) {
@@ -662,5 +664,126 @@ public class EmployeeController {
 
 		return "redirect:/empManage/EmployeeListBySearch.action?currentPageNoBtnSearch=" + currentPageNoInit;
 	}
+
+	// =====================以下為轉檔excel測試=====================
+
+//	@RequestMapping(value = "/empManage/excel/allEmployeeList", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+//	public String queryAllEmployeeExcel(@RequestParam(value = "whichPosition", required = false) String positionSelect,
+//			@RequestParam(value = "whichStatus", required = false) String statusSelect,
+//			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
+//
+//		if (positionSelect.isEmpty() && statusSelect.isEmpty() && searchBarString.isEmpty()) {
+//			List<EmployeeBean> allEmployeeList = new ArrayList<>();
+//			allEmployeeList = employeeService.getAllEmployees();
+//			model.addAttribute("allEmployeeBean", allEmployeeList);
+//
+//			return "empManage/excel";
+//		}
+//
+//		if (!positionSelect.isEmpty()) {
+//			employeeService.setPositionSelect(positionSelect);
+//
+//			List<EmployeeBean> allEmployeeListGetByPosition = new ArrayList<>();
+//			allEmployeeListGetByPosition = employeeService.getEmployeesListGetByPosition();
+//			model.addAttribute("allEmployeeBean", allEmployeeListGetByPosition);
+//
+//			return "empManage/excel";
+//		}
+//
+//		if (!statusSelect.isEmpty()) {
+//			employeeService.setStatusSelect(statusSelect);
+//
+//			List<EmployeeBean> allEmployeeListGetByEmployeeStatus = new ArrayList<>();
+//			allEmployeeListGetByEmployeeStatus = employeeService.getEmployeesListGetByEmployeesStatus();
+//			model.addAttribute("allEmployeeBean", allEmployeeListGetByEmployeeStatus);
+//
+//			return "empManage/excel";
+//		}
+//
+//		if (!searchBarString.isEmpty()) {
+//			employeeService.setSearchBarString(searchBarString);
+//			List<EmployeeBean> allEmployeeListBySearch = new ArrayList<>();
+//			allEmployeeListBySearch = employeeService.getEmployeesListGetBySearch();
+//			model.addAttribute("allEmployeeBean", allEmployeeListBySearch);
+//
+//			return "empManage/excel";
+//		}
+//
+//		List<EmployeeBean> employeeBean = employeeService.getAllEmployees();
+//		model.addAttribute("allEmployeeBean", employeeBean);
+//
+//		return "empManage/excel";
+//	}
+//
+//	@RequestMapping(value = "/empManage/excel/employeeListThisPage", method = RequestMethod.GET, produces = "application/vnd.ms-excel")
+//	public String queryEmployeeListThisPageExcel(
+//			@RequestParam(value = "currentPageNoBtn", required = false) String currentPageNo,
+//			@RequestParam(value = "whichPosition", required = false) String positionSelect,
+//			@RequestParam(value = "whichStatus", required = false) String statusSelect,
+//			@RequestParam(value = "searchBar", required = false) String searchBarString, Model model) {
+//
+//		int currentPageNoInt = Integer.parseInt(currentPageNo.trim());
+//
+//		if (positionSelect.isEmpty() && statusSelect.isEmpty() && searchBarString.isEmpty()) {
+//			employeeService.setCurrentPageNo(currentPageNoInt);
+//
+//			List<EmployeeBean> employeeListGetByPage = new ArrayList<>();
+//			employeeListGetByPage = employeeService.getEmployeesListGetByPage();
+//			model.addAttribute("allEmployeeBean", employeeListGetByPage);
+//
+//			return "empManage/excel";
+//		}
+//
+//		if (!positionSelect.isEmpty()) {
+//			employeeService.setCurrentPageNo(currentPageNoInt);
+//
+//			employeeService.setPositionSelect(positionSelect);
+//
+//			List<EmployeeBean> employeeListGetByPosition = new ArrayList<>();
+//			employeeListGetByPosition = employeeService.getEmployeesListGetByPosition();
+//			model.addAttribute("allEmployeeBean", employeeListGetByPosition);
+//
+//			return "empManage/excel";
+//		}
+//
+//		if (!statusSelect.isEmpty()) {
+//			employeeService.setCurrentPageNo(currentPageNoInt);
+//
+//			employeeService.setStatusSelect(statusSelect);
+//
+//			List<EmployeeBean> employeeListGetByEmployeeStatus = new ArrayList<>();
+//			employeeListGetByEmployeeStatus = employeeService.getEmployeesListGetByEmployeesStatus();
+//			model.addAttribute("allEmployeeBean", employeeListGetByEmployeeStatus);
+//
+//			return "empManage/excel";
+//		}
+//
+//		if (!searchBarString.isEmpty()) {
+//			employeeService.setCurrentPageNo(currentPageNoInt);
+//			employeeService.setSearchBarString(searchBarString);
+//			List<EmployeeBean> employeeListBySearch = new ArrayList<>();
+//			employeeListBySearch = employeeService.getEmployeesListGetBySearch();
+//			model.addAttribute("allEmployeeBean", employeeListBySearch);
+//
+//			return "empManage/excel";
+//		}
+//
+//		List<EmployeeBean> employeeBean = employeeService.getAllEmployees();
+//		model.addAttribute("allEmployeeBean", employeeBean);
+//
+//		return "empManage/excel";
+//	}
+
+	// =====================以上為轉檔excel測試=====================//
+	
+	
+	//======================以下為轉檔PDF=====================//
+	@RequestMapping(value = "/members", method = RequestMethod.GET, produces = "application/pdf")
+	public String queryAllMembersPDF(Model model) {
+		List<EmployeeBean> allEmployee = employeeService.getAllEmployees();
+		model.addAttribute("allEmployee", allEmployee);
+		return "/cnvr/showpEmployee";
+	}
+	//======================以上為轉檔PDF=====================//
 
 }

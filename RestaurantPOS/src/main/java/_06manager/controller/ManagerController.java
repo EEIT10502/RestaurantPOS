@@ -1,5 +1,6 @@
 package _06manager.controller;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,7 +115,8 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "/manage/managelogin.check", method = RequestMethod.POST)
-	public String CheckLogin(Model model, @RequestParam(value = "mAccount") String mAccount, // 取得FORM表單的參數
+	public String CheckLogin(Model model,
+			@RequestParam(value = "mAccount") String mAccount, // 取得FORM表單的參數
 			@RequestParam(value = "mPwd") String mPwd, // 取得FORM表單的參數
 			HttpSession session) {
 
@@ -158,14 +160,38 @@ public class ManagerController {
 			errorMsgMap.put("LoginError", e.getMessage());
 		}
 		
-		// 登入後前往後台首頁
-		return "redirect:/toDashBoard";
+		
+		return "redirect:/checkTTBisExist";
+				
 		
 	}
+	//認證管理登入的帳號密碼後，如果當天為每月1日且還沒有輸入目標營業額，則跳到輸入營業額的頁面
+	@RequestMapping("/checkTTBisExist")
+	public String checkTTBisExist() {
+		
+		TargetTurnoverBean TTB = managerservice.getMonthTarget();
+		if(TTB == null) {
+			//代表這個月的目標營業額還沒有輸入，送他去輸入			
+			return "manage/InsertTB";
+		}
+		//代表本月已經有目標營業額，直接轉後台首頁		
+		return "redirect:/toDashBoard";		
+	}
+	@RequestMapping(value="/manage/insertTTB.check",method=RequestMethod.POST)
+	public String insertTTB(Model model,@RequestParam(value="targetTurnover")Integer targetTurnover,
+			TargetTurnoverBean TTB) {
+
+		TTB.setDate(SystemUtils2018.getMonth());
+		TTB.setTargetTurnover(targetTurnover);		
+		managerservice.saveTTB(TTB);
+		
+		return "redirect:/toDashBoard";
+	}
+	
 	//前往後台首頁
 	@RequestMapping("/toDashBoard")
 	public String toDashBoard(Model model) {
-//      給圖表用
+		//      給圖表用
 		TargetTurnoverBean TTBean = managerservice.getMonthTarget();		
 		model.addAttribute("TTBean",TTBean);
 		
@@ -183,4 +209,8 @@ public class ManagerController {
 		
 		return "close/closeBoardTest";
 	}
+	
+
+	
+	
 }

@@ -25,6 +25,8 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import _02employee.view.PdfViewResolver;
+
 
 
 
@@ -56,6 +58,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 		resolvers.add(jspViewResolver());
 
+		resolvers.add(pdfViewResolver(context));
 		resolvers.add(excelViewResolver());
 		resolver.setViewResolvers(resolvers);
 		return resolver;
@@ -111,10 +114,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 
-//	@Bean
-//	public ViewResolver pdfViewResolver(ServletContext context) {
-//		return new PdfViewResolver(context);
-//	}
+	@Bean
+	public ViewResolver pdfViewResolver(ServletContext context) {
+		return new PdfViewResolver(context);
+	}
 
 
 }

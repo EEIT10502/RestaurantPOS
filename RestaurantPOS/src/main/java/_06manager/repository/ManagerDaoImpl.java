@@ -190,6 +190,14 @@ public class ManagerDaoImpl implements ManagerDao{
 		CTBList = session.createQuery(hql).getResultList();
 		return CTBList;
 	}
+
+
+	@Override
+	public void saveTTB(TargetTurnoverBean TTB) {
+		Session session = factory.getCurrentSession();
+		session.save(TTB);
+		
+	}
 	
 	
 	
