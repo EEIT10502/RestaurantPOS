@@ -147,7 +147,7 @@ public class ScheduleController {
 		return "scheduleManage/updateSchedule";
 	}
 
-	// 刪除單筆Schedule資料
+	// 刪除單筆Schedule資料 
 	@RequestMapping(value = "/schedule/{key}", method = RequestMethod.DELETE)
 	public String deleteSchedule(@ModelAttribute("scheduleBean")ScheduleBean scheduleBean,@PathVariable Integer key,
 			HttpServletRequest request) {
