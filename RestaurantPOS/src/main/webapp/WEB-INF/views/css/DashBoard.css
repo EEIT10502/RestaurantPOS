@@ -38,7 +38,7 @@ background: #68B0EA;
 }
 #rowOne{
   margin-left: 300px;
-  background: url('/RestaurantPOS/images/DashBoardLogo.jpg')no-repeat;
+/*    background: url('/RestaurantPOS/images/DashBoardLogo.jpg')no-repeat; */
   background-size:cover;
   -webkit-background-size:cover;
   -moz-background-size:cover;

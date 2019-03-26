@@ -22,8 +22,7 @@ td.errorMessage[type="redError"] {
 </style>
 
 </head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -32,6 +31,7 @@ td.errorMessage[type="redError"] {
 
 <body>
 	<div class="clearfix">
+		
 		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<div><jsp:include page="../empManage/empSearchHead.jsp" flush="true" /></div>
@@ -80,10 +80,9 @@ td.errorMessage[type="redError"] {
 									<form class='center' name="editForm${employee.empId}" action="${pageContext.request.contextPath}/empManage/allEmployeeListEdit.action/${employee.empId}?currentPageNoBtn=${currentPageNo}" method="post" enctype="multipart/form-data">
 										<div class="modal-body">
 											<input type="hidden" name="_method" id='put' value=""> <input type="hidden" name="empIdEdit" value="${employee.empId}"> <input type="hidden" name="empNoEdit" value="${employee.empNo}">
-										
+
 											<div class="row justify-content-center" style="margin-bottom: 15px">
-												<img width="220px" height="245px" id="blah${employee.empId}" src="<c:url value='/getPicture/${employee.empId}'/>" >
-												<br>
+												<img width="220px" height="245px" id="blah${employee.empId}" src="<c:url value='/getPicture/${employee.empId}'/>"> <br>
 											</div>
 											<div class="form-group row">
 												<label for="empNameEdit${employee.empId}" class="col-sm-2 col-form-label">姓名</label>
@@ -175,14 +174,16 @@ td.errorMessage[type="redError"] {
 						<!-- 						Modal 結束 -->
 
 						<script>
-							document.getElementById("empImgEdit${employee.empId}").onchange = function () {
-							    var reader = new FileReader();
+							document
+									.getElementById("empImgEdit${employee.empId}").onchange = function() {
+								var reader = new FileReader();
 
-							    reader.onload = function (e) {
-							        document.getElementById("blah${employee.empId}").src = e.target.result;
-							    };
+								reader.onload = function(e) {
+									document
+											.getElementById("blah${employee.empId}").src = e.target.result;
+								};
 
-							    reader.readAsDataURL(this.files[0]);
+								reader.readAsDataURL(this.files[0]);
 							};
 						</script>
 						<script>
@@ -357,7 +358,12 @@ td.errorMessage[type="redError"] {
 					</ul>
 				</nav>
 			</div>
-
+<!-- 			<div class="col"> -->
+<%-- 				<jsp:include page="../empManage/employeeFooterPrintExcel.jsp" flush="true" /> --%>
+<!-- 			</div> -->
+			<div>
+				<a href="/RestaurantPOS/members.pdf">多筆員工資料查詢(PDF格式)</a><br>
+			</div>
 
 		</fieldset>
 	</section>

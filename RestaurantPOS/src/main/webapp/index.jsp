@@ -163,7 +163,6 @@ $(document).ready(function(){
 				alert("不可為空!")
 				return;
 			}
-
             
            //送出後清空字串           
            document.getElementById("showResBox").value="";

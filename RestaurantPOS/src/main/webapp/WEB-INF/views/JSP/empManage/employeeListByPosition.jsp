@@ -27,6 +27,7 @@ td.errorMessage[type="redError"] {
 	
 	
 	<div class="clearfix">	
+	<div style="display:none;"><jsp:include page="../headerTime.jsp" flush="true" /></div>
 	<jsp:include page="../sideBar.jsp" flush="true" />
     </div>
 	
@@ -83,7 +84,7 @@ td.errorMessage[type="redError"] {
 											<input type="hidden" name="_method" id='put' value=""> <input type="hidden" name="empIdEdit" value="${employee.empId}"> <input type="hidden" name="empNoEdit" value="${employee.empNo}">
 										
 											<div class="row justify-content-center" style="margin-bottom: 15px">
-												<img width="220px" height="245px" id="blah" src="<c:url value='/getPicture/${employee.empId}'/>" >
+												<img width="220px" height="245px" id="blah${employee.empId}" src="<c:url value='/getPicture/${employee.empId}'/>" >
 												<br>
 											</div>
 											<div class="form-group row">
@@ -197,7 +198,7 @@ td.errorMessage[type="redError"] {
 							    var reader = new FileReader();
 
 							    reader.onload = function (e) {
-							        document.getElementById("blah").src = e.target.result;
+							        document.getElementById("blah${employee.empId}").src = e.target.result;
 							    };
 
 							    reader.readAsDataURL(this.files[0]);
@@ -394,6 +395,9 @@ td.errorMessage[type="redError"] {
 					</ul>
 				</nav>
 			</div>
+<!-- 			<div class="col"> -->
+<%-- 					<jsp:include page="../empManage/employeeFooterPrintExcel.jsp" flush="true" /> --%>
+<!-- 				</div> -->
 		</fieldset>
 	</section>
 <jsp:include page="../footer.jsp" flush="true" />

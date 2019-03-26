@@ -40,4 +40,7 @@ public interface ManagerDao {
 	
 	//取得從今日往前推一個月內的所有CumulativeTurnoverBean
 	public List<CumulativeTurnoverBean> getOneMonthCumulativeTurnoverBean();
+	
+	//SAVE 一個TargetTurnoverBean
+	public void saveTTB(TargetTurnoverBean TTB);
 }
