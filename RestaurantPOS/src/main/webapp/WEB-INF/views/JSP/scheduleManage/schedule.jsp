@@ -58,7 +58,8 @@
 							<td>${schedule.restTime}</td>
 <%--  							<td>${schedule.totalTime}</td> --%>
 							<td><a
-								href="<c:url value='/schedule/update?id=${schedule.scheduleId}'/>"
+<%-- 								href="<c:url value='/schedule/update?id=${schedule.scheduleId}'/>" --%>
+								href="<c:url value='/schedule/${schedule.scheduleId}'/>"
 								title="編輯" class="btn btn-primary" id="edit" type="button">編輯</a></td>
 						</tr>
 					</c:forEach>

@@ -81,10 +81,10 @@
 		<jsp:include page="../headerTime.jsp" flush="true" />
 		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
-	<jsp:include page="../report/reportSearchHead.jsp" flush="true" />
+<%-- 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" /> --%>
 	<fieldset class="w3-container" style="margin-left: 160px">
 		<!-- 報表版面 -->
-		<form action="${pageContext.request.contextPath}/empManage/attendance/update" method="POST" id="form1">
+		<form action="${pageContext.request.contextPath}/empManage/attendance" method="POST" id="form1">
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
 					<h3>出勤表</h3>

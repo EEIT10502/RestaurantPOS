@@ -44,9 +44,8 @@
 	</div>
 	<section class="container">
 		<!--       三個地方要完全一樣 -->
-		<form:form method='POST' modelAttribute="scheduleBean"
-			class='form-horizontal' enctype="multipart/form-data">
-			<input type="hidden" name="_method"  id='putOrDelete'   value="" >
+		<form:form method='POST' modelAttribute="scheduleBean" class='form-horizontal'>
+			<input type="hidden" name="_method"  id='putOrDelete'  value="" >
 			<fieldset class="w3-container" style="margin-left: 260px">
 				<legend>修改班別資料</legend>
 				
@@ -99,12 +98,12 @@
 				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-            			<input type="submit" value="送出" name='updateBtn' onclick="return confirmUpdate('${schedule.scheduleId}');"/>
+            			<input type="submit" value="更新" name='updateBtn' onclick="return confirmUpdate('${schedule.scheduleId}');"/>
             			<input type="submit" value="刪除" name='deleteBtn' onclick="return confirmDelete('${schedule.scheduleId}');" >
 					</div>
 				</div>
 				<c:if test="${not empty requestScope.modify}">   
-           <c:remove var="member" scope="request" />       
+           <c:remove var="scheduleBean" scope="request" />       
          </c:if>
          </fieldset>
 		</form:form>
@@ -117,6 +116,7 @@
 						twelvehour : false, // change to 12 hour AM/PM clock from 24 hour
 						donetext : 'OK',
 						format : "HH:i",
+						clear:false,
 						autoclose : false,
 						vibrate : true
 					});

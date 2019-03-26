@@ -119,9 +119,9 @@ public class ScheduleDaoImpl implements ScheduleDao{
 	}
 	//刪除班表資料
 	@Override
-	public void deleteScheduleByPrimaryKey(ScheduleBean schedule) {
+	public void deleteScheduleByPrimaryKey(int scheduleId) {
 		Session session = factory.getCurrentSession();
-		session.delete(schedule);	
+		session.delete(session.get(ScheduleBean.class, scheduleId));
 	}
 	
 	@Override

@@ -14,7 +14,7 @@ public interface ScheduleService {
 	public EmployeeBean checkByEmpNo(String empNo);
 
 	public void addAttendence(AttendenceBean attendenceBean);
-	//未完成
+	//完成
 	public List<AttendenceBean> getAttByDate(String Date1, String Date2);
 
 	ScheduleBean findByPrimaryKey(int scheduleId);
@@ -25,7 +25,7 @@ public interface ScheduleService {
 
 	void updateSchedule(ScheduleBean schedule);
 
-	void deleteScheduleByPrimaryKey(ScheduleBean schedule);
+	void deleteScheduleByPrimaryKey(int scheduleId);
 
 	List<ScheduleBean> findAllSchedule();
 	

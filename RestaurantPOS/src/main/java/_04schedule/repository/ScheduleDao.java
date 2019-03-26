@@ -32,7 +32,7 @@ public interface ScheduleDao {
 
 	void updateSchedule(ScheduleBean schedule);
 
-	void deleteScheduleByPrimaryKey(ScheduleBean schedule);
+	void deleteScheduleByPrimaryKey(int scheduleId);
 	
 	void deleteAllSchedule();
 		

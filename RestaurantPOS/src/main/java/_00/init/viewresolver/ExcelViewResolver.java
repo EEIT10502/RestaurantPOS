@@ -5,7 +5,7 @@ import java.util.Locale;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
-public class ExcelViewResolver implements ViewResolver{
+public class ExcelViewResolver implements ViewResolver {
 
 	@Override
 	public View resolveViewName(String viewName, Locale locale) throws Exception {
@@ -21,6 +21,8 @@ public class ExcelViewResolver implements ViewResolver{
 			view = new _05financial.view.MultipleProductReportExcelView();
 		} else if(viewName.startsWith("goalReport/excel")) {
 			view = new _05financial.view.MultipleGoalReportExcelView();
+		} else if(viewName.startsWith("attendanceReport/excel"))  {
+			view = new _04schedule.view.MultipleAttendanceExcelView();
 		}
 //		System.out.println("ExcelViewResolver, viewName=" + viewName + ", return value=" + view);
 		return view;

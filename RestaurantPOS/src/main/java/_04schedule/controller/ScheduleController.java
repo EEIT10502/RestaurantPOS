@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +31,7 @@ public class ScheduleController {
 	@Autowired
 	ScheduleService scheduleService;
 
-	//耀德 - 打卡
+	// 耀德 - 打卡
 	@RequestMapping(value = "/schedule/time.check", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> GoToCheck(Model model, @RequestParam(value = "empNO") String empNO,
 			@RequestParam(value = "choice") String choice, AttendenceBean attendenceBean) {// 需要在這裡創建AttendenceBean
@@ -72,11 +72,13 @@ public class ScheduleController {
 		return Msg;
 
 	}
-	//日期查詢報表
-	@RequestMapping(value = "/empManage/attendance/update", method = RequestMethod.POST)
-	public String dailyReport(Model model,  @RequestParam(value="aDate1") String aDate1,
-			@RequestParam(value="aDate2") String aDate2) {
-		
+
+	/*--------------------------------------------------------------------------------------------------------------------------*/
+	// 日期查詢報表
+	@RequestMapping(value = "/empManage/attendance", method = RequestMethod.POST)
+	public String dailyReport(Model model, @RequestParam(value = "aDate1") String aDate1,
+			@RequestParam(value = "aDate2") String aDate2) {
+
 		model.addAttribute("aDate1", aDate1);
 		model.addAttribute("aDate2", aDate2);
 		try {
@@ -88,8 +90,20 @@ public class ScheduleController {
 		}
 		return "empManage/attendance";
 	}
-	
-	
+
+//		// URL為 /attendenceBeans, 搭配 GET方法可以傳回所有紀錄。
+//		// 加入produces屬性可以說明產生之資料的格式: produces = "application/vnd.ms-excel"
+//		// 查詢所有Member紀錄，本方法可以產生 Excel格式的回應
+//		@RequestMapping(value = "/attendenceBeans", method = RequestMethod.GET, 
+//				produces = "application/vnd.ms-excel")
+//		public String queryAllMembersExcel(Model model) {
+//			List<ScheduleBean> attendenceBeans = scheduleService.findBySchedule(schedule)();
+//			model.addAttribute("allAttendance", attendenceBeans);
+//			return "empManage/attendance";
+//		}
+
+	/*--------------------------------------------------------------------------------------------------------------------------*/
+
 	@RequestMapping("/schedule")
 	public String listSchedule(Model model) {
 		List<ScheduleBean> list = scheduleService.findAllSchedule();
@@ -125,34 +139,34 @@ public class ScheduleController {
 //	}
 
 	// 顯示單筆Schedule資料，然後導向更新畫面
-	@RequestMapping(value = "/schedule/update", method = RequestMethod.GET)
-	public String showSchedule(@RequestParam("id") Integer scheduleId, Model model) {
-		ScheduleBean schedule = scheduleService.findByPrimaryKey(scheduleId);
-		model.addAttribute(schedule);
+	@RequestMapping(value = "/schedule/{key}", method = RequestMethod.GET)
+	public String showSchedule(@PathVariable Integer key, Model model) {
+		ScheduleBean schedule = scheduleService.findByPrimaryKey(key);
+		model.addAttribute("scheduleBean",schedule);
 		System.out.println("--顯示單筆Schedule資料，然後導向更新畫面--");
 		return "scheduleManage/updateSchedule";
 	}
 
 	// 刪除單筆Schedule資料
-	@RequestMapping(value = "/schedule/delete", method = RequestMethod.DELETE)
-	public String deleteSchedule(@ModelAttribute("scheduleBean") ScheduleBean scheduleBean,
+	@RequestMapping(value = "/schedule/{key}", method = RequestMethod.DELETE)
+	public String deleteSchedule(@ModelAttribute("scheduleBean")ScheduleBean scheduleBean,@PathVariable Integer key,
 			HttpServletRequest request) {
 		System.out.println("--準備刪除單筆Schedule資料--");
-		scheduleService.deleteScheduleByPrimaryKey(scheduleBean);
+		scheduleService.deleteScheduleByPrimaryKey(key);
 		System.out.println("--刪除單筆Schedule資料--");
 		return "redirect:/schedule";
 	}
 
 	// 修改單筆Schedule資料
-		@RequestMapping(value = "/schedule/update", method = RequestMethod.POST)
-		public String updateSchedule(@ModelAttribute("scheduleBean") ScheduleBean scheduleBean,
-				HttpServletRequest request) {
-			System.out.println("--準備修改單筆Schedule資料--");
-			scheduleService.updateSchedule(scheduleBean);
-			System.out.println("--修改單筆Schedule資料成功--");
-			return "redirect:/schedule";
-		}
-	
+	@RequestMapping(value = "/schedule/{key}", method = RequestMethod.POST)
+	public String updateSchedule(@ModelAttribute("scheduleBean")ScheduleBean scheduleBean,@PathVariable Integer key,
+			HttpServletRequest request) {
+		System.out.println("--準備修改單筆Schedule資料--");	
+		scheduleService.updateSchedule(scheduleBean);
+		System.out.println("--修改單筆Schedule資料成功--");
+		return "redirect:/schedule";
+	}
+
 	@RequestMapping("/test")
 	public String test(Model model) {
 		CalendarBean c = scheduleService.testGet(1);
@@ -160,38 +174,38 @@ public class ScheduleController {
 		System.out.println(c.getSchedule().getSchedule());
 		return "/scheduleManage/calendar";
 	}
-	
-	//查詢所有員工
+
+	// 查詢所有員工
 	@RequestMapping("/calendar")
 	public String list(Model model) {
 		List<CalendarBean> list = scheduleService.getAllEmpName();
 		model.addAttribute("calendar", list);
-		
-		for(CalendarBean c:list){
-			System.out.println("name"+c.getEmployee().getEmpName());
-			System.out.println("status"+c.getEmployee().getStatus());
-		}		
-		
+
+		for (CalendarBean c : list) {
+			System.out.println("name" + c.getEmployee().getEmpName());
+			System.out.println("status" + c.getEmployee().getStatus());
+		}
+
 		return "/scheduleManage/calendar";
 	}
-	
+
 	// 顯示單筆Calendar資料，然後導向更新畫面
 	@RequestMapping(value = "/calendar/update", method = RequestMethod.GET)
 	public String showCalendar(@RequestParam("id") Integer calendarId, Model model) {
 		CalendarBean calendarBean = scheduleService.findByPrimary(calendarId);
-		
-		List<ScheduleBean> ss = scheduleService.findAllSchedule();	
-		for(ScheduleBean listRow:ss) {
-			System.out.println("班別:"+listRow.getSchedule());
+
+		List<ScheduleBean> ss = scheduleService.findAllSchedule();
+		for (ScheduleBean listRow : ss) {
+			System.out.println("班別:" + listRow.getSchedule());
 		}
-		model.addAttribute("ss",ss);
-		
+		model.addAttribute("ss", ss);
+
 		model.addAttribute(calendarBean);
 		System.out.println(calendarBean.getDay1());
 		System.out.println("--顯示單筆Schedule資料，然後導向更新畫面--");
 		return "scheduleManage/updateCalendar";
 	}
- 
+
 	// 修改單筆Calendar資料
 	@RequestMapping(value = "/calendar/update", method = RequestMethod.POST)
 	public String updateSchedule(@ModelAttribute("calendarBean") CalendarBean calendarBean,

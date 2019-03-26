@@ -63,8 +63,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Transactional
 	@Override
-	public void deleteScheduleByPrimaryKey(ScheduleBean schedule) {
-		scheduleDao.deleteScheduleByPrimaryKey(schedule);
+	public void deleteScheduleByPrimaryKey(int scheduleId) {
+		scheduleDao.deleteScheduleByPrimaryKey(scheduleId);
 	}
 	
 	@Transactional
