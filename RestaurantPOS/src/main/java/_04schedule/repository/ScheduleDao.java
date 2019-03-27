@@ -16,10 +16,11 @@ public interface ScheduleDao {
 	//查詢所有Attendance資料
 	public void addAttendence(AttendenceBean attendenceBean);
 	
-	//daily
+	//daily (未完成)
 	public List<AttendenceBean> getAttByDate(String Date1, String Date2);
 	
-	
+	//查詢所有出勤
+	List<AttendenceBean> getAllAttendance();
 	
 	
 	

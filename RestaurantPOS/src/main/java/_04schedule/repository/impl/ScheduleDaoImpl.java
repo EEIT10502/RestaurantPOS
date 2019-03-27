@@ -189,5 +189,16 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return session.get(CalendarBean.class, id);
 		
 	}
+	//列出所有出勤資料(完成)
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<AttendenceBean> getAllAttendance() {
+		String hql = "FROM AttendenceBean";
+		Session session = null;
+		List<AttendenceBean> list = new ArrayList<>();
+		session = factory.getCurrentSession();
+		list = session.createQuery(hql).getResultList();
+		return list;
+	}
 
 }

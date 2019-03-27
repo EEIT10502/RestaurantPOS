@@ -40,4 +40,7 @@ public interface ScheduleService {
 	void updateCalendar(CalendarBean calendar);
 
 	CalendarBean testGet(int id);
+	
+	//查詢所有出勤
+	List<AttendenceBean> getAllAttendance();
 }

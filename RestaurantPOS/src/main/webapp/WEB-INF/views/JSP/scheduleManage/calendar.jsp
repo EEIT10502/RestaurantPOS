@@ -37,6 +37,12 @@
 	</div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
+			
+			<div>
+				<h3>排班管理</h3>
+				<br>
+			</div>
+			
 			<div id="allList" class="row">
 				<table class="table table-hover">
 					<tr>

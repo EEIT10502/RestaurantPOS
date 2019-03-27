@@ -18,7 +18,7 @@
 <title>修改班別</title>
 <script type="text/javascript">
 	function confirmDelete(scheduleId) {
-		var result = confirm("確定刪除此筆記錄(帳號:" + scheduleId.trim() + ")?");
+		var result = confirm("確定刪除?");
 		if (result) {
 			document.forms[0].putOrDelete.value = "DELETE";
 			return true;
@@ -26,7 +26,7 @@
 		return false;
 	}
 	function confirmUpdate(scheduleId) {
-		var result = confirm("確定送出此筆記錄(帳號:" + scheduleId.trim() + ")?");
+		var result = confirm("確定送出?");
 		if (result) {
 			document.forms[0].putOrDelete.value = "POST";
 			return true;
@@ -157,7 +157,7 @@
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<input type="submit" value="送出" name='updateBtn'
+						<input type="submit" value="送出" name='updateBtn' class="btn btn-primary"
 							onclick="return confirmUpdate('${calendar.calendarId}');" />
 					</div>
 				</div>

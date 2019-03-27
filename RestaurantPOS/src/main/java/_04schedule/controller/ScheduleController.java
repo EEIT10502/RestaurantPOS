@@ -31,6 +31,7 @@ public class ScheduleController {
 	@Autowired
 	ScheduleService scheduleService;
 
+
 	// 耀德 - 打卡
 	@RequestMapping(value = "/schedule/time.check", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> GoToCheck(Model model, @RequestParam(value = "empNO") String empNO,
@@ -216,4 +217,14 @@ public class ScheduleController {
 		return "redirect:/calendar";
 	}
 
+	//======================以下為轉檔PDF=====================//
+	 @RequestMapping(value = "/attendences", method = RequestMethod.GET, produces = "application/pdf")
+	 public String queryAllAttendencePDF(Model model) {
+	  List<AttendenceBean> allAttendence = scheduleService.getAllAttendance();
+	  model.addAttribute("allAttendence", allAttendence);
+	  System.out.println("--Attendence準備轉成PDF--");
+	  return "/cnvr/showpAttendence";
+	 }
+	 //======================以上為轉檔PDF=====================//
+	
 }

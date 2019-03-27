@@ -65,14 +65,13 @@
 	})
 	//轉查詢方法 
 	$(function() {
-		$("#dSelect").click(
-				function() {
-					if ($("#aDate1").val() != "" && $("#aDate2").val() != "") {
-						$("#form1").submit();
-					} else {
-						alert("請輸入日期");
-					}
-				});
+		$("#dSelect").click(function() {
+			if ($("#aDate1").val() != "" && $("#aDate2").val() != "") {
+				$("#form1").submit();
+			} else {
+				alert("請輸入日期");
+			}
+		});
 	})
 </script>
 
@@ -81,13 +80,15 @@
 		<jsp:include page="../headerTime.jsp" flush="true" />
 		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
-<%-- 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" /> --%>
+	<%-- 	<jsp:include page="../report/reportSearchHead.jsp" flush="true" /> --%>
 	<fieldset class="w3-container" style="margin-left: 160px">
 		<!-- 報表版面 -->
-		<form action="${pageContext.request.contextPath}/empManage/attendance" method="POST" id="form1">
+		<form action="${pageContext.request.contextPath}/empManage/attendance"
+			method="POST" id="form1">
 			<div class="w3-container" style="margin-left: 160px">
 				<div>
-					<h3>出勤表</h3>
+					<h3>出勤紀錄查詢</h3>
+					<br>
 				</div>
 				<div>
 					<h5>選擇欲查詢日期</h5>
@@ -95,7 +96,6 @@
 						readonly> - <input type="text" id="aDate2" name="aDate2"
 						value="${aDate2}" readonly>
 					<p>
-
 						<input type="button" value="查詢" id="dSelect" name="dSelect">
 				</div>
 
@@ -103,7 +103,6 @@
 					<h5>選擇日期：${aDate1}至${aDate2}</h5>
 					<!-- 顯示查詢年月日 -->
 					<input type="button" value="匯出報表" id="dExport" name="dExport">
-
 					<table class="table table-hover">
 						<tr>
 							<th>員工編號</th>
@@ -113,32 +112,19 @@
 							<th>時間</th>
 							<th>備註</th>
 						</tr>
-						<c:forEach var="dTableO" items="${listDailyAtt}"
-							varStatus="loop">
-<%-- 							<c:set var="totalList" value="${totalList + dTableO[1]}" /> --%>
-<%-- 							<c:set var="totalCusFlow" value="${totalCusFlow + dTableO[2]}" /> --%>
-<%-- 							<c:set var="totalMoney" value="${totalMoney + dTableO[3]}" /> --%>
-<%-- 							<c:set var="totalShort" --%>
-<%-- 								value="${totalShort + listDailyCumu[loop.count-1].shortoverAmount}" /> --%>
-<%-- 							<c:set var="totalReceived" --%>
-<%-- 								value="${totalReceived + listDailyCumu[loop.count-1].moneyReceived}" /> --%>
+						<c:forEach var="dTableO" items="${listDailyAtt}" varStatus="loop">
 							<tr>
-								<td>${dTableO.attendenceId}</td>
+								<td>${dTableO.empNo}</td>
 								<td>${dTableO.empName}</td>
 								<td>${dTableO.date}</td>
 								<td>${dTableO.checkStatus}</td>
 								<td>${dTableO.clockTime}</td>
 							</tr>
 						</c:forEach>
-						<tr>
-<!-- 							<th>總計</th> -->
-<%-- 							<td>${totalList}</td> --%>
-<%-- 							<td>${totalCusFlow}</td> --%>
-<%-- 							<td>${totalMoney}</td> --%>
-<%-- 							<td>${totalShort}</td> --%>
-<%-- 							<td>${totalReceived}</td> --%>
-						</tr>
 					</table>
+				</div>
+				<div>
+					<a href="/RestaurantPOS/attendences.pdf">多筆出勤資料查詢(PDF格式)</a><br>
 				</div>
 			</div>
 		</form>

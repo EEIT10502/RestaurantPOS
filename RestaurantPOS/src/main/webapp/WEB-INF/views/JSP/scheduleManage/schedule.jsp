@@ -29,18 +29,24 @@
 <title>CLASS</title>
 </head>
 <body>
-	<div  class="clearfix">
-	<jsp:include page="../headerTime.jsp" flush="true" />	
-	<jsp:include page="../sideBar.jsp" flush="true" />
+	<div class="clearfix">
+		<jsp:include page="../headerTime.jsp" flush="true" />
+		<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<section class="">
 		<fieldset class="w3-container" style="margin-left: 260px">
+
+			<div>
+				<h3>班別管理</h3>
+				<br>
+			</div>
+
 			<div id="allList" class="row">
 				<table class="table table-hover">
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">名稱</th>
-<!-- 						<th scope="col">識別色</th> -->
+						<!-- 						<th scope="col">識別色</th> -->
 						<th scope="col">開始時間</th>
 						<th scope="col">結束時間</th>
 						<th scope="col">休息時數</th>
@@ -51,14 +57,14 @@
 						<tr class="">
 							<th scope="row">${status.index + 1+currentBeginOfItemNo}</th>
 							<td>${schedule.schedule}</td>
-<!-- 							<td><div width="20" height="20" -->
-<%-- 									style="width:20px;height:20px;border:1px solid #eee;background-color:${schedule.color}">&nbsp;</div></td> --%>
+							<!-- 							<td><div width="20" height="20" -->
+							<%-- 									style="width:20px;height:20px;border:1px solid #eee;background-color:${schedule.color}">&nbsp;</div></td> --%>
 							<td>${schedule.startTime}</td>
 							<td>${schedule.endTime}</td>
 							<td>${schedule.restTime}</td>
-<%--  							<td>${schedule.totalTime}</td> --%>
+							<%--  							<td>${schedule.totalTime}</td> --%>
 							<td><a
-<%-- 								href="<c:url value='/schedule/update?id=${schedule.scheduleId}'/>" --%>
+								<%-- 								href="<c:url value='/schedule/update?id=${schedule.scheduleId}'/>" --%>
 								href="<c:url value='/schedule/${schedule.scheduleId}'/>"
 								title="編輯" class="btn btn-primary" id="edit" type="button">編輯</a></td>
 						</tr>
@@ -66,12 +72,11 @@
 					</tbody>
 				</table>
 				<div class="last span-2">
-					<a href="schedule/add" class="btn btn-primary"
-						id="add_worker">新增班表</a>
+					<a href="schedule/add" class="btn btn-primary" id="add_worker">新增班表</a>
 				</div>
 			</div>
 		</fieldset>
-		</section>
-			<jsp:include page="../footer.jsp" flush="true" />
+	</section>
+	<jsp:include page="../footer.jsp" flush="true" />
 </body>
 </html>

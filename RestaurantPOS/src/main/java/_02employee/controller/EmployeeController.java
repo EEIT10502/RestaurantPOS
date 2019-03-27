@@ -782,6 +782,7 @@ public class EmployeeController {
 	public String queryAllMembersPDF(Model model) {
 		List<EmployeeBean> allEmployee = employeeService.getAllEmployees();
 		model.addAttribute("allEmployee", allEmployee);
+		System.out.println("--準備轉成PDF--");
 		return "/cnvr/showpEmployee";
 	}
 	//======================以上為轉檔PDF=====================//
