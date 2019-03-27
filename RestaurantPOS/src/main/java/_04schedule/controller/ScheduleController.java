@@ -217,7 +217,7 @@ public class ScheduleController {
 		return "redirect:/calendar";
 	}
 
-	//======================以下為轉檔PDF=====================//
+	//======================以下為轉檔PDF=====================完成//
 	 @RequestMapping(value = "/attendences", method = RequestMethod.GET, produces = "application/pdf")
 	 public String queryAllAttendencePDF(Model model) {
 	  List<AttendenceBean> allAttendence = scheduleService.getAllAttendance();
