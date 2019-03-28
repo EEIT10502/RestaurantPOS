@@ -38,7 +38,7 @@ p.errorMessage[type="redError"] {
 </script>
 <script type="text/javascript">
 	function autoInsert() {
-		document.getElementById("productNameBtn").value='宮保雞丁飯';
+		document.getElementById("productNameBtn").value='宮保雞 丁飯';
 		document.getElementById("priceBtn").value='100';
 		document.getElementById("cateBtn").value='飯類';
 		document.getElementById("productStatusBtn").value='販售';
@@ -54,15 +54,17 @@ p.errorMessage[type="redError"] {
 		<form:form method='POST' modelAttribute="MenuBean"
 			class='form-horizontal'>
 			<fieldset class="w3-container" style="margin-left: 260px">
-				<div class="container">
-					<h1>
+				<div style="margin-left: 30px">
+					<h1 >
 						<spring:message
-							code='spring.productInsert.form.productInsertData.label' />
+							code='spring.productInsert.form.productInsertData.label' />&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="一鍵輸入" onclick="autoInsert()" class="btn btn-primary" >
+							
 					</h1>
+<!-- 					<span></span> -->
 				</div>
 				<div>
-				<input type="button" value="一鍵輸入" onclick="autoInsert()">
-					<p class="errorMessage" type="redError">${insertComplete}
+<!-- 				<input type="button" value="一鍵輸入" onclick="autoInsert()"> -->
+					<p class="errorMessage" type="redError" style="margin-left: 20px">${insertComplete}
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='productNameBtn'>

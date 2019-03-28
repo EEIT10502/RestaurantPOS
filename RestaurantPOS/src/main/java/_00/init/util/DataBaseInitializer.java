@@ -4,12 +4,9 @@ import org.hibernate.SessionFactory;
 
 import _00.init.tableInit.AttendenceTableInit;
 import _00.init.tableInit.CalendarTableInit;
-import _00.init.tableInit.CumulativeTurnoverTableInit;
 import _00.init.tableInit.EmployeeTableInit;
 import _00.init.tableInit.ManagerTableInit;
 import _00.init.tableInit.MenuTableInit;
-import _00.init.tableInit.OrderDetailTableInit;
-import _00.init.tableInit.OrderTableInit;
 import _00.init.tableInit.ScheduleTableInit;
 import _00.init.tableInit.TargetTurnoverTableInit;
 

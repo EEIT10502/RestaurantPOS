@@ -28,7 +28,8 @@ td.errorMessage[type="redError"] {
 
 </head>
 <body>
-	<div  class="clearfix">					
+	<div  class="clearfix">
+	
 	<jsp:include page="../sideBar.jsp" flush="true" />
 	</div>
 	<jsp:include page="../productManage/productSearchHead.jsp" flush="true" />

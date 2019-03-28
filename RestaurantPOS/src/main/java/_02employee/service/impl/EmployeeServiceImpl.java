@@ -294,7 +294,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return employeeDao.findAllAttendence();
 		}
 
-		
+		@Transactional
 		@Override
 		public EmployeeBean findByPrimaryKey(int key) {
 			return employeeDao.findByPrimaryKey(key);
