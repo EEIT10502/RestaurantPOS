@@ -77,7 +77,7 @@ public class AttendenceBean implements Serializable {
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
-
+	@Column(name="clockTime")
 	public Time getClockTime() {
 		return clockTime;
 	}
@@ -85,7 +85,7 @@ public class AttendenceBean implements Serializable {
 	public void setClockTime(Time clockTime) {
 		this.clockTime = clockTime;
 	}
-
+	@Column(name="checkStatus")
 	public String getCheckStatus() {
 		return checkStatus;
 	}

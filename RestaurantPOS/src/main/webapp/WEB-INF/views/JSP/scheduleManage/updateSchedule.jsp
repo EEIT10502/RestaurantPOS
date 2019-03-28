@@ -48,7 +48,7 @@
 			<input type="hidden" name="_method"  id='putOrDelete'  value="" >
 			<fieldset class="w3-container" style="margin-left: 260px">
 				<legend>修改班別資料</legend>
-				
+				<hr><br>
 				<div class="form-group">
 <!-- 					<label class="control-label col-lg-2 col-lg-2 hide" for='scheduleId'> -->
 <!-- 						ID</label> -->

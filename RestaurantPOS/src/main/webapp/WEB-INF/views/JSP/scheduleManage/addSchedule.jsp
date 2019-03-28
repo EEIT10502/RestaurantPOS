@@ -33,7 +33,8 @@
 		<form:form id="addSch" method='POST' modelAttribute="scheduleBean"
 			class='form-horizontal'>
 			<fieldset class="w3-container" style="margin-left: 260px">
-				<legend>新增資料</legend>
+				<legend>新增班別</legend>
+				<hr><br>
 
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for='schedule'>班別名稱 </label>
@@ -77,7 +78,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<input type="button" id="btnAdd" name="btnAdd" class='btn btn-primary' value="送出" />
+						<input type="button" id="btnAdd" name="btnAdd" class="btn btn-primary" value="送出" />
 					</div>
 				</div>
 				<script type="text/javascript">

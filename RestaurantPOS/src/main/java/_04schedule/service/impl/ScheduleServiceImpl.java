@@ -10,6 +10,7 @@ import _00model.AttendenceBean;
 import _00model.CalendarBean;
 import _00model.EmployeeBean;
 import _00model.ScheduleBean;
+import _02employee.repository.EmployeeDao;
 import _04schedule.repository.ScheduleDao;
 import _04schedule.service.ScheduleService;
 
@@ -18,6 +19,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Autowired
 	ScheduleDao scheduleDao;
+	
+	@Autowired
+	EmployeeDao employeeDao;
 
 	public ScheduleServiceImpl() {
 
@@ -108,6 +112,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public CalendarBean testGet(int id) {
 		return scheduleDao.testGet(id);
+	}
+
+	//查詢所有出勤
+	@Transactional
+	@Override
+	public List<AttendenceBean> getAllAttendance() {
+		return employeeDao.getAllAttendence();
 	}
 
 }
